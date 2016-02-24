@@ -13,7 +13,7 @@ namespace UnitTestAcesso
     [TestClass]
     public partial class sdkTest
     {
-        private static Devices eqpt = null;
+        private static Device eqpt = null;
 
         // Instancia da classe com os dados do equipamento
         // https://msdn.microsoft.com/pt-br/library/microsoft.visualstudio.testtools.unittesting.classinitializeattribute.aspx
@@ -21,7 +21,7 @@ namespace UnitTestAcesso
         public static void ClassInit(TestContext context)
         {
             Console.WriteLine("ClassInit " + context.TestName);
-            eqpt = new Devices(BaseTest.URL, BaseTest.Login, BaseTest.Password);
+            eqpt = new Device(BaseTest.URL, BaseTest.Login, BaseTest.Password);
         }
 
         [TestMethod, TestCategory("sdk")]
