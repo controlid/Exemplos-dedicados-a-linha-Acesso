@@ -64,7 +64,7 @@ namespace AbrePortas
                     reqAction.Method = "POST";
 
                     using (var sw = new StreamWriter(reqAction.GetRequestStream()))
-                        sw.Write("{\"actions\":[{\"action\": \"door\", \"parameters\":\"door=2\"}]}");
+                        sw.Write("{\"actions\":[{\"action\": \"door\", \"parameters\":\"door=1\"}, {\"action\": \"door\", \"parameters\":\"door=2\"}]}");
 
                     reqAction.GetResponse();  // Envia o comando
                 }
