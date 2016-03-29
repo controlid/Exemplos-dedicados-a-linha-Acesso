@@ -57,6 +57,7 @@
     <Compile Include="BaseTest_basic.cs" />
     <Compile Include="BaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sdkTest_Areas.cs" />
     <Compile Include="sdkTest_Equipament.cs" />
     <Compile Include="sdkTest_CSV.cs" />
     <Compile Include="sdkTest_Logs.cs" />
