@@ -57,7 +57,7 @@ namespace UnitTestAcesso
             long idUG = eqpt.Add<User_Groups>(new User_Groups() { group_id = idG, user_id = idU });
 
             Console.WriteLine("exclusão de Usuários do Grupo");
-            eqpt.Destroy<User_Groups, WhereObjects>(new WhereObjects() { user_groups = new User_Groups() { group_id = idG, user_id = idU } });
+            eqpt.DestroyWhere<User_Groups, WhereObjects>(new WhereObjects() { user_groups = new User_Groups() { group_id = idG, user_id = idU } });
 
             Console.WriteLine("exclusão de Usuários Generico");
             Assert.IsTrue(eqpt.Destroy<Users>(idU));
@@ -111,7 +111,7 @@ namespace UnitTestAcesso
         {
             // Apaga as informações do usuário 222 anterior 
             Console.WriteLine("Apagando o usuário 222: " + eqpt.Destroy<Users>(222));
-            eqpt.Destroy<User_Roles, WhereObjects>(new WhereObjects() { user_roles = new User_Roles() { user_id = 222 } });
+            eqpt.DestroyWhere<User_Roles, WhereObjects>(new WhereObjects() { user_roles = new User_Roles() { user_id = 222 } });
 
             Console.WriteLine("inclusão de um usuário admin");
             long idU = eqpt.Add<Users>(new Users()
@@ -139,6 +139,64 @@ namespace UnitTestAcesso
             Bitmap bmp = new Bitmap("../../ControliD.png");
             eqpt.SetUserImage(idU, bmp);
             bmp = eqpt.GetUserImage(idU);
+        }
+
+        [TestMethod, TestCategory("sdk generic")]
+        public void sdk_Generic_Rules()
+        {
+            //eqpt.ClearAreasTimesRules();
+
+            //Access_Rules rule = eqpt.LoadOrSet(0, new Access_Rules() { name = "(auto Engenharia)", type = 1, priority = 0 });
+            //eqpt.Set(new Portal_Access_Rules() { access_rule_id = rule.id, portal_id = 1});
+            //eqpt.Set(new Area_Access_Rules() { access_rule_id = rule.id, area_id = 15 });
+            //eqpt.Set(new Area_Access_Rules() { access_rule_id = rule.id, area_id = 16 });
+            //eqpt.Set(new Group_Access_Rules() { access_rule_id = rule.id, group_id = 2 });
+            //eqpt.Set(new Access_Rule_Time_Zones() { access_rule_id = rule.id, time_zone_id = 1 });
+
+            //eqpt.DestroyWhere<Portal_Access_Rules, WhereObjects>(Device.WhereByObject(new Portal_Access_Rules() { }));
+            //eqpt.Destroy<Areas>(new Areas() { id=10});
+            //eqpt.Destroy<Portals>(new Portals() { id = 17 });
+            //eqpt.Set(new Area_Access_Rules() { access_rule_id = 2, area_id = 2 });
+
+            //Console.WriteLine("\r\nCards:");
+            //var cards = eqpt.List<Cards>();
+            //foreach (var i in cards)
+            //    Console.WriteLine(i.id + ": " + i.value + " user: " + i.user_id);
+
+            Users user = eqpt.Load<Users>(1);
+            Console.WriteLine("\r\nUser Card Test: " + user.id + " - " + user.name);
+
+            Console.WriteLine("\r\nGrupos:");
+            foreach (var i in eqpt.List<Groups>())
+                Console.WriteLine(i.id + ": " + i.name);
+
+            Console.WriteLine("\r\nAreas:");
+            foreach (var i in eqpt.List<Areas>())
+                Console.WriteLine(i.id + ": " + i.name);
+
+            Console.WriteLine("\r\nAccess Rules:");
+            foreach (var i in eqpt.List<Access_Rules>())
+                Console.WriteLine(i.id + ": " + i.name + " - tipo " + i.type + " prioridade " + i.priority);
+
+            Console.WriteLine("\r\nRules Groups:");
+            foreach (var i in eqpt.List<Group_Access_Rules>())
+                Console.WriteLine("Group: " + i.group_id + " Rule: " + i.access_rule_id);
+
+            Console.WriteLine("\r\nArea Access Rules:");
+            foreach (var i in eqpt.List<Area_Access_Rules>())
+                Console.WriteLine("Area: " + i.area_id + " Rule: " + i.access_rule_id);
+
+            Console.WriteLine("\r\nAccess Rule Time Zone:");
+            foreach (var i in eqpt.List<Access_Rule_Time_Zones>())
+                Console.WriteLine("Time: " + i.time_zone_id + " Rule: " + i.access_rule_id);
+
+            Console.WriteLine("\r\nPortal Access Rules:");
+            foreach (var i in eqpt.List<Portal_Access_Rules>())
+                Console.WriteLine("Portal: " + i.portal_id + " Rule: " + i.access_rule_id);
+
+            Console.WriteLine("\r\nPortals:");
+            foreach (var i in eqpt.List<Portals>())
+                Console.WriteLine(i.id + ": " + i.name);
         }
     }
 }
