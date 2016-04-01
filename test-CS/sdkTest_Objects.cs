@@ -154,7 +154,11 @@ namespace UnitTestAcesso
             string cAreaHall = "Hall"; 
             string cAreaEngenharia = "Engenharia";
             string cGrupo = cAreaEngenharia;
-            
+
+            // As duas linhas seguintes abaixo representão toda a logica existente em seguida
+            //if(eqpt.SetWigandRuleAreaGroupTime(nLeitoraWigandEntrada, nRelePortal, cAreaHall, cAreaEngenharia, cGrupo, 1))
+            //    eqpt.SetWigandRuleAreaGroupTime(nLeitoraWigandSaida, nRelePortal, cAreaEngenharia, cAreaHall, cGrupo, 1);
+
             // Leitora 2, libera o Relê 2, cuja oriem é o Hall e dá acesso a Engenharia
             if (eqpt.SetWigandPortal(nLeitoraWigandEntrada, nRelePortal, cAreaHall, cAreaEngenharia))
             {
@@ -165,7 +169,7 @@ namespace UnitTestAcesso
                 long nGrupo = eqpt.LoadOrAdd<Groups>(cGrupo);
 
                 // Cria uma nova regra de autorização: Tipo 1 é de autorizar, e a prioridade é a ordem a ser executado
-                Access_Rules rule = eqpt.LoadOrSet(0, new Access_Rules() { name = "(auto "+cAreaEngenharia+")", type = 1, priority = 0 });
+                Access_Rules rule = eqpt.LoadOrSet(0, new Access_Rules() { name = "(auto " + cAreaEngenharia + ")", type = 1, priority = 0 });
 
                 // Define que as a regra de acesso a 'Engenharia'
                 eqpt.Set(new Area_Access_Rules() { access_rule_id = rule.id, area_id = nAreaEngenharia }); // liberando por área
@@ -177,7 +181,7 @@ namespace UnitTestAcesso
                 // Libera o horario padrão (id:1) para o acesso da regra
                 eqpt.Set(new Access_Rule_Time_Zones() { access_rule_id = rule.id, time_zone_id = 1 });
 
-                // Agora para sair, usando outro leitor logico precisa completar a regra
+                // Agora para sair, usando outro leitor é preciso criar novas regras e acessos
                 if (eqpt.SetWigandPortal(nLeitoraWigandSaida, nRelePortal, cAreaEngenharia, cAreaHall))
                 {
                     // Obtem o ID da área de destino desejada ter acesso, no caso Engenharia
@@ -200,7 +204,6 @@ namespace UnitTestAcesso
             else
                 Assert.Inconclusive("Eoo ao definir a Leitora ao Portal");
             
-
             //Console.WriteLine("\r\nCards:");
             //var cards = eqpt.List<Cards>();
             //foreach (var i in cards)
