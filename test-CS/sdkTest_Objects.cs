@@ -144,19 +144,62 @@ namespace UnitTestAcesso
         [TestMethod, TestCategory("sdk generic")]
         public void sdk_Generic_Rules()
         {
-            //eqpt.ClearAreasTimesRules();
+            eqpt.ClearWigandPortal(); // Inativa as leitoras e relês
+            eqpt.ClearAreasTimesRules(); // Limpa todas as regras!
+            
+            // Parametros da Autorização: supondo o acesso a duas áreas
+            int nLeitoraWigandEntrada = 2;
+            int nLeitoraWigandSaida = 3;
+            int nRelePortal = 2;
+            string cAreaHall = "Hall"; 
+            string cAreaEngenharia = "Engenharia";
+            string cGrupo = cAreaEngenharia;
+            
+            // Leitora 2, libera o Relê 2, cuja oriem é o Hall e dá acesso a Engenharia
+            if (eqpt.SetWigandPortal(nLeitoraWigandEntrada, nRelePortal, cAreaHall, cAreaEngenharia))
+            {
+                // Obtem o ID da área de destino desejada ter acesso, no caso Engenharia
+                long nAreaEngenharia = eqpt.LoadOrAdd<Areas>(cAreaEngenharia);
 
-            //Access_Rules rule = eqpt.LoadOrSet(0, new Access_Rules() { name = "(auto Engenharia)", type = 1, priority = 0 });
-            //eqpt.Set(new Portal_Access_Rules() { access_rule_id = rule.id, portal_id = 1});
-            //eqpt.Set(new Area_Access_Rules() { access_rule_id = rule.id, area_id = 15 });
-            //eqpt.Set(new Area_Access_Rules() { access_rule_id = rule.id, area_id = 16 });
-            //eqpt.Set(new Group_Access_Rules() { access_rule_id = rule.id, group_id = 2 });
-            //eqpt.Set(new Access_Rule_Time_Zones() { access_rule_id = rule.id, time_zone_id = 1 });
+                // Obtem o ID da do grupo que tera acesso a regra
+                long nGrupo = eqpt.LoadOrAdd<Groups>(cGrupo);
 
-            //eqpt.DestroyWhere<Portal_Access_Rules, WhereObjects>(Device.WhereByObject(new Portal_Access_Rules() { }));
-            //eqpt.Destroy<Areas>(new Areas() { id=10});
-            //eqpt.Destroy<Portals>(new Portals() { id = 17 });
-            //eqpt.Set(new Area_Access_Rules() { access_rule_id = 2, area_id = 2 });
+                // Cria uma nova regra de autorização: Tipo 1 é de autorizar, e a prioridade é a ordem a ser executado
+                Access_Rules rule = eqpt.LoadOrSet(0, new Access_Rules() { name = "(auto "+cAreaEngenharia+")", type = 1, priority = 0 });
+
+                // Define que as a regra de acesso a 'Engenharia'
+                eqpt.Set(new Area_Access_Rules() { access_rule_id = rule.id, area_id = nAreaEngenharia }); // liberando por área
+                // eqpt.Set(new Portal_Access_Rules() { access_rule_id = rule.id, portal_id = nRelePortal }); // liberando por portal
+
+                // Dá acesso as pessoas do grupo engenharia a regra de acesso
+                eqpt.Set(new Group_Access_Rules() { access_rule_id = rule.id, group_id = nGrupo });
+
+                // Libera o horario padrão (id:1) para o acesso da regra
+                eqpt.Set(new Access_Rule_Time_Zones() { access_rule_id = rule.id, time_zone_id = 1 });
+
+                // Agora para sair, usando outro leitor logico precisa completar a regra
+                if (eqpt.SetWigandPortal(nLeitoraWigandSaida, nRelePortal, cAreaEngenharia, cAreaHall))
+                {
+                    // Obtem o ID da área de destino desejada ter acesso, no caso Engenharia
+                    long nAreaHall = eqpt.LoadOrAdd<Areas>(cAreaHall);
+
+                    // Cria uma nova regra de autorização: Tipo 1 é de autorizar, e a prioridade é a ordem a ser executado
+                    Access_Rules ruleOut = eqpt.LoadOrSet(0, new Access_Rules() { name = "(auto " + cAreaHall + ")", type = 1, priority = 0 });
+
+                    // Define que as a regra de acesso ao 'Hall'
+                    eqpt.Set(new Area_Access_Rules() { access_rule_id = ruleOut.id, area_id = nAreaHall }); // liberando por área
+                    // eqpt.Set(new Portal_Access_Rules() { access_rule_id = ruleOut.id, portal_id = nRelePortal }); // liberando por portal
+
+                    // Dá acesso as pessoas do grupo engenharia a regra de acesso
+                    eqpt.Set(new Group_Access_Rules() { access_rule_id = ruleOut.id, group_id = nGrupo });
+
+                    // Libera o horario padrão (id:1) para o acesso da regra de saida
+                    eqpt.Set(new Access_Rule_Time_Zones() { access_rule_id = ruleOut.id, time_zone_id = 1 });
+                }
+            }
+            else
+                Assert.Inconclusive("Eoo ao definir a Leitora ao Portal");
+            
 
             //Console.WriteLine("\r\nCards:");
             //var cards = eqpt.List<Cards>();
@@ -173,6 +216,10 @@ namespace UnitTestAcesso
             Console.WriteLine("\r\nAreas:");
             foreach (var i in eqpt.List<Areas>())
                 Console.WriteLine(i.id + ": " + i.name);
+
+            Console.WriteLine("\r\nPortals:");
+            foreach (var i in eqpt.List<Portals>())
+                Console.WriteLine(i.id + ": " + i.name + (i.name.EndsWith("inativo") ? "" : (" - Areas: " + i.area_from_id + " => " + i.area_to_id)));
 
             Console.WriteLine("\r\nAccess Rules:");
             foreach (var i in eqpt.List<Access_Rules>())
@@ -194,9 +241,13 @@ namespace UnitTestAcesso
             foreach (var i in eqpt.List<Portal_Access_Rules>())
                 Console.WriteLine("Portal: " + i.portal_id + " Rule: " + i.access_rule_id);
 
-            Console.WriteLine("\r\nPortals:");
-            foreach (var i in eqpt.List<Portals>())
-                Console.WriteLine(i.id + ": " + i.name);
+            Console.WriteLine("\r\nPortal Script Parameters:");
+            foreach (var i in eqpt.List<Portal_Script_Parameters>())
+                Console.WriteLine("script_parameter_id: " + i.script_parameter_id + ": script_instance_id: " + i.script_instance_id + " sequence: " + i.sequence + " value: " + i.value);
+
+            Console.WriteLine("\r\nActions:");
+            foreach (var i in eqpt.List<Actions>())
+                Console.WriteLine(i.id + ": " + i.name + " - action: " + i.action + " parameters: " + i.parameters);
         }
     }
 }
