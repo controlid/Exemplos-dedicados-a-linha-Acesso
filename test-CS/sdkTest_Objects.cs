@@ -1,13 +1,7 @@
-﻿using ControlID;
-using ControlID.iDAccess;
+﻿using ControlID.iDAccess;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UnitTestAcesso
 {
@@ -141,7 +135,7 @@ namespace UnitTestAcesso
             bmp = eqpt.GetUserImage(idU);
         }
 
-        [TestMethod, TestCategory("sdk generic")]
+        [TestMethod, TestCategory("sdk BOX")]
         public void sdk_Generic_Rules()
         {
             eqpt.ClearWigandPortal(); // Inativa as leitoras e relês
@@ -151,28 +145,22 @@ namespace UnitTestAcesso
             int nLeitoraWigandEntrada = 2;
             int nLeitoraWigandSaida = 3;
             int nRelePortal = 2;
-            string cAreaHall = "Hall"; 
-            string cAreaEngenharia = "Engenharia";
-            string cGrupo = cAreaEngenharia;
+            long nAreaFora = eqpt.LoadOrAdd<Groups>("Hall");
+            long nAreaDentro = eqpt.LoadOrAdd<Groups>("Area Engenharia");
+            long nGrupo = eqpt.LoadOrAdd<Groups>("Grupo Engenharia");
 
             // As duas linhas seguintes abaixo representão toda a logica existente em seguida
             //if(eqpt.SetWigandRuleAreaGroupTime(nLeitoraWigandEntrada, nRelePortal, cAreaHall, cAreaEngenharia, cGrupo, 1))
             //    eqpt.SetWigandRuleAreaGroupTime(nLeitoraWigandSaida, nRelePortal, cAreaEngenharia, cAreaHall, cGrupo, 1);
 
             // Leitora 2, libera o Relê 2, cuja oriem é o Hall e dá acesso a Engenharia
-            if (eqpt.SetWigandPortal(nLeitoraWigandEntrada, nRelePortal, cAreaHall, cAreaEngenharia))
+            if (eqpt.SetWigandPortal(nLeitoraWigandEntrada, nRelePortal, nAreaFora, nAreaDentro))
             {
-                // Obtem o ID da área de destino desejada ter acesso, no caso Engenharia
-                long nAreaEngenharia = eqpt.LoadOrAdd<Areas>(cAreaEngenharia);
-
-                // Obtem o ID da do grupo que tera acesso a regra
-                long nGrupo = eqpt.LoadOrAdd<Groups>(cGrupo);
-
                 // Cria uma nova regra de autorização: Tipo 1 é de autorizar, e a prioridade é a ordem a ser executado
-                Access_Rules rule = eqpt.LoadOrSet(0, new Access_Rules() { name = "(auto " + cAreaEngenharia + ")", type = 1, priority = 0 });
+                Access_Rules rule = eqpt.LoadOrSet(0, new Access_Rules() { name = "(auto Dentro)", type = 1, priority = 0 });
 
                 // Define que as a regra de acesso a 'Engenharia'
-                eqpt.Set(new Area_Access_Rules() { access_rule_id = rule.id, area_id = nAreaEngenharia }); // liberando por área
+                eqpt.Set(new Area_Access_Rules() { access_rule_id = rule.id, area_id = nAreaDentro }); // liberando por área
                 // eqpt.Set(new Portal_Access_Rules() { access_rule_id = rule.id, portal_id = nRelePortal }); // liberando por portal
 
                 // Dá acesso as pessoas do grupo engenharia a regra de acesso
@@ -182,16 +170,13 @@ namespace UnitTestAcesso
                 eqpt.Set(new Access_Rule_Time_Zones() { access_rule_id = rule.id, time_zone_id = 1 });
 
                 // Agora para sair, usando outro leitor é preciso criar novas regras e acessos
-                if (eqpt.SetWigandPortal(nLeitoraWigandSaida, nRelePortal, cAreaEngenharia, cAreaHall))
+                if (eqpt.SetWigandPortal(nLeitoraWigandSaida, nRelePortal, nAreaDentro, nAreaFora))
                 {
-                    // Obtem o ID da área de destino desejada ter acesso, no caso Engenharia
-                    long nAreaHall = eqpt.LoadOrAdd<Areas>(cAreaHall);
-
                     // Cria uma nova regra de autorização: Tipo 1 é de autorizar, e a prioridade é a ordem a ser executado
-                    Access_Rules ruleOut = eqpt.LoadOrSet(0, new Access_Rules() { name = "(auto " + cAreaHall + ")", type = 1, priority = 0 });
+                    Access_Rules ruleOut = eqpt.LoadOrSet(0, new Access_Rules() { name = "(auto Fora)", type = 1, priority = 0 });
 
                     // Define que as a regra de acesso ao 'Hall'
-                    eqpt.Set(new Area_Access_Rules() { access_rule_id = ruleOut.id, area_id = nAreaHall }); // liberando por área
+                    eqpt.Set(new Area_Access_Rules() { access_rule_id = ruleOut.id, area_id = nAreaFora }); // liberando por área
                     // eqpt.Set(new Portal_Access_Rules() { access_rule_id = ruleOut.id, portal_id = nRelePortal }); // liberando por portal
 
                     // Dá acesso as pessoas do grupo engenharia a regra de acesso
