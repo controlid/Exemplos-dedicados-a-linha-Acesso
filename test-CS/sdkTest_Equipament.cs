@@ -61,6 +61,12 @@ namespace UnitTestAcesso
         }
 
         [TestMethod, TestCategory("sdk")]
+        public void sdk_SetBell()
+        {
+            eqpt.SetBell(1); // define o rele 1 para ser campainha
+        }
+
+        [TestMethod, TestCategory("sdk")]
         public void sdk_Reboot()
         {
             // Esse teste gera falha nos demais por motivos obvios
