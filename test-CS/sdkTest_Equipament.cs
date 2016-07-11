@@ -24,12 +24,128 @@ namespace UnitTestAcesso
             eqpt = new Device(BaseTest.URL, BaseTest.Login, BaseTest.Password);
         }
 
+        [TestMethod, TestCategory("sdk Catraca")]
+        public void sdk_SpinClockwise()
+        {
+            eqpt.Spin(iDBlockDirection.Clockwise);
+        }
+
+        [TestMethod, TestCategory("sdk Catraca")]
+        public void sdk_SpinAnticlockwise()
+        {
+            eqpt.Spin(iDBlockDirection.Anticlockwise);
+        }
+
+        [TestMethod, TestCategory("sdk Catraca")]
+        public void sdk_SpinBoth()
+        {
+            eqpt.Spin(iDBlockDirection.Both);
+        }
+
+        [TestMethod, TestCategory("sdk Catraca")]
+        public void sdk_Config_AntiPassbackEnable()
+        {
+            eqpt.SetCatra(new ConfigCatra()
+            {
+                AntiPassback = true
+            });
+        }
+
+        [TestMethod, TestCategory("sdk Catraca")]
+        public void sdk_Config_AntiPassbackDisable()
+        {
+            eqpt.SetCatra(new ConfigCatra()
+            {
+                AntiPassback = false
+            });
+        }
+
+        [TestMethod, TestCategory("sdk Catraca")]
+        public void sdk_Config_DailyResetEnable()
+        {
+            eqpt.SetCatra(new ConfigCatra()
+            {
+                DailyReset = true
+            });
+        }
+
+        [TestMethod, TestCategory("sdk Catraca")]
+        public void sdk_Config_DailyResetDisable()
+        {
+            eqpt.SetCatra(new ConfigCatra()
+            {
+                DailyReset = false
+            });
+        }
+
+        [TestMethod, TestCategory("sdk Catraca")]
+        public void sdk_Config_GateWayClockWise()
+        {
+            eqpt.SetCatra(new ConfigCatra()
+            {
+                GatewayMode = iDBlockGateway.Clockwise
+            });
+        }
+
+        [TestMethod, TestCategory("sdk Catraca")]
+        public void sdk_Config_GateWayAntiClockWise()
+        {
+            eqpt.SetCatra(new ConfigCatra()
+            {
+                GatewayMode = iDBlockGateway.Anticlockwise
+            });
+        }
+
+        [TestMethod, TestCategory("sdk Catraca")]
+        public void sdk_Config_OperationModeBlocked()
+        {
+            eqpt.SetCatra(new ConfigCatra()
+            {
+                OperationMode = iDBlockOperationMode.Blocked
+            });
+        }
+
+        [TestMethod, TestCategory("sdk Catraca")]
+        public void sdk_Config_OperationModeEntranceOpen()
+        {
+            eqpt.SetCatra(new ConfigCatra()
+            {
+                OperationMode = iDBlockOperationMode.Entrance_Open
+            });
+        }
+
+        [TestMethod, TestCategory("sdk Catraca")]
+        public void sdk_Config_OperationModeExitOpen()
+        {
+            eqpt.SetCatra(new ConfigCatra()
+            {
+                OperationMode = iDBlockOperationMode.Exit_Open
+            });
+        }
+
+        [TestMethod, TestCategory("sdk Catraca")]
+        public void sdk_Config_OperationModeBothOpen()
+        {
+            eqpt.SetCatra(new ConfigCatra()
+            {
+                OperationMode = iDBlockOperationMode.Both_Open
+            });
+        }
+
         [TestMethod, TestCategory("sdk")]
         public void sdk_Login()
         {
             eqpt.Connect();
             Console.WriteLine("Session: " + eqpt.Session);
             eqpt.Disconnect();
+        }
+
+
+        [TestMethod, TestCategory("sdk")]
+        public void sdk_BeepOff()
+        {
+            eqpt.Connect();
+            eqpt.SetBeep(false);
         }
 
         [TestMethod, TestCategory("sdk")]
