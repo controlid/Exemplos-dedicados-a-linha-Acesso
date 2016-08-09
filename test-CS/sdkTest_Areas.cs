@@ -1,13 +1,6 @@
-﻿using ControlID;
-using ControlID.iDAccess;
+﻿using ControlID.iDAccess;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UnitTestAcesso
 {
@@ -95,6 +88,10 @@ namespace UnitTestAcesso
             foreach (var ar in eqpt.List<User_Access_Rules>())
                 Console.WriteLine(ar.access_rule_id + " U " + ar.user_id);
 
+            Console.WriteLine("\r\nValidation_Access_Rules");
+            foreach (var ar in eqpt.List<Access_Rule_Validations>())
+                Console.WriteLine(ar.access_rule_id + " U " + ar.validation_id);
+
             Console.WriteLine("\r\nPortal_Actions");
             foreach (var ar in eqpt.List<Portal_Actions>())
                 Console.WriteLine("P " + ar.portal_id  + " A " + ar.action_id);
@@ -126,7 +123,8 @@ namespace UnitTestAcesso
             //eqpt.Add(new User_Access_Rules() { access_rule_id = 2, user_id = 1 });
             //eqpt.Add(new Access_Rule_Time_Zones() { access_rule_id = 2, time_zone_id = 1 });
             //eqpt.Add(new Portal_Access_Rules() { access_rule_id = 1,  portal_id = 1 });
-            eqpt.Add(new Area_Access_Rules() { access_rule_id = 1, area_id = 2 });
+            //eqpt.Add(new Area_Access_Rules() { access_rule_id = 1, area_id = 2 });
+            //eqpt.Add(new Access_Rule_Validations() { access_rule_id = 1, validation_id = 1 });
             //eqpt.TryDestroyAll<Area_Access_Rules>(true);
             //eqpt.TryDestroyAll<Portal_Access_Rules>(true);
         }

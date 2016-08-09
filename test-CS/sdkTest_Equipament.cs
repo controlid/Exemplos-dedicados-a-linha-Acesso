@@ -21,7 +21,7 @@ namespace UnitTestAcesso
         public static void ClassInit(TestContext context)
         {
             Console.WriteLine("ClassInit " + context.TestName);
-            eqpt = new Device(BaseTest.URL, BaseTest.Login, BaseTest.Password);
+            eqpt = new Device(BaseTest.URL, BaseTest.Login, BaseTest.Password, false, BaseTest.Port);
         }
 
         [TestMethod, TestCategory("sdk Catraca")]
@@ -207,7 +207,7 @@ namespace UnitTestAcesso
         public void sdk_UpdateFirmware()
         {
             // por segurança, estes teste está sempre comentado!
-            eqpt.UpdateFirmware();
+            //eqpt.UpdateFirmware();
         }
 
         [TestMethod, TestCategory("sdk")]
