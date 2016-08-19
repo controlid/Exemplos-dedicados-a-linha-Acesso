@@ -48,6 +48,11 @@ namespace UnitTestAcesso
         [TestMethod(), TestCategory("sdk BOX")]
         public void sdk_ListAll()
         {
+            // eqpt.Destroy<Devices>(-1);
+            Console.WriteLine("\r\nDevices");
+            foreach (var e in eqpt.List<Devices>())
+                Console.WriteLine(e.id + ": " + e.name + " IP: " + e.IP);
+
             Console.WriteLine("\r\nAccess_Rules");
             foreach (var rule in eqpt.List<Access_Rules>())
                 Console.WriteLine(rule.id + ": " + rule.name + " priority: " + rule.priority + " type: " + rule.type);
@@ -95,6 +100,14 @@ namespace UnitTestAcesso
             Console.WriteLine("\r\nPortal_Actions");
             foreach (var ar in eqpt.List<Portal_Actions>())
                 Console.WriteLine("P " + ar.portal_id  + " A " + ar.action_id);
+
+            Console.WriteLine("\r\nPortal_Script_Parameters");
+            foreach (var psp in eqpt.List<Portal_Script_Parameters>())
+                Console.WriteLine("S " + psp.sequence + " " + psp.value );
+
+            Console.WriteLine("\r\nActions");
+            foreach (var a in eqpt.List<Actions>())
+                Console.WriteLine("A " + a.id + " " + a.action + " " + a.parameters);
 
             Console.WriteLine("\r\nUser_Groups");
             foreach (var u in eqpt.List<User_Groups>())

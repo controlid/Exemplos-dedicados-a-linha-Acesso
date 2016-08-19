@@ -83,7 +83,7 @@ namespace UnitTestAcesso
         {
             eqpt.SetCatra(new ConfigCatra()
             {
-                GatewayMode = iDBlockGateway.Clockwise
+                GatewayMode = iDBlockDirection.Clockwise
             });
         }
 
@@ -92,7 +92,7 @@ namespace UnitTestAcesso
         {
             eqpt.SetCatra(new ConfigCatra()
             {
-                GatewayMode = iDBlockGateway.Anticlockwise
+                GatewayMode = iDBlockDirection.Anticlockwise
             });
         }
 
