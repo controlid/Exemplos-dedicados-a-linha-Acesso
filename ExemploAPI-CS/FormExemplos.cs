@@ -1,5 +1,8 @@
 ﻿using ExemploAPI.Properties;
 using System;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
+using System.Text;
 using System.Windows.Forms;
 
 namespace ExemploAPI
@@ -86,7 +89,7 @@ namespace ExemploAPI
                     Settings.Default.Save();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 AddLog(ex);
             }
@@ -150,7 +153,7 @@ namespace ExemploAPI
         {
             try
             {
-                if(cmbGiro.SelectedIndex == 1) // Horario
+                if (cmbGiro.SelectedIndex == 1) // Horario
                     AddLog(WebJson.Send(urlDevice + "execute_actions", "{\"actions\":[{\"action\": \"catra\", \"parameters\":\"allow=clockwise\"}]}", session));
                 else if (cmbGiro.SelectedIndex == 2) // Anti-Horario
                     AddLog(WebJson.Send(urlDevice + "execute_actions", "{\"actions\":[{\"action\": \"catra\", \"parameters\":\"allow=anticlockwise\"}]}", session));
@@ -205,6 +208,100 @@ namespace ExemploAPI
         private void btnAgora_Click(object sender, EventArgs e)
         {
             dateTimePicker1.Value = DateTime.Now;
+        }
+
+        #endregion
+
+        #region Usuários
+
+        private void btnUserList_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AddLog(WebJson.Send(urlDevice + "load_objects", "{\"object\":\"users\"}", session));
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+        private void btnUserBioList_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AddLog(WebJson.Send(urlDevice + "load_objects", "{\"object\":\"templates\"}", session));
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+        private void btnUserCardList_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AddLog(WebJson.Send(urlDevice + "load_objects", "{\"object\":\"cards\"}", session));
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+        private void btnUserListParse_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Este exemplo irá fazer um parse simples do retorno dos objetos automaticamente, usando uma estrutura de classes com os memos nomes
+                string users = WebJson.Send(urlDevice + "load_objects", "{\"object\":\"users\"}", session); // Consulte a documentação para fazer 'Where'
+                // https://www.controlid.com.br/produtos/controlador-de-acesso
+                // https://www.controlid.com.br/suporte/api_idaccess_V2.6.8.html
+
+                // Basta referenciar o System.Runtime.Serialization, a partir do .Net 4.0
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(UserList));
+
+                // aqui vou transformar a string em um stream, mas o ideal é ter esse parse dentro do WebJson que usarei em outro exemplo
+                var ms = new System.IO.MemoryStream(UTF8Encoding.UTF8.GetBytes(users));
+
+                // A mágina acontece aqui! (veja as estruturas de classes auxiliares, mais abaixo)
+                var list = serializer.ReadObject(ms) as UserList;
+
+                // Só listo os dados
+                var sb = new StringBuilder(); // uso um StringBuilder, apenas para otimizar o código, e mandar para a tela tudo de uma vez
+                for (int i = 0; i < list.users.Length; i++)
+                    sb.AppendFormat("{0}: {1} - {2}\r\n", list.users[i].id, list.users[i].name, list.users[i].registration);
+
+                // Exibe de fato os dados
+                AddLog(sb.ToString());
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+        [DataContract]
+        public class UserList
+        {
+            [DataMember(EmitDefaultValue = false)] // Os EmitDefaultValue são necessários mais para postar informações omitindo itens não definidos
+            public User[] users;
+        }
+
+        [DataContract]
+        public class User
+        {
+            [DataMember(EmitDefaultValue = false)]
+            public long id; // Atenção no iDAccess todos os numeros são sempre long (64bits)
+            [DataMember(EmitDefaultValue = false)]
+            public string name;
+            [DataMember(EmitDefaultValue = false)]
+            public string registration;
+            [DataMember(EmitDefaultValue = false)]
+            public string password;
+            [DataMember(EmitDefaultValue = false)]
+            public string salt;
         }
 
         #endregion

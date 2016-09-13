@@ -33,7 +33,7 @@ namespace ExemploAPI
                 using (var streamReader = new StreamReader(response.GetResponseStream()))
                 {
                     string responseData = streamReader.ReadToEnd();
-                    Console.WriteLine(responseData);
+//                    Console.WriteLine(responseData);
                     return responseData;
                 }
             }
@@ -47,7 +47,7 @@ namespace ExemploAPI
                     using (var reader = new StreamReader(responseData))
                     {
                         string text = reader.ReadToEnd();
-                        Console.WriteLine(text);
+//                        Console.WriteLine(text);
                         throw new Exception(text);
                     }
                 }
