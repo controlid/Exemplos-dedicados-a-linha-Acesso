@@ -67,10 +67,10 @@
             this.btnUserRead = new System.Windows.Forms.Button();
             this.btnUserDelete = new System.Windows.Forms.Button();
             this.btnUserAdd = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtUserRegistration = new System.Windows.Forms.TextBox();
+            this.txtUserID = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtUserName = new System.Windows.Forms.TextBox();
             this.btnUserRemoteCard = new System.Windows.Forms.Button();
             this.btnUserList = new System.Windows.Forms.Button();
             this.tbGroups = new System.Windows.Forms.TabPage();
@@ -455,10 +455,10 @@
             this.groupBox2.Controls.Add(this.btnUserRead);
             this.groupBox2.Controls.Add(this.btnUserDelete);
             this.groupBox2.Controls.Add(this.btnUserAdd);
-            this.groupBox2.Controls.Add(this.textBox4);
-            this.groupBox2.Controls.Add(this.textBox5);
+            this.groupBox2.Controls.Add(this.txtUserRegistration);
+            this.groupBox2.Controls.Add(this.txtUserID);
             this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.textBox6);
+            this.groupBox2.Controls.Add(this.txtUserName);
             this.groupBox2.Location = new System.Drawing.Point(8, 8);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(360, 106);
@@ -475,6 +475,7 @@
             this.btnUserModify.TabIndex = 7;
             this.btnUserModify.Text = "Alterar";
             this.btnUserModify.UseVisualStyleBackColor = true;
+            this.btnUserModify.Click += new System.EventHandler(this.btnUserModify_Click);
             // 
             // label11
             // 
@@ -503,6 +504,7 @@
             this.btnUserRead.TabIndex = 0;
             this.btnUserRead.Text = "Ler";
             this.btnUserRead.UseVisualStyleBackColor = true;
+            this.btnUserRead.Click += new System.EventHandler(this.btnUserRead_Click);
             // 
             // btnUserDelete
             // 
@@ -513,6 +515,7 @@
             this.btnUserDelete.TabIndex = 0;
             this.btnUserDelete.Text = "Excluir";
             this.btnUserDelete.UseVisualStyleBackColor = true;
+            this.btnUserDelete.Click += new System.EventHandler(this.btnUserDelete_Click);
             // 
             // btnUserAdd
             // 
@@ -523,21 +526,22 @@
             this.btnUserAdd.TabIndex = 0;
             this.btnUserAdd.Text = "Incluir";
             this.btnUserAdd.UseVisualStyleBackColor = true;
+            this.btnUserAdd.Click += new System.EventHandler(this.btnUserAdd_Click);
             // 
-            // textBox4
+            // txtUserRegistration
             // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.Location = new System.Drawing.Point(172, 71);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(101, 20);
-            this.textBox4.TabIndex = 5;
+            this.txtUserRegistration.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUserRegistration.Location = new System.Drawing.Point(172, 71);
+            this.txtUserRegistration.Name = "txtUserRegistration";
+            this.txtUserRegistration.Size = new System.Drawing.Size(101, 20);
+            this.txtUserRegistration.TabIndex = 5;
             // 
-            // textBox5
+            // txtUserID
             // 
-            this.textBox5.Location = new System.Drawing.Point(6, 32);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(66, 20);
-            this.textBox5.TabIndex = 1;
+            this.txtUserID.Location = new System.Drawing.Point(6, 32);
+            this.txtUserID.Name = "txtUserID";
+            this.txtUserID.Size = new System.Drawing.Size(66, 20);
+            this.txtUserID.TabIndex = 1;
             // 
             // label13
             // 
@@ -548,14 +552,14 @@
             this.label13.TabIndex = 4;
             this.label13.Text = "Nome";
             // 
-            // textBox6
+            // txtUserName
             // 
-            this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox6.Location = new System.Drawing.Point(6, 71);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(160, 20);
-            this.textBox6.TabIndex = 3;
+            this.txtUserName.Location = new System.Drawing.Point(6, 71);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(160, 20);
+            this.txtUserName.TabIndex = 3;
             // 
             // btnUserRemoteCard
             // 
@@ -675,10 +679,10 @@
         private System.Windows.Forms.Button btnUserRead;
         private System.Windows.Forms.Button btnUserDelete;
         private System.Windows.Forms.Button btnUserAdd;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtUserRegistration;
+        private System.Windows.Forms.TextBox txtUserID;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Button btnUserRemoteCard;
         private System.Windows.Forms.Button btnUserRemoteBio;
         private System.Windows.Forms.Button btnUserModify;

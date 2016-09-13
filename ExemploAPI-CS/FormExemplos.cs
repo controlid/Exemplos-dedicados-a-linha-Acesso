@@ -260,7 +260,7 @@ namespace ExemploAPI
                 // https://www.controlid.com.br/suporte/api_idaccess_V2.6.8.html
 
                 // Basta referenciar o System.Runtime.Serialization, a partir do .Net 4.0
-                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(UserList));
+                var serializer = new DataContractJsonSerializer(typeof(UserList));
 
                 // aqui vou transformar a string em um stream, mas o ideal é ter esse parse dentro do WebJson que usarei em outro exemplo
                 var ms = new System.IO.MemoryStream(UTF8Encoding.UTF8.GetBytes(users));
@@ -298,10 +298,90 @@ namespace ExemploAPI
             public string name;
             [DataMember(EmitDefaultValue = false)]
             public string registration;
-            [DataMember(EmitDefaultValue = false)]
-            public string password;
-            [DataMember(EmitDefaultValue = false)]
-            public string salt;
+            // Já que neste exemplo não irei usar, vou remover, o que no DataContractJsonSerializer, não interfere em nada, pois ele só processa o que estiver definido
+            //[DataMember(EmitDefaultValue = false)]
+            //public string password;
+            //[DataMember(EmitDefaultValue = false)]
+            //public string salt;
+        }
+
+        private void btnUserAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Note que trabalhar totalmente por string há várias situações que precisam ser tratadas manualmente
+                // por isso fazer via parse JSON é bem melhor, mas vai requerer mais conhecimento em .Net
+                string cmd = "{" +
+                    "\"object\" : \"users\"," +
+                    "\"values\" : [{" +
+                            (txtUserID.Text == "" ? "" : ("\"id\" :" + txtUserID.Text + ",")) + // O iD é opcional
+                            "\"name\" :\"" + txtUserName.Text + "\"," +
+                            "\"registration\" : \"" + txtUserRegistration.Text + "\"" +
+                        "}]" +
+                    "}";
+                AddLog(WebJson.Send(urlDevice + "create_objects", cmd, session));
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+        private void btnUserDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                long id = long.Parse(txtUserID.Text);
+                AddLog(WebJson.Send(urlDevice + "destroy_objects", "{\"object\":\"users\",\"where\":{\"users\":{\"id\":[" + id + "]}}}", session));
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+        // Exemplo de leitura usando o parse JSON
+        private void btnUserRead_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                long id = long.Parse(txtUserID.Text);
+                var usrList = WebJson.Send<UserList>(urlDevice + "load_objects", "{\"object\":\"users\",\"where\":{\"users\":{\"id\":[" + id + "]}}}", session);
+                // Note que é sempre retornada um lista de acordo com a Where, que neste caso por ser um ID, só deve vir 1 se achou
+                if (usrList.users.Length == 1)
+                {
+                    txtUserName.Text = usrList.users[0].name;
+                    txtUserRegistration.Text = usrList.users[0].registration;
+                    AddLog("Usuário " + id + " lido com sucesso");
+                }
+                else
+                    AddLog("Usuário " + id + " não existe");
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+        private void btnUserModify_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                long id = long.Parse(txtUserID.Text);
+                string cmd = "{" +
+                    "\"object\" : \"users\"," +
+                    "\"where\":{\"users\":{\"id\":[" + id + "]}}," +
+                    "\"values\" : {" +
+                            "\"name\" :\"" + txtUserName.Text + "\"," +
+                            "\"registration\" : \"" + txtUserRegistration.Text + "\"" +
+                        "}" +
+                    "}";
+                AddLog(WebJson.Send(urlDevice + "modify_objects", cmd, session));
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
         }
 
         #endregion
