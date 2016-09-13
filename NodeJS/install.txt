@@ -1,0 +1,8 @@
+1) Instale o NodeJS para que o script funcione
+http://nodejs.org/
+
+2) Edite o tempo de acionamento e o IP do equipamento no arquivo openDoor.bat
+exemplo: node openDoor.js <tempo em milesegundos> <ip> <user> <password>
+
+3) Crie um link (atalho) como o exemplo "Abre Porta" que chama o arquivo ".bat"
+Com um link em sua área de trabalho você pode atribuir uma tecla de atalho para chamar o programa

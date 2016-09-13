@@ -1,13 +1,6 @@
-﻿using ControlID;
-using ControlID.iDAccess;
+﻿using ControlID.iDAccess;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UnitTestAcesso
 {
@@ -55,6 +48,11 @@ namespace UnitTestAcesso
         [TestMethod(), TestCategory("sdk BOX")]
         public void sdk_ListAll()
         {
+            // eqpt.Destroy<Devices>(-1);
+            Console.WriteLine("\r\nDevices");
+            foreach (var e in eqpt.List<Devices>())
+                Console.WriteLine(e.id + ": " + e.name + " IP: " + e.IP);
+
             Console.WriteLine("\r\nAccess_Rules");
             foreach (var rule in eqpt.List<Access_Rules>())
                 Console.WriteLine(rule.id + ": " + rule.name + " priority: " + rule.priority + " type: " + rule.type);
@@ -95,9 +93,21 @@ namespace UnitTestAcesso
             foreach (var ar in eqpt.List<User_Access_Rules>())
                 Console.WriteLine(ar.access_rule_id + " U " + ar.user_id);
 
+            Console.WriteLine("\r\nValidation_Access_Rules");
+            foreach (var ar in eqpt.List<Access_Rule_Validations>())
+                Console.WriteLine(ar.access_rule_id + " U " + ar.validation_id);
+
             Console.WriteLine("\r\nPortal_Actions");
             foreach (var ar in eqpt.List<Portal_Actions>())
                 Console.WriteLine("P " + ar.portal_id  + " A " + ar.action_id);
+
+            Console.WriteLine("\r\nPortal_Script_Parameters");
+            foreach (var psp in eqpt.List<Portal_Script_Parameters>())
+                Console.WriteLine("S " + psp.sequence + " " + psp.value );
+
+            Console.WriteLine("\r\nActions");
+            foreach (var a in eqpt.List<Actions>())
+                Console.WriteLine("A " + a.id + " " + a.action + " " + a.parameters);
 
             Console.WriteLine("\r\nUser_Groups");
             foreach (var u in eqpt.List<User_Groups>())
@@ -126,7 +136,8 @@ namespace UnitTestAcesso
             //eqpt.Add(new User_Access_Rules() { access_rule_id = 2, user_id = 1 });
             //eqpt.Add(new Access_Rule_Time_Zones() { access_rule_id = 2, time_zone_id = 1 });
             //eqpt.Add(new Portal_Access_Rules() { access_rule_id = 1,  portal_id = 1 });
-            eqpt.Add(new Area_Access_Rules() { access_rule_id = 1, area_id = 2 });
+            //eqpt.Add(new Area_Access_Rules() { access_rule_id = 1, area_id = 2 });
+            //eqpt.Add(new Access_Rule_Validations() { access_rule_id = 1, validation_id = 1 });
             //eqpt.TryDestroyAll<Area_Access_Rules>(true);
             //eqpt.TryDestroyAll<Portal_Access_Rules>(true);
         }
