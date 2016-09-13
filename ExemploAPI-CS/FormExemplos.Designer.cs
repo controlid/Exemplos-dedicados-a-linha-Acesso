@@ -30,54 +30,54 @@
         {
             this.tbc = new System.Windows.Forms.TabControl();
             this.tbDevice = new System.Windows.Forms.TabPage();
-            this.tbConfig = new System.Windows.Forms.TabPage();
-            this.tbUsers = new System.Windows.Forms.TabPage();
-            this.tbGroups = new System.Windows.Forms.TabPage();
-            this.btnTestar = new System.Windows.Forms.Button();
-            this.txtIP = new System.Windows.Forms.TextBox();
-            this.nmPort = new System.Windows.Forms.NumericUpDown();
-            this.chkSSL = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtUser = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtUser = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtOut = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.chkSSL = new System.Windows.Forms.CheckBox();
+            this.nmPort = new System.Windows.Forms.NumericUpDown();
+            this.txtIP = new System.Windows.Forms.TextBox();
+            this.btnTestar = new System.Windows.Forms.Button();
             this.tbAcoes = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnRele = new System.Windows.Forms.Button();
             this.btnInfo = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.btnRele = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.tbConfig = new System.Windows.Forms.TabPage();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.button6 = new System.Windows.Forms.Button();
+            this.tbUsers = new System.Windows.Forms.TabPage();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button13 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
+            this.tbGroups = new System.Windows.Forms.TabPage();
+            this.txtOut = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tbc.SuspendLayout();
             this.tbDevice.SuspendLayout();
-            this.tbConfig.SuspendLayout();
-            this.tbUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmPort)).BeginInit();
             this.tbAcoes.SuspendLayout();
+            this.tbConfig.SuspendLayout();
+            this.tbUsers.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,6 +96,7 @@
             this.tbc.SelectedIndex = 0;
             this.tbc.Size = new System.Drawing.Size(385, 236);
             this.tbc.TabIndex = 0;
+            this.tbc.SelectedIndexChanged += new System.EventHandler(this.tbc_SelectedIndexChanged);
             // 
             // tbDevice
             // 
@@ -117,58 +118,68 @@
             this.tbDevice.Text = "Equipamento";
             this.tbDevice.UseVisualStyleBackColor = true;
             // 
-            // tbConfig
+            // txtPassword
             // 
-            this.tbConfig.Controls.Add(this.dateTimePicker1);
-            this.tbConfig.Controls.Add(this.button6);
-            this.tbConfig.Location = new System.Drawing.Point(4, 32);
-            this.tbConfig.Name = "tbConfig";
-            this.tbConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tbConfig.Size = new System.Drawing.Size(377, 200);
-            this.tbConfig.TabIndex = 1;
-            this.tbConfig.Text = "Configurações";
-            this.tbConfig.UseVisualStyleBackColor = true;
+            this.txtPassword.Location = new System.Drawing.Point(119, 63);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(100, 20);
+            this.txtPassword.TabIndex = 9;
+            this.txtPassword.Text = "admin";
             // 
-            // tbUsers
+            // txtUser
             // 
-            this.tbUsers.Controls.Add(this.button12);
-            this.tbUsers.Controls.Add(this.button7);
-            this.tbUsers.Controls.Add(this.groupBox2);
-            this.tbUsers.Controls.Add(this.button11);
-            this.tbUsers.Location = new System.Drawing.Point(4, 32);
-            this.tbUsers.Name = "tbUsers";
-            this.tbUsers.Size = new System.Drawing.Size(377, 200);
-            this.tbUsers.TabIndex = 2;
-            this.tbUsers.Text = "Usuários";
-            this.tbUsers.UseVisualStyleBackColor = true;
+            this.txtUser.Location = new System.Drawing.Point(11, 63);
+            this.txtUser.Name = "txtUser";
+            this.txtUser.Size = new System.Drawing.Size(100, 20);
+            this.txtUser.TabIndex = 8;
+            this.txtUser.Text = "admin";
             // 
-            // tbGroups
+            // label4
             // 
-            this.tbGroups.Location = new System.Drawing.Point(4, 32);
-            this.tbGroups.Name = "tbGroups";
-            this.tbGroups.Size = new System.Drawing.Size(377, 200);
-            this.tbGroups.TabIndex = 3;
-            this.tbGroups.Text = "Grupos";
-            this.tbGroups.UseVisualStyleBackColor = true;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(116, 48);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Senha";
             // 
-            // btnTestar
+            // label3
             // 
-            this.btnTestar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTestar.Location = new System.Drawing.Point(232, 24);
-            this.btnTestar.Name = "btnTestar";
-            this.btnTestar.Size = new System.Drawing.Size(137, 59);
-            this.btnTestar.TabIndex = 0;
-            this.btnTestar.Text = "Testar Conexão";
-            this.btnTestar.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 47);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(43, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Usuário";
             // 
-            // txtIP
+            // label2
             // 
-            this.txtIP.Location = new System.Drawing.Point(11, 24);
-            this.txtIP.Name = "txtIP";
-            this.txtIP.Size = new System.Drawing.Size(100, 20);
-            this.txtIP.TabIndex = 1;
-            this.txtIP.Text = "192.168.0.155";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(116, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(32, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Porta";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "IP / DNS";
+            // 
+            // chkSSL
+            // 
+            this.chkSSL.AutoSize = true;
+            this.chkSSL.Location = new System.Drawing.Point(180, 26);
+            this.chkSSL.Name = "chkSSL";
+            this.chkSSL.Size = new System.Drawing.Size(46, 17);
+            this.chkSSL.TabIndex = 3;
+            this.chkSSL.Text = "SSL";
+            this.chkSSL.UseVisualStyleBackColor = true;
             // 
             // nmPort
             // 
@@ -192,90 +203,25 @@
             0,
             0});
             // 
-            // chkSSL
+            // txtIP
             // 
-            this.chkSSL.AutoSize = true;
-            this.chkSSL.Location = new System.Drawing.Point(180, 26);
-            this.chkSSL.Name = "chkSSL";
-            this.chkSSL.Size = new System.Drawing.Size(46, 17);
-            this.chkSSL.TabIndex = 3;
-            this.chkSSL.Text = "SSL";
-            this.chkSSL.UseVisualStyleBackColor = true;
+            this.txtIP.Location = new System.Drawing.Point(11, 24);
+            this.txtIP.Name = "txtIP";
+            this.txtIP.Size = new System.Drawing.Size(100, 20);
+            this.txtIP.TabIndex = 1;
+            this.txtIP.Text = "192.168.0.155";
             // 
-            // label1
+            // btnTestar
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "IP / DNS";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(116, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Porta";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 47);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Usuário";
-            // 
-            // txtUser
-            // 
-            this.txtUser.Location = new System.Drawing.Point(11, 63);
-            this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(100, 20);
-            this.txtUser.TabIndex = 8;
-            this.txtUser.Text = "admin";
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Location = new System.Drawing.Point(119, 63);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(100, 20);
-            this.txtPassword.TabIndex = 9;
-            this.txtPassword.Text = "admin";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(116, 48);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Senha";
-            // 
-            // txtOut
-            // 
-            this.txtOut.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnTestar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOut.Location = new System.Drawing.Point(12, 258);
-            this.txtOut.Multiline = true;
-            this.txtOut.Name = "txtOut";
-            this.txtOut.ReadOnly = true;
-            this.txtOut.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtOut.Size = new System.Drawing.Size(360, 117);
-            this.txtOut.TabIndex = 1;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 239);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(88, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Informações (log)";
+            this.btnTestar.Location = new System.Drawing.Point(232, 24);
+            this.btnTestar.Name = "btnTestar";
+            this.btnTestar.Size = new System.Drawing.Size(137, 59);
+            this.btnTestar.TabIndex = 0;
+            this.btnTestar.Text = "Testar Conexão\r\n(Login no Equipamento)";
+            this.btnTestar.UseVisualStyleBackColor = true;
+            this.btnTestar.Click += new System.EventHandler(this.btnTestar_Click);
             // 
             // tbAcoes
             // 
@@ -295,6 +241,24 @@
             this.tbAcoes.TabIndex = 4;
             this.tbAcoes.Text = "Ações";
             this.tbAcoes.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(8, 50);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(96, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Ações Específicas";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(8, 8);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(75, 13);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Ações Comum";
             // 
             // button5
             // 
@@ -318,6 +282,15 @@
             this.comboBox1.TabIndex = 6;
             this.comboBox1.Text = "Ambos";
             // 
+            // btnInfo
+            // 
+            this.btnInfo.Location = new System.Drawing.Point(8, 24);
+            this.btnInfo.Name = "btnInfo";
+            this.btnInfo.Size = new System.Drawing.Size(201, 23);
+            this.btnInfo.TabIndex = 0;
+            this.btnInfo.Text = "Ler Informações do equipamento";
+            this.btnInfo.UseVisualStyleBackColor = true;
+            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(11, 96);
@@ -326,33 +299,6 @@
             this.button4.TabIndex = 5;
             this.button4.Text = "Catraca Liberar Sentido";
             this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(187, 66);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(82, 24);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Ligar Relê 3";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(273, 66);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(82, 24);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Ligar Relê 4";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(11, 66);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(82, 24);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Ligar Relê 1";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // btnRele
             // 
@@ -363,41 +309,44 @@
             this.btnRele.Text = "Ligar Relê 2";
             this.btnRele.UseVisualStyleBackColor = true;
             // 
-            // btnInfo
+            // button3
             // 
-            this.btnInfo.Location = new System.Drawing.Point(8, 24);
-            this.btnInfo.Name = "btnInfo";
-            this.btnInfo.Size = new System.Drawing.Size(201, 23);
-            this.btnInfo.TabIndex = 0;
-            this.btnInfo.Text = "Ler Informações do equipamento";
-            this.btnInfo.UseVisualStyleBackColor = true;
+            this.button3.Location = new System.Drawing.Point(187, 66);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(82, 24);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "Ligar Relê 3";
+            this.button3.UseVisualStyleBackColor = true;
             // 
-            // label7
+            // button1
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 8);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(75, 13);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "Ações Comum";
+            this.button1.Location = new System.Drawing.Point(11, 66);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(82, 24);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Ligar Relê 1";
+            this.button1.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // button2
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 50);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(96, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Ações Específicas";
+            this.button2.Location = new System.Drawing.Point(273, 66);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(82, 24);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Ligar Relê 4";
+            this.button2.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // tbConfig
             // 
-            this.button6.Location = new System.Drawing.Point(8, 8);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(156, 24);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "Ajustar Data / Hora";
-            this.button6.UseVisualStyleBackColor = true;
+            this.tbConfig.Controls.Add(this.dateTimePicker1);
+            this.tbConfig.Controls.Add(this.button6);
+            this.tbConfig.Location = new System.Drawing.Point(4, 32);
+            this.tbConfig.Name = "tbConfig";
+            this.tbConfig.Padding = new System.Windows.Forms.Padding(3);
+            this.tbConfig.Size = new System.Drawing.Size(377, 200);
+            this.tbConfig.TabIndex = 1;
+            this.tbConfig.Text = "Configurações";
+            this.tbConfig.UseVisualStyleBackColor = true;
             // 
             // dateTimePicker1
             // 
@@ -408,6 +357,48 @@
             this.dateTimePicker1.ShowUpDown = true;
             this.dateTimePicker1.Size = new System.Drawing.Size(124, 20);
             this.dateTimePicker1.TabIndex = 7;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(8, 8);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(156, 24);
+            this.button6.TabIndex = 6;
+            this.button6.Text = "Ajustar Data / Hora";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // tbUsers
+            // 
+            this.tbUsers.Controls.Add(this.button12);
+            this.tbUsers.Controls.Add(this.button7);
+            this.tbUsers.Controls.Add(this.groupBox2);
+            this.tbUsers.Controls.Add(this.button11);
+            this.tbUsers.Location = new System.Drawing.Point(4, 32);
+            this.tbUsers.Name = "tbUsers";
+            this.tbUsers.Size = new System.Drawing.Size(377, 200);
+            this.tbUsers.TabIndex = 2;
+            this.tbUsers.Text = "Usuários";
+            this.tbUsers.UseVisualStyleBackColor = true;
+            // 
+            // button12
+            // 
+            this.button12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button12.Location = new System.Drawing.Point(261, 120);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(107, 23);
+            this.button12.TabIndex = 10;
+            this.button12.Text = "Cartão Remoto";
+            this.button12.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button7.Location = new System.Drawing.Point(148, 120);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(107, 23);
+            this.button7.TabIndex = 9;
+            this.button7.Text = "Biomeria Remota";
+            this.button7.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -428,6 +419,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Incluir / Ler / Alterar / Excluir";
             // 
+            // button13
+            // 
+            this.button13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button13.Location = new System.Drawing.Point(276, 71);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(75, 23);
+            this.button13.TabIndex = 7;
+            this.button13.Text = "Alterar";
+            this.button13.UseVisualStyleBackColor = true;
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -446,6 +447,25 @@
             this.label12.Size = new System.Drawing.Size(50, 13);
             this.label12.TabIndex = 6;
             this.label12.Text = "Matricula";
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(78, 30);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(66, 23);
+            this.button10.TabIndex = 0;
+            this.button10.Text = "Ler";
+            this.button10.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button9.Location = new System.Drawing.Point(276, 13);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 23);
+            this.button9.TabIndex = 0;
+            this.button9.Text = "Excluir";
+            this.button9.UseVisualStyleBackColor = true;
             // 
             // button8
             // 
@@ -490,25 +510,6 @@
             this.textBox6.Size = new System.Drawing.Size(160, 20);
             this.textBox6.TabIndex = 3;
             // 
-            // button9
-            // 
-            this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button9.Location = new System.Drawing.Point(276, 13);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 0;
-            this.button9.Text = "Excluir";
-            this.button9.UseVisualStyleBackColor = true;
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(78, 30);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(66, 23);
-            this.button10.TabIndex = 0;
-            this.button10.Text = "Ler";
-            this.button10.UseVisualStyleBackColor = true;
-            // 
             // button11
             // 
             this.button11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -519,35 +520,36 @@
             this.button11.Text = "Listar";
             this.button11.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // tbGroups
             // 
-            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button7.Location = new System.Drawing.Point(148, 120);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(107, 23);
-            this.button7.TabIndex = 9;
-            this.button7.Text = "Biomeria Remota";
-            this.button7.UseVisualStyleBackColor = true;
+            this.tbGroups.Location = new System.Drawing.Point(4, 32);
+            this.tbGroups.Name = "tbGroups";
+            this.tbGroups.Size = new System.Drawing.Size(377, 200);
+            this.tbGroups.TabIndex = 3;
+            this.tbGroups.Text = "Grupos";
+            this.tbGroups.UseVisualStyleBackColor = true;
             // 
-            // button12
+            // txtOut
             // 
-            this.button12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button12.Location = new System.Drawing.Point(261, 120);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(107, 23);
-            this.button12.TabIndex = 10;
-            this.button12.Text = "Cartão Remoto";
-            this.button12.UseVisualStyleBackColor = true;
+            this.txtOut.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtOut.Location = new System.Drawing.Point(12, 258);
+            this.txtOut.Multiline = true;
+            this.txtOut.Name = "txtOut";
+            this.txtOut.ReadOnly = true;
+            this.txtOut.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtOut.Size = new System.Drawing.Size(360, 117);
+            this.txtOut.TabIndex = 1;
             // 
-            // button13
+            // label5
             // 
-            this.button13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button13.Location = new System.Drawing.Point(276, 71);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(75, 23);
-            this.button13.TabIndex = 7;
-            this.button13.Text = "Alterar";
-            this.button13.UseVisualStyleBackColor = true;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 239);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(88, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Informações (log)";
             // 
             // frmExemplos
             // 
@@ -560,14 +562,15 @@
             this.MinimumSize = new System.Drawing.Size(400, 400);
             this.Name = "frmExemplos";
             this.Text = "Exemplos de uso API";
+            this.Load += new System.EventHandler(this.frmExemplos_Load);
             this.tbc.ResumeLayout(false);
             this.tbDevice.ResumeLayout(false);
             this.tbDevice.PerformLayout();
-            this.tbConfig.ResumeLayout(false);
-            this.tbUsers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nmPort)).EndInit();
             this.tbAcoes.ResumeLayout(false);
             this.tbAcoes.PerformLayout();
+            this.tbConfig.ResumeLayout(false);
+            this.tbUsers.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
