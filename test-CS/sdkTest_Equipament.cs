@@ -21,7 +21,7 @@ namespace UnitTestAcesso
         public static void ClassInit(TestContext context)
         {
             Console.WriteLine("ClassInit " + context.TestName);
-            eqpt = new Device(BaseTest.URL, BaseTest.Login, BaseTest.Password);
+            eqpt = new Device(BaseTest.URL, BaseTest.Login, BaseTest.Password, false, 8080);
         }
 
         [TestMethod, TestCategory("sdk")]
@@ -37,7 +37,7 @@ namespace UnitTestAcesso
         {
             long device_id = 514685;
             string device_serial = "B14T";
-            string c = Util.ToBase36(device_id);
+            string c = Util.ToBase36(device_id).ToUpper();
             long n = Util.FromBase36(device_serial);
             eqpt.Disconnect();
         }
@@ -52,6 +52,20 @@ namespace UnitTestAcesso
         public void sdk_Buzzer()
         {
             eqpt.Buzzer();
+        }
+
+        [TestMethod, TestCategory("sdk")]
+        public void sdk_RemoteEnroll()
+        {
+            // Necessita configurar o monitor para receber o retorno
+            //dev.SetConfiguration(new ControlID.iDAccess.ConfigValues(new ControlID.iDAccess.ConfigMonitor()
+            //{
+            //    hostname = "",
+            //    port = "0",
+            //    request_timeout = "100",
+            //    path = ""
+            //}));
+            eqpt.RemoteEnroll(RemoteEnrollType.Biometry);
         }
 
         [TestMethod, TestCategory("sdk")]
@@ -152,24 +166,21 @@ namespace UnitTestAcesso
             // 1 - Desligado
             // 2 - Cor Fixa
             // 3 - Transição
-            eqpt.SetLeds(new LedsConfig()
+            eqpt.SetLeds(new LedsColors()
             {
-                led_rgb = new LedsColors()
-                {
-                    state = "3",
+                state = "3",
 
-                    solid_red = "65535",
-                    solid_green = "65535",
-                    solid_blue = "65535",
+                solid_red = "65535",
+                solid_green = "65535",
+                solid_blue = "65535",
 
-                    transition_start_red = "0",
-                    transition_start_green = "0",
-                    transition_start_blue = "65535",
+                transition_start_red = "0",
+                transition_start_green = "0",
+                transition_start_blue = "65535",
 
-                    transition_end_red = "0",
-                    transition_end_green = "0",
-                    transition_end_blue = "0",
-                }
+                transition_end_red = "0",
+                transition_end_green = "0",
+                transition_end_blue = "0",
             });
         }
 
