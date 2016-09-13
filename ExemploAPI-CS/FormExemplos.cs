@@ -9,22 +9,42 @@ namespace ExemploAPI
         private string urlDevice = null;
         private string session = null;
 
+        #region Controles do Formulario
+
         public frmExemplos()
         {
             InitializeComponent();
         }
 
-        void AddLog(Exception ex)
+        public void AddLog(Exception ex)
         {
-            txtOut.Text += "\r\nERRO: " + ex.Message + "\r\n" + ex.StackTrace;
+            AddLog("ERRO: " + ex.Message + "\r\n" + ex.StackTrace);
         }
 
-        void AddLog(string cInfo)
+        public void AddLog(string cInfo)
         {
             txtOut.Text += "\r\n" + cInfo;
+            txtOut.SelectionStart = txtOut.Text.Length;
+            txtOut.ScrollToCaret();
         }
 
-        private void btnTestar_Click(object sender, EventArgs e)
+        private void frmExemplos_Load(object sender, EventArgs e)
+        {
+            cmbGiro.SelectedIndex = 0;
+
+            // apenas para facilitar os testes, lê sempre os dados pré configurados
+            txtIP.Text = Settings.Default.ip;
+            nmPort.Value = Settings.Default.port;
+            chkSSL.Checked = Settings.Default.ssl;
+            txtUser.Text = Settings.Default.user;
+            txtPassword.Text = Settings.Default.password;
+        }
+
+        #endregion
+
+        #region Login e Validação de sessão
+
+        private void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
@@ -47,7 +67,7 @@ namespace ExemploAPI
 
                 txtOut.Text = "Device: " + urlDevice;
 
-                string response = WebJson.Send(urlDevice + "login", "{\"login\":\""+ txtUser.Text + "\",\"password\":\"" + txtPassword.Text + "\"}");
+                string response = WebJson.Send(urlDevice + "login", "{\"login\":\"" + txtUser.Text + "\",\"password\":\"" + txtPassword.Text + "\"}");
                 AddLog(response);
 
                 // Forma mais simples de pegar a sessão!
@@ -66,29 +86,96 @@ namespace ExemploAPI
                     Settings.Default.Save();
                 }
             }
+            catch(Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+        private void tbc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tbc.SelectedIndex > 0 && session == null)
+            {
+                AddLog("Primeiro se conecte ao equipamento");
+                tbc.SelectedIndex = 0;
+            }
+        }
+
+        #endregion
+
+        #region Ações
+
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AddLog(WebJson.Send(urlDevice + "system_information", null, session));
+            }
             catch (Exception ex)
             {
                 AddLog(ex);
             }
         }
 
-        private void frmExemplos_Load(object sender, EventArgs e)
+        private void btnRele_Click(object sender, EventArgs e)
         {
-            // apenas para facilitar os testes, lê sempre os dados pré configurados
-            txtIP.Text = Settings.Default.ip;
-            nmPort.Value= Settings.Default.port;
-            chkSSL.Checked= Settings.Default.ssl;
-            txtUser.Text = Settings.Default.user;
-            txtPassword.Text = Settings.Default.password;
-        }
-
-        private void tbc_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (tbc.SelectedIndex>0 && session == null)
+            try
             {
-                AddLog("Faça login no equipamento primeiro para criar a sessão");
-                tbc.SelectedIndex = 0;
+                // Identifica qual botão foi apertado
+                int nPorta;
+                var btn = sender as Button;
+                if (btn.Name == btnRele1.Name)
+                    nPorta = 1;
+                else if (btn.Name == btnRele2.Name)
+                    nPorta = 2;
+                else if (btn.Name == btnRele3.Name)
+                    nPorta = 3;
+                else if (btn.Name == btnRele4.Name)
+                    nPorta = 4;
+                else
+                    throw new Exception("Botão não identificado");
+
+                // Eventualmente pode ser necessário habilitar o rele em questão
+                // WebJson.Send(urlDevice + "set_configuration", "{\"general\":{\"relay1_enabled\": \"1\",\"relay2_enabled\": \"1\"}}");
+                string cmd = "{\"actions\":[{\"action\": \"door\", \"parameters\":\"door=" + nPorta + "\"}]}";
+                AddLog(WebJson.Send(urlDevice + "execute_actions", cmd, session));
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
             }
         }
+
+        private void btnGiro_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(cmbGiro.SelectedIndex == 1) // Horario
+                    AddLog(WebJson.Send(urlDevice + "execute_actions", "{\"actions\":[{\"action\": \"catra\", \"parameters\":\"allow=clockwise\"}]}", session));
+                else if (cmbGiro.SelectedIndex == 2) // Anti-Horario
+                    AddLog(WebJson.Send(urlDevice + "execute_actions", "{\"actions\":[{\"action\": \"catra\", \"parameters\":\"allow=anticlockwise\"}]}", session));
+                else  // Ambos
+                    AddLog(WebJson.Send(urlDevice + "execute_actions", "{\"actions\":[{\"action\": \"catra\", \"parameters\":\"allow=both\"}]}", session));
+
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+        private void btnReboot_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AddLog(WebJson.Send(urlDevice + "reboot", null, session));
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+        #endregion
     }
 }

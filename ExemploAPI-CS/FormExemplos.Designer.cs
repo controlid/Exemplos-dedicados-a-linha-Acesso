@@ -39,18 +39,18 @@
             this.chkSSL = new System.Windows.Forms.CheckBox();
             this.nmPort = new System.Windows.Forms.NumericUpDown();
             this.txtIP = new System.Windows.Forms.TextBox();
-            this.btnTestar = new System.Windows.Forms.Button();
+            this.btnLogin = new System.Windows.Forms.Button();
             this.tbAcoes = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btnReboot = new System.Windows.Forms.Button();
+            this.cmbGiro = new System.Windows.Forms.ComboBox();
             this.btnInfo = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.btnRele = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnGiro = new System.Windows.Forms.Button();
+            this.btnRele2 = new System.Windows.Forms.Button();
+            this.btnRele3 = new System.Windows.Forms.Button();
+            this.btnRele1 = new System.Windows.Forms.Button();
+            this.btnRele4 = new System.Windows.Forms.Button();
             this.tbConfig = new System.Windows.Forms.TabPage();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button6 = new System.Windows.Forms.Button();
@@ -109,7 +109,7 @@
             this.tbDevice.Controls.Add(this.chkSSL);
             this.tbDevice.Controls.Add(this.nmPort);
             this.tbDevice.Controls.Add(this.txtIP);
-            this.tbDevice.Controls.Add(this.btnTestar);
+            this.tbDevice.Controls.Add(this.btnLogin);
             this.tbDevice.Location = new System.Drawing.Point(4, 32);
             this.tbDevice.Name = "tbDevice";
             this.tbDevice.Padding = new System.Windows.Forms.Padding(3);
@@ -211,30 +211,31 @@
             this.txtIP.TabIndex = 1;
             this.txtIP.Text = "192.168.0.155";
             // 
-            // btnTestar
+            // btnLogin
             // 
-            this.btnTestar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnLogin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTestar.Location = new System.Drawing.Point(232, 24);
-            this.btnTestar.Name = "btnTestar";
-            this.btnTestar.Size = new System.Drawing.Size(137, 59);
-            this.btnTestar.TabIndex = 0;
-            this.btnTestar.Text = "Testar Conexão\r\n(Login no Equipamento)";
-            this.btnTestar.UseVisualStyleBackColor = true;
-            this.btnTestar.Click += new System.EventHandler(this.btnTestar_Click);
+            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.Location = new System.Drawing.Point(232, 24);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(137, 59);
+            this.btnLogin.TabIndex = 0;
+            this.btnLogin.Text = "Conectar";
+            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // tbAcoes
             // 
             this.tbAcoes.Controls.Add(this.label6);
             this.tbAcoes.Controls.Add(this.label7);
-            this.tbAcoes.Controls.Add(this.button5);
-            this.tbAcoes.Controls.Add(this.comboBox1);
+            this.tbAcoes.Controls.Add(this.btnReboot);
+            this.tbAcoes.Controls.Add(this.cmbGiro);
             this.tbAcoes.Controls.Add(this.btnInfo);
-            this.tbAcoes.Controls.Add(this.button4);
-            this.tbAcoes.Controls.Add(this.btnRele);
-            this.tbAcoes.Controls.Add(this.button3);
-            this.tbAcoes.Controls.Add(this.button1);
-            this.tbAcoes.Controls.Add(this.button2);
+            this.tbAcoes.Controls.Add(this.btnGiro);
+            this.tbAcoes.Controls.Add(this.btnRele2);
+            this.tbAcoes.Controls.Add(this.btnRele3);
+            this.tbAcoes.Controls.Add(this.btnRele1);
+            this.tbAcoes.Controls.Add(this.btnRele4);
             this.tbAcoes.Location = new System.Drawing.Point(4, 32);
             this.tbAcoes.Name = "tbAcoes";
             this.tbAcoes.Size = new System.Drawing.Size(377, 200);
@@ -260,27 +261,28 @@
             this.label7.TabIndex = 9;
             this.label7.Text = "Ações Comum";
             // 
-            // button5
+            // btnReboot
             // 
-            this.button5.Location = new System.Drawing.Point(215, 24);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(82, 24);
-            this.button5.TabIndex = 7;
-            this.button5.Text = "Reiniciar";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnReboot.Location = new System.Drawing.Point(215, 24);
+            this.btnReboot.Name = "btnReboot";
+            this.btnReboot.Size = new System.Drawing.Size(82, 24);
+            this.btnReboot.TabIndex = 7;
+            this.btnReboot.Text = "Reboot";
+            this.btnReboot.UseVisualStyleBackColor = true;
+            this.btnReboot.Click += new System.EventHandler(this.btnReboot_Click);
             // 
-            // comboBox1
+            // cmbGiro
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbGiro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGiro.FormattingEnabled = true;
+            this.cmbGiro.Items.AddRange(new object[] {
             "Ambos",
             "Horário",
             "Anti-Horário"});
-            this.comboBox1.Location = new System.Drawing.Point(173, 96);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 6;
-            this.comboBox1.Text = "Ambos";
+            this.cmbGiro.Location = new System.Drawing.Point(173, 97);
+            this.cmbGiro.Name = "cmbGiro";
+            this.cmbGiro.Size = new System.Drawing.Size(121, 21);
+            this.cmbGiro.TabIndex = 6;
             // 
             // btnInfo
             // 
@@ -290,51 +292,57 @@
             this.btnInfo.TabIndex = 0;
             this.btnInfo.Text = "Ler Informações do equipamento";
             this.btnInfo.UseVisualStyleBackColor = true;
+            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
-            // button4
+            // btnGiro
             // 
-            this.button4.Location = new System.Drawing.Point(11, 96);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(156, 24);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "Catraca Liberar Sentido";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnGiro.Location = new System.Drawing.Point(11, 96);
+            this.btnGiro.Name = "btnGiro";
+            this.btnGiro.Size = new System.Drawing.Size(156, 24);
+            this.btnGiro.TabIndex = 5;
+            this.btnGiro.Text = "Catraca Liberar Sentido";
+            this.btnGiro.UseVisualStyleBackColor = true;
+            this.btnGiro.Click += new System.EventHandler(this.btnGiro_Click);
             // 
-            // btnRele
+            // btnRele2
             // 
-            this.btnRele.Location = new System.Drawing.Point(99, 66);
-            this.btnRele.Name = "btnRele";
-            this.btnRele.Size = new System.Drawing.Size(82, 24);
-            this.btnRele.TabIndex = 1;
-            this.btnRele.Text = "Ligar Relê 2";
-            this.btnRele.UseVisualStyleBackColor = true;
+            this.btnRele2.Location = new System.Drawing.Point(99, 66);
+            this.btnRele2.Name = "btnRele2";
+            this.btnRele2.Size = new System.Drawing.Size(82, 24);
+            this.btnRele2.TabIndex = 1;
+            this.btnRele2.Text = "Ligar Relê 2";
+            this.btnRele2.UseVisualStyleBackColor = true;
+            this.btnRele2.Click += new System.EventHandler(this.btnRele_Click);
             // 
-            // button3
+            // btnRele3
             // 
-            this.button3.Location = new System.Drawing.Point(187, 66);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(82, 24);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Ligar Relê 3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnRele3.Location = new System.Drawing.Point(187, 66);
+            this.btnRele3.Name = "btnRele3";
+            this.btnRele3.Size = new System.Drawing.Size(82, 24);
+            this.btnRele3.TabIndex = 4;
+            this.btnRele3.Text = "Ligar Relê 3";
+            this.btnRele3.UseVisualStyleBackColor = true;
+            this.btnRele3.Click += new System.EventHandler(this.btnRele_Click);
             // 
-            // button1
+            // btnRele1
             // 
-            this.button1.Location = new System.Drawing.Point(11, 66);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(82, 24);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Ligar Relê 1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnRele1.Location = new System.Drawing.Point(11, 66);
+            this.btnRele1.Name = "btnRele1";
+            this.btnRele1.Size = new System.Drawing.Size(82, 24);
+            this.btnRele1.TabIndex = 2;
+            this.btnRele1.Text = "Ligar Relê 1";
+            this.btnRele1.UseVisualStyleBackColor = true;
+            this.btnRele1.Click += new System.EventHandler(this.btnRele_Click);
             // 
-            // button2
+            // btnRele4
             // 
-            this.button2.Location = new System.Drawing.Point(273, 66);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(82, 24);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Ligar Relê 4";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnRele4.Location = new System.Drawing.Point(273, 66);
+            this.btnRele4.Name = "btnRele4";
+            this.btnRele4.Size = new System.Drawing.Size(82, 24);
+            this.btnRele4.TabIndex = 3;
+            this.btnRele4.Text = "Ligar Relê 4";
+            this.btnRele4.UseVisualStyleBackColor = true;
+            this.btnRele4.Click += new System.EventHandler(this.btnRele_Click);
             // 
             // tbConfig
             // 
@@ -541,6 +549,7 @@
             this.txtOut.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtOut.Size = new System.Drawing.Size(360, 117);
             this.txtOut.TabIndex = 1;
+            this.txtOut.WordWrap = false;
             // 
             // label5
             // 
@@ -594,20 +603,20 @@
         private System.Windows.Forms.CheckBox chkSSL;
         private System.Windows.Forms.NumericUpDown nmPort;
         private System.Windows.Forms.TextBox txtIP;
-        private System.Windows.Forms.Button btnTestar;
+        private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.TextBox txtOut;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TabPage tbAcoes;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button btnReboot;
+        private System.Windows.Forms.ComboBox cmbGiro;
         private System.Windows.Forms.Button btnInfo;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button btnRele;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnGiro;
+        private System.Windows.Forms.Button btnRele2;
+        private System.Windows.Forms.Button btnRele3;
+        private System.Windows.Forms.Button btnRele1;
+        private System.Windows.Forms.Button btnRele4;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.GroupBox groupBox2;
