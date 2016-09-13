@@ -177,5 +177,36 @@ namespace ExemploAPI
         }
 
         #endregion
+
+        #region Configurações
+
+        private void btnDataHora_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime dt = dateTimePicker1.Value;
+                string cmd = "{" +
+                    "\"day\":" + dt.Day +
+                    ",\"month\":" + dt.Month +
+                    ",\"year\":" + dt.Year +
+                    ",\"hour\":" + dt.Hour +
+                    ",\"minute\":" + dt.Minute +
+                    ",\"second\":" + dt.Second +
+                    "}";
+
+                AddLog(WebJson.Send(urlDevice + "set_system_time", cmd, session));
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+        private void btnAgora_Click(object sender, EventArgs e)
+        {
+            dateTimePicker1.Value = DateTime.Now;
+        }
+
+        #endregion
     }
 }

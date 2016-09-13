@@ -53,7 +53,7 @@
             this.btnRele4 = new System.Windows.Forms.Button();
             this.tbConfig = new System.Windows.Forms.TabPage();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnDataHora = new System.Windows.Forms.Button();
             this.tbUsers = new System.Windows.Forms.TabPage();
             this.button12 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
@@ -72,6 +72,7 @@
             this.tbGroups = new System.Windows.Forms.TabPage();
             this.txtOut = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnAgora = new System.Windows.Forms.Button();
             this.tbc.SuspendLayout();
             this.tbDevice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmPort)).BeginInit();
@@ -286,7 +287,7 @@
             // 
             // btnInfo
             // 
-            this.btnInfo.Location = new System.Drawing.Point(8, 24);
+            this.btnInfo.Location = new System.Drawing.Point(11, 24);
             this.btnInfo.Name = "btnInfo";
             this.btnInfo.Size = new System.Drawing.Size(201, 23);
             this.btnInfo.TabIndex = 0;
@@ -346,8 +347,9 @@
             // 
             // tbConfig
             // 
+            this.tbConfig.Controls.Add(this.btnAgora);
             this.tbConfig.Controls.Add(this.dateTimePicker1);
-            this.tbConfig.Controls.Add(this.button6);
+            this.tbConfig.Controls.Add(this.btnDataHora);
             this.tbConfig.Location = new System.Drawing.Point(4, 32);
             this.tbConfig.Name = "tbConfig";
             this.tbConfig.Padding = new System.Windows.Forms.Padding(3);
@@ -360,20 +362,21 @@
             // 
             this.dateTimePicker1.CustomFormat = "HH:mm dd/MM/yyyy";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(168, 8);
+            this.dateTimePicker1.Location = new System.Drawing.Point(168, 10);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.ShowUpDown = true;
             this.dateTimePicker1.Size = new System.Drawing.Size(124, 20);
             this.dateTimePicker1.TabIndex = 7;
             // 
-            // button6
+            // btnDataHora
             // 
-            this.button6.Location = new System.Drawing.Point(8, 8);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(156, 24);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "Ajustar Data / Hora";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnDataHora.Location = new System.Drawing.Point(8, 8);
+            this.btnDataHora.Name = "btnDataHora";
+            this.btnDataHora.Size = new System.Drawing.Size(156, 24);
+            this.btnDataHora.TabIndex = 6;
+            this.btnDataHora.Text = "Ajustar Data / Hora";
+            this.btnDataHora.UseVisualStyleBackColor = true;
+            this.btnDataHora.Click += new System.EventHandler(this.btnDataHora_Click);
             // 
             // tbUsers
             // 
@@ -560,6 +563,16 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Informações (log)";
             // 
+            // btnAgora
+            // 
+            this.btnAgora.Location = new System.Drawing.Point(298, 8);
+            this.btnAgora.Name = "btnAgora";
+            this.btnAgora.Size = new System.Drawing.Size(54, 24);
+            this.btnAgora.TabIndex = 8;
+            this.btnAgora.Text = "Agora";
+            this.btnAgora.UseVisualStyleBackColor = true;
+            this.btnAgora.Click += new System.EventHandler(this.btnAgora_Click);
+            // 
             // frmExemplos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -618,7 +631,7 @@
         private System.Windows.Forms.Button btnRele1;
         private System.Windows.Forms.Button btnRele4;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnDataHora;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
@@ -633,6 +646,7 @@
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button btnAgora;
     }
 }
 
