@@ -14,6 +14,14 @@ namespace ExemploAPI
 
         #region Controles do Formulario
 
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new frmExemplos());
+        }
+
         public frmExemplos()
         {
             InitializeComponent();
@@ -70,6 +78,8 @@ namespace ExemploAPI
 
                 txtOut.Text = "Device: " + urlDevice;
 
+                // Veja uma outra forma mais robusta de como poderia ser feito um login com serialização de objetos JSON no projeto de "Controle Remoto" criando estruturas que são serializadas se transformando em strings
+                // https://github.com/controlid/iDAccess/blob/master/ControleRemoto-CS/idAccess.cs
                 string response = WebJson.Send(urlDevice + "login", "{\"login\":\"" + txtUser.Text + "\",\"password\":\"" + txtPassword.Text + "\"}");
                 AddLog(response);
 
@@ -260,13 +270,13 @@ namespace ExemploAPI
                 // https://www.controlid.com.br/suporte/api_idaccess_V2.6.8.html
 
                 // Basta referenciar o System.Runtime.Serialization, a partir do .Net 4.0
-                var serializer = new DataContractJsonSerializer(typeof(UserList));
+                var serializer = new DataContractJsonSerializer(typeof(ResultList));
 
                 // aqui vou transformar a string em um stream, mas o ideal é ter esse parse dentro do WebJson que usarei em outro exemplo
                 var ms = new System.IO.MemoryStream(UTF8Encoding.UTF8.GetBytes(users));
 
                 // A mágina acontece aqui! (veja as estruturas de classes auxiliares, mais abaixo)
-                var list = serializer.ReadObject(ms) as UserList;
+                var list = serializer.ReadObject(ms) as ResultList;
 
                 // Só listo os dados
                 var sb = new StringBuilder(); // uso um StringBuilder, apenas para otimizar o código, e mandar para a tela tudo de uma vez
@@ -280,29 +290,6 @@ namespace ExemploAPI
             {
                 AddLog(ex);
             }
-        }
-
-        [DataContract]
-        public class UserList
-        {
-            [DataMember(EmitDefaultValue = false)] // Os EmitDefaultValue são necessários mais para postar informações omitindo itens não definidos
-            public User[] users;
-        }
-
-        [DataContract]
-        public class User
-        {
-            [DataMember(EmitDefaultValue = false)]
-            public long id; // Atenção no iDAccess todos os numeros são sempre long (64bits)
-            [DataMember(EmitDefaultValue = false)]
-            public string name;
-            [DataMember(EmitDefaultValue = false)]
-            public string registration;
-            // Já que neste exemplo não irei usar, vou remover, o que no DataContractJsonSerializer, não interfere em nada, pois ele só processa o que estiver definido
-            //[DataMember(EmitDefaultValue = false)]
-            //public string password;
-            //[DataMember(EmitDefaultValue = false)]
-            //public string salt;
         }
 
         private void btnUserAdd_Click(object sender, EventArgs e)
@@ -346,7 +333,7 @@ namespace ExemploAPI
             try
             {
                 long id = long.Parse(txtUserID.Text);
-                var usrList = WebJson.Send<UserList>(urlDevice + "load_objects", "{\"object\":\"users\",\"where\":{\"users\":{\"id\":[" + id + "]}}}", session);
+                var usrList = WebJson.Send<ResultList>(urlDevice + "load_objects", "{\"object\":\"users\",\"where\":{\"users\":{\"id\":[" + id + "]}}}", session);
                 // Note que é sempre retornada um lista de acordo com a Where, que neste caso por ser um ID, só deve vir 1 se achou
                 if (usrList.users.Length == 1)
                 {
@@ -385,5 +372,47 @@ namespace ExemploAPI
         }
 
         #endregion
+
+        #region Logs
+
+        private void btnLogs_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AddLog(WebJson.Send(urlDevice + "load_objects", "{\"object\":\"access_logs\"}", session));
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+
+        private void btnLogs2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Este exemplo irá fazer um parse simples do retorno dos objetos automaticamente, usando uma estrutura de classes com os memos nomes
+                var list = WebJson.Send<ResultList>(urlDevice + "load_objects", "{\"object\":\"access_logs\"}", session); // Consulte a documentação para fazer 'Where'
+                // Note que o ResultList contem resultados tanto para usuários e logs
+                // logico que neste exemplo por se tratar de logs, os elementos resultantes estarão em 'access_logs'
+                // https://www.controlid.com.br/produtos/controlador-de-acesso
+
+                // Só listo os dados
+                var sb = new StringBuilder(); // uso um StringBuilder, apenas para otimizar o código, e mandar para a tela tudo de uma vez
+                for (int i = 0; i < list.access_logs.Length; i++)
+                    sb.AppendFormat("{0}: User {1} - {2}\r\n", list.access_logs[i].id, list.access_logs[i].user_id, list.access_logs[i].EventType);
+
+                // Exibe de fato os dados
+                AddLog(sb.ToString());
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+        #endregion
+
     }
 }

@@ -76,6 +76,9 @@
             this.tbGroups = new System.Windows.Forms.TabPage();
             this.txtOut = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.tbLogs = new System.Windows.Forms.TabPage();
+            this.btnLogs = new System.Windows.Forms.Button();
+            this.btnLogs2 = new System.Windows.Forms.Button();
             this.tbc.SuspendLayout();
             this.tbDevice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmPort)).BeginInit();
@@ -83,6 +86,7 @@
             this.tbConfig.SuspendLayout();
             this.tbUsers.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.tbLogs.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbc
@@ -94,11 +98,12 @@
             this.tbc.Controls.Add(this.tbConfig);
             this.tbc.Controls.Add(this.tbUsers);
             this.tbc.Controls.Add(this.tbGroups);
+            this.tbc.Controls.Add(this.tbLogs);
             this.tbc.Location = new System.Drawing.Point(0, 0);
             this.tbc.Name = "tbc";
             this.tbc.Padding = new System.Drawing.Point(10, 8);
             this.tbc.SelectedIndex = 0;
-            this.tbc.Size = new System.Drawing.Size(385, 236);
+            this.tbc.Size = new System.Drawing.Size(435, 236);
             this.tbc.TabIndex = 0;
             this.tbc.SelectedIndexChanged += new System.EventHandler(this.tbc_SelectedIndexChanged);
             // 
@@ -117,7 +122,7 @@
             this.tbDevice.Location = new System.Drawing.Point(4, 32);
             this.tbDevice.Name = "tbDevice";
             this.tbDevice.Padding = new System.Windows.Forms.Padding(3);
-            this.tbDevice.Size = new System.Drawing.Size(377, 200);
+            this.tbDevice.Size = new System.Drawing.Size(427, 200);
             this.tbDevice.TabIndex = 0;
             this.tbDevice.Text = "Equipamento";
             this.tbDevice.UseVisualStyleBackColor = true;
@@ -222,7 +227,7 @@
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.Location = new System.Drawing.Point(232, 24);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(137, 59);
+            this.btnLogin.Size = new System.Drawing.Size(187, 59);
             this.btnLogin.TabIndex = 0;
             this.btnLogin.Text = "Conectar";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -402,7 +407,7 @@
             this.tbUsers.Controls.Add(this.btnUserList);
             this.tbUsers.Location = new System.Drawing.Point(4, 32);
             this.tbUsers.Name = "tbUsers";
-            this.tbUsers.Size = new System.Drawing.Size(377, 200);
+            this.tbUsers.Size = new System.Drawing.Size(427, 200);
             this.tbUsers.TabIndex = 2;
             this.tbUsers.Text = "Usuários";
             this.tbUsers.UseVisualStyleBackColor = true;
@@ -440,7 +445,7 @@
             // btnUserRemoteBio
             // 
             this.btnUserRemoteBio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUserRemoteBio.Location = new System.Drawing.Point(148, 149);
+            this.btnUserRemoteBio.Location = new System.Drawing.Point(198, 149);
             this.btnUserRemoteBio.Name = "btnUserRemoteBio";
             this.btnUserRemoteBio.Size = new System.Drawing.Size(107, 23);
             this.btnUserRemoteBio.TabIndex = 9;
@@ -564,7 +569,7 @@
             // btnUserRemoteCard
             // 
             this.btnUserRemoteCard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUserRemoteCard.Location = new System.Drawing.Point(261, 149);
+            this.btnUserRemoteCard.Location = new System.Drawing.Point(311, 149);
             this.btnUserRemoteCard.Name = "btnUserRemoteCard";
             this.btnUserRemoteCard.Size = new System.Drawing.Size(107, 23);
             this.btnUserRemoteCard.TabIndex = 10;
@@ -600,7 +605,7 @@
             this.txtOut.Name = "txtOut";
             this.txtOut.ReadOnly = true;
             this.txtOut.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtOut.Size = new System.Drawing.Size(360, 91);
+            this.txtOut.Size = new System.Drawing.Size(410, 91);
             this.txtOut.TabIndex = 1;
             this.txtOut.WordWrap = false;
             // 
@@ -613,11 +618,43 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Informações (log)";
             // 
+            // tbLogs
+            // 
+            this.tbLogs.Controls.Add(this.btnLogs2);
+            this.tbLogs.Controls.Add(this.btnLogs);
+            this.tbLogs.Location = new System.Drawing.Point(4, 32);
+            this.tbLogs.Name = "tbLogs";
+            this.tbLogs.Padding = new System.Windows.Forms.Padding(3);
+            this.tbLogs.Size = new System.Drawing.Size(427, 200);
+            this.tbLogs.TabIndex = 5;
+            this.tbLogs.Text = "Logs";
+            this.tbLogs.UseVisualStyleBackColor = true;
+            // 
+            // btnLogs
+            // 
+            this.btnLogs.Location = new System.Drawing.Point(6, 6);
+            this.btnLogs.Name = "btnLogs";
+            this.btnLogs.Size = new System.Drawing.Size(144, 23);
+            this.btnLogs.TabIndex = 15;
+            this.btnLogs.Text = "Listar Logs de Acesso";
+            this.btnLogs.UseVisualStyleBackColor = true;
+            this.btnLogs.Click += new System.EventHandler(this.btnLogs_Click);
+            // 
+            // btnLogs2
+            // 
+            this.btnLogs2.Location = new System.Drawing.Point(6, 35);
+            this.btnLogs2.Name = "btnLogs2";
+            this.btnLogs2.Size = new System.Drawing.Size(144, 37);
+            this.btnLogs2.TabIndex = 16;
+            this.btnLogs2.Text = "Listar Logs de Acesso (processado)";
+            this.btnLogs2.UseVisualStyleBackColor = true;
+            this.btnLogs2.Click += new System.EventHandler(this.btnLogs2_Click);
+            // 
             // frmExemplos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 361);
+            this.ClientSize = new System.Drawing.Size(434, 361);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtOut);
             this.Controls.Add(this.tbc);
@@ -635,6 +672,7 @@
             this.tbUsers.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.tbLogs.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -690,6 +728,9 @@
         private System.Windows.Forms.Button btnUserListParse;
         private System.Windows.Forms.Button btnUserBioList;
         private System.Windows.Forms.Button btnUserCardList;
+        private System.Windows.Forms.TabPage tbLogs;
+        private System.Windows.Forms.Button btnLogs;
+        private System.Windows.Forms.Button btnLogs2;
     }
 }
 

@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ExemploAPI.frmExemplos</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,13 +49,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtenderUtil.cs" />
     <Compile Include="FormExemplos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormExemplos.Designer.cs">
       <DependentUpon>FormExemplos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="iDAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebJson.cs" />
     <EmbeddedResource Include="FormExemplos.resx">
