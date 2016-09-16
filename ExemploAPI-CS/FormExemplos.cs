@@ -117,7 +117,7 @@ namespace ExemploAPI
                 if (response.Contains("session"))
                 {
                     session = response.Split('"')[3];
-                    AddLog("OK Conectado!");
+                    AddLog("OK!");
 
                     // There is still a connection in the application settings to facilitate
                     // (Persiste a conexão nas configurações do aplicativo para facilitar)
@@ -139,7 +139,7 @@ namespace ExemploAPI
         {
             if (tbc.SelectedIndex > 0 && session == null)
             {
-                AddLog("Primeiro se conecte ao equipamento");
+                AddLog(Resource.ERR1);
                 tbc.SelectedIndex = 0;
             }
         }
@@ -174,10 +174,8 @@ namespace ExemploAPI
                     nPorta = 2;
                 else if (btn.Name == btnRele3.Name)
                     nPorta = 3;
-                else if (btn.Name == btnRele4.Name)
+                else // if (btn.Name == btnRele4.Name)
                     nPorta = 4;
-                else
-                    throw new Exception("Botão não identificado");
 
                 // It may be necessary to enable the relay in question
                 // Eventualmente pode ser necessário habilitar o rele em questão
@@ -371,10 +369,10 @@ namespace ExemploAPI
                 {
                     txtUserName.Text = usrList.users[0].name;
                     txtUserRegistration.Text = usrList.users[0].registration;
-                    AddLog("Usuário " + id + " lido com sucesso");
+                    AddLog(string.Format(Resource.Load1, id));
                 }
                 else
-                    AddLog("Usuário " + id + " não existe");
+                    AddLog(string.Format(Resource.Load2, id));
             }
             catch (Exception ex)
             {
