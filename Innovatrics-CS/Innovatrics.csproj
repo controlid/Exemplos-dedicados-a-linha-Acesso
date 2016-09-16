@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4048E79D-99DE-4556-AD7B-4D6BFF9A8692}</ProjectGuid>
+    <ProjectGuid>{06CED95E-9497-4459-8F22-1986165C08E9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExemploAPI</RootNamespace>
-    <AssemblyName>ExemploAPI</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>TestInnovatrics</RootNamespace>
+    <AssemblyName>Innovatrics</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -32,35 +32,35 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ExemploAPI.frmExemplos</StartupObject>
+    <StartupObject>TestInnovatrics.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Innovatrics.IEngine">
+      <HintPath>C:\Program Files\Innovatrics\IDKit PC SDK\Bin\Innovatrics.IEngine.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExtenderUtil.cs" />
-    <Compile Include="FormExemplos.cs">
+    <Compile Include="frmTestInnovatrics.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormExemplos.Designer.cs">
-      <DependentUpon>FormExemplos.cs</DependentUpon>
+    <Compile Include="frmTestInnovatrics.Designer.cs">
+      <DependentUpon>frmTestInnovatrics.cs</DependentUpon>
     </Compile>
-    <Compile Include="iDAccess.cs" />
+    <Compile Include="Futronic.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebJson.cs" />
-    <EmbeddedResource Include="FormExemplos.resx">
-      <DependentUpon>FormExemplos.cs</DependentUpon>
+    <EmbeddedResource Include="frmTestInnovatrics.resx">
+      <DependentUpon>frmTestInnovatrics.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -70,6 +70,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -82,7 +83,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <Content Include="ftrScanAPI.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -52,27 +52,33 @@
             this.btnRele1 = new System.Windows.Forms.Button();
             this.btnRele4 = new System.Windows.Forms.Button();
             this.tbConfig = new System.Windows.Forms.TabPage();
+            this.btnAgora = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnDataHora = new System.Windows.Forms.Button();
             this.tbUsers = new System.Windows.Forms.TabPage();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btnUserListParse = new System.Windows.Forms.Button();
+            this.btnUserBioList = new System.Windows.Forms.Button();
+            this.btnUserCardList = new System.Windows.Forms.Button();
+            this.btnUserRemoteBio = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button13 = new System.Windows.Forms.Button();
+            this.btnUserModify = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.btnUserRead = new System.Windows.Forms.Button();
+            this.btnUserDelete = new System.Windows.Forms.Button();
+            this.btnUserAdd = new System.Windows.Forms.Button();
+            this.txtUserRegistration = new System.Windows.Forms.TextBox();
+            this.txtUserID = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.button11 = new System.Windows.Forms.Button();
+            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.btnUserRemoteCard = new System.Windows.Forms.Button();
+            this.btnUserList = new System.Windows.Forms.Button();
             this.tbGroups = new System.Windows.Forms.TabPage();
             this.txtOut = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnAgora = new System.Windows.Forms.Button();
+            this.tbLogs = new System.Windows.Forms.TabPage();
+            this.btnLogs = new System.Windows.Forms.Button();
+            this.btnLogs2 = new System.Windows.Forms.Button();
             this.tbc.SuspendLayout();
             this.tbDevice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmPort)).BeginInit();
@@ -80,6 +86,7 @@
             this.tbConfig.SuspendLayout();
             this.tbUsers.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.tbLogs.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbc
@@ -91,11 +98,12 @@
             this.tbc.Controls.Add(this.tbConfig);
             this.tbc.Controls.Add(this.tbUsers);
             this.tbc.Controls.Add(this.tbGroups);
+            this.tbc.Controls.Add(this.tbLogs);
             this.tbc.Location = new System.Drawing.Point(0, 0);
             this.tbc.Name = "tbc";
             this.tbc.Padding = new System.Drawing.Point(10, 8);
             this.tbc.SelectedIndex = 0;
-            this.tbc.Size = new System.Drawing.Size(385, 236);
+            this.tbc.Size = new System.Drawing.Size(435, 236);
             this.tbc.TabIndex = 0;
             this.tbc.SelectedIndexChanged += new System.EventHandler(this.tbc_SelectedIndexChanged);
             // 
@@ -114,7 +122,7 @@
             this.tbDevice.Location = new System.Drawing.Point(4, 32);
             this.tbDevice.Name = "tbDevice";
             this.tbDevice.Padding = new System.Windows.Forms.Padding(3);
-            this.tbDevice.Size = new System.Drawing.Size(377, 200);
+            this.tbDevice.Size = new System.Drawing.Size(427, 200);
             this.tbDevice.TabIndex = 0;
             this.tbDevice.Text = "Equipamento";
             this.tbDevice.UseVisualStyleBackColor = true;
@@ -219,7 +227,7 @@
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.Location = new System.Drawing.Point(232, 24);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(137, 59);
+            this.btnLogin.Size = new System.Drawing.Size(187, 59);
             this.btnLogin.TabIndex = 0;
             this.btnLogin.Text = "Conectar";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -358,6 +366,16 @@
             this.tbConfig.Text = "Configurações";
             this.tbConfig.UseVisualStyleBackColor = true;
             // 
+            // btnAgora
+            // 
+            this.btnAgora.Location = new System.Drawing.Point(298, 8);
+            this.btnAgora.Name = "btnAgora";
+            this.btnAgora.Size = new System.Drawing.Size(54, 24);
+            this.btnAgora.TabIndex = 8;
+            this.btnAgora.Text = "Agora";
+            this.btnAgora.UseVisualStyleBackColor = true;
+            this.btnAgora.Click += new System.EventHandler(this.btnAgora_Click);
+            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.CustomFormat = "HH:mm dd/MM/yyyy";
@@ -380,49 +398,72 @@
             // 
             // tbUsers
             // 
-            this.tbUsers.Controls.Add(this.button12);
-            this.tbUsers.Controls.Add(this.button7);
+            this.tbUsers.Controls.Add(this.btnUserListParse);
+            this.tbUsers.Controls.Add(this.btnUserBioList);
+            this.tbUsers.Controls.Add(this.btnUserCardList);
+            this.tbUsers.Controls.Add(this.btnUserRemoteBio);
             this.tbUsers.Controls.Add(this.groupBox2);
-            this.tbUsers.Controls.Add(this.button11);
+            this.tbUsers.Controls.Add(this.btnUserRemoteCard);
+            this.tbUsers.Controls.Add(this.btnUserList);
             this.tbUsers.Location = new System.Drawing.Point(4, 32);
             this.tbUsers.Name = "tbUsers";
-            this.tbUsers.Size = new System.Drawing.Size(377, 200);
+            this.tbUsers.Size = new System.Drawing.Size(427, 200);
             this.tbUsers.TabIndex = 2;
             this.tbUsers.Text = "Usuários";
             this.tbUsers.UseVisualStyleBackColor = true;
             // 
-            // button12
+            // btnUserListParse
             // 
-            this.button12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button12.Location = new System.Drawing.Point(261, 120);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(107, 23);
-            this.button12.TabIndex = 10;
-            this.button12.Text = "Cartão Remoto";
-            this.button12.UseVisualStyleBackColor = true;
+            this.btnUserListParse.Location = new System.Drawing.Point(8, 149);
+            this.btnUserListParse.Name = "btnUserListParse";
+            this.btnUserListParse.Size = new System.Drawing.Size(98, 37);
+            this.btnUserListParse.TabIndex = 13;
+            this.btnUserListParse.Text = "Listar Usuários (processado)";
+            this.btnUserListParse.UseVisualStyleBackColor = true;
+            this.btnUserListParse.Click += new System.EventHandler(this.btnUserListParse_Click);
             // 
-            // button7
+            // btnUserBioList
             // 
-            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button7.Location = new System.Drawing.Point(148, 120);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(107, 23);
-            this.button7.TabIndex = 9;
-            this.button7.Text = "Biomeria Remota";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnUserBioList.Location = new System.Drawing.Point(112, 120);
+            this.btnUserBioList.Name = "btnUserBioList";
+            this.btnUserBioList.Size = new System.Drawing.Size(92, 23);
+            this.btnUserBioList.TabIndex = 12;
+            this.btnUserBioList.Text = "Listar Biometrias";
+            this.btnUserBioList.UseVisualStyleBackColor = true;
+            this.btnUserBioList.Click += new System.EventHandler(this.btnUserBioList_Click);
+            // 
+            // btnUserCardList
+            // 
+            this.btnUserCardList.Location = new System.Drawing.Point(210, 120);
+            this.btnUserCardList.Name = "btnUserCardList";
+            this.btnUserCardList.Size = new System.Drawing.Size(84, 23);
+            this.btnUserCardList.TabIndex = 11;
+            this.btnUserCardList.Text = "Listar Cartões";
+            this.btnUserCardList.UseVisualStyleBackColor = true;
+            this.btnUserCardList.Click += new System.EventHandler(this.btnUserCardList_Click);
+            // 
+            // btnUserRemoteBio
+            // 
+            this.btnUserRemoteBio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUserRemoteBio.Location = new System.Drawing.Point(198, 149);
+            this.btnUserRemoteBio.Name = "btnUserRemoteBio";
+            this.btnUserRemoteBio.Size = new System.Drawing.Size(107, 23);
+            this.btnUserRemoteBio.TabIndex = 9;
+            this.btnUserRemoteBio.Text = "Biomeria Remota";
+            this.btnUserRemoteBio.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button13);
+            this.groupBox2.Controls.Add(this.btnUserModify);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.button10);
-            this.groupBox2.Controls.Add(this.button9);
-            this.groupBox2.Controls.Add(this.button8);
-            this.groupBox2.Controls.Add(this.textBox4);
-            this.groupBox2.Controls.Add(this.textBox5);
+            this.groupBox2.Controls.Add(this.btnUserRead);
+            this.groupBox2.Controls.Add(this.btnUserDelete);
+            this.groupBox2.Controls.Add(this.btnUserAdd);
+            this.groupBox2.Controls.Add(this.txtUserRegistration);
+            this.groupBox2.Controls.Add(this.txtUserID);
             this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.textBox6);
+            this.groupBox2.Controls.Add(this.txtUserName);
             this.groupBox2.Location = new System.Drawing.Point(8, 8);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(360, 106);
@@ -430,15 +471,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Incluir / Ler / Alterar / Excluir";
             // 
-            // button13
+            // btnUserModify
             // 
-            this.button13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button13.Location = new System.Drawing.Point(276, 71);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(75, 23);
-            this.button13.TabIndex = 7;
-            this.button13.Text = "Alterar";
-            this.button13.UseVisualStyleBackColor = true;
+            this.btnUserModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUserModify.Location = new System.Drawing.Point(276, 71);
+            this.btnUserModify.Name = "btnUserModify";
+            this.btnUserModify.Size = new System.Drawing.Size(75, 23);
+            this.btnUserModify.TabIndex = 7;
+            this.btnUserModify.Text = "Alterar";
+            this.btnUserModify.UseVisualStyleBackColor = true;
+            this.btnUserModify.Click += new System.EventHandler(this.btnUserModify_Click);
             // 
             // label11
             // 
@@ -459,49 +501,52 @@
             this.label12.TabIndex = 6;
             this.label12.Text = "Matricula";
             // 
-            // button10
+            // btnUserRead
             // 
-            this.button10.Location = new System.Drawing.Point(78, 30);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(66, 23);
-            this.button10.TabIndex = 0;
-            this.button10.Text = "Ler";
-            this.button10.UseVisualStyleBackColor = true;
+            this.btnUserRead.Location = new System.Drawing.Point(78, 30);
+            this.btnUserRead.Name = "btnUserRead";
+            this.btnUserRead.Size = new System.Drawing.Size(66, 23);
+            this.btnUserRead.TabIndex = 0;
+            this.btnUserRead.Text = "Ler";
+            this.btnUserRead.UseVisualStyleBackColor = true;
+            this.btnUserRead.Click += new System.EventHandler(this.btnUserRead_Click);
             // 
-            // button9
+            // btnUserDelete
             // 
-            this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button9.Location = new System.Drawing.Point(276, 13);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 0;
-            this.button9.Text = "Excluir";
-            this.button9.UseVisualStyleBackColor = true;
+            this.btnUserDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUserDelete.Location = new System.Drawing.Point(276, 13);
+            this.btnUserDelete.Name = "btnUserDelete";
+            this.btnUserDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnUserDelete.TabIndex = 0;
+            this.btnUserDelete.Text = "Excluir";
+            this.btnUserDelete.UseVisualStyleBackColor = true;
+            this.btnUserDelete.Click += new System.EventHandler(this.btnUserDelete_Click);
             // 
-            // button8
+            // btnUserAdd
             // 
-            this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button8.Location = new System.Drawing.Point(276, 42);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 0;
-            this.button8.Text = "Incluir";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnUserAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUserAdd.Location = new System.Drawing.Point(276, 42);
+            this.btnUserAdd.Name = "btnUserAdd";
+            this.btnUserAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnUserAdd.TabIndex = 0;
+            this.btnUserAdd.Text = "Incluir";
+            this.btnUserAdd.UseVisualStyleBackColor = true;
+            this.btnUserAdd.Click += new System.EventHandler(this.btnUserAdd_Click);
             // 
-            // textBox4
+            // txtUserRegistration
             // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.Location = new System.Drawing.Point(172, 71);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(101, 20);
-            this.textBox4.TabIndex = 5;
+            this.txtUserRegistration.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUserRegistration.Location = new System.Drawing.Point(172, 71);
+            this.txtUserRegistration.Name = "txtUserRegistration";
+            this.txtUserRegistration.Size = new System.Drawing.Size(101, 20);
+            this.txtUserRegistration.TabIndex = 5;
             // 
-            // textBox5
+            // txtUserID
             // 
-            this.textBox5.Location = new System.Drawing.Point(6, 32);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(66, 20);
-            this.textBox5.TabIndex = 1;
+            this.txtUserID.Location = new System.Drawing.Point(6, 32);
+            this.txtUserID.Name = "txtUserID";
+            this.txtUserID.Size = new System.Drawing.Size(66, 20);
+            this.txtUserID.TabIndex = 1;
             // 
             // label13
             // 
@@ -512,24 +557,34 @@
             this.label13.TabIndex = 4;
             this.label13.Text = "Nome";
             // 
-            // textBox6
+            // txtUserName
             // 
-            this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox6.Location = new System.Drawing.Point(6, 71);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(160, 20);
-            this.textBox6.TabIndex = 3;
+            this.txtUserName.Location = new System.Drawing.Point(6, 71);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(160, 20);
+            this.txtUserName.TabIndex = 3;
             // 
-            // button11
+            // btnUserRemoteCard
             // 
-            this.button11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button11.Location = new System.Drawing.Point(8, 120);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(75, 23);
-            this.button11.TabIndex = 0;
-            this.button11.Text = "Listar";
-            this.button11.UseVisualStyleBackColor = true;
+            this.btnUserRemoteCard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUserRemoteCard.Location = new System.Drawing.Point(311, 149);
+            this.btnUserRemoteCard.Name = "btnUserRemoteCard";
+            this.btnUserRemoteCard.Size = new System.Drawing.Size(107, 23);
+            this.btnUserRemoteCard.TabIndex = 10;
+            this.btnUserRemoteCard.Text = "Cartão Remoto";
+            this.btnUserRemoteCard.UseVisualStyleBackColor = true;
+            // 
+            // btnUserList
+            // 
+            this.btnUserList.Location = new System.Drawing.Point(8, 120);
+            this.btnUserList.Name = "btnUserList";
+            this.btnUserList.Size = new System.Drawing.Size(98, 23);
+            this.btnUserList.TabIndex = 0;
+            this.btnUserList.Text = "Listar Usuários";
+            this.btnUserList.UseVisualStyleBackColor = true;
+            this.btnUserList.Click += new System.EventHandler(this.btnUserList_Click);
             // 
             // tbGroups
             // 
@@ -550,7 +605,7 @@
             this.txtOut.Name = "txtOut";
             this.txtOut.ReadOnly = true;
             this.txtOut.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtOut.Size = new System.Drawing.Size(360, 117);
+            this.txtOut.Size = new System.Drawing.Size(410, 91);
             this.txtOut.TabIndex = 1;
             this.txtOut.WordWrap = false;
             // 
@@ -563,21 +618,43 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Informações (log)";
             // 
-            // btnAgora
+            // tbLogs
             // 
-            this.btnAgora.Location = new System.Drawing.Point(298, 8);
-            this.btnAgora.Name = "btnAgora";
-            this.btnAgora.Size = new System.Drawing.Size(54, 24);
-            this.btnAgora.TabIndex = 8;
-            this.btnAgora.Text = "Agora";
-            this.btnAgora.UseVisualStyleBackColor = true;
-            this.btnAgora.Click += new System.EventHandler(this.btnAgora_Click);
+            this.tbLogs.Controls.Add(this.btnLogs2);
+            this.tbLogs.Controls.Add(this.btnLogs);
+            this.tbLogs.Location = new System.Drawing.Point(4, 32);
+            this.tbLogs.Name = "tbLogs";
+            this.tbLogs.Padding = new System.Windows.Forms.Padding(3);
+            this.tbLogs.Size = new System.Drawing.Size(427, 200);
+            this.tbLogs.TabIndex = 5;
+            this.tbLogs.Text = "Logs";
+            this.tbLogs.UseVisualStyleBackColor = true;
+            // 
+            // btnLogs
+            // 
+            this.btnLogs.Location = new System.Drawing.Point(6, 6);
+            this.btnLogs.Name = "btnLogs";
+            this.btnLogs.Size = new System.Drawing.Size(144, 23);
+            this.btnLogs.TabIndex = 15;
+            this.btnLogs.Text = "Listar Logs de Acesso";
+            this.btnLogs.UseVisualStyleBackColor = true;
+            this.btnLogs.Click += new System.EventHandler(this.btnLogs_Click);
+            // 
+            // btnLogs2
+            // 
+            this.btnLogs2.Location = new System.Drawing.Point(6, 35);
+            this.btnLogs2.Name = "btnLogs2";
+            this.btnLogs2.Size = new System.Drawing.Size(144, 37);
+            this.btnLogs2.TabIndex = 16;
+            this.btnLogs2.Text = "Listar Logs de Acesso (processado)";
+            this.btnLogs2.UseVisualStyleBackColor = true;
+            this.btnLogs2.Click += new System.EventHandler(this.btnLogs2_Click);
             // 
             // frmExemplos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 387);
+            this.ClientSize = new System.Drawing.Size(434, 361);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtOut);
             this.Controls.Add(this.tbc);
@@ -595,6 +672,7 @@
             this.tbUsers.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.tbLogs.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -635,18 +713,24 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Button btnUserList;
+        private System.Windows.Forms.Button btnUserRead;
+        private System.Windows.Forms.Button btnUserDelete;
+        private System.Windows.Forms.Button btnUserAdd;
+        private System.Windows.Forms.TextBox txtUserRegistration;
+        private System.Windows.Forms.TextBox txtUserID;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.TextBox txtUserName;
+        private System.Windows.Forms.Button btnUserRemoteCard;
+        private System.Windows.Forms.Button btnUserRemoteBio;
+        private System.Windows.Forms.Button btnUserModify;
         private System.Windows.Forms.Button btnAgora;
+        private System.Windows.Forms.Button btnUserListParse;
+        private System.Windows.Forms.Button btnUserBioList;
+        private System.Windows.Forms.Button btnUserCardList;
+        private System.Windows.Forms.TabPage tbLogs;
+        private System.Windows.Forms.Button btnLogs;
+        private System.Windows.Forms.Button btnLogs2;
     }
 }
 

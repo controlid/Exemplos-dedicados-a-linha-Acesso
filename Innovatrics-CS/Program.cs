@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
-namespace ExemploAPI
+namespace TestInnovatrics
 {
     static class Program
     {
@@ -13,7 +15,7 @@ namespace ExemploAPI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmExemplos());
+            Application.Run(new frmTestInnovatrics());
         }
     }
 }

@@ -1,5 +1,8 @@
 ﻿using ExemploAPI.Properties;
 using System;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
+using System.Text;
 using System.Windows.Forms;
 
 namespace ExemploAPI
@@ -10,6 +13,14 @@ namespace ExemploAPI
         private string session = null;
 
         #region Controles do Formulario
+
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new frmExemplos());
+        }
 
         public frmExemplos()
         {
@@ -67,6 +78,8 @@ namespace ExemploAPI
 
                 txtOut.Text = "Device: " + urlDevice;
 
+                // Veja uma outra forma mais robusta de como poderia ser feito um login com serialização de objetos JSON no projeto de "Controle Remoto" criando estruturas que são serializadas se transformando em strings
+                // https://github.com/controlid/iDAccess/blob/master/ControleRemoto-CS/idAccess.cs
                 string response = WebJson.Send(urlDevice + "login", "{\"login\":\"" + txtUser.Text + "\",\"password\":\"" + txtPassword.Text + "\"}");
                 AddLog(response);
 
@@ -86,7 +99,7 @@ namespace ExemploAPI
                     Settings.Default.Save();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 AddLog(ex);
             }
@@ -150,7 +163,7 @@ namespace ExemploAPI
         {
             try
             {
-                if(cmbGiro.SelectedIndex == 1) // Horario
+                if (cmbGiro.SelectedIndex == 1) // Horario
                     AddLog(WebJson.Send(urlDevice + "execute_actions", "{\"actions\":[{\"action\": \"catra\", \"parameters\":\"allow=clockwise\"}]}", session));
                 else if (cmbGiro.SelectedIndex == 2) // Anti-Horario
                     AddLog(WebJson.Send(urlDevice + "execute_actions", "{\"actions\":[{\"action\": \"catra\", \"parameters\":\"allow=anticlockwise\"}]}", session));
@@ -208,5 +221,198 @@ namespace ExemploAPI
         }
 
         #endregion
+
+        #region Usuários
+
+        private void btnUserList_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AddLog(WebJson.Send(urlDevice + "load_objects", "{\"object\":\"users\"}", session));
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+        private void btnUserBioList_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AddLog(WebJson.Send(urlDevice + "load_objects", "{\"object\":\"templates\"}", session));
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+        private void btnUserCardList_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AddLog(WebJson.Send(urlDevice + "load_objects", "{\"object\":\"cards\"}", session));
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+        private void btnUserListParse_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Este exemplo irá fazer um parse simples do retorno dos objetos automaticamente, usando uma estrutura de classes com os memos nomes
+                string users = WebJson.Send(urlDevice + "load_objects", "{\"object\":\"users\"}", session); // Consulte a documentação para fazer 'Where'
+                // https://www.controlid.com.br/produtos/controlador-de-acesso
+                // https://www.controlid.com.br/suporte/api_idaccess_V2.6.8.html
+
+                // Basta referenciar o System.Runtime.Serialization, a partir do .Net 4.0
+                var serializer = new DataContractJsonSerializer(typeof(ResultList));
+
+                // aqui vou transformar a string em um stream, mas o ideal é ter esse parse dentro do WebJson que usarei em outro exemplo
+                var ms = new System.IO.MemoryStream(UTF8Encoding.UTF8.GetBytes(users));
+
+                // A mágina acontece aqui! (veja as estruturas de classes auxiliares, mais abaixo)
+                var list = serializer.ReadObject(ms) as ResultList;
+
+                // Só listo os dados
+                var sb = new StringBuilder(); // uso um StringBuilder, apenas para otimizar o código, e mandar para a tela tudo de uma vez
+                for (int i = 0; i < list.users.Length; i++)
+                    sb.AppendFormat("{0}: {1} - {2}\r\n", list.users[i].id, list.users[i].name, list.users[i].registration);
+
+                // Exibe de fato os dados
+                AddLog(sb.ToString());
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+        private void btnUserAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Note que trabalhar totalmente por string há várias situações que precisam ser tratadas manualmente
+                // por isso fazer via parse JSON é bem melhor, mas vai requerer mais conhecimento em .Net
+                string cmd = "{" +
+                    "\"object\" : \"users\"," +
+                    "\"values\" : [{" +
+                            (txtUserID.Text == "" ? "" : ("\"id\" :" + txtUserID.Text + ",")) + // O iD é opcional
+                            "\"name\" :\"" + txtUserName.Text + "\"," +
+                            "\"registration\" : \"" + txtUserRegistration.Text + "\"" +
+                        "}]" +
+                    "}";
+                AddLog(WebJson.Send(urlDevice + "create_objects", cmd, session));
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+        private void btnUserDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                long id = long.Parse(txtUserID.Text);
+                AddLog(WebJson.Send(urlDevice + "destroy_objects", "{\"object\":\"users\",\"where\":{\"users\":{\"id\":[" + id + "]}}}", session));
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+        // Exemplo de leitura usando o parse JSON
+        private void btnUserRead_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                long id = long.Parse(txtUserID.Text);
+                var usrList = WebJson.Send<ResultList>(urlDevice + "load_objects", "{\"object\":\"users\",\"where\":{\"users\":{\"id\":[" + id + "]}}}", session);
+                // Note que é sempre retornada um lista de acordo com a Where, que neste caso por ser um ID, só deve vir 1 se achou
+                if (usrList.users.Length == 1)
+                {
+                    txtUserName.Text = usrList.users[0].name;
+                    txtUserRegistration.Text = usrList.users[0].registration;
+                    AddLog("Usuário " + id + " lido com sucesso");
+                }
+                else
+                    AddLog("Usuário " + id + " não existe");
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+        private void btnUserModify_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                long id = long.Parse(txtUserID.Text);
+                string cmd = "{" +
+                    "\"object\" : \"users\"," +
+                    "\"where\":{\"users\":{\"id\":[" + id + "]}}," +
+                    "\"values\" : {" +
+                            "\"name\" :\"" + txtUserName.Text + "\"," +
+                            "\"registration\" : \"" + txtUserRegistration.Text + "\"" +
+                        "}" +
+                    "}";
+                AddLog(WebJson.Send(urlDevice + "modify_objects", cmd, session));
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+        #endregion
+
+        #region Logs
+
+        private void btnLogs_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AddLog(WebJson.Send(urlDevice + "load_objects", "{\"object\":\"access_logs\"}", session));
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+
+        private void btnLogs2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Este exemplo irá fazer um parse simples do retorno dos objetos automaticamente, usando uma estrutura de classes com os memos nomes
+                var list = WebJson.Send<ResultList>(urlDevice + "load_objects", "{\"object\":\"access_logs\"}", session); // Consulte a documentação para fazer 'Where'
+                // Note que o ResultList contem resultados tanto para usuários e logs
+                // logico que neste exemplo por se tratar de logs, os elementos resultantes estarão em 'access_logs'
+                // https://www.controlid.com.br/produtos/controlador-de-acesso
+
+                // Só listo os dados
+                var sb = new StringBuilder(); // uso um StringBuilder, apenas para otimizar o código, e mandar para a tela tudo de uma vez
+                for (int i = 0; i < list.access_logs.Length; i++)
+                    sb.AppendFormat("{0}: User {1} - {2}\r\n", list.access_logs[i].id, list.access_logs[i].user_id, list.access_logs[i].EventType);
+
+                // Exibe de fato os dados
+                AddLog(sb.ToString());
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex);
+            }
+        }
+
+        #endregion
+
     }
 }
