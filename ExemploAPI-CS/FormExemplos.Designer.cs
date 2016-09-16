@@ -104,6 +104,7 @@
             // 
             // tbDevice
             // 
+            resources.ApplyResources(this.tbDevice, "tbDevice");
             this.tbDevice.Controls.Add(this.txtPassword);
             this.tbDevice.Controls.Add(this.txtUser);
             this.tbDevice.Controls.Add(this.label4);
@@ -114,7 +115,6 @@
             this.tbDevice.Controls.Add(this.nmPort);
             this.tbDevice.Controls.Add(this.txtIP);
             this.tbDevice.Controls.Add(this.btnLogin);
-            resources.ApplyResources(this.tbDevice, "tbDevice");
             this.tbDevice.Name = "tbDevice";
             this.tbDevice.UseVisualStyleBackColor = true;
             // 
@@ -188,6 +188,7 @@
             // 
             // tbAcoes
             // 
+            resources.ApplyResources(this.tbAcoes, "tbAcoes");
             this.tbAcoes.Controls.Add(this.label6);
             this.tbAcoes.Controls.Add(this.label7);
             this.tbAcoes.Controls.Add(this.btnReboot);
@@ -198,7 +199,6 @@
             this.tbAcoes.Controls.Add(this.btnRele3);
             this.tbAcoes.Controls.Add(this.btnRele1);
             this.tbAcoes.Controls.Add(this.btnRele4);
-            resources.ApplyResources(this.tbAcoes, "tbAcoes");
             this.tbAcoes.Name = "tbAcoes";
             this.tbAcoes.UseVisualStyleBackColor = true;
             // 
@@ -221,13 +221,13 @@
             // 
             // cmbGiro
             // 
+            resources.ApplyResources(this.cmbGiro, "cmbGiro");
             this.cmbGiro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGiro.FormattingEnabled = true;
             this.cmbGiro.Items.AddRange(new object[] {
             resources.GetString("cmbGiro.Items"),
             resources.GetString("cmbGiro.Items1"),
             resources.GetString("cmbGiro.Items2")});
-            resources.ApplyResources(this.cmbGiro, "cmbGiro");
             this.cmbGiro.Name = "cmbGiro";
             // 
             // btnInfo
@@ -274,10 +274,10 @@
             // 
             // tbConfig
             // 
+            resources.ApplyResources(this.tbConfig, "tbConfig");
             this.tbConfig.Controls.Add(this.btnAgora);
             this.tbConfig.Controls.Add(this.dateTimePicker1);
             this.tbConfig.Controls.Add(this.btnDataHora);
-            resources.ApplyResources(this.tbConfig, "tbConfig");
             this.tbConfig.Name = "tbConfig";
             this.tbConfig.UseVisualStyleBackColor = true;
             // 
@@ -304,12 +304,12 @@
             // 
             // tbUsers
             // 
+            resources.ApplyResources(this.tbUsers, "tbUsers");
             this.tbUsers.Controls.Add(this.btnUserListParse);
             this.tbUsers.Controls.Add(this.btnUserBioList);
             this.tbUsers.Controls.Add(this.btnUserCardList);
             this.tbUsers.Controls.Add(this.groupBox2);
             this.tbUsers.Controls.Add(this.btnUserList);
-            resources.ApplyResources(this.tbUsers, "tbUsers");
             this.tbUsers.Name = "tbUsers";
             this.tbUsers.UseVisualStyleBackColor = true;
             // 
@@ -336,6 +336,7 @@
             // 
             // groupBox2
             // 
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Controls.Add(this.btnUserModify);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label12);
@@ -346,7 +347,6 @@
             this.groupBox2.Controls.Add(this.txtUserID);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.txtUserName);
-            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
@@ -417,9 +417,9 @@
             // 
             // tbLogs
             // 
+            resources.ApplyResources(this.tbLogs, "tbLogs");
             this.tbLogs.Controls.Add(this.btnLogs2);
             this.tbLogs.Controls.Add(this.btnLogs);
-            resources.ApplyResources(this.tbLogs, "tbLogs");
             this.tbLogs.Name = "tbLogs";
             this.tbLogs.UseVisualStyleBackColor = true;
             // 
