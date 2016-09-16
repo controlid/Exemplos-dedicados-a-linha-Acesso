@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="tbDevice.Text" xml:space="preserve">
+    <value>Device</value>
+  </data>
+  <data name="tbAcoes.Text" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="tbConfig.Text" xml:space="preserve">
+    <value>Config</value>
+  </data>
+  <data name="tbUsers.Text" xml:space="preserve">
+    <value>User</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 13</value>
@@ -137,10 +149,7 @@
     <value>Port</value>
   </data>
   <data name="btnLogin.Text" xml:space="preserve">
-    <value>Conect</value>
-  </data>
-  <data name="tbDevice.Text" xml:space="preserve">
-    <value>Device</value>
+    <value>Connect</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 13</value>
@@ -164,25 +173,22 @@
     <value>Anticlockwise</value>
   </data>
   <data name="btnInfo.Text" xml:space="preserve">
-    <value>Get Device Informations</value>
+    <value>Get Device Information</value>
   </data>
   <data name="btnGiro.Text" xml:space="preserve">
-    <value>Turnstile spin</value>
+    <value>Turnstile: Grant access</value>
   </data>
   <data name="btnRele2.Text" xml:space="preserve">
-    <value>Turn on rele 2</value>
+    <value>Open Relay 2</value>
   </data>
   <data name="btnRele3.Text" xml:space="preserve">
-    <value>Turn on rele 3</value>
+    <value>Open Relay 3</value>
   </data>
   <data name="btnRele1.Text" xml:space="preserve">
-    <value>Turn on rele 1</value>
+    <value>Open Relay 1</value>
   </data>
   <data name="btnRele4.Text" xml:space="preserve">
-    <value>Turn on rele 4</value>
-  </data>
-  <data name="tbAcoes.Text" xml:space="preserve">
-    <value>Action</value>
+    <value>Open Relay 4</value>
   </data>
   <data name="btnAgora.Text" xml:space="preserve">
     <value>Now</value>
@@ -190,18 +196,18 @@
   <data name="btnDataHora.Text" xml:space="preserve">
     <value>Set date and time</value>
   </data>
-  <data name="tbConfig.Text" xml:space="preserve">
-    <value>Config</value>
-  </data>
   <data name="btnUserListParse.Text" xml:space="preserve">
     <value>User List
 (parsed)</value>
   </data>
   <data name="btnUserBioList.Text" xml:space="preserve">
-    <value>Biometric List</value>
+    <value>Fingerprint list</value>
   </data>
   <data name="btnUserCardList.Text" xml:space="preserve">
     <value>Card List</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Create / Read / Update / Delete</value>
   </data>
   <data name="btnUserModify.Text" xml:space="preserve">
     <value>Update</value>
@@ -227,15 +233,12 @@
   <data name="btnUserList.Text" xml:space="preserve">
     <value>User List</value>
   </data>
-  <data name="tbUsers.Text" xml:space="preserve">
-    <value>User</value>
-  </data>
   <data name="btnLogs2.Text" xml:space="preserve">
-    <value>List Access Logs
+    <value>Get Access Logs
 (parsed)</value>
   </data>
   <data name="btnLogs.Text" xml:space="preserve">
-    <value>List Access Logs</value>
+    <value>Get Access Logs</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>71, 13</value>
@@ -251,10 +254,6 @@
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Language:</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>iDaccess API Samples </value>
