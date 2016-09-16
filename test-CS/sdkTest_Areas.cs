@@ -93,6 +93,10 @@ namespace UnitTestAcesso
             foreach (var ar in eqpt.List<User_Access_Rules>())
                 Console.WriteLine(ar.access_rule_id + " U " + ar.user_id);
 
+            Console.WriteLine("\r\nValidations");
+            foreach (var v in eqpt.List<Validations>())
+                Console.WriteLine(v.id + " " + v.name);
+
             Console.WriteLine("\r\nValidation_Access_Rules");
             foreach (var ar in eqpt.List<Access_Rule_Validations>())
                 Console.WriteLine(ar.access_rule_id + " U " + ar.validation_id);
