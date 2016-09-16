@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbrePorta", "AbrePorta-CS\A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleRemoto", "ControleRemoto-CS\ControleRemoto.csproj", "{B88ED92E-4AEE-409C-8492-58ED1DBC0C42}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innovatrics", "Innovatrics-CS\Innovatrics.csproj", "{06CED95E-9497-4459-8F22-1986165C08E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B88ED92E-4AEE-409C-8492-58ED1DBC0C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B88ED92E-4AEE-409C-8492-58ED1DBC0C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B88ED92E-4AEE-409C-8492-58ED1DBC0C42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06CED95E-9497-4459-8F22-1986165C08E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06CED95E-9497-4459-8F22-1986165C08E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06CED95E-9497-4459-8F22-1986165C08E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06CED95E-9497-4459-8F22-1986165C08E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
