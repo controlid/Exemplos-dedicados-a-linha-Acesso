@@ -59,6 +59,12 @@
     <Compile Include="iDAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebJson.cs" />
+    <EmbeddedResource Include="FormExemplos.en-AS.resx">
+      <DependentUpon>FormExemplos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormExemplos.en.resx">
+      <DependentUpon>FormExemplos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormExemplos.resx">
       <DependentUpon>FormExemplos.cs</DependentUpon>
     </EmbeddedResource>
@@ -70,6 +76,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -83,6 +90,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BR.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="US.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

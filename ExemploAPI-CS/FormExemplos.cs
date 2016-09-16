@@ -1,8 +1,9 @@
 ﻿using ExemploAPI.Properties;
 using System;
-using System.Runtime.Serialization;
+using System.Globalization;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace ExemploAPI
@@ -14,17 +15,21 @@ namespace ExemploAPI
 
         #region Controles do Formulario
 
+        private static bool run = true;
+
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmExemplos());
+            while (run)
+                Application.Run(new frmExemplos());
         }
 
         public frmExemplos()
         {
             InitializeComponent();
+            run = false;
         }
 
         public void AddLog(Exception ex)
@@ -49,6 +54,27 @@ namespace ExemploAPI
             chkSSL.Checked = Settings.Default.ssl;
             txtUser.Text = Settings.Default.user;
             txtPassword.Text = Settings.Default.password;
+        }
+
+        // reinicializa em outro idioma
+        private void btnPT_Click(object sender, EventArgs e)
+        {
+            if (!Thread.CurrentThread.CurrentCulture.Name.StartsWith("pt"))
+            {
+                Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = new CultureInfo("pt-BR");
+                run = true;
+                Close();
+            }
+        }
+
+        private void btEN_Click(object sender, EventArgs e)
+        {
+            if( !Thread.CurrentThread.CurrentCulture.Name.StartsWith("en"))
+            {
+                Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+                run = true;
+                Close();
+            }
         }
 
         #endregion
