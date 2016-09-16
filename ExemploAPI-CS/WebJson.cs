@@ -34,9 +34,7 @@ namespace ExemploAPI
                 var response = (HttpWebResponse)request.GetResponse();
                 using (var streamReader = new StreamReader(response.GetResponseStream()))
                 {
-                    string responseData = streamReader.ReadToEnd();
-//                    Console.WriteLine(responseData);
-                    return responseData;
+                    return streamReader.ReadToEnd();
                 }
             }
             catch (WebException e)
@@ -48,9 +46,7 @@ namespace ExemploAPI
                     using (Stream responseData = response.GetResponseStream())
                     using (var reader = new StreamReader(responseData))
                     {
-                        string text = reader.ReadToEnd();
-//                        Console.WriteLine(text);
-                        throw new Exception(text);
+                        throw new Exception(reader.ReadToEnd());
                     }
                 }
             }
@@ -90,8 +86,7 @@ namespace ExemploAPI
                     using (Stream responseData = response.GetResponseStream())
                     using (var reader = new StreamReader(responseData))
                     {
-                        string text = reader.ReadToEnd();
-                        throw new Exception(text);
+                        throw new Exception(reader.ReadToEnd());
                     }
                 }
             }

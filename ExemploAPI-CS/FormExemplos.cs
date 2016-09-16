@@ -13,7 +13,7 @@ namespace ExemploAPI
         private string urlDevice = null;
         private string session = null;
 
-        #region Controles do Formulario
+        #region Form Controls
 
         private static bool run = true;
 
@@ -48,7 +48,8 @@ namespace ExemploAPI
         {
             cmbGiro.SelectedIndex = 0;
 
-            // apenas para facilitar os testes, lê sempre os dados pré configurados
+            // just to testing, always read the pre-configured data
+            // (apenas para facilitar os testes, lê sempre os dados pré configurados)
             txtIP.Text = Settings.Default.ip;
             nmPort.Value = Settings.Default.port;
             chkSSL.Checked = Settings.Default.ssl;
@@ -56,7 +57,8 @@ namespace ExemploAPI
             txtPassword.Text = Settings.Default.password;
         }
 
-        // reinicializa em outro idioma
+        // restart in other language
+        // (reinicializa em outro idioma)
         private void btnPT_Click(object sender, EventArgs e)
         {
             if (!Thread.CurrentThread.CurrentCulture.Name.StartsWith("pt"))
@@ -86,7 +88,7 @@ namespace ExemploAPI
             try
             {
                 txtIP.Text = txtIP.Text.Trim();
-                session = null; // invalida sessão anterior
+                session = null; // erases the previous session (invalida sessão anterior)
 
                 if (this.chkSSL.Checked)
                 {
@@ -104,19 +106,21 @@ namespace ExemploAPI
 
                 txtOut.Text = "Device: " + urlDevice;
 
-                // Veja uma outra forma mais robusta de como poderia ser feito um login com serialização de objetos JSON no projeto de "Controle Remoto" criando estruturas que são serializadas se transformando em strings
+                // See another robust mode to login with serialization of JSON objects in the project "Remote Control" creating structures that are serialized
+                // (Veja uma outra forma mais robusta de como poderia ser feito um login com serialização de objetos JSON no projeto de "Controle Remoto" criando estruturas que são serializadas se transformando em strings)
                 // https://github.com/controlid/iDAccess/blob/master/ControleRemoto-CS/idAccess.cs
                 string response = WebJson.Send(urlDevice + "login", "{\"login\":\"" + txtUser.Text + "\",\"password\":\"" + txtPassword.Text + "\"}");
                 AddLog(response);
 
-                // Forma mais simples de pegar a sessão!
+                // Simple method to get the session
+                // (Forma mais simples de pegar a sessão)
                 if (response.Contains("session"))
                 {
-                    // O recomendado é criar um parse JSON com DataContract/DataMember para cada menssagem, mas a serialização não é o foco deste exemplo!
                     session = response.Split('"')[3];
                     AddLog("OK Conectado!");
 
-                    // Persiste a conexão nas configurações do aplicativo para facilitar
+                    // There is still a connection in the application settings to facilitate
+                    // (Persiste a conexão nas configurações do aplicativo para facilitar)
                     Settings.Default.ip = txtIP.Text;
                     Settings.Default.port = (int)nmPort.Value;
                     Settings.Default.ssl = chkSSL.Checked;
@@ -142,7 +146,7 @@ namespace ExemploAPI
 
         #endregion
 
-        #region Ações
+        #region Actions
 
         private void btnInfo_Click(object sender, EventArgs e)
         {
@@ -160,6 +164,7 @@ namespace ExemploAPI
         {
             try
             {
+                // Identify which button was pressed
                 // Identifica qual botão foi apertado
                 int nPorta;
                 var btn = sender as Button;
@@ -174,6 +179,7 @@ namespace ExemploAPI
                 else
                     throw new Exception("Botão não identificado");
 
+                // It may be necessary to enable the relay in question
                 // Eventualmente pode ser necessário habilitar o rele em questão
                 // WebJson.Send(urlDevice + "set_configuration", "{\"general\":{\"relay1_enabled\": \"1\",\"relay2_enabled\": \"1\"}}");
                 string cmd = "{\"actions\":[{\"action\": \"door\", \"parameters\":\"door=" + nPorta + "\"}]}";
@@ -189,11 +195,11 @@ namespace ExemploAPI
         {
             try
             {
-                if (cmbGiro.SelectedIndex == 1) // Horario
+                if (cmbGiro.SelectedIndex == 1)
                     AddLog(WebJson.Send(urlDevice + "execute_actions", "{\"actions\":[{\"action\": \"catra\", \"parameters\":\"allow=clockwise\"}]}", session));
-                else if (cmbGiro.SelectedIndex == 2) // Anti-Horario
+                else if (cmbGiro.SelectedIndex == 2)
                     AddLog(WebJson.Send(urlDevice + "execute_actions", "{\"actions\":[{\"action\": \"catra\", \"parameters\":\"allow=anticlockwise\"}]}", session));
-                else  // Ambos
+                else 
                     AddLog(WebJson.Send(urlDevice + "execute_actions", "{\"actions\":[{\"action\": \"catra\", \"parameters\":\"allow=both\"}]}", session));
 
             }
@@ -217,7 +223,7 @@ namespace ExemploAPI
 
         #endregion
 
-        #region Configurações
+        #region Config
 
         private void btnDataHora_Click(object sender, EventArgs e)
         {
@@ -248,7 +254,7 @@ namespace ExemploAPI
 
         #endregion
 
-        #region Usuários
+        #region User
 
         private void btnUserList_Click(object sender, EventArgs e)
         {
@@ -295,21 +301,21 @@ namespace ExemploAPI
                 // https://www.controlid.com.br/produtos/controlador-de-acesso
                 // https://www.controlid.com.br/suporte/api_idaccess_V2.6.8.html
 
-                // Basta referenciar o System.Runtime.Serialization, a partir do .Net 4.0
+                // requires (referenciar) System.Runtime.Serialization
                 var serializer = new DataContractJsonSerializer(typeof(ResultList));
 
-                // aqui vou transformar a string em um stream, mas o ideal é ter esse parse dentro do WebJson que usarei em outro exemplo
+                // Transforma a string em um stream, mas o ideal é ter esse parse dentro do WebJson que usarei em outro exemplo
                 var ms = new System.IO.MemoryStream(UTF8Encoding.UTF8.GetBytes(users));
 
-                // A mágina acontece aqui! (veja as estruturas de classes auxiliares, mais abaixo)
+                // the magic happens here (A mágina acontece aqui)
                 var list = serializer.ReadObject(ms) as ResultList;
 
-                // Só listo os dados
-                var sb = new StringBuilder(); // uso um StringBuilder, apenas para otimizar o código, e mandar para a tela tudo de uma vez
+                // Only to optimize the code and send it to the screen
+                // Apenas para otimizar o código e mandar para a tela tudo de uma vez
+                var sb = new StringBuilder(); 
                 for (int i = 0; i < list.users.Length; i++)
                     sb.AppendFormat("{0}: {1} - {2}\r\n", list.users[i].id, list.users[i].name, list.users[i].registration);
 
-                // Exibe de fato os dados
                 AddLog(sb.ToString());
             }
             catch (Exception ex)
@@ -322,12 +328,12 @@ namespace ExemploAPI
         {
             try
             {
-                // Note que trabalhar totalmente por string há várias situações que precisam ser tratadas manualmente
-                // por isso fazer via parse JSON é bem melhor, mas vai requerer mais conhecimento em .Net
+                // Using 'string' there are several situations that need to be handled manually do so via to parse JSON is much better
+                // (Usando string há várias situações que precisam ser tratadas manualmente por isso fazer via com parse JSON é bem melhor)
                 string cmd = "{" +
                     "\"object\" : \"users\"," +
                     "\"values\" : [{" +
-                            (txtUserID.Text == "" ? "" : ("\"id\" :" + txtUserID.Text + ",")) + // O iD é opcional
+                            (txtUserID.Text == "" ? "" : ("\"id\" :" + txtUserID.Text + ",")) + // optional (opcional)
                             "\"name\" :\"" + txtUserName.Text + "\"," +
                             "\"registration\" : \"" + txtUserRegistration.Text + "\"" +
                         "}]" +
@@ -353,14 +359,14 @@ namespace ExemploAPI
             }
         }
 
-        // Exemplo de leitura usando o parse JSON
         private void btnUserRead_Click(object sender, EventArgs e)
         {
             try
             {
                 long id = long.Parse(txtUserID.Text);
                 var usrList = WebJson.Send<ResultList>(urlDevice + "load_objects", "{\"object\":\"users\",\"where\":{\"users\":{\"id\":[" + id + "]}}}", session);
-                // Note que é sempre retornada um lista de acordo com a Where, que neste caso por ser um ID, só deve vir 1 se achou
+                // it is always returns a list according to the "Where", which in this case to be an ID, must come only one was found
+                // (Note que é sempre retornada um lista de acordo com a 'Where', que neste caso por ser um ID, só deve vir 1 se achou)
                 if (usrList.users.Length == 1)
                 {
                     txtUserName.Text = usrList.users[0].name;
@@ -418,18 +424,11 @@ namespace ExemploAPI
         {
             try
             {
-                // Este exemplo irá fazer um parse simples do retorno dos objetos automaticamente, usando uma estrutura de classes com os memos nomes
                 var list = WebJson.Send<ResultList>(urlDevice + "load_objects", "{\"object\":\"access_logs\"}", session); // Consulte a documentação para fazer 'Where'
-                // Note que o ResultList contem resultados tanto para usuários e logs
-                // logico que neste exemplo por se tratar de logs, os elementos resultantes estarão em 'access_logs'
-                // https://www.controlid.com.br/produtos/controlador-de-acesso
-
-                // Só listo os dados
                 var sb = new StringBuilder(); // uso um StringBuilder, apenas para otimizar o código, e mandar para a tela tudo de uma vez
                 for (int i = 0; i < list.access_logs.Length; i++)
                     sb.AppendFormat("{0}: User {1} - {2}\r\n", list.access_logs[i].id, list.access_logs[i].user_id, list.access_logs[i].EventType);
 
-                // Exibe de fato os dados
                 AddLog(sb.ToString());
             }
             catch (Exception ex)
