@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7A77F564-AD1D-470B-938E-5178198E87EF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ControlID</RootNamespace>
+    <AssemblyName>sdk-ControlID</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\sdk-ControlID.XML</DocumentationFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <DocumentationFile>bin\Release\sdk-ControlID.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="cidErroCodes.cs" />
+    <Compile Include="cidException.cs" />
+    <Compile Include="IConvertDevice.cs" />
+    <Compile Include="iDAccess\iDAccess_Configuration.cs" />
+    <Compile Include="iDAccess\Device_Hardware.cs" />
+    <Compile Include="iDAccess\Device_Configuration.cs" />
+    <Compile Include="iDAccess\Device_Utils.cs" />
+    <Compile Include="iDAccess\Device_Generic.cs" />
+    <Compile Include="iDAccess\Device_Commands.cs" />
+    <Compile Include="iDAccess\Device_Groups.cs" />
+    <Compile Include="iDAccess\Device_Users.cs" />
+    <Compile Include="iDAccess\Device.cs" />
+    <Compile Include="iDAccess\iDAccess_Objects_Base.cs" />
+    <Compile Include="iDAccess\iDAccess_Objects_Config.cs" />
+    <Compile Include="iDAccess\iDAccess_Where.cs" />
+    <Compile Include="iDAccess\iDAccess_Utils.cs" />
+    <Compile Include="iDAccess\iDAccess_Reports.cs" />
+    <Compile Include="iDAccess\iDAccess_Objects.cs" />
+    <Compile Include="Extender.cs" />
+    <Compile Include="iDAccess\iDAccess_Server.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SSLValidator.cs" />
+    <Compile Include="TextCSV.cs" />
+    <Compile Include="USB\Futronic.cs" />
+    <Compile Include="Util.cs" />
+    <Compile Include="WebJson.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CodeSigning2017.pfx" />
+    <None Include="iDAccess\_ER.cd" />
+    <None Include="_SDK.cd" />
+    <None Include="Resources\ic_idaccess.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_idbox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_idfit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_idlight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_idaccessprox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_idblock.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

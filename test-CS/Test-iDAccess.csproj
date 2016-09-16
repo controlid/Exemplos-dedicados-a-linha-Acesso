@@ -67,12 +67,6 @@
     <Compile Include="sdk_USB.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Gerenciador_Acesso\sdkAcesso\sdkAcesso.csproj">
-      <Project>{7a77f564-ad1d-470b-938e-5178198e87ef}</Project>
-      <Name>sdkAcesso</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ControliD.png" />
     <Content Include="ftrScanAPI.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

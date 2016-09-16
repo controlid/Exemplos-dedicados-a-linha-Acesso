@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ControlID.iDAccess.Device">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="ControlID.iDAccess.Device.AskConfig" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>iDAccess\Device_Configuration.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="ControlID.iDAccess.Device.ReceivedConfig" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>iDAccess\Device_Configuration.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>GhaAoYQAyjItCQIqAMBgRIQgCCBFAAAC8gAZhAAMgkc=</HashCode>
+      <FileName>iDAccess\Device.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControlID.SSLValidator">
+    <Position X="4.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SSLValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControlID.WebJson">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAIIAAEAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WebJson.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControlID.Util">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAABAAQAAABCAAAAABAAIAQAAAEAJAAAQAACAAAA=</HashCode>
+      <FileName>Util.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControlID.cidException">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAABAAAAAAAAABAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>cidException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControlID.ExtenderUtil">
+    <Position X="4.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extender.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControlID.TextCSV">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAABAAAAAAAAAAIAAAAAIAAAAA=</HashCode>
+      <FileName>TextCSV.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControlID.USB.Futronic" BaseTypeListCollapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="ControlID.USB.Futronic._FTRSCAN_FAKE_REPLICA_PARAMETERS" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>USB\Futronic.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="ControlID.USB.Futronic._FTRSCAN_FRAME_PARAMETERS" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>USB\Futronic.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="ControlID.USB.Futronic._FTRSCAN_IMAGE_SIZE" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>USB\Futronic.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAQAACACBAQAQgBACBAAAAAAAAAAABAEACAAgAAAA=</HashCode>
+      <FileName>USB\Futronic.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Enum Name="ControlID.ErroCodes">
+    <Position X="2.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAYAAAgAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>cidErroCodes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
