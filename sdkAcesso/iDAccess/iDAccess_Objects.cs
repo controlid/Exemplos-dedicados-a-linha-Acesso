@@ -191,6 +191,11 @@ namespace ControlID.iDAccess
     }
 
     [DataContract]
+    public class Validations : GenericObjectName
+    {
+    }
+
+    [DataContract]
     public class Time_Zones : GenericObjectName
     {
     }

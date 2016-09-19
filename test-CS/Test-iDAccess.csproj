@@ -72,6 +72,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\sdkAcesso\sdkAcesso.csproj">
+      <Project>{7a77f564-ad1d-470b-938e-5178198e87ef}</Project>
+      <Name>sdkAcesso</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
