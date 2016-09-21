@@ -133,12 +133,27 @@ namespace ControlID.iDAccess
         }
 
         /// <summary>
+        /// Verifica se um template existe no equipamento
+        /// </summary>
+        public TemplateResult TemplateMatch(string cTemplate)
+        {
+            byte[] bt = Convert.FromBase64String(cTemplate);
+            return TemplateMatch(bt);
+        }
+
+        /// <summary>
         /// procurar alguem
         /// </summary>
         public TemplateResult TemplateMatch(int size1, int size2, int size3, byte[] btRequest)
         {
             CheckSession();
             return WebJson.JsonCommand<TemplateResult>(URL + "template_match.fcgi?session=" + Session + "&size0=" + size1 + "&size1=" + size2 + "&size2=" + size3, btRequest, null, TimeOut);
+        }
+
+        public TemplateResult TemplateMatch(byte[] btRequest)
+        {
+            CheckSession();
+            return WebJson.JsonCommand<TemplateResult>(URL + "template_match.fcgi?session=" + Session + "&size0=" + btRequest.Length + "&temp_num=1", btRequest, null, TimeOut);
         }
 
         public TemplateResult TemplateCreate(long nUserID, string cTemplate1, string cTemplate2, string cTemplate3, int nFingerType = 0)
