@@ -350,6 +350,11 @@ namespace ControlID.iDAccess
                return hex(digest, digest_size);
         }
         */
+
+        const int pbkdf_salt_length = 32;
+        const int pbkdf_iterations = 1;
+        const int pbkdf_digest_length = 32;
+
         // http://stackoverflow.com/questions/18137003/is-rfc2898derivebytes-equivalent-to-pkcs5-pbkdf2-hmac-sha1
         public static string GeneratePassword(long nValue, out string cSalt)
         {
@@ -359,10 +364,6 @@ namespace ControlID.iDAccess
                 return "";
             }
 
-            const int pbkdf_salt_length = 32;
-            const int pbkdf_iterations = 1;
-            const int pbkdf_digest_length = 32;
-
             // Gera um numero 'SALT' aleatório em um buffer de 32 bytes
             byte[] salt = new byte[pbkdf_salt_length];
             Random rnd = new Random(DateTime.Now.Millisecond);
@@ -370,6 +371,25 @@ namespace ControlID.iDAccess
                 salt[i] = (byte)rnd.Next((int)' ', (int)'~');
 
             cSalt = System.Text.ASCIIEncoding.ASCII.GetString(salt);
+            using (Rfc2898DeriveBytes password = new Rfc2898DeriveBytes(nValue.ToString(), salt, pbkdf_iterations))
+            {
+                byte[] keyBytes = password.GetBytes(pbkdf_digest_length);
+                return BitConverter.ToString(keyBytes, 0).Replace("-", "").ToLower();
+            }
+        }
+
+        /// <summary>
+        /// Devolve hash da senha digitada
+        /// </summary>
+        /// <param name="nValue">senha textual</param>
+        /// <param name="cSalt">salt</param>
+        /// <returns>Hash da senha digitada</returns>
+        public static string VerifyPassword(long nValue, string cSalt)
+        {
+            if (nValue == 0 || cSalt==null)
+                return "";
+
+            byte[] salt = System.Text.ASCIIEncoding.ASCII.GetBytes(cSalt);
             using (Rfc2898DeriveBytes password = new Rfc2898DeriveBytes(nValue.ToString(), salt, pbkdf_iterations))
             {
                 byte[] keyBytes = password.GetBytes(pbkdf_digest_length);
