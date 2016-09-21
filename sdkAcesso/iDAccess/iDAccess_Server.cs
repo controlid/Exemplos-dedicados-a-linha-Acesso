@@ -122,6 +122,20 @@ namespace ControlID.iDAccess
         Stream GetImage(string session, string user_id);
 
         /// <summary>
+        /// Usuário identificado por código e senha
+        /// </summary>
+        [OperationContract]
+        [WebInvoke(UriTemplate = "new_user_id_and_password.fcgi?session={session}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
+        IdentifyResult UserCodePassword(string session, Stream stream);
+
+        /// <summary>
+        /// Usuário identificado por cartão de proximidade
+        /// </summary>
+        [OperationContract]
+        [WebInvoke(UriTemplate = "new_card.fcgi?session={session}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
+        IdentifyResult UserCard(string session, Stream stream);
+
+        /// <summary>
         /// Responde que o servidor está vivo
         /// </summary>
         [OperationContract]
@@ -148,6 +162,20 @@ namespace ControlID.iDAccess
         [OperationContract]
         [WebInvoke(UriTemplate = "user_get_image.fcgi?session={session}&user_id={user_id}", Method = "GET")]
         Stream GetImage(string session, string user_id);
+
+        /// <summary>
+        /// Usuário identificado por código e senha
+        /// </summary>
+        [OperationContract]
+        [WebInvoke(UriTemplate = "new_user_id_and_password.fcgi?session={session}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
+        IdentifyResult UserCodePassword(string session, Stream stream);
+
+        /// <summary>
+        /// Usuário identificado por cartão de proximidade
+        /// </summary>
+        [OperationContract]
+        [WebInvoke(UriTemplate = "new_card.fcgi?session={session}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
+        IdentifyResult UserCard(string session, Stream stream);
 
         /// <summary>
         /// Responde que o servidor está vivo
