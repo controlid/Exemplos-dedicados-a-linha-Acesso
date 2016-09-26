@@ -30,6 +30,7 @@ namespace ControleRemoto
                 if (dados.session != null)
                 {
                     ActionsRequest ar = new ActionsRequest();
+                    // {"actions":[{"action":"sec_box","parameters":"id=65793, reason=3"}]}
                     ActionItem p1 = new ActionItem() { action = "door", parameters = "door=1" };
                     ActionItem p2 = new ActionItem() { action = "door", parameters = "door=2" };
                     if (chkRele1.AutoCheck && chkRele2.AutoCheck)

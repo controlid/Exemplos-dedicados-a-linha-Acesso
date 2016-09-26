@@ -181,6 +181,7 @@ namespace ExemploAPI
                 // Eventualmente pode ser necessário habilitar o rele em questão
                 // WebJson.Send(urlDevice + "set_configuration", "{\"general\":{\"relay1_enabled\": \"1\",\"relay2_enabled\": \"1\"}}");
                 string cmd = "{\"actions\":[{\"action\": \"door\", \"parameters\":\"door=" + nPorta + "\"}]}";
+                // {"actions":[{"action":"sec_box","parameters":"id=65793, reason=3"}]}
                 AddLog(WebJson.Send(urlDevice + "execute_actions", cmd, session));
             }
             catch (Exception ex)

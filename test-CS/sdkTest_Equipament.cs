@@ -27,19 +27,19 @@ namespace UnitTestAcesso
         [TestMethod, TestCategory("sdk Catraca")]
         public void sdk_SpinClockwise()
         {
-            eqpt.Spin(iDBlockDirection.Clockwise);
+            eqpt.ActionSpin(iDBlockDirection.Clockwise);
         }
 
         [TestMethod, TestCategory("sdk Catraca")]
         public void sdk_SpinAnticlockwise()
         {
-            eqpt.Spin(iDBlockDirection.Anticlockwise);
+            eqpt.ActionSpin(iDBlockDirection.Anticlockwise);
         }
 
         [TestMethod, TestCategory("sdk Catraca")]
         public void sdk_SpinBoth()
         {
-            eqpt.Spin(iDBlockDirection.Both);
+            eqpt.ActionSpin(iDBlockDirection.Both);
         }
 
         [TestMethod, TestCategory("sdk Catraca")]
@@ -155,13 +155,25 @@ namespace UnitTestAcesso
             string device_serial = "B14T";
             string c = Util.ToBase36(device_id).ToUpper();
             long n = Util.FromBase36(device_serial);
-            eqpt.Disconnect();
+            Assert.IsTrue(c == device_serial);
+            Assert.IsTrue(n == device_id);
         }
 
         [TestMethod, TestCategory("sdk")]
-        public void sdk_Action()
+        public void sdk_Serial_Novo()
         {
-            eqpt.Action();
+            long device_id = 2004173474234369;
+            string device_serial = "0A0210/000001";
+            string c = Util.SerialByDeviceID(device_id);
+            long n = Util.DeviceIDbySerial(device_serial);
+            Assert.IsTrue(c == device_serial);
+            Assert.IsTrue(n == device_id);
+        }
+
+        [TestMethod, TestCategory("sdk")]
+        public void sdk_ActionDoor()
+        {
+            eqpt.ActionDoor();
         }
 
         [TestMethod, TestCategory("sdk")]

@@ -384,21 +384,52 @@ namespace ControlID
             }
         }
 
-        const string CharList36 = "0123456789abcdefghijklmnopqrstuvwxyz";
-
-        public static long FromBase36(string input)
+        public static String SerialByDeviceID(long device_id)
         {
-            
-            var reversed = input.ToLower().Reverse();
-            long result = 0;
-            int pos = 0;
-            foreach (char c in reversed)
+            if (device_id > 0x10000000)
             {
-                result += (CharList36.IndexOf(c) * (int)Math.Pow(36, pos));
-                pos++;
+                /* LUA ACFW
+                -- Parse new serial "ZZZZZZ/FFFFFF"
+                local first, second = serial:match("([^/]+)/([^/]+)")
+                -- Drop HW rev (last digit)
+                first = first:sub(1, -2)
+                device_id = string.format("0x%X%08X",tonumber(first, 36), tonumber(second, 16))
+                */
+                long nHW = device_id >> 32;
+                long nSerie = device_id & 0xFFFF;
+                return string.Format("0{0}0/{1:X06}", Util.ToBase36(nHW), nSerie).ToUpper(); // Adiciona Zero a frente e no fim da parte siginificativa
             }
-            return result;
+            else
+                return Util.ToBase36(device_id).ToUpper();
         }
+
+        public static long DeviceIDbySerial(string serial)
+        {
+            if (serial.Length == 4)
+                return Util.FromBase36(serial);
+            else
+            {
+                /* LUA ACFW
+                -- Parse new serial "ZZZZZZ/FFFFFF"
+                local first, second = serial:match("([^/]+)/([^/]+)")
+                -- Drop HW rev (last digit)
+                first = first:sub(1, -2)
+                device_id = string.format("0x%X%08X",tonumber(first, 36), tonumber(second, 16))
+                */
+                string[] p = serial.Split('/');
+                if (p.Length == 2)
+                {
+                    long nHW = Util.FromBase36(p[0].Substring(0, p[0].Length - 1)); // Remove o zero da parte siginificativa
+                    long nSerie = FromBase16(p[1]);
+                    return (nHW << 32) + nSerie;
+                }
+                else
+                    return 0;
+
+            }
+        }
+
+        const string CharList36 = "0123456789abcdefghijklmnopqrstuvwxyz";
 
         // https://www.stum.de/2008/10/20/base36-encoderdecoder-in-c/
         public static String ToBase36(long input)
@@ -413,6 +444,131 @@ namespace ControlID
             return new string(result.ToArray());
         }
 
+        public static long FromBase36(string input)
+        {
+
+            var reversed = input.ToLower().Reverse();
+            long result = 0;
+            int pos = 0;
+            foreach (char c in reversed)
+            {
+                result += (CharList36.IndexOf(c) * (int)Math.Pow(36, pos));
+                pos++;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Decodfica um valor em Hexadecimal para inteiro
+        /// </summary>
+        /// <param name="cHex">String em Hexadecimal, ex: E82B</param>
+        /// <returns>Valor inteiro</returns>
+        public static int FromBase16(string cHex) // deHex
+        {
+            string cTable = "0123456789ABCDEF";
+            int nPos, n, nValor;
+            if (cHex == null || cHex == "")
+                return 0;
+            cHex = cHex.ToUpper();
+            nValor = 0;
+            for (n = 0; n < cHex.Length; n++)
+            {
+                nPos = cTable.IndexOf(cHex.Substring(n, 1));
+                nValor = (nValor * 16) + nPos;
+            }
+            return nValor;
+        }
+
+        /// <summary>
+        /// Decodifica uma string de pares/valores em HEX para o valor real
+        /// </summary>
+        /// <param name="cHex">Valor em HEX a ser desconvertido</param>
+        /// <returns>retorna dado real</returns>
+        public static string FromHEXString(string cHex)
+        {
+            if (cHex.Length % 2 == 1)
+                throw new Exception("Paramentro impar invalido");
+
+            string cValor = "";
+            int n;
+            char c;
+            for (n = 0; n < cHex.Length; n += 2)
+            {
+                c = (char)FromBase16(cHex.Substring(n, 2));
+                cValor += c;
+            }
+            return cValor;
+        }
+
+        /// <summary>
+        /// Converte qualquer string em uma representação hexadecimal
+        /// </summary>
+        /// <param name="cValor">Valor a ser convertido</param>
+        /// <returns>retorna dado convertido em hex</returns>
+        public static string ToHEXString(string cValor)
+        {
+            string cHex = "";
+            int n;
+            for (n = 0; n < cValor.Length; n++)
+                cHex += string.Format("{0:X2}", (int)cValor[n]);
+            return cHex;
+        }
+
+        /// <summary>
+        /// Decodfica um valor em Hexadecimal para inteiro
+        /// </summary>
+        /// <param name="cHex">String em Hexadecimal, ex: E82B</param>
+        /// <returns>Valor inteiro</returns>
+        public static int From(string cHex) // deHex
+        {
+            string cTable = "0123456789ABCDEF";
+            int nPos, n, nValor;
+            if (cHex == null || cHex == "")
+                return 0;
+            cHex = cHex.ToUpper();
+            nValor = 0;
+            for (n = 0; n < cHex.Length; n++)
+            {
+                nPos = cTable.IndexOf(cHex.Substring(n, 1));
+                nValor = (nValor * 16) + nPos;
+            }
+            return nValor;
+        }
+
+        /// <summary>
+        /// Decodifica uma string de pares/valores em HEX para o valor real
+        /// </summary>
+        /// <param name="cHex">Valor em HEX a ser desconvertido</param>
+        /// <returns>retorna dado real</returns>
+        public static string FromString(string cHex)
+        {
+            if (cHex.Length % 2 == 1)
+                throw new Exception("Paramentro impar invalido");
+
+            string cValor = "";
+            int n;
+            char c;
+            for (n = 0; n < cHex.Length; n += 2)
+            {
+                c = (char)From(cHex.Substring(n, 2));
+                cValor += c;
+            }
+            return cValor;
+        }
+
+        /// <summary>
+        /// Converte qualquer string em uma representação hexadecimal
+        /// </summary>
+        /// <param name="cValor">Valor a ser convertido</param>
+        /// <returns>retorna dado convertido em hex</returns>
+        public static string ToString(string cValor)
+        {
+            string cHex = "";
+            int n;
+            for (n = 0; n < cValor.Length; n++)
+                cHex += string.Format("{0:X2}", (int)cValor[n]);
+            return cHex;
+        }
 
         /// <summary>
         /// Gera a string de uma imagem em base64

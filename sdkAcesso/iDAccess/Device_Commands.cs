@@ -42,12 +42,24 @@ namespace ControlID.iDAccess
             return ((GenericCount)itens[0]).Count;
         }
 
-        public void Action(int nPort = 1)
+        //[Obsolete("Use Door()")]
+        //public void Action(int nPort = 1)
+        //{
+        //    Door(nPort);
+        //}
+
+        public void ActionDoor(int nPort = 1)
         {
             Action("door", "door=" + nPort);
         }
 
-        public void Spin(iDBlockDirection direction)
+        // {"actions":[{"action":"sec_box","parameters":"id=65793, reason=3"}]}
+        public void ActionSecBox(int id = 65793)
+        {
+            Action("sec_box", "id=" + id);
+        }
+
+        public void ActionSpin(iDBlockDirection direction)
         {
             Action("catra", "allow=" + direction.ToString().ToLower());
         }

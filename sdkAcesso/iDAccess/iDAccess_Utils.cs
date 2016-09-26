@@ -127,7 +127,7 @@ namespace ControlID.iDAccess
         [DataMember()]
         public bool online;
         public long deviceId {
-            get { return Util.FromBase36(serial); }
+            get { return Util.DeviceIDbySerial(serial); }
         }
 
         public DeviceNames DeviceName { get { return Device.GetDeviceName(serial); } }

@@ -28,6 +28,7 @@ namespace ControleRemoto
     // http://www.controlid.com.br/suporte/api_idaccess_V2.2-1.html#50_execute_actions
     // execute_actions.fcgi?session=" + session
     // actions: [ { action: "door", parameters: "door=1" } ]
+    // {"actions":[{"action":"sec_box","parameters":"id=65793, reason=3"}]}
     [DataContract()]
     public class ActionsRequest
     {
