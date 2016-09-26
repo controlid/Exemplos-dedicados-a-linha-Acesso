@@ -14,7 +14,8 @@ namespace ControlID.iDAccess
         iDLight = 2,
         iDAccessProx = 3,
         iDBlock = 4,
-        iDBox = 5
+        iDBox = 5,
+        iDFlex = 6
     }
 
     public enum DeviceNames
@@ -39,6 +40,12 @@ namespace ControlID.iDAccess
         [Description("iDBox Controler")]            L,
         [Description("iDBlock")]                    K,
         [Description("x86")]                        R,
+// Novos Seriais
+        [Description("iDFlex Bio")]                 _0A01,
+        [Description("iDFlex Bio Prox ASK")]        _0A02,
+        [Description("iDFlex Bio Prox Mifare")]     _0A03,
+        [Description("iDFlex Prox ASK")]            _0A04,
+        [Description("iDFlex Prox Mifare")]         _0A05,
         // Modelos Light (descontinuado)
         //[Description("iDAccess Light Bio")]         Z,
         //[Description("iDAccess Light Bio ASK")]     Y,
@@ -60,7 +67,8 @@ namespace ControlID.iDAccess
                     "iDLight",
                     "iDAccessProx",
                     "iDBlock",
-                    "iDBox"};
+                    "iDBox",
+                    "iDFlex"};
             }
         }
 
@@ -70,13 +78,19 @@ namespace ControlID.iDAccess
                 return DeviceNames.none;
 
             DeviceNames dvm;
-            if (Enum.TryParse(cSerial.Substring(0, 1), true, out dvm))
+            if (cSerial.Length == 4)
             {
-                // TODO: identificar sub tipos: ask, fsk, ...
-                return dvm;
+                if (Enum.TryParse(cSerial.Substring(0, 1), true, out dvm))
+                    // TODO: identificar sub tipos: ask, fsk, ...
+                    return dvm;
             }
-            else
-                return DeviceNames.none;
+            else if (cSerial.Length > 5) // 0A0210/000001
+            {
+                if (Enum.TryParse("_" + cSerial.Substring(0, 4), true, out dvm))
+                    // TODO: identificar sub tipos: ask, fsk, ...
+                    return dvm;
+            }
+            return DeviceNames.none;
         }
 
         public static string GetDeviceNameDescription(DeviceNames dvm)
@@ -109,6 +123,8 @@ namespace ControlID.iDAccess
                 return DeviceModels.iDLight;
             else if (cName.Contains("iDAccessProx") || cName.Contains("iDAccess Prox"))
                 return DeviceModels.iDAccessProx;
+            else if (cName.Contains("iDFlex"))
+                return DeviceModels.iDFlex;
             else
                 return DeviceModels.iDAccess;
         }
@@ -295,7 +311,8 @@ namespace ControlID.iDAccess
                     Resources.ic_idlight,
                     Resources.ic_idaccessprox,
                     Resources.ic_idblock,
-                    Resources.ic_idbox
+                    Resources.ic_idbox,
+                    Resources.ic_idflex,
                 };
             }
         }
@@ -316,6 +333,8 @@ namespace ControlID.iDAccess
                     return Resources.ic_idblock;
                 case DeviceModels.iDBox:
                     return Resources.ic_idbox;
+                case DeviceModels.iDFlex:
+                    return Resources.ic_idflex;
             }
             return null;
         }
