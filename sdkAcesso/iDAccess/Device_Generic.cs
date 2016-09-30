@@ -250,12 +250,17 @@ namespace ControlID.iDAccess
                 for (int i = start; i < count; i++)
                     cList += ids[i] + ",";
 
-                cList = cList.Substring(0, cList.Length - 1);
-                start += count;
+                if (cList.Length > 0)
+                {
+                    cList = cList.Substring(0, cList.Length - 1);
+                    start += count;
 
-                string cmd = "{\"object\":\"" + cName + "\",\"where\":{\"" + cName + "\":{\"id\":[" + cList + "]}}}";
-                var or = WebJson.JsonCommand<ObjectResult>(URL + "destroy_objects.fcgi?session=" + Session, cmd, null, TimeOut);
-                changes += or.changes;
+                    string cmd = "{\"object\":\"" + cName + "\",\"where\":{\"" + cName + "\":{\"id\":[" + cList + "]}}}";
+                    var or = WebJson.JsonCommand<ObjectResult>(URL + "destroy_objects.fcgi?session=" + Session, cmd, null, TimeOut);
+                    changes += or.changes;
+                }
+                else
+                    break;
             }
             return changes;
         }
