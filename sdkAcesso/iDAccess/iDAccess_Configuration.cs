@@ -262,7 +262,7 @@ namespace ControlID.iDAccess
             kernel_standard = cURL2 + "kernel_standard.bin";
             kernel_recovery = cURL2 + "kernel_recovery.bin";
             boot = cURL2 + "boot.bin";
-            acfw = cURL + "ACFW_V2.6.12.zip";
+            acfw = cURL + "ACFW_V" + cVersao + ".zip";
             version = cVersao;
         }
     }

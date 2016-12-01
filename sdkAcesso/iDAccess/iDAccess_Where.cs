@@ -54,6 +54,8 @@ namespace ControlID.iDAccess
         [DataMember(EmitDefaultValue = false)]
         public Portal_Access_Rules portal_access_rules;
         [DataMember(EmitDefaultValue = false)]
+        public Access_Rule_Actions access_rule_actions;
+        [DataMember(EmitDefaultValue = false)]
         public Area_Access_Rules area_access_rules;
         [DataMember(EmitDefaultValue = false)]
         public Access_Rule_Time_Zones access_rule_time_zones;
@@ -110,6 +112,8 @@ namespace ControlID.iDAccess
         public Access_Rule_Validations[] access_rule_validations;
         [DataMember()]
         public Access_Rules[] access_rules;
+        [DataMember()]
+        public Access_Rule_Actions[] access_rule_actions;
         [DataMember()]
         public Portal_Access_Rules[] portal_access_rules;
         [DataMember()]

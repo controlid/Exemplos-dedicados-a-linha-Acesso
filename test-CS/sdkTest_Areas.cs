@@ -45,73 +45,85 @@ namespace UnitTestAcesso
             var actions = eqpt.List<Portal_Actions>();
         }
 
-        [TestMethod(), TestCategory("sdk BOX")]
+        [TestMethod(), TestCategory("sdk custom")]
         public void sdk_ListAll()
         {
             // eqpt.Destroy<Devices>(-1);
             Console.WriteLine("\r\nDevices");
             foreach (var e in eqpt.List<Devices>())
-                Console.WriteLine(e.id + ": " + e.name + " IP: " + e.IP);
+                Console.WriteLine("D " + e.id + ": " + e.name + " IP: " + e.IP);
 
             Console.WriteLine("\r\nAccess_Rules");
             foreach (var rule in eqpt.List<Access_Rules>())
-                Console.WriteLine(rule.id + ": " + rule.name + " priority: " + rule.priority + " type: " + rule.type);
+                Console.WriteLine("R " + rule.id + ": " + rule.name + " priority: " + rule.priority + " type: " + rule.type);
 
             Console.WriteLine("\r\nAreas");
             foreach (var a in eqpt.List<Areas>())
-                Console.WriteLine(a.id + ": " + a.name);
+                Console.WriteLine("A " + a.id + ": " + a.name);
 
             Console.WriteLine("\r\nPortals");
             foreach (var portal in eqpt.List<Portals>())
-                Console.WriteLine(portal.id + ": " + portal.name + " areas: " + portal.area_from_id + " => " + portal.area_to_id);
+                Console.WriteLine("P " + portal.id + ": " + portal.name + " areas: " + portal.area_from_id + " => " + portal.area_to_id);
 
             Console.WriteLine("\r\nTime_Zones");
             foreach (var ar in eqpt.List<Time_Zones>())
-                Console.WriteLine(ar.id + " " + ar.name);
+                Console.WriteLine("T " + ar.id + " " + ar.name);
 
             Console.WriteLine("\r\nGroups");
             foreach (var ar in eqpt.List<Groups>())
-                Console.WriteLine(ar.id + " " + ar.name);
+                Console.WriteLine("G " + ar.id + " " + ar.name);
+
+//            Console.WriteLine("\r\nValidations");
+//            foreach (var v in eqpt.List<Validations>())
+//                Console.WriteLine("V " + v.id + " " + v.name);
 
             Console.WriteLine("\r\nPortal_Access_Rules");
             foreach (var ar in eqpt.List<Portal_Access_Rules>())
-                Console.WriteLine(ar.access_rule_id + " P " + ar.portal_id);
+                Console.WriteLine("AR " + ar.access_rule_id + " P " + ar.portal_id);
 
             Console.WriteLine("\r\nArea_Access_Rules");
             foreach (var ar in eqpt.List<Area_Access_Rules>())
-                Console.WriteLine(ar.access_rule_id + " A " + ar.area_id);
+                Console.WriteLine("AR " + ar.access_rule_id + " A " + ar.area_id);
 
             Console.WriteLine("\r\nAccess_Rule_Time_Zones");
             foreach (var ar in eqpt.List<Access_Rule_Time_Zones>())
-                Console.WriteLine(ar.access_rule_id + " T " + ar.time_zone_id);
+                Console.WriteLine("AR " + ar.access_rule_id + " T " + ar.time_zone_id);
+
+            Console.WriteLine("\r\nAccess_Rule_Actions");
+            foreach (var ar in eqpt.List<Access_Rule_Actions>())
+                Console.WriteLine("AR " + ar.access_rule_id + " AC " + ar.action_id);
 
             Console.WriteLine("\r\nGroup_Access_Rules");
             foreach (var ar in eqpt.List<Group_Access_Rules>())
-                Console.WriteLine(ar.access_rule_id + " G " + ar.group_id);
+                Console.WriteLine("AR " + ar.access_rule_id + " G " + ar.group_id);
 
             Console.WriteLine("\r\nUser_Access_Rules");
             foreach (var ar in eqpt.List<User_Access_Rules>())
-                Console.WriteLine(ar.access_rule_id + " U " + ar.user_id);
+                Console.WriteLine("AR " + ar.access_rule_id + " U " + ar.user_id);
 
-            Console.WriteLine("\r\nValidations");
-            foreach (var v in eqpt.List<Validations>())
-                Console.WriteLine(v.id + " " + v.name);
-
-            Console.WriteLine("\r\nValidation_Access_Rules");
-            foreach (var ar in eqpt.List<Access_Rule_Validations>())
-                Console.WriteLine(ar.access_rule_id + " U " + ar.validation_id);
+//            Console.WriteLine("\r\nValidation_Access_Rules");
+//            foreach (var ar in eqpt.List<Access_Rule_Validations>())
+//                Console.WriteLine("AR " + ar.access_rule_id + " U " + ar.validation_id);
 
             Console.WriteLine("\r\nPortal_Actions");
             foreach (var ar in eqpt.List<Portal_Actions>())
                 Console.WriteLine("P " + ar.portal_id  + " A " + ar.action_id);
-
+/*
             Console.WriteLine("\r\nPortal_Script_Parameters");
             foreach (var psp in eqpt.List<Portal_Script_Parameters>())
-                Console.WriteLine("S " + psp.sequence + " " + psp.value );
+                Console.WriteLine("spID " + psp.script_parameter_id + " - script " + psp.script_instance_id + " - sequence " + psp.sequence + " - value " + psp.value);
 
+            Console.WriteLine("\r\nScripts");
+            foreach (var a in eqpt.List<Scripts>())
+                Console.WriteLine("S " + a.id + " - script " + a.script);
+
+            Console.WriteLine("\r\nScript_Parameters");
+            foreach (var a in eqpt.List<Script_Parameters>())
+                Console.WriteLine("SP " + a.id + " " + a.name + " - script " + a.script_id + " - Tipo " + a.type);
+*/
             Console.WriteLine("\r\nActions");
             foreach (var a in eqpt.List<Actions>())
-                Console.WriteLine("A " + a.id + " " + a.action + " " + a.parameters);
+                Console.WriteLine("A " + a.id + " - action " + a.action + " - parameters " + a.parameters);
 
             Console.WriteLine("\r\nUser_Groups");
             foreach (var u in eqpt.List<User_Groups>())
@@ -119,7 +131,7 @@ namespace UnitTestAcesso
 
             Console.WriteLine("\r\nUsers");
             foreach (var u in eqpt.List<Users>())
-                Console.WriteLine(u.id + " " + u.name);
+                Console.WriteLine("U " + u.id + " " + u.name);
 
             //var portal = eqpt.List<Portal_Access_Rules>();
             //eqpt.TryDestroyAll<Portal_Access_Rules>();

@@ -191,6 +191,18 @@ namespace ControlID.iDAccess
     }
 
     [DataContract]
+    public class Access_Rule_Actions : Item_Access_Rules
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public long action_id;
+
+        public override void SetItem(long value)
+        {
+            action_id = value;
+        }
+    }
+
+    [DataContract]
     public class Validations : GenericObjectName
     {
     }
