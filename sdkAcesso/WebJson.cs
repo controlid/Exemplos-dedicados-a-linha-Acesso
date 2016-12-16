@@ -132,7 +132,9 @@ namespace ControlID
                         using (Task<Stream> send = request.GetRequestStreamAsync())
                         {
                             send.Wait(reqTimeout);
-                            bmp.Save(send.Result, ImageFormat.Jpeg);
+                            //bmp.Save(send.Result, ImageFormat.Png);
+                            bmp.Save(send.Result, bmp.RawFormat);
+                            //bmp.Save(send.Result, ImageFormat.Jpeg);
                         }
                     }
                     else if (objRequest != null && objRequest.GetType() == typeof(byte[]))
