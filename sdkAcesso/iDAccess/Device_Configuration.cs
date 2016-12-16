@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Runtime.Serialization;
 
 namespace ControlID.iDAccess
@@ -186,6 +187,21 @@ namespace ControlID.iDAccess
         {
             CheckSession();
             return WebJson.JsonCommand<StatusResult>(URL + "reboot_recovery.fcgi?session=" + Session, null, null, TimeOut);
+        }
+
+        public void SetLogoImage(Image oFoto)
+        {
+            CheckSession();
+            try
+            {
+                if (oFoto == null)
+                    WebJson.JsonCommand<string>(URL + "logo_destroy.fcgi?&session=" + Session, null, null, TimeOut);
+                else
+                    WebJson.JsonCommand<string>(URL + "logo_change.fcgi?session=" + Session, oFoto, null, TimeOut);
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }

@@ -59,6 +59,13 @@ namespace UnitTestAcesso
         }
 
         [TestMethod, TestCategory("sdk custom")]
+        public void sdk_ChangeLogo()
+        {
+            var img = System.Drawing.Image.FromFile(@"..\..\ControliD.png");
+            eqpt.SetLogoImage(img);
+        }
+
+        [TestMethod, TestCategory("sdk custom")]
         public void sdk_DualAction()
         {
             // Esse é um exemplo com o minimo de configuração para acionar reles diferentes para cada regra de acesso
