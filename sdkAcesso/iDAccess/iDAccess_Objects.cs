@@ -275,6 +275,21 @@ namespace ControlID.iDAccess
         public DateTime Date { get { return time.FromUnix(); } }
     }
 
+    [DataContract]
+    public class Alarm_Logs : GenericObject
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public long time;
+        [DataMember(EmitDefaultValue = false, Name = "event")]
+        public int Event;
+        [DataMember(EmitDefaultValue = false)]
+        public long user_id;
+        [DataMember(EmitDefaultValue = false)]
+        public long cause;
+        [IgnoreDataMember]
+        public DateTime Date { get { return time.FromUnix(); } }
+    }
+
     /*
      "access_log_access_rules": [
     {

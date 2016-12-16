@@ -20,6 +20,8 @@ namespace ControlID.iDAccess
         [DataMember(EmitDefaultValue = false)]
         public Access_Logs access_logs;
         [DataMember(EmitDefaultValue = false)]
+        public Alarm_Logs alarm_logs;
+        [DataMember(EmitDefaultValue = false)]
         public Access_Log_Access_Rules access_log_access_rules;
         [DataMember(EmitDefaultValue = false)]
         public Cards cards;
@@ -88,6 +90,8 @@ namespace ControlID.iDAccess
         public User_Roles user_roles;
         [DataMember()]
         public Access_Logs[] access_logs;
+        [DataMember()]
+        public Alarm_Logs[] alarm_logs;
         [DataMember()]
         public Access_Log_Access_Rules[] access_log_access_rules;
         [DataMember()]
