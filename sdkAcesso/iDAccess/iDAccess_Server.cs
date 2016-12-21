@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Web;
@@ -45,7 +46,8 @@ namespace ControlID.iDAccess
     }
 
     /// <summary>
-    /// Serviços a a serem implementados para criar servidor de acesso com identificação no servidor
+    /// Serviços a serem implementados para criar servidor de acesso com identificação no servidor.
+    /// Será enviado a imagem do dedo, e você terá que implementar ou usar um algoritimo biometrico para identificar o usuário, e depois validar sua regra de acesso.
     /// </summary>
     [ServiceContract]
     public interface IServerUser
@@ -56,13 +58,6 @@ namespace ControlID.iDAccess
         [OperationContract]
         [WebInvoke(UriTemplate = "new_biometric_image.fcgi?session={session}&device_id={device_id}&identifier_id={identifier_id}&width={width}&height={height}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
         IdentifyResult UserImage(string session, string device_id, string identifier_id, string width, string height, Stream stream);
-
-        ///// <summary>
-        ///// Um template não identificado foi extraido
-        ///// </summary>
-        //[OperationContract]
-        //[WebInvoke(UriTemplate = "new_biometric_template.fcgi?session={session}&device_id={device_id}&identifier_id={identifier_id}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
-        //IdentifyResult UserTemplate(string session, string device_id, string identifier_id, Stream stream);
 
         /// <summary>
         /// Usuário identificado por código e senha
@@ -94,19 +89,12 @@ namespace ControlID.iDAccess
     }
 
     /// <summary>
-    /// Serviços a a serem implementados para criar servidor de acesso com identificação no equipamento
+    /// Serviços a serem implementados para criar servidor de acesso com identificação no equipamento do usuário.
+    /// Será enviado o ID do usuário, e o seu servidor deverá validar a regra de acesso
     /// </summary>
     [ServiceContract]
     public interface IUserLocal
     {
-        // Descontinuado!
-        ///// <summary>
-        ///// Registra template pelo equipamento
-        ///// </summary>
-        //[OperationContract]
-        //[WebInvoke(UriTemplate = "register_template.fcgi?userid={user_id}&registration={registration}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
-        //StatusResult RegisterTemplate(long user_id, string registration, Stream stream);
-
         /// <summary>
         /// Usuário identificado pelo template local
         /// </summary>
@@ -144,9 +132,11 @@ namespace ControlID.iDAccess
     }
 
     /// <summary>
-    /// Extract Template - uso futuro?
+    /// A extração biometrica é feita no rerminal e é enviado o tempalte, não o ID do usuário.
+    /// O Find e Regras deverão ser feitos pelo seu servidor
     /// </summary>
     [ServiceContract]
+    [Obsolete("Será descontinuado em breve")]
     public interface IUserTemplate
     {
         /// <summary>
@@ -185,17 +175,29 @@ namespace ControlID.iDAccess
         DeviceIsAliveResult IsAlive(string session, Stream stream);
     }
 
+    /// <summary>
+    /// Estrutura de notificações
+    /// </summary>
     [ServiceContract]
     public interface INotification
     {
+        /// <summary>
+        /// Receber eventos da DAO (quando ocorrem novos logs)
+        /// </summary>
         [OperationContract]
         [WebInvoke(UriTemplate = "dao", Method = "POST", RequestFormat = WebMessageFormat.Json)]
         void NotifyDAO(NotificationItem item);
 
+        /// <summary>
+        /// Quando chega um template apos ser solicitado um cadastramento via remoteEnroll/{id}/bio/{message}
+        /// </summary>
         [OperationContract]
         [WebInvoke(UriTemplate = "template", Method = "POST", RequestFormat = WebMessageFormat.Json)]
         void NotifyTemplate(NotificationTemplate item);
 
+        /// <summary>
+        /// Quando chega um cartão apos ser solicitado um cadastramento via remoteEnroll/{id}/card/{message}
+        /// </summary>
         [OperationContract]
         [WebInvoke(UriTemplate = "card", Method = "POST", RequestFormat = WebMessageFormat.Json)]
         void NotifyCard(NotificationCard item);

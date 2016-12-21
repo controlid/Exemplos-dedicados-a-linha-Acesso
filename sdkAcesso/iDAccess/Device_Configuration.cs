@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Runtime.Serialization;
 
 namespace ControlID.iDAccess
 {
@@ -51,6 +49,7 @@ namespace ControlID.iDAccess
             /// <summary>
             /// Equipamento envia template extraído
             /// </summary>
+            [Obsolete("Será descontinuado")]
             ReturnTemplate = 2,
             /// <summary>
             /// Equipamento envia imagem do dedo
@@ -59,7 +58,7 @@ namespace ControlID.iDAccess
         }
 
         /// <summary>
-        /// Coloca o equipamento em modo online
+        /// Coloca o equipamento em modo online informando um servidor já existente)
         /// </summary>
         public StatusResult GoOnline(OnlineMode mode, long serverId)
         {
@@ -72,6 +71,9 @@ namespace ControlID.iDAccess
             return SetConfiguration(config);
         }
 
+        /// <summary>
+        /// Define um servidor, e coloca o equipamento online
+        /// </summary>
         public StatusResult SetOnline(OnlineMode mode, string cName, string url)
         {
             var devSRV = new Devices()
@@ -116,16 +118,20 @@ namespace ControlID.iDAccess
             return WebJson.JsonCommand<StatusResult>(URL + "set_configuration.fcgi?session=" + Session, config, null, TimeOut);
         }
 
-        // TODO: unificar na configuração geral
+        /// <summary>
+        /// Configura o Beep
+        /// </summary>
         public void SetBeep(bool lEnable)
         {
             var cfg = new ConfigValues(true);
             cfg.general.beep_enabled = lEnable ? "1" : "0";
             CheckSession();
             WebJson.JsonCommand<string>(URL + "set_configuration.fcgi?session=" + Session, cfg, null, TimeOut);
-            //Send("set_configuration", "{\"general\":{\"beep_enabled\":\"" + (lEnable ? 1 : 0) + "\"}}");
         }
 
+        /// <summary>
+        /// Configura o uso da campainha em um RELÊ específico
+        /// </summary>
         public void SetBell(int nRele)
         {
             var cfg = new ConfigValues(true);
@@ -133,7 +139,6 @@ namespace ControlID.iDAccess
             cfg.general.bell_relay = nRele.ToString();
             CheckSession();
             WebJson.JsonCommand<string>(URL + "set_configuration.fcgi?session=" + Session, cfg, null, TimeOut);
-            //Send("set_configuration", "{\"general\":{\"beep_enabled\":\"" + (lEnable ? 1 : 0) + "\"}}");
         }
 
         public void SetGeneralConfigValues(General cfgGeneral)
@@ -141,7 +146,6 @@ namespace ControlID.iDAccess
             var cfg = new ConfigValues(cfgGeneral);
             CheckSession();
             WebJson.JsonCommand<string>(URL + "set_configuration.fcgi?session=" + Session, cfg, null, TimeOut);
-            //Send("set_configuration", "{\"general\":{\"beep_enabled\":\"" + (lEnable ? 1 : 0) + "\"}}");
         }
 
         // TODO: unificar na configuração geral
