@@ -282,10 +282,26 @@ namespace ControlID.iDAccess
         public long time;
         [DataMember(EmitDefaultValue = false, Name = "event")]
         public int Event;
+        /*
+        1 - Alarm ativado
+        2 - Alarm desativado
+        */
         [DataMember(EmitDefaultValue = false)]
         public long user_id;
         [DataMember(EmitDefaultValue = false)]
         public long cause;
+        /*
+        Causas
+        1 - Zona de alarme 1
+        2 - Zona de alarme 2
+        3 - Zona de alarme 3
+        4 - Zona de alarme 4
+        5 - Zona de alarme 5
+        6 - Porta aberta
+        7 - Arrombamento
+        8 - Dedo de pânico
+        9 - Tamper
+        */
         [IgnoreDataMember]
         public DateTime Date { get { return time.FromUnix(); } }
     }
