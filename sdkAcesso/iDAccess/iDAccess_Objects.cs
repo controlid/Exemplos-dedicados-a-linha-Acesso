@@ -289,7 +289,7 @@ namespace ControlID.iDAccess
         [DataMember(EmitDefaultValue = false)]
         public long user_id;
         [DataMember(EmitDefaultValue = false)]
-        public long cause;
+        public int cause;
         /*
         Causas
         1 - Zona de alarme 1
