@@ -20,8 +20,8 @@ namespace ControlID.iDAccess
 
     public enum DeviceNames
     {
-        [Description("iDAccess Bio")]               A,
-        [Description("iDAccess Bio ASK")]           B,
+        [Description("iDAccess Bio")]               B,
+        [Description("iDAccess Bio ASK")]           A,
         [Description("iDAccess Bio ASK+FSK")]       C,
         [Description("iDAccess Bio ASK+PSK")]       D,
         [Description("iDAccess Bio ASK+MIFARE")]    E,
