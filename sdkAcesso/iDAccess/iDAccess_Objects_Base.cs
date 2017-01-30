@@ -210,5 +210,6 @@ namespace ControlID.iDAccess
 
         [IgnoreDataMember]
         public EventTypes Event { get { return (EventTypes)@event; } set { @event = (int)value; } }
+        public string message;
     }
 }
