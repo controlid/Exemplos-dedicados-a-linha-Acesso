@@ -52,7 +52,7 @@ namespace ExemploAPI
             // (apenas para facilitar os testes, lê sempre os dados pré configurados)
             txtIP.Text = Settings.Default.ip;
             nmPort.Value = Settings.Default.port;
-            chkSSL.Checked = Settings.Default.ssl;
+            chkSSL.Checked = Config.SSL;
             txtUser.Text = Settings.Default.user;
             txtPassword.Text = Settings.Default.password;
         }
