@@ -217,5 +217,9 @@ namespace ControlID.iDAccess
         [OperationContract]
         [WebInvoke(UriTemplate = "card", Method = "POST", RequestFormat = WebMessageFormat.Json)]
         void NotifyCard(NotificationCard item);
+
+        //[OperationContract]
+        //[WebInvoke(UriTemplate = "catra_events", Method = "POST", RequestFormat = WebMessageFormat.Json)]
+        //void NotifyCatra(NotificationCatraEvents item);
     }
 }

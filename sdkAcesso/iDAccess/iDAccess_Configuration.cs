@@ -107,7 +107,18 @@ namespace ControlID.iDAccess
         public long device_id;
         public long card_value;
     }
-
+    ////"event":{"type": 7, "name": 'TURN LEFT', "time": 1484126902 },"device_id": 935107 
+    //public class NotificationCatraEvents
+    //{
+    //    public NotificatonCatra[] @event;
+    //    public long device_id;
+    //}
+    //public class NotificatonCatra
+    //{
+    //    public string type;
+    //    public string name;
+    //    public string time;
+    //}
     public class NotificationItem
     {
         public NotificationObject[] object_changes;
