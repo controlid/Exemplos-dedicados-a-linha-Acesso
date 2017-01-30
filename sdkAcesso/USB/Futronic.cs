@@ -11,37 +11,63 @@ namespace ControlID.USB
 {
     public class Futronic : IDisposable
     {
-        #region "API"
+        public delegate void LogInfo(string info);
+        public delegate void LogError(Exception erro);
+
+        public static readonly Futronic Device = new Futronic();
+
+        // Garante Singleton!
+        private Futronic()
+        {
+        }
+
+        const string MSGAPI1 = "Futronic: Inicializando leitor biométrico";
+        const string MSGAPI2 = "Futronic: Finalizando leitor biométrico";
+        const string MSGAPI3 = "Futronic: Não é possível obter imagem com o leitor desconectado";
+        const string MSGAPI4 = "Futronic: Obtendo imagem";
+        const string MSGAPI5 = "Futronic: Aguardando dedo";
+        const string MSGAPI6 = "Futronic: Definindo leds para G {0} e R {1}";
+        const string MSGAPI7 = "Futronic: Obtendo status dos leds";
+        const string MSGAPI8 = "Futronic: Obtendo imagem completa";
+        const string MSGAPI9 = "Futronic: Sem dedo";
+        const string MSGAPI10 = "Futronic: Cancelado";
+        const string MSGAPI11 = "Futronic: Aguardando remover o dedo";
+
+        #region API Futronic
 
         struct _FTRSCAN_FAKE_REPLICA_PARAMETERS
         {
-            bool bCalculated;
-            int nCalculatedSum1;
-            int nCalculatedSumFuzzy;
-            int nCalculatedSumEmpty;
-            int nCalculatedSum2;
-            double dblCalculatedTremor;
-            double dblCalculatedValue;
+            public bool bCalculated;
+            public int nCalculatedSum1;
+            public int nCalculatedSumFuzzy;
+            public int nCalculatedSumEmpty;
+            public int nCalculatedSum2;
+            public double dblCalculatedTremor;
+            public double dblCalculatedValue;
         }
-
         struct _FTRSCAN_FRAME_PARAMETERS
         {
-            int nContrastOnDose2;
-            int nContrastOnDose4;
-            int nDose;
-            int nBrightnessOnDose1;
-            int nBrightnessOnDose2;
-            int nBrightnessOnDose3;
-            int nBrightnessOnDose4;
-            _FTRSCAN_FAKE_REPLICA_PARAMETERS FakeReplicaParams;
-            _FTRSCAN_FAKE_REPLICA_PARAMETERS Reserved;
+            public int nContrastOnDose2;
+            public int nContrastOnDose4;
+            public int nDose;
+            public int nBrightnessOnDose1;
+            public int nBrightnessOnDose2;
+            public int nBrightnessOnDose3;
+            public int nBrightnessOnDose4;
+            public _FTRSCAN_FAKE_REPLICA_PARAMETERS FakeReplicaParams;
+            public _FTRSCAN_FAKE_REPLICA_PARAMETERS Reserved;
         }
-
         struct _FTRSCAN_IMAGE_SIZE
         {
             public int nWidth;
             public int nHeight;
             public int nImageSize;
+        }
+
+        public class ImageResult
+        {
+            public Bitmap Image;
+            public byte[] Data;
         }
 
         [DllImport("ftrScanAPI.dll")]
@@ -59,139 +85,235 @@ namespace ControlID.USB
         [DllImport("ftrScanAPI.dll")]
         static extern bool ftrScanGetImage(IntPtr ftrHandle, int nDose, byte[] pBuffer);
 
-        IntPtr device;
-
         #endregion
 
-        volatile bool working = false;
-        public bool Working
-        {
-            get { return working; }
-            set { working = value; }
-        }
+        #region Variáveis, Propriedades, Inicialização e Controle de status
+
+        private IntPtr device;
+        private bool waitFinger = false; // somente se estiver no loop do IsFinger
+
+        public static int dose = 4; // Dose 0 - dark dose (absense of light). Doses from 1 up to 3 - turn on light (1=min, 4=max)
+        public static int delay = 50; // tempo usado nos sleeps
+        public static int minContrast = 1000; // contraste minimo que indica a existencia de um dedo
+        public static bool crop = true; // Indica se é para fazer CROP da imagem (compatibilidade com versão antiga)
+
+        public bool WaitingFinger { get { return waitFinger; } }
+        public bool Connected { get { return (device != IntPtr.Zero); } }
+
+        public event LogInfo onInfo = null;
+        public event LogInfo onInfoAppend = null;
+        public event LogError onError = null;
 
         public bool Init()
         {
-            if (!Connected)
-                device = ftrScanOpenDevice();
-            return Connected;
-        }
+            try
+            {
+                if (Connected)
+                    Dispose();
 
-        public bool Connected
-        {
-            get { return (device != IntPtr.Zero); }
+                onInfo?.Invoke(MSGAPI1);
+
+                device = ftrScanOpenDevice();
+                return device != IntPtr.Zero;
+            }
+            catch (Exception ex)
+            {
+                onError?.Invoke(ex);
+                device = IntPtr.Zero;
+                return false;
+            }
         }
 
         public void Dispose()
         {
-            if (Connected)
-                ftrScanCloseDevice(device);
-                
+            try
+            {
+                if (Connected)
+                {
+                    AbortFingerDetect();
+                    onInfo?.Invoke(MSGAPI2);
+                    ftrScanCloseDevice(device);
+                }
+            }
+            catch (Exception ex)
+            {
+                onError?.Invoke(ex);
+            }
             device = IntPtr.Zero;
         }
 
-        public bool IsFinger
+        #endregion
+
+        #region "Obter imagem / Detecção de erro"
+
+        public bool IsNotFinger(TimeSpan timeout)
         {
-            get
+            try
             {
+                onInfo?.Invoke(MSGAPI11);
+                waitFinger = true;
                 var t = new _FTRSCAN_FRAME_PARAMETERS();
-                return ftrScanIsFingerPresent(device, out t);
+                DateTime dt = DateTime.Now;
+                while (waitFinger && DateTime.Now.Subtract(dt) <= timeout)
+                {
+                    onInfoAppend?.Invoke("!");
+                    if (ftrScanIsFingerPresent(device, out t))
+                        Thread.Sleep(delay);
+                    else
+                        return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                onError?.Invoke(ex);
+                return false;
+            }
+            finally
+            {
+                waitFinger = false;
+            }
+        }
+
+        public bool IsFinger(TimeSpan timeout)
+        {
+            try
+            {
+                onInfo?.Invoke(MSGAPI5);
+                waitFinger = true;
+                var t = new _FTRSCAN_FRAME_PARAMETERS();
+                int n = 1;
+                DateTime dt = DateTime.Now;
+                while (waitFinger && DateTime.Now.Subtract(dt) <= timeout)
+                {
+                    if (ftrScanIsFingerPresent(device, out t))
+                    {
+                        if (t.nContrastOnDose2 > minContrast)
+                        {
+                            onInfoAppend?.Invoke(" D" + n + ": " + t.nContrastOnDose2);
+                            n++;
+                            if (n > 3) // garante a detecção de dedo por 3 vezes consecutivamente
+                                // TODO: Albert pediu para obter a melhor de 4 imagens
+                                return true;
+                        }
+                        else
+                            onInfoAppend?.Invoke("-" + t.nContrastOnDose2);
+                    }
+                    else
+                        onInfoAppend?.Invoke(".");
+
+                    Thread.Sleep(delay);
+                }
+                onInfo?.Invoke(MSGAPI9);
+                return false;
+            }
+            catch (ThreadAbortException)
+            {
+                return false;
+            }
+            catch (Exception ex)
+            {
+                onError?.Invoke(ex);
+                return false;
+            }
+            finally
+            {
+                waitFinger = false;
+            }
+        }
+
+        public void AbortFingerDetect()
+        {
+            if (waitFinger)
+            {
+                waitFinger = false;
+                onInfo?.Invoke(MSGAPI10);
+                Thread.Sleep(delay); // Garante cancelamento quando chamado em outra thead
+            }
+        }
+
+        public ImageResult GetFingerprint()
+        {
+            try
+            {
+                if (!Connected)
+                {
+                    onInfo?.Invoke(MSGAPI3);
+                    return null;
+                }
+
+                onInfo?.Invoke(MSGAPI8);
+
+                var t = new _FTRSCAN_IMAGE_SIZE();
+                ftrScanGetImageSize(device, out t);
+
+                byte[] arr = new byte[t.nImageSize];
+                ftrScanGetImage(device, dose, arr);
+
+                int cx = crop ? 40 : 0;
+                int cy = crop ? 60 : 0;
+                int Width = crop ? t.nWidth - 80 : t.nWidth;
+                int Height = crop ? t.nHeight - 80 : t.nHeight;
+                int i = 0;
+
+                // Em Crop: 320-80 x 480-80 = > 96000 bytes
+                var ir = new ImageResult()
+                {
+                    Data = new byte[Width * Height],
+                    Image = new Bitmap(Width, Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb)
+                };
+
+                for (int y = 0; y < Height; y++)
+                {
+                    for (int x = 0; x < Width; x++)
+                    {
+                        byte a = (byte)(0xFF - arr[((y + cy) * t.nWidth) + (x + cx)]);
+                        // a = (byte)x; // teste Gray Scale
+                        ir.Data[i] = a;
+                        ir.Image.SetPixel(x, y, Color.FromArgb(a, a, a));
+                        i++;
+                    }
+                }
+                return ir;
+            }
+            catch (Exception ex)
+            {
+                onError?.Invoke(ex);
+                return null;
+            }
+        }
+
+        #endregion
+
+        #region "Leds"
+
+        public void SetDiodesStatus(bool green, bool red)
+        {
+            try
+            {
+                onInfo?.Invoke(string.Format(MSGAPI6, green ? "OK" : "OFF", red ? "OK" : "OFF"));
+                ftrScanSetDiodesStatus(device, (byte)(green ? 255 : 0), (byte)(red ? 255 : 0));
+            }
+            catch (Exception ex)
+            {
+                onError?.Invoke(ex);
             }
         }
 
         public void GetDiodesStatus(out bool green, out bool red)
         {
-            ftrScanGetDiodesStatus(device, out green, out red);
-        }
-
-        public void SetDiodesStatus(bool green, bool red)
-        {
-            ftrScanSetDiodesStatus(device, (byte)(green ? 255 : 0), (byte)(red ? 255 : 0));
-        }
-
-        public byte[] GetFingerprint(out int width, out int height)
-        {
-            int timeout = 0;
-            working = true;
-            while (timeout < 100 && working)
+            try
             {
-                Dispose();
-                if (Init())
-                {
-                    if (IsFinger)
-                    {
-                        var bt = GetRawImage(out width, out height);
-                        if (bt != null)
-                            return bt;
-                    }
-                }
-                Thread.Sleep(100);
-                timeout++;
+                onInfo?.Invoke(MSGAPI7);
+                ftrScanGetDiodesStatus(device, out green, out red);
             }
-            width = 0;
-            height = 0;
-            working = false;
-            return null;
+            catch (Exception ex)
+            {
+                onError?.Invoke(ex);
+                green = red = false;
+            }
         }
 
-        public byte[] GetRawImage(out int width, out int height)
-        {
-            if (!Connected)
-            {
-                width = 0;
-                height = 0;
-                return null;
-            }
-            var t = new _FTRSCAN_IMAGE_SIZE();
-            ftrScanGetImageSize(device, out t);
-            byte[] arr = new byte[t.nImageSize];
-            byte[] cropped_arr = new byte[(t.nWidth - 80) * (t.nHeight - 80)];
-            ftrScanGetImage(device, 4, arr);
-
-            width = t.nWidth - 80;
-            height = t.nHeight - 80;
-            // 320-80 x 480-80 = > 96000 bytes
-            int k = 0;
-            long sum = 0;
-            for (int i = 0; i < arr.Length - 30 * t.nWidth; i += t.nWidth)
-            {
-                if (i > 50 * t.nWidth)
-                {
-                    for (int j = 40; j < t.nWidth - 40; j++)
-                    {
-                        cropped_arr[k] = (byte)(255 - (int)arr[j + i]);
-                        sum += cropped_arr[k];
-                        k++;
-                    }
-                }
-            }
-            long media = sum / 96000l;
-            if (media > 200) // é muita área branca, quase não leu nada
-                return null;
-
-            return cropped_arr;
-        }
-
-        public Bitmap ExportBitMap()
-        {
-            if (!Connected)
-                return null;
-
-            var t = new _FTRSCAN_IMAGE_SIZE();
-            ftrScanGetImageSize(device, out t);
-            byte[] arr = new byte[t.nImageSize];
-            ftrScanGetImage(device, 4, arr);
-
-            var b = new Bitmap(t.nWidth, t.nHeight, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
-            for (int x = 0; x < t.nWidth; x++)
-            {
-                for (int y = 0; y < t.nHeight; y++)
-                {
-                    int a = 255 - arr[y * t.nWidth + x];
-                    b.SetPixel(x, y, Color.FromArgb(a, a, a));
-                }
-            }
-            return b;
-        }
+        #endregion
     }
 }
