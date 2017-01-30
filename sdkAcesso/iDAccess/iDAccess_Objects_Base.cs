@@ -178,8 +178,8 @@ namespace ControlID.iDAccess
     public class DeviceIsAlive
     {
         public HttpStatusCode @event;
-
     }
+    // { "result": { "event": 200 } }
     public class DeviceIsAliveResult
     {
         public DeviceIsAliveResult()

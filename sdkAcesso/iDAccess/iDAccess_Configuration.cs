@@ -84,12 +84,20 @@ namespace ControlID.iDAccess
         }
     }
 
+    public class ImageFingerprint
+    {
+        public string image;
+        public int width;
+        public int height;
+    }
+
     public class NotificationTemplate
     {
         public string template;
         public long user_id;
         public long finger_type;
         public long device_id;
+        public ImageFingerprint [] fingerprints;
     }
 
     public class NotificationCard
@@ -97,6 +105,7 @@ namespace ControlID.iDAccess
         public string value;
         public long user_id;
         public long device_id;
+        public long card_value;
     }
     ////"event":{"type": 7, "name": 'TURN LEFT', "time": 1484126902 },"device_id": 935107 
     //public class NotificationCatraEvents
