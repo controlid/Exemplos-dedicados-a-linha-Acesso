@@ -49,8 +49,8 @@ namespace ControlID.iDAccess
             /// <summary>
             /// Equipamento envia template extraído
             /// </summary>
-            [Obsolete("Será descontinuado")]
-            ReturnTemplate = 2,
+            //[Obsolete("Será descontinuado")]
+            //ReturnTemplate = 2,
             /// <summary>
             /// Equipamento envia imagem do dedo
             /// </summary>
@@ -65,7 +65,7 @@ namespace ControlID.iDAccess
             ConfigValues config = new ConfigValues(true, true);
             config.general.Online = true;
             config.general.LocalIdentification = mode == OnlineMode.ReturnUserId ? true : false;
-            config.online_client.ExtractTemplate = mode == OnlineMode.ReturnTemplate ? true : false;
+            config.online_client.ExtractTemplate = false; // mode == OnlineMode.ReturnTemplate ? true : false;
             config.online_client.ServerId = serverId;
 
             return SetConfiguration(config);
@@ -89,7 +89,7 @@ namespace ControlID.iDAccess
             ConfigValues config = new ConfigValues(true, true);
             config.general.Online = true;
             config.general.LocalIdentification = mode == OnlineMode.ReturnUserId ? true : false;
-            config.online_client.ExtractTemplate = mode == OnlineMode.ReturnTemplate ? true : false;
+            config.online_client.ExtractTemplate = false; // mode == OnlineMode.ReturnTemplate ? true : false;
             config.online_client.ServerId = devSRV.id;
 
             return SetConfiguration(config);

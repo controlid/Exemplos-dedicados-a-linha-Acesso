@@ -84,24 +84,24 @@ namespace ControlID.iDAccess
         /// Responde que o servidor está vivo
         /// </summary>
         [OperationContract]
-        [WebInvoke(UriTemplate = "device_is_alive.fcgi?session={session}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
-        DeviceIsAliveResult IsAlive(string session, Stream stream);
+        [WebInvoke(UriTemplate = "device_is_alive.fcgi", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
+        DeviceIsAliveResult IsAlive(Stream stream);
 
-        /// <summary>
-        /// Recebe as imagens do retorno do Cadastro Remoto
-        /// </summary>
-        /// <param name="item"></param>
-        [OperationContract]
-        [WebInvoke(UriTemplate = "fingerprint_create.fcgi", Method = "POST", RequestFormat = WebMessageFormat.Json)]
-        void TemplateCreate(NotificationTemplate item);
+        ///// <summary>
+        ///// Recebe as imagens do retorno do Cadastro Remoto
+        ///// </summary>
+        ///// <param name="item"></param>
+        //[OperationContract]
+        //[WebInvoke(UriTemplate = "fingerprint_create.fcgi", Method = "POST", RequestFormat = WebMessageFormat.Json)]
+        //void TemplateCreate(NotificationTemplate item);
 
-        /// <summary>
-        /// Recebe os dados de cartão do cadastro Remoto
-        /// </summary>
-        /// <param name="item"></param>
-        [OperationContract]
-        [WebInvoke(UriTemplate = "card_create.fcgi", Method = "POST", RequestFormat = WebMessageFormat.Json)]
-        void CardCreate(NotificationCard item);
+        ///// <summary>
+        ///// Recebe os dados de cartão do cadastro Remoto
+        ///// </summary>
+        ///// <param name="item"></param>
+        //[OperationContract]
+        //[WebInvoke(UriTemplate = "card_create.fcgi", Method = "POST", RequestFormat = WebMessageFormat.Json)]
+        //void CardCreate(NotificationCard item);
     }
 
     /// <summary>
@@ -143,8 +143,8 @@ namespace ControlID.iDAccess
         /// Responde que o servidor está vivo
         /// </summary>
         [OperationContract]
-        [WebInvoke(UriTemplate = "device_is_alive.fcgi?session={session}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
-        DeviceIsAliveResult IsAlive(string session, Stream stream);
+        [WebInvoke(UriTemplate = "device_is_alive.fcgi", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
+        DeviceIsAliveResult IsAlive(Stream stream);
     }
 
     /// <summary>
@@ -187,8 +187,8 @@ namespace ControlID.iDAccess
         /// Responde que o servidor está vivo
         /// </summary>
         [OperationContract]
-        [WebInvoke(UriTemplate = "device_is_alive.fcgi?session={session}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
-        DeviceIsAliveResult IsAlive(string session, Stream stream);
+        [WebInvoke(UriTemplate = "device_is_alive.fcgi", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
+        DeviceIsAliveResult IsAlive(Stream stream);
     }
 
     /// <summary>
