@@ -109,6 +109,24 @@ namespace ControlID.iDAccess
             return GetDeviceNameDescription(GetDeviceName(Serial));
         }
 
+        public static bool ModelHasCard(string cSerial)
+        {
+            string cModel = GetDeviceNameDescription(cSerial);
+            if (cModel == "iDBlock" || cModel.Contains("iDBox"))
+                return true;
+            else
+                return cModel.Contains("ASK") || cModel.Contains("Prox");
+        }
+
+        public static bool ModelHasBio(string cSerial)
+        {
+            string cModel = GetDeviceNameDescription(cSerial);
+            if (cModel == "iDBlock")
+                return true;
+            else
+                return cModel.Contains("Bio");
+        }
+
         public static DeviceModels GetDeviceModel(string cSerial)
         {
             DeviceNames ds = GetDeviceName(cSerial);
