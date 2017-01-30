@@ -41,7 +41,12 @@ namespace ControlID
 
                 List<T> itens = new List<T>();
                 for (int i = 0; i < objArray.Length; i++)
-                    itens.Add(objArray[i].ConvertDevice());
+                {
+                    var item = objArray[i].ConvertDevice();
+                    if (item != null)
+                        itens.Add(item);
+                }
+                    
 
                 if (lTry)
                     return AddTryRange<T>(itens);
