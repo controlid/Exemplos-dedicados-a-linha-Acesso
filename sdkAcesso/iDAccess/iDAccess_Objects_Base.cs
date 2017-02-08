@@ -148,7 +148,9 @@ namespace ControlID.iDAccess
         /// <summary>
         /// 8 - acesso pendente
         /// </summary>
-        AccessPending = 8
+        AccessPending = 8,
+
+        Give_up = 9
     }
 
     public enum RoleTypes

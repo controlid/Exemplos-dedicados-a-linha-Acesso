@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.Serialization;
 
 namespace ControlID.iDAccess
@@ -108,17 +109,17 @@ namespace ControlID.iDAccess
         public long card_value;
     }
     ////"event":{"type": 7, "name": 'TURN LEFT', "time": 1484126902 },"device_id": 935107 
-    //public class NotificationCatraEvents
-    //{
-    //    public NotificatonCatra[] @event;
-    //    public long device_id;
-    //}
-    //public class NotificatonCatra
-    //{
-    //    public string type;
-    //    public string name;
-    //    public string time;
-    //}
+    public class NotificationCatraEvents
+    {
+        public NotificatonCatra [] @event { get; set; }
+        public long device_id { get; set; }
+    }
+    public class NotificatonCatra
+    {
+        public int @type { get; set; }
+        public string name { get; set; }
+        public int time { get; set; }
+    }
     public class NotificationItem
     {
         public NotificationObject[] object_changes;
