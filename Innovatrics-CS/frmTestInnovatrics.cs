@@ -2,6 +2,7 @@
 using Innovatrics.IEngine;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -42,7 +43,13 @@ namespace TestInnovatrics
                 names[0] = "Teste";
 
                 idKit = new IDKit();
+                txtOut.Text =  IDKit.ProductString + " Threshold: " + idKit.Threshold;
                 idKit.ICSTemplateVersion = 21;
+
+                DirectoryInfo di = new DirectoryInfo(@"W:\");
+                foreach (var file in di.GetFiles("*.png"))
+                    lst.Items.Add(file.Name);
+
             }
             catch (Exception ex)
             {
@@ -95,6 +102,116 @@ namespace TestInnovatrics
         private void btnAdd_Click(object sender, EventArgs e)
         {
 
+        }
+
+        int img = 1;
+        private void btRaw_Click(object sender, EventArgs e)
+        {
+            int width = 260;
+            int height = 320;
+            int x = 0;
+            int y = 0;
+            int i = 0;
+            //var bmp = new Bitmap(width, height);
+            //Bitmap bmp = new Bitmap(@"T:\Downloads\img" + img + ".png");
+            Bitmap bmp;
+            if (lst.SelectedIndex>=0)
+                bmp = new Bitmap(@"W:\" + lst.SelectedItem);
+            else
+                bmp = new Bitmap(@"W:\20170207_102801_17_LowQuality29.png");
+
+            try
+            {
+                //byte[] image = File.ReadAllBytes(@"T:\Downloads\dedo" + img + ".raw");
+                var hist = new System.Collections.Generic.SortedList<byte, int>();
+                int max=0;
+                for (int iy = 0; iy < bmp.Height; iy++)
+                {
+                    for (int ix = 0; ix < bmp.Width; ix++)
+                    {
+                        var c = bmp.GetPixel(ix, iy);
+
+                        if (c.R < tr1.Value )
+                        {
+                            //byte j = (byte)((double)c.R * img / 100);
+                            //c = Color.FromArgb(255, j, j, j);
+                            c = Color.FromArgb(255, 0, 0, 0);
+                        }
+                        else if (c.R > tr2.Value)
+                        {
+                            //byte j = (byte)((double)c.R * (100-img) / 100);
+                            //c = Color.FromArgb(255, j, j, j);
+                            c = Color.FromArgb(255, 255, 255, 255);
+                        }
+
+                        if (!hist.ContainsKey(c.R))
+                            hist.Add(c.R, 1);
+                        else
+                            hist[c.R]++;
+
+                        if (hist[c.R] > max)
+                            max = hist[c.R];
+
+                        bmp.SetPixel(ix, iy, c);
+                    }
+                }
+
+                //height = image.Length / width; // 83200
+                //using (var fp = new Fingerprint(image, width, height))
+                using (var fp = new Fingerprint(bmp))
+                {
+                    txtOut.Text = string.Format("{0}x{1} Image: " + img + " Quality: {2}", width, height, fp.Quality);
+                }
+
+                int pico = max / 10;
+                Bitmap bHist = new Bitmap(hist.Count, pico);
+                Graphics g = Graphics.FromImage(bHist);
+                g.Clear(Color.White);
+                foreach (var k in hist.Keys)
+                {
+                    int m = hist[k];
+                    if (m > pico)
+                        m = pico;
+                    g.DrawLine(Pens.Black, k, pico, k, pico - m);
+                    txtOut.Text += "\r\n" + k + ": " + hist[k];
+                }
+
+                picHist.Image = bHist;
+
+                
+
+                //for (i = 0; i < image.Length; i++)
+                //{
+                //    bmp.SetPixel(x++, y, Color.FromArgb(255, image[i], image[i], image[i]));
+                //    if (x == width)
+                //    {
+                //        x = 0;
+                //        y++;
+                //    }
+                //}
+            }
+            catch (Exception ex)
+            {
+                txtOut.Text += "\r\n" + ex.Message + "\r\n" + ex.StackTrace;
+            }
+            picDedo.Image = bmp;
+        }
+
+        private void btINC_Click(object sender, EventArgs e)
+        {
+            // width++;
+            img++;
+            btRaw_Click(null, null);
+        }
+
+        private void tr_Scroll(object sender, EventArgs e)
+        {
+            btRaw_Click(null, null);
+        }
+
+        private void lst_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btRaw_Click(null, null);
         }
     }
 }
