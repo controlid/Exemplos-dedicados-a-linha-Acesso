@@ -113,7 +113,7 @@ namespace ControlID.iDAccess
         /// <summary>
         /// 1 - equipamento inválido
         /// </summary>
-        deviceid_invalid = 1,
+        DeviceInvalid = 1,
 
         /// <summary>
         /// 2 - parâmetros de regra de identificação inválidos
@@ -149,8 +149,27 @@ namespace ControlID.iDAccess
         /// 8 - acesso pendente
         /// </summary>
         AccessPending = 8,
+        /// <summary>
+        /// 13 - acesso pendente
+        /// </summary>
+        GiveUp = 13,
+        /// <summary>
+        /// 11 - acesso pendente
+        /// </summary>
+        Buttonhole = 11,
+         /// <summary>
+         /// 12 - acesso pendente
+         /// </summary>
+        InterfaceWeb = 12,
 
-        Give_up = 9
+         /// <summary>
+         /// 11 - acesso pendente
+         /// </summary>
+        Unprivileged = 13
+
+
+
+
     }
 
     public enum RoleTypes
