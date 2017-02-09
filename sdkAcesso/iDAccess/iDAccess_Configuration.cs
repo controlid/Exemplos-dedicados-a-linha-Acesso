@@ -259,6 +259,34 @@ namespace ControlID.iDAccess
            "acfw":"http:\/\/controlid.com.br\/idaccess\/ACFW_V3.6.0.zip",
            "version":"3.6.0"
         }
+         //iDFLEX 
+         {  //https://www.controlid.com.br/idflex/acfw_y_update.php
+               "configuration":{  
+                  "url":"http:\/\/controlid.com.br\/idflex\/ACFW\/V2.6.12\/config.tar",
+                  "no_override_list":"http:\/\/controlid.com.br\/idflex\/ACFW\/V2.6.12\/configuration_no_override_list"
+               },
+               "fs_root":{  
+                  "url":"http:\/\/controlid.com.br\/idflex\/ACFW\/V2.6.12\/fs_root.tar",
+                  "no_override_list":"http:\/\/controlid.com.br\/idflex\/ACFW\/V2.6.12\/rootfs_no_override_list"
+               },
+               "fs_user":{  
+                  "url":"http:\/\/controlid.com.br\/idflex\/ACFW\/V2.6.12\/fs_user.tar",
+                  "no_override_list":"http:\/\/controlid.com.br\/idflex\/ACFW\/V2.6.12\/userfs_no_override_list"
+               },
+               "update":{  
+                  "config_update":"http:\/\/controlid.com.br\/idflex\/ACFW\/V2.6.12\/config_update.cid",
+                  "database_update":"http:\/\/controlid.com.br\/idflex\/ACFW\/V2.6.12\/database_update.sql"
+               },
+               "kernel_standard":"http:\/\/controlid.com.br\/idflex\/ACFW\/V2.6.12\/kernel_standard.bin",
+               "dtb_standard":"http:\/\/controlid.com.br\/idflex\/ACFW\/V2.6.12\/dtb_standard.bin",
+               "kernel_recovery":"http:\/\/controlid.com.br\/idflex\/ACFW\/V2.6.12\/kernel_recovery.bin",
+               "dtb_recovery":"http:\/\/controlid.com.br\/idflex\/ACFW\/V2.6.12\/dtb_recovery.bin",
+               "cpio_recovery":"http:\/\/controlid.com.br\/idflex\/ACFW\/V2.6.12\/cpio.img",
+               "boot":"http:\/\/controlid.com.br\/idflex\/ACFW\/V2.6.12\/boot.bin",
+               "acfw":"http:\/\/controlid.com.br\/idflex\/ACFW_V2.6.12.zip",
+               "version":"2.6.12"
+         }
+
         */
 
         public FirmwareUpdate(string cURL, string cVersao, string cSerial)
@@ -279,6 +307,7 @@ namespace ControlID.iDAccess
                 fs_root.patch = cURL2 + "fs_root.tar";
                 fs_user.patch = cURL2 + "fs_user.tar";
             }
+
             update = new FirmwareUpdateConfig(cURL2 + "config_update.cid", cURL + "database_update.sql");
             kernel_standard = cURL2 + "kernel_standard.bin";
             kernel_recovery = cURL2 + "kernel_recovery.bin";
