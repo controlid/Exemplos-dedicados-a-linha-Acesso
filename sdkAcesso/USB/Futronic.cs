@@ -91,10 +91,11 @@ namespace ControlID.USB
 
         private IntPtr device;
         private bool waitFinger = false; // somente se estiver no loop do IsFinger
+        private int lastContrast = 0; // Valor do ultimo contraste capturado
 
         public static int dose = 4; // Dose 0 - dark dose (absense of light). Doses from 1 up to 3 - turn on light (1=min, 4=max)
         public static int delay = 50; // tempo usado nos sleeps
-        public static int minContrast = 1000; // contraste minimo que indica a existencia de um dedo
+        public static int minContrast = 800; // contraste minimo que indica a existencia de um dedo
         public static bool crop = true; // Indica se é para fazer CROP da imagem (compatibilidade com versão antiga)
 
         public bool WaitingFinger { get { return waitFinger; } }
@@ -175,7 +176,10 @@ namespace ControlID.USB
             }
         }
 
-        public bool IsFinger(TimeSpan timeout)
+        /// <summary>
+        /// Detecta a existencia de um dedo no sensor
+        /// </summary>
+        public bool IsFinger(TimeSpan timeout, Action waiting = null)
         {
             try
             {
@@ -183,24 +187,35 @@ namespace ControlID.USB
                 waitFinger = true;
                 var t = new _FTRSCAN_FRAME_PARAMETERS();
                 int n = 1;
+                bool hasTime = true;
                 DateTime dt = DateTime.Now;
-                while (waitFinger && DateTime.Now.Subtract(dt) <= timeout)
+                while (waitFinger && hasTime)
                 {
+                    hasTime = DateTime.Now.Subtract(dt) <= timeout;
                     if (ftrScanIsFingerPresent(device, out t))
                     {
-                        if (t.nContrastOnDose2 > minContrast)
+                        if (t.nContrastOnDose2 > minContrast || !hasTime) // garante que vai pegar o dedo por pior que seja no tempo maximo
                         {
                             onInfoAppend?.Invoke(" D" + n + ": " + t.nContrastOnDose2);
                             n++;
-                            if (n > 3) // garante a detecção de dedo por 3 vezes consecutivamente
-                                // TODO: Albert pediu para obter a melhor de 4 imagens
+                            if(!hasTime)
+                            {
+                                onInfoAppend?.Invoke(" D" + n + ": " + t.nContrastOnDose2 + " Timeout");
+                                return true;
+                            }
+                            else if (n > 4 ) 
                                 return true;
                         }
                         else
+                        {
+                            lastContrast = t.nContrastOnDose2;
                             onInfoAppend?.Invoke("-" + t.nContrastOnDose2);
+                        }
                     }
                     else
                         onInfoAppend?.Invoke(".");
+
+                    waiting?.Invoke();
 
                     Thread.Sleep(delay);
                 }
