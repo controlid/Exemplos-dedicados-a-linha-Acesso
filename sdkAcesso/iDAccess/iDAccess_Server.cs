@@ -103,9 +103,9 @@ namespace ControlID.iDAccess
         //[WebInvoke(UriTemplate = "card_create.fcgi", Method = "POST", RequestFormat = WebMessageFormat.Json)]
         //void CardCreate(NotificationCard item);
 
-        [OperationContract]
-        [WebInvoke(UriTemplate = "catra_events", Method = "POST", RequestFormat = WebMessageFormat.Json)]
-        void NotifyCatra(NotificationCatraEvents item);
+        //[OperationContract]
+        //[WebInvoke(UriTemplate = "catra_event", Method = "POST", RequestFormat = WebMessageFormat.Json)]
+        //void NotifyCatra(NotificationCatraEvents item);
     }
 
     /// <summary>
@@ -151,11 +151,25 @@ namespace ControlID.iDAccess
         DeviceIsAliveResult IsAlive(Stream stream);
 
         /// <summary>
-        /// Checa se ouve desistencia da catraca
+        /// Checa se existem cartão sendo cadastrado
         /// </summary>
         [OperationContract]
-        [WebInvoke(UriTemplate = "catra_events", Method = "POST", RequestFormat = WebMessageFormat.Json)]
+        [WebInvoke(UriTemplate = "card_create.fcgi", Method = "POST", RequestFormat = WebMessageFormat.Json)]
+        void CardCreate(NotificationCard item);
+
+        /// <summary>
+        /// Checa se houve desistencia da catraca
+        /// </summary>
+        [OperationContract]
+        [WebInvoke(UriTemplate = "catra_event", Method = "POST", RequestFormat = WebMessageFormat.Json)]
         void NotifyCatra(NotificationCatraEvents item);
+
+        /// <summary>
+        /// Checa se existe biometria sendo cadastrado.
+        /// </summary>
+        [OperationContract]
+        [WebInvoke(UriTemplate = "fingerprint_create.fcgi", Method = "POST", RequestFormat = WebMessageFormat.Json)]
+        void TemplateCreate(NotificationTemplate item);
     }
 
     /// <summary>

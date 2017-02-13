@@ -100,7 +100,13 @@ namespace ControlID.iDAccess
         public long device_id;
         public ImageFingerprint [] fingerprints;
     }
-
+    public class NotificationCard_Online
+    {
+        
+        public long user_id;
+        public long device_id;
+        public long card_value;
+    }
     public class NotificationCard
     {
         public string value;
