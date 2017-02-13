@@ -100,7 +100,14 @@ namespace ControlID.iDAccess
         public long device_id;
         public ImageFingerprint [] fingerprints;
     }
-
+    public class NotificationTemplatePro
+    {
+        public string template;
+        public long user_id;
+        public long finger_type;
+        public long device_id;
+        public ImageFingerprint[] fingerprints;
+    }
     public class NotificationCard
     {
         public string value;

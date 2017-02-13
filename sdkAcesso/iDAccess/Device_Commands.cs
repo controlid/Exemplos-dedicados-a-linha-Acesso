@@ -84,8 +84,11 @@ namespace ControlID.iDAccess
             });
         }
 
-        public void RemoteEnroll(RemoteEnrollType eType, string cMessage = null, int user = 0, bool panic = false, string reg = null)
+        public void RemoteEnroll(RemoteEnrollType eType, string cMessage = null, int user=0, bool panic = false, string reg = null)
         {
+
+            var x = user;
+
             Command<string>("remote_enroll", new RemoteEnrollRequest()
             {
                 type = eType.ToString().ToLower(),
