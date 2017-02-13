@@ -84,28 +84,28 @@ namespace ControlID.iDAccess
         /// Responde que o servidor está vivo
         /// </summary>
         [OperationContract]
-        [WebInvoke(UriTemplate = "device_is_alive.fcgi", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
-        DeviceIsAliveResult IsAlive(Stream stream);
+        [WebInvoke(UriTemplate = "device_is_alive.fcgi?session={session}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
+        DeviceIsAliveResult IsAlive(string session, Stream stream);
 
-        ///// <summary>
-        ///// Recebe as imagens do retorno do Cadastro Remoto
-        ///// </summary>
-        ///// <param name="item"></param>
-        //[OperationContract]
-        //[WebInvoke(UriTemplate = "fingerprint_create.fcgi", Method = "POST", RequestFormat = WebMessageFormat.Json)]
-        //void TemplateCreate(NotificationTemplate item);
+        /// <summary>
+        /// Recebe as imagens do retorno do Cadastro Remoto
+        /// </summary>
+        /// <param name="item"></param>
+        [OperationContract]
+        [WebInvoke(UriTemplate = "fingerprint_create.fcgi", Method = "POST", RequestFormat = WebMessageFormat.Json)]
+        void TemplateCreate(NotificationTemplate item);
 
-        ///// <summary>
-        ///// Recebe os dados de cartão do cadastro Remoto
-        ///// </summary>
-        ///// <param name="item"></param>
-        //[OperationContract]
-        //[WebInvoke(UriTemplate = "card_create.fcgi", Method = "POST", RequestFormat = WebMessageFormat.Json)]
-        //void CardCreate(NotificationCard item);
+        /// <summary>
+        /// Recebe os dados de cartão do cadastro Remoto
+        /// </summary>
+        /// <param name="item"></param>
+        [OperationContract]
+        [WebInvoke(UriTemplate = "card_create.fcgi", Method = "POST", RequestFormat = WebMessageFormat.Json)]
+        void CardCreate(NotificationCard item);
 
-        //[OperationContract]
-        //[WebInvoke(UriTemplate = "catra_event", Method = "POST", RequestFormat = WebMessageFormat.Json)]
-        //void NotifyCatra(NotificationCatraEvents item);
+        [OperationContract]
+        [WebInvoke(UriTemplate = "catra_event", Method = "POST", RequestFormat = WebMessageFormat.Json)]
+        void NotifyCatra(NotificationCatraEvents item);
     }
 
     /// <summary>
@@ -147,8 +147,8 @@ namespace ControlID.iDAccess
         /// Responde que o servidor está vivo
         /// </summary>
         [OperationContract]
-        [WebInvoke(UriTemplate = "device_is_alive.fcgi", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
-        DeviceIsAliveResult IsAlive(Stream stream);
+        [WebInvoke(UriTemplate = "device_is_alive.fcgi?session={session}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
+        DeviceIsAliveResult IsAlive(string session, Stream stream);
 
         /// <summary>
         /// Checa se existem cartão sendo cadastrado
@@ -165,11 +165,13 @@ namespace ControlID.iDAccess
         void NotifyCatra(NotificationCatraEvents item);
 
         /// <summary>
-        /// Checa se existe biometria sendo cadastrado.
+        /// cria biometria cadastrada remotamente
         /// </summary>
         [OperationContract]
-        [WebInvoke(UriTemplate = "fingerprint_create.fcgi", Method = "POST", RequestFormat = WebMessageFormat.Json)]
-        void TemplateCreate(NotificationTemplate item);
+        [WebInvoke(UriTemplate = "template_create.fcgi?session={session}&device_id={device_id}", Method = "POST", RequestFormat = WebMessageFormat.Json)]
+        void TemplateCreate(string session, string device_id, Stream stream);
+
+
     }
 
     /// <summary>
