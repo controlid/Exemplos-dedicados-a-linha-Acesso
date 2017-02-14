@@ -16,7 +16,7 @@ namespace ControlID
     {
         public static bool Debug = true;
         public static int TimeOut = 10000;
-        public static string LogPath = "log-cidsdk.txt";
+        public static string LogPath;
 
         // Para configurar o 'ServicePointManager' no primeiro uso
         static WebJson()
