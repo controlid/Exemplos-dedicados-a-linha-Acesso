@@ -29,7 +29,7 @@ namespace ControlID.iDAccess
         Both_Open = 3
     }
 
-   
+
     [DataContract]
     public class StatusResult
     {
@@ -98,7 +98,7 @@ namespace ControlID.iDAccess
         public long user_id;
         public long finger_type;
         public long device_id;
-        public ImageFingerprint [] fingerprints;
+        public ImageFingerprint[] fingerprints;
     }
     public class NotificationCard
     {
@@ -110,7 +110,7 @@ namespace ControlID.iDAccess
     ////"event":{"type": 7, "name": 'TURN LEFT', "time": 1484126902 },"device_id": 935107 
     public class NotificationCatraEvents
     {
-        public NotificatonCatra [] @event { get; set; }
+        public NotificatonCatra[] @event { get; set; }
         public long device_id { get; set; }
     }
     public class NotificatonCatra
@@ -126,6 +126,10 @@ namespace ControlID.iDAccess
         public long device_id;
     }
 
+    public class IsAliveResult
+    {
+        public int access_logs;
+    }
     //{"object":"tabela","type":"inserted"}
     public class NotificationObject
     {
@@ -301,7 +305,7 @@ namespace ControlID.iDAccess
             configuration = new FirmwareUpdateFS(cURL + "config.tar", cURL + "configuration_no_override_list");
             fs_root = new FirmwareUpdateFS(cURL + "fs_root.tar", cURL + "rootfs_no_override_list");
             fs_user = new FirmwareUpdateFS(cURL + "fs_user.tar", cURL + "userfs_no_override_list");
-            if(cURL!=cURL2) // jalapeno
+            if (cURL != cURL2) // jalapeno
             {
                 fs_root.patch = cURL2 + "fs_root.tar";
                 fs_user.patch = cURL2 + "fs_user.tar";
@@ -332,7 +336,7 @@ namespace ControlID.iDAccess
     [DataContract]
     public class ConfigCatra
     {
-        [DataMember(EmitDefaultValue =false)]
+        [DataMember(EmitDefaultValue = false)]
         public string anti_passback;
 
         /// <summary>
@@ -344,11 +348,11 @@ namespace ControlID.iDAccess
             get
             {
                 return anti_passback == "1";
-            } 
+            }
             set
             {
                 anti_passback = value ? "1" : "0";
-            } 
+            }
         }
 
         [DataMember(EmitDefaultValue = false)]
@@ -626,7 +630,7 @@ namespace ControlID.iDAccess
     }
 
     // {"led_rgb": {"state":"3","solid_red":"0","solid_green":"0","solid_blue":"0","transition_start_red":"0","transition_start_green":"0","transition_start_blue":"0","transition_end_red":"65535","transition_end_green":"0","transition_end_blue":"0"}}
-  
+
     [DataContract]
     public class LedsColors
     {
@@ -668,5 +672,4 @@ namespace ControlID.iDAccess
         [DataMember]
         public string update_mode;
     }
-
 }

@@ -84,8 +84,8 @@ namespace ControlID.iDAccess
         /// Responde que o servidor está vivo
         /// </summary>
         [OperationContract]
-        [WebInvoke(UriTemplate = "device_is_alive.fcgi?session={session}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
-        DeviceIsAliveResult IsAlive(string session, Stream stream);
+        [WebInvoke(UriTemplate = "device_is_alive.fcgi?session={session}&device_id={device_id}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
+        DeviceIsAliveResult IsAlive(string session, string device_id, IsAliveResult item);
 
         /// <summary>
         /// Recebe as imagens do retorno do Cadastro Remoto
@@ -147,8 +147,8 @@ namespace ControlID.iDAccess
         /// Responde que o servidor está vivo
         /// </summary>
         [OperationContract]
-        [WebInvoke(UriTemplate = "device_is_alive.fcgi?session={session}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
-        DeviceIsAliveResult IsAlive(string session, Stream stream);
+        [WebInvoke(UriTemplate = "device_is_alive.fcgi?session={session}&device_id={device_id}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
+        DeviceIsAliveResult IsAlive(string session, string device_id, IsAliveResult item);
 
         /// <summary>
         /// Checa se existem cartão sendo cadastrado
@@ -170,8 +170,6 @@ namespace ControlID.iDAccess
         [OperationContract]
         [WebInvoke(UriTemplate = "template_create.fcgi?session={session}&device_id={device_id}", Method = "POST", RequestFormat = WebMessageFormat.Json)]
         void TemplateCreate(string session, string device_id, Stream stream);
-
-
     }
 
     /// <summary>
