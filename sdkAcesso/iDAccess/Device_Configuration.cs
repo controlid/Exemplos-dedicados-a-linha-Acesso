@@ -47,14 +47,9 @@ namespace ControlID.iDAccess
             /// </summary>
             ReturnUserId = 1,
             /// <summary>
-            /// Equipamento envia template extraído
-            /// </summary>
-            //[Obsolete("Será descontinuado")]
-            //ReturnTemplate = 2,
-            /// <summary>
             /// Equipamento envia imagem do dedo
             /// </summary>
-            ReturnImage = 3
+            ReturnImage = 2
         }
 
         /// <summary>

@@ -30,8 +30,8 @@ namespace ControlID.iDAccess
         [Description("iDAccess Prox ASK+PSK")]      H,
         [Description("iDAccess Prox ASK+MIFARE")]   I,
 // Modelos iDFit
-        [Description("iDFit Bio")]                  M,
-        [Description("iDFit Bio ASK")]              N,
+        [Description("iDFit Bio")]                  N,
+        [Description("iDFit Bio ASK")]              M,
         [Description("iDFit Bio ASK+FSK")]          O,
         [Description("iDFit Bio ASK+PSK")]          P,
         [Description("iDFit Bio ASK+MIFARE")]       Q,
