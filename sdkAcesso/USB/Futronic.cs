@@ -22,6 +22,7 @@ namespace ControlID.USB
         }
 
         const string MSGAPI1 = "Futronic: Inicializando leitor biométrico";
+        const string MSGAPI1b = "Futronic: Leitor não conectado";
         const string MSGAPI2 = "Futronic: Finalizando leitor biométrico";
         const string MSGAPI3 = "Futronic: Não é possível obter imagem com o leitor desconectado";
         const string MSGAPI4 = "Futronic: Obtendo imagem";
@@ -113,14 +114,24 @@ namespace ControlID.USB
                     Dispose();
 
                 onInfo?.Invoke(MSGAPI1);
-
                 device = ftrScanOpenDevice();
+                if (device == IntPtr.Zero)
+                    onInfo?.Invoke(MSGAPI1b);
+
                 return device != IntPtr.Zero;
             }
             catch (Exception ex)
             {
-                onError?.Invoke(ex);
                 device = IntPtr.Zero;
+
+                if (ex.Message.Contains("HRESULT:"))
+                    ex = new Exception("Provável execução em 64bit chamando DLL 32bits, force o uso em 32bits x86", ex);
+
+                if (onError == null)
+                    throw ex;
+                else
+                    onError(ex);
+
                 return false;
             }
         }
