@@ -429,6 +429,13 @@ namespace ControlID.iDAccess
             get { return ConfigValues.GetBoolString(extract_template); }
             set { extract_template = ConfigValues.SetBoolString(value); }
         }
+        [DataMember(EmitDefaultValue = false)]
+        string contingency_enabled;
+        public bool? Contingency
+        {
+            get { return ConfigValues.GetBoolString(contingency_enabled); }
+            set { contingency_enabled = ConfigValues.SetBoolString(value); }
+        }
     }
 
     [DataContract]
