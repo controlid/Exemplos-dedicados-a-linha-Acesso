@@ -107,16 +107,24 @@ namespace ControlID.iDAccess
         public long device_id;
         public long card_value;
     }
-    ////"event":{"type": 7, "name": 'TURN LEFT', "time": 1484126902 },"device_id": 935107 
+
+    // {"event":{"type":9,"name":"GIVE UP","time":1487756794},"device_id":935109}HTTP/1.1 200 OK
+    [DataContract]
     public class NotificationCatraEvents
     {
-        public NotificatonCatra[] @event { get; set; }
+        [DataMember(Name = "event")]
+        public NotificatonCatra Event { get; set; }
+        [DataMember]
         public long device_id { get; set; }
     }
+    [DataContract]
     public class NotificatonCatra
     {
-        public int @type { get; set; }
+        [DataMember(Name = "type")]
+        public int Type { get; set; }
+        [DataMember]
         public string name { get; set; }
+        [DataMember]
         public int time { get; set; }
     }
     public class NotificationItem
@@ -436,6 +444,13 @@ namespace ControlID.iDAccess
             get { return ConfigValues.GetBoolString(contingency_enabled); }
             set { contingency_enabled = ConfigValues.SetBoolString(value); }
         }
+        [DataMember(EmitDefaultValue = false)]
+        string max_request_attempts;
+        public int? MaxRequest
+        {
+            get { return ConfigValues.GetIntString(max_request_attempts); }
+            set { max_request_attempts = ConfigValues.SetIntString(value); }
+        }
     }
 
     [DataContract]
@@ -503,6 +518,9 @@ namespace ControlID.iDAccess
 
         [DataMember(EmitDefaultValue = false)]
         public string relay4_timeout;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string catra_timeout;
 
         [DataMember(EmitDefaultValue = false)]
         public string bell_enabled;
@@ -629,6 +647,20 @@ namespace ControlID.iDAccess
         }
 
         internal static string SetLongString(long? i)
+        {
+            if (i.HasValue)
+                return i.Value.ToString();
+            return null;
+        }
+
+        internal static int? GetIntString(string s)
+        {
+            if (s == null)
+                return null;
+            return int.Parse(s);
+        }
+
+        internal static string SetIntString(int? i)
         {
             if (i.HasValue)
                 return i.Value.ToString();
