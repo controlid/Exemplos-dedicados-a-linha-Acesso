@@ -75,7 +75,7 @@ namespace ControlID.iDAccess
                     else
                         oSend = oFoto;
 
-                    WebJson.JsonCommand<string>(URL + "user_set_image.fcgi?user_id=" + nUserID + "&session=" + Session, oSend, null, TimeOut);
+                    WebJson.JsonCommand<string>(URL + "user_set_image.fcgi?user_id=" + nUserID + "&session=" + Session, oSend, null, TimeOut, System.Drawing.Imaging.ImageFormat.Jpeg);
                 }
             }
             catch (Exception ex)

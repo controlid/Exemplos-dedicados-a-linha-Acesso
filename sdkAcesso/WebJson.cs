@@ -87,9 +87,10 @@ namespace ControlID
         /// </summary>
         /// <param name="cURL">URL da exata requisição</param>
         /// <param name="objRequest">Objeto a ser serializado</param>
+        /// <param name="cMethod">formato da imagem</param>
         /// <returns>Retorna a instância prevista, ou gera algum erro</returns>
         /// <exception cref="cidException">Erro com os dados recebidos e enviados quando possível</exception>
-        public static T JsonCommand<T>(string cURL, object objRequest = null, string cMethod = null, int reqTimeout = 0)
+        public static T JsonCommand<T>(string cURL, object objRequest = null, string cMethod = null, int reqTimeout = 0, ImageFormat format = null)
         {
             string cSend = null;
             string cReceive = null;
@@ -132,9 +133,7 @@ namespace ControlID
                         using (Task<Stream> send = request.GetRequestStreamAsync())
                         {
                             send.Wait(reqTimeout);
-                            //bmp.Save(send.Result, ImageFormat.Png);
-                            bmp.Save(send.Result, bmp.RawFormat);
-                            //bmp.Save(send.Result, ImageFormat.Jpeg);
+                            bmp.Save(send.Result, format);
                         }
                     }
                     else if (objRequest != null && objRequest.GetType() == typeof(byte[]))
