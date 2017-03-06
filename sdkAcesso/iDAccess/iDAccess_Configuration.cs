@@ -454,6 +454,16 @@ namespace ControlID.iDAccess
     }
 
     [DataContract]
+    public class Alarm
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public string siren_enabled;     // Habilita ou desabilita a sirene (padrão 0)
+
+        [DataMember(EmitDefaultValue = false)]
+        public string siren_relay;       // Padrão 2
+    }
+
+    [DataContract]
     public class General
     {
         [DataMember(EmitDefaultValue = false)]
@@ -523,10 +533,10 @@ namespace ControlID.iDAccess
         public string catra_timeout;
 
         [DataMember(EmitDefaultValue = false)]
-        public string bell_enabled;
+        public string bell_enabled;     // Habilita ou desabilita a campainha (padrão 0)
 
         [DataMember(EmitDefaultValue = false)]
-        public string bell_relay;
+        public string bell_relay;       // Padrão 2
 
         [DataMember(EmitDefaultValue = false)]
         string daylight_savings_time_start;
@@ -581,6 +591,8 @@ namespace ControlID.iDAccess
     {
         [DataMember(EmitDefaultValue = false)]
         public General general;
+        [DataMember(EmitDefaultValue = false)]
+        public Alarm alarm;
         [DataMember(EmitDefaultValue = false)]
         public OnlineClient online_client;
         [DataMember(EmitDefaultValue = false)]
