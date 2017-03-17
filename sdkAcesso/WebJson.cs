@@ -24,7 +24,7 @@ namespace ControlID
             // Para autorizar qualquer certificado SSL
             // http://stackoverflow.com/questions/18454292/system-net-certificatepolicy-to-servercertificatevalidationcallback-accept-all-c
             SSLValidator.OverrideValidation();
-
+            // ServicePointManager.Expect100Continue = false;
             // Lê configurações
             String cConfigApp;
 
@@ -97,6 +97,7 @@ namespace ControlID
             Type tpResult = typeof(T);
             if (reqTimeout == 0)
                 reqTimeout = TimeOut;
+
             try
             {
                 T result;
@@ -118,8 +119,11 @@ namespace ControlID
                 }
 
                 WriteLog("URL: " + cURL);
-                WebRequest request = WebRequest.Create(cURL);
+                var request = (HttpWebRequest)WebRequest.Create(cURL) ;
                 request.Timeout = reqTimeout;
+                request.KeepAlive = false;
+                request.ProtocolVersion = HttpVersion.Version10;
+                request.ServicePoint.Expect100Continue = false;
 
                 if (tpResult == typeof(Byte[]) || tpResult == typeof(Bitmap) || cMethod == "GET")
                     request.Method = "GET";
@@ -261,6 +265,9 @@ namespace ControlID
                 else
                 {
                     WriteLog(result.ToString());
+                    if (tpResult == typeof(StatusResult) && ((StatusResult)(object)result).Codigo == 0 && ((StatusResult)(object)result).Status == null)
+                        ((StatusResult)(object)result).Codigo = 200;
+
                     return result;
                 }
             }

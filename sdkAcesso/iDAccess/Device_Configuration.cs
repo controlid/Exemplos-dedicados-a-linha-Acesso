@@ -164,16 +164,19 @@ namespace ControlID.iDAccess
             WebJson.JsonCommand<string>(URL + "set_configuration.fcgi?session=" + Session, cfg, null, TimeOut);
         }
 
-        public StatusResult UpdateFirmware(string url = null, string mode = "default")
+        public StatusResult UpdateFirmware(string url = "http://controlid.com.br/idaccess/acfw_update.php", string mode = "default")
         {
-            // = "http://controlid.com.br/idaccess/acfw_update.php"
             CheckSession();
             var updt = new UpdateFirmware()
             {
                 server_url = url,
                 update_mode = mode // factory_reset
             };
-            return WebJson.JsonCommand<StatusResult>(URL + "update_from_custom_server.fcgi?session=" + Session, updt, null, TimeOut);
+            var sr = WebJson.JsonCommand<StatusResult>(URL + "update_from_custom_server.fcgi?session=" + Session, updt, null, TimeOut);
+            if (sr.Status == null) // Se não retornou nada é porque deu certo e o equipamento reiniciou
+                return new StatusResult(200, "OK");
+            else // caso contrario houve algum erro
+                return sr;
         }
 
         public StatusResult FactoryReset()
