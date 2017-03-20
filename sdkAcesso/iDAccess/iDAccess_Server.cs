@@ -234,14 +234,14 @@ namespace ControlID.iDAccess
         /// </summary>
         [OperationContract]
         [WebInvoke(UriTemplate = "template", Method = "POST", RequestFormat = WebMessageFormat.Json)]
-        void NotifyTemplate(NotificationTemplate item);
+        StatusResult NotifyTemplate(NotificationTemplate item);
 
         /// <summary>
         /// Quando chega um cartão apos ser solicitado um cadastramento via remoteEnroll/{id}/card/{message}
         /// </summary>
         [OperationContract]
         [WebInvoke(UriTemplate = "card", Method = "POST", RequestFormat = WebMessageFormat.Json)]
-        void NotifyCard(NotificationCard item);
+        StatusResult NotifyCard(NotificationCard item);
 
         [OperationContract]
         [WebInvoke(UriTemplate = "catra_event", Method = "POST", RequestFormat = WebMessageFormat.Json)]
