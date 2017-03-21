@@ -273,6 +273,11 @@ namespace ControlID.iDAccess
         /// <see cref="http://pt.wikipedia.org/wiki/Era_Unix"/>
         [IgnoreDataMember]
         public DateTime Date { get { return time.FromUnix(); } }
+
+        public override string ToString()
+        {
+            return id + ": " + EventType.ToString() + " " + user_id;
+        }
     }
 
     [DataContract]
@@ -318,6 +323,11 @@ namespace ControlID.iDAccess
         public long access_log_id;
         [DataMember(EmitDefaultValue = false)]
         public long access_rule_id;
+
+        public override string ToString()
+        {
+            return access_log_id + ": " + access_rule_id;
+        }
     }
 
 }

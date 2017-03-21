@@ -160,15 +160,7 @@ namespace ControlID.iDAccess
          /// <summary>
          /// 12 - acesso pendente
          /// </summary>
-        InterfaceWeb = 12,
-
-         /// <summary>
-         /// 11 - acesso pendente
-         /// </summary>
-        Unprivileged = 13
-
-
-
+        InterfaceWeb = 12
 
     }
 
