@@ -71,7 +71,7 @@ namespace ExemploAPI
         /// <summary>
         /// 1 - equipamento inválido
         /// </summary>
-        deviceid_invalid = 1,
+        DeviceInvalid = 1,
 
         /// <summary>
         /// 2 - parâmetros de regra de identificação inválidos
@@ -106,6 +106,19 @@ namespace ExemploAPI
         /// <summary>
         /// 8 - acesso pendente
         /// </summary>
-        AccessPending = 8
+        AccessPending = 8,
+        /// <summary>
+        /// 13 - acesso pendente
+        /// </summary>
+        GiveUp = 13,
+        /// <summary>
+        /// 11 - acesso pendente
+        /// </summary>
+        Buttonhole = 11,
+        /// <summary>
+        /// 12 - acesso pendente
+        /// </summary>
+        InterfaceWeb = 12
+
     }
 }

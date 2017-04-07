@@ -150,7 +150,7 @@ namespace ControlID.iDAccess
         /// </summary>
         AccessPending = 8,
         /// <summary>
-        /// 13 - acesso pendente
+        /// 13 - Desistencia
         /// </summary>
         GiveUp = 13,
         /// <summary>
