@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="ControlID.iDAccess.Device">
+  <Class Name="ControliD.iDAccess.Device">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <NestedTypes>
-      <Class Name="ControlID.iDAccess.Device.AskConfig" Collapsed="true">
+      <Class Name="ControliD.iDAccess.Device.AskConfig" Collapsed="true">
         <TypeIdentifier>
           <NewMemberFileName>iDAccess\Device_Configuration.cs</NewMemberFileName>
         </TypeIdentifier>
       </Class>
-      <Class Name="ControlID.iDAccess.Device.ReceivedConfig" Collapsed="true">
+      <Class Name="ControliD.iDAccess.Device.ReceivedConfig" Collapsed="true">
         <TypeIdentifier>
           <NewMemberFileName>iDAccess\Device_Configuration.cs</NewMemberFileName>
         </TypeIdentifier>

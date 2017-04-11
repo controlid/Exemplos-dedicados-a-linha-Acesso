@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 
-namespace ControlID.iDAccess
+namespace ControliD.iDAccess
 {
     // ação e configuração
     public enum iDBlockDirection

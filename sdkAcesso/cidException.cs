@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace ControlID
+namespace ControliD
 {
     public class cidException : Exception 
     {

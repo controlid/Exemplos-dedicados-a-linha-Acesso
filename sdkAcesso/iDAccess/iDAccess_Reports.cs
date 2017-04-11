@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
-namespace ControlID.iDAccess
+namespace ControliD.iDAccess
 {
     // Exemplo 1
     // {"offset":0,

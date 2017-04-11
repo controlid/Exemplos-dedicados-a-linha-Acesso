@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ControlID.USB
+namespace ControliD.USB
 {
     public class Futronic : IDisposable
     {

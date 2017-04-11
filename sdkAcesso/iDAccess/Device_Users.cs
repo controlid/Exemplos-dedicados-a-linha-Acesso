@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ControlID.iDAccess
+namespace ControliD.iDAccess
 {
     // https://www.controlid.com.br/suporte/api_idaccess_V2.2.html#51_load_objects
     public partial class Device

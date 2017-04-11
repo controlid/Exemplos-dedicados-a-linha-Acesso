@@ -4,7 +4,7 @@ using System.Data;
 using System.Reflection;
 using System.Text;
 
-namespace ControlID.iDAccess
+namespace ControliD.iDAccess
 {
     public partial class Device
     {

@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
-namespace ControlID.iDAccess
+namespace ControliD.iDAccess
 {
     [DataContract]
     public class Devices : GenericObjectName

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace ControlID.iDAccess
+namespace ControliD.iDAccess
 {
     [DataContract]
     public class Groups : GenericObjectName

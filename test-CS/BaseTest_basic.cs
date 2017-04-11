@@ -6,8 +6,8 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using ControlID.iDAccess;
-using ControlID;
+using ControliD.iDAccess;
+using ControliD;
 
 namespace UnitTestAcesso
 {

@@ -4,7 +4,6 @@ using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using System.Data.Linq.Mapping;
 using System.Runtime.Serialization;
 using System.Drawing;
@@ -13,7 +12,7 @@ using System.Drawing.Imaging;
 using System.Security.Cryptography;
 using System.Net;
 
-namespace ControlID
+namespace ControliD
 {
     public static class Util
     {

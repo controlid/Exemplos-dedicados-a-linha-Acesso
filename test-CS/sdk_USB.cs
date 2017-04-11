@@ -1,4 +1,4 @@
-﻿using ControlID.USB;
+﻿using ControliD.USB;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Drawing;

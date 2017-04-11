@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
-namespace ControlID.iDAccess
+namespace ControliD.iDAccess
 {
     // http://www.controlid.com.br/suporte/api_idaccess_V2.2-1.html#50_introduction
     // { login: 'admin', password: 'admin'}

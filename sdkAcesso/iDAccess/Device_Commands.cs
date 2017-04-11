@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace ControlID.iDAccess
+namespace ControliD.iDAccess
 {
     public partial class Device
     {

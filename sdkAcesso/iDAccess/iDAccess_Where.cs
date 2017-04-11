@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
-using ControlID;
+using ControliD;
 
-namespace ControlID.iDAccess
+namespace ControliD.iDAccess
 {
     [DataContract]
     public class WhereObjects

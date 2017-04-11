@@ -1,11 +1,11 @@
-﻿using ControlID.Properties;
+﻿using ControliD.Properties;
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Reflection;
 using System.Security.Cryptography;
 
-namespace ControlID.iDAccess
+namespace ControliD.iDAccess
 {
     public enum DeviceModels
     {

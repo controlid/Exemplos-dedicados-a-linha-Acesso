@@ -1,5 +1,5 @@
-﻿using ControlID;
-using ControlID.iDAccess;
+﻿using ControliD;
+using ControliD.iDAccess;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿using ControlID.iDAccess;
+﻿using ControliD.iDAccess;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 

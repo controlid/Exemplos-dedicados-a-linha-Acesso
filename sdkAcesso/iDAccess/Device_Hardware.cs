@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace ControlID.iDAccess
+namespace ControliD.iDAccess
 {
     // https://www.controlid.com.br/suporte/api_idaccess_V2.6.8.html#50_gpio_state
     public partial class Device

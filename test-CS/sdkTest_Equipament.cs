@@ -1,5 +1,5 @@
-﻿using ControlID;
-using ControlID.iDAccess;
+﻿using ControliD;
+using ControliD.iDAccess;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -186,7 +186,7 @@ namespace UnitTestAcesso
         public void sdk_RemoteEnroll()
         {
             // Necessita configurar o monitor para receber o retorno
-            //dev.SetConfiguration(new ControlID.iDAccess.ConfigValues(new ControlID.iDAccess.ConfigMonitor()
+            //dev.SetConfiguration(new ControliD.iDAccess.ConfigValues(new ControliD.iDAccess.ConfigMonitor()
             //{
             //    hostname = "",
             //    port = "0",

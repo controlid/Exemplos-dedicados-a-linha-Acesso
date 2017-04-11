@@ -7,8 +7,8 @@
     <ProjectGuid>{7A77F564-AD1D-470B-938E-5178198E87EF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ControlID</RootNamespace>
-    <AssemblyName>sdk-ControlID</AssemblyName>
+    <RootNamespace>ControliD</RootNamespace>
+    <AssemblyName>sdk-ControliD</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,7 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\sdk-ControlID.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\sdk-ControliD.xml</DocumentationFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
@@ -33,7 +33,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <DocumentationFile>bin\Release\sdk-ControlID.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\sdk-ControliD.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>

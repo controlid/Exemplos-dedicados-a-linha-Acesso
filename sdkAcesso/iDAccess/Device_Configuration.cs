@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace ControlID.iDAccess
+namespace ControliD.iDAccess
 {
     // https://www.controlid.com.br/suporte/api_idaccess_V2.6.8.html#40_configurations
     public partial class Device
@@ -156,7 +156,7 @@ namespace ControlID.iDAccess
         {
             /* synctask...
              *
-             * if(dbDev.Modelo==ControlID.iDAccess.DeviceModels.iDBlock)
+             * if(dbDev.Modelo==ControliD.iDAccess.DeviceModels.iDBlock)
              *     dev.SetCatra(dbDev.antiPassback)
              */
             CheckSession();

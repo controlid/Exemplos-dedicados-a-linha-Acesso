@@ -1,4 +1,4 @@
-﻿using ControlID.iDAccess;
+﻿using ControliD.iDAccess;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -10,7 +10,7 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControlID
+namespace ControliD
 {
     public class WebJson
     {

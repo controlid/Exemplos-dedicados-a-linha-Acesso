@@ -1,90 +1,90 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="ControlID.iDAccess.Groups">
+  <Class Name="ControliD.iDAccess.Groups">
     <Position X="3.75" Y="17" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.Cards">
+  <Class Name="ControliD.iDAccess.Cards">
     <Position X="2.25" Y="12" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.Templates">
+  <Class Name="ControliD.iDAccess.Templates">
     <Position X="7.5" Y="12" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAgAAAAAABQAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.Users">
+  <Class Name="ControliD.iDAccess.Users">
     <Position X="2" Y="17" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAEAAQEAAAAAAAAAAABAIACAAAAAAAAQAAgAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.User_Groups">
+  <Class Name="ControliD.iDAccess.User_Groups">
     <Position X="2.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.User_Roles">
+  <Class Name="ControliD.iDAccess.User_Roles">
     <Position X="5.75" Y="12" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAgAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.Group_Access_Rules">
+  <Class Name="ControliD.iDAccess.Group_Access_Rules">
     <Position X="7.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAgAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.Access_Rules">
+  <Class Name="ControliD.iDAccess.Access_Rules">
     <Position X="14.25" Y="17" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.Access_Rule_Time_Zones">
+  <Class Name="ControliD.iDAccess.Access_Rule_Time_Zones">
     <Position X="5.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAABAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.Area_Access_Rules">
+  <Class Name="ControliD.iDAccess.Area_Access_Rules">
     <Position X="4" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAACAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.Portal_Access_Rules">
+  <Class Name="ControliD.iDAccess.Portal_Access_Rules">
     <Position X="2.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAEAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.Time_Spans">
+  <Class Name="ControliD.iDAccess.Time_Spans">
     <Position X="4" Y="12" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAhAAHAAAAAAAgAEAABAAAQAAAAAQAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.Access_Logs">
+  <Class Name="ControliD.iDAccess.Access_Logs">
     <Position X="11" Y="12" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAgAAAAAAAAAAAAgAAMAgEAAgABAAAAAAAAAAA=</HashCode>
@@ -94,308 +94,308 @@
       <Property Name="EventType" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="ControlID.iDAccess.GenericCount">
+  <Class Name="ControliD.iDAccess.GenericCount">
     <Position X="0.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects_Base.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.GenericObject">
+  <Class Name="ControliD.iDAccess.GenericObject">
     <Position X="0.5" Y="9.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects_Base.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.GenericObjectName">
+  <Class Name="ControliD.iDAccess.GenericObjectName">
     <Position X="0.5" Y="14.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects_Base.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.Devices">
+  <Class Name="ControliD.iDAccess.Devices">
     <Position X="12.5" Y="17" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAIAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects_Config.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.Scripts">
+  <Class Name="ControliD.iDAccess.Scripts">
     <Position X="9.25" Y="12" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects_Config.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.Script_Parameters">
+  <Class Name="ControliD.iDAccess.Script_Parameters">
     <Position X="16" Y="17" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAABAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects_Config.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.Portal_Script_Parameters">
+  <Class Name="ControliD.iDAccess.Portal_Script_Parameters">
     <Position X="9.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAIgAAAAAACAAAQAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects_Config.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.Areas">
+  <Class Name="ControliD.iDAccess.Areas">
     <Position X="5.5" Y="17" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects_Config.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.Portals">
+  <Class Name="ControliD.iDAccess.Portals">
     <Position X="7.25" Y="17" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects_Config.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.Actions">
+  <Class Name="ControliD.iDAccess.Actions">
     <Position X="10.75" Y="17" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAACAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects_Config.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.Portal_Actions">
+  <Class Name="ControliD.iDAccess.Portal_Actions">
     <Position X="11" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects_Config.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.IdentifyResult" Collapsed="true">
+  <Class Name="ControliD.iDAccess.IdentifyResult" Collapsed="true">
     <Position X="2.25" Y="22.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects_Base.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.BiometricImage" Collapsed="true">
+  <Class Name="ControliD.iDAccess.BiometricImage" Collapsed="true">
     <Position X="5.75" Y="21.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAgAAAAACAAAAAABAIAggEAAAQAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects_Base.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.ReportRequest" Collapsed="true">
+  <Class Name="ControliD.iDAccess.ReportRequest" Collapsed="true">
     <Position X="7.5" Y="24.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>SACAAAQBABAAgAAAAgAJIQAAAAEAAAAACAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Reports.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.ReportFields" Collapsed="true">
+  <Class Name="ControliD.iDAccess.ReportFields" Collapsed="true">
     <Position X="5.75" Y="24.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Reports.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.Device" Collapsed="true">
+  <Class Name="ControliD.iDAccess.Device" Collapsed="true">
     <Position X="0.5" Y="22.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>GhaCoYQA6jKtDQoqAMJgRIQgCCBFAAAC8gARhAAMikc=</HashCode>
       <FileName>iDAccess\Device.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.LoginRequest" Collapsed="true">
+  <Class Name="ControliD.iDAccess.LoginRequest" Collapsed="true">
     <Position X="7.5" Y="22.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAEAA=</HashCode>
       <FileName>iDAccess\iDAccess_Utils.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.LoginResult" Collapsed="true">
+  <Class Name="ControliD.iDAccess.LoginResult" Collapsed="true">
     <Position X="0.5" Y="23.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Utils.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.ActionsRequest" Collapsed="true">
+  <Class Name="ControliD.iDAccess.ActionsRequest" Collapsed="true">
     <Position X="4" Y="21.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Utils.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.ActionItem" Collapsed="true">
+  <Class Name="ControliD.iDAccess.ActionItem" Collapsed="true">
     <Position X="2.25" Y="21.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Utils.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.BuzzerRequest" Collapsed="true">
+  <Class Name="ControliD.iDAccess.BuzzerRequest" Collapsed="true">
     <Position X="7.5" Y="21.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAACAAAACAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Utils.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.PasswordResult" Collapsed="true">
+  <Class Name="ControliD.iDAccess.PasswordResult" Collapsed="true">
     <Position X="4" Y="24.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Utils.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.InformationResult" Collapsed="true">
+  <Class Name="ControliD.iDAccess.InformationResult" Collapsed="true">
     <Position X="4" Y="22.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABACAAAAAAEAAAEAAAEAACABAAAAAABIAIgAIAEAA=</HashCode>
       <FileName>iDAccess\iDAccess_Utils.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.TimeTotal" Collapsed="true">
+  <Class Name="ControliD.iDAccess.TimeTotal" Collapsed="true">
     <Position X="2.25" Y="25.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAABAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAQA=</HashCode>
       <FileName>iDAccess\iDAccess_Utils.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.SystemTime" Collapsed="true">
+  <Class Name="ControliD.iDAccess.SystemTime" Collapsed="true">
     <Position X="0.5" Y="25.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAkAAAAAAAAAAAAAgCAAAAAAAQAAAAAAAAiAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Utils.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.License" Collapsed="true">
+  <Class Name="ControliD.iDAccess.License" Collapsed="true">
     <Position X="5.75" Y="22.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAAACAAAAAAAEAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Utils.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.MemoryInfo" Collapsed="true">
+  <Class Name="ControliD.iDAccess.MemoryInfo" Collapsed="true">
     <Position X="2.25" Y="23.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAIAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Utils.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.MemoryStatus" Collapsed="true">
+  <Class Name="ControliD.iDAccess.MemoryStatus" Collapsed="true">
     <Position X="4" Y="23.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAgAAAAAAAAAEAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Utils.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.NetworkConfig" Collapsed="true">
+  <Class Name="ControliD.iDAccess.NetworkConfig" Collapsed="true">
     <Position X="5.75" Y="23.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAAEAAAAAAAAAQkAAAAAAAAAAAAAEAAAABgAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Utils.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.TemplateResult">
+  <Class Name="ControliD.iDAccess.TemplateResult">
     <Position X="9.5" Y="23" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Utils.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.WhereObjects" Collapsed="true">
+  <Class Name="ControliD.iDAccess.WhereObjects" Collapsed="true">
     <Position X="7.5" Y="25.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>YAEAACEAEAAAkCBAAAiAAIEIABACAUAEAAKAAIAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Where.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.ObjectResult" Collapsed="true">
+  <Class Name="ControliD.iDAccess.ObjectResult" Collapsed="true">
     <Position X="0.5" Y="24.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>YAEAACEAEAAAkCBAAAiIAIEIABACAUAEAAKAAIAAAgA=</HashCode>
       <FileName>iDAccess\iDAccess_Where.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.ObjectResult2&lt;T&gt;" Collapsed="true">
+  <Class Name="ControliD.iDAccess.ObjectResult2&lt;T&gt;" Collapsed="true">
     <Position X="2.25" Y="24.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Where.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.WhereCondional" Collapsed="true">
+  <Class Name="ControliD.iDAccess.WhereCondional" Collapsed="true">
     <Position X="4" Y="25.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Where.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.AccessLogsWhere" Collapsed="true">
+  <Class Name="ControliD.iDAccess.AccessLogsWhere" Collapsed="true">
     <Position X="0.5" Y="21.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
       <FileName>iDAccess\iDAccess_Where.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.WhereFields" Collapsed="true">
+  <Class Name="ControliD.iDAccess.WhereFields" Collapsed="true">
     <Position X="5.75" Y="25.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAQAAAAIAAAAAAgAAAAAAAAAAIACAAUAAAAAAAIAA=</HashCode>
       <FileName>iDAccess\iDAccess_Where.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.ObjectRequest&lt;T, W&gt;" Collapsed="true">
+  <Class Name="ControliD.iDAccess.ObjectRequest&lt;T, W&gt;" Collapsed="true">
     <Position X="7.5" Y="23.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAAABAAAAAAAAAgAAIQAAAAEAACAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Where.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ControlID.iDAccess.GenericItem">
+  <Class Name="ControliD.iDAccess.GenericItem">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects_Base.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="ControlID.iDAccess.IServerUser">
+  <Interface Name="ControliD.iDAccess.IServerUser">
     <Position X="13" Y="21.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAIAAAAAAQAAAAAAAAAAABCAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Server.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ControlID.iDAccess.IUserLocal">
+  <Interface Name="ControliD.iDAccess.IUserLocal">
     <Position X="13" Y="23.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAQAAAAAAAAAQAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Server.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ControlID.iDAccess.IUserTemplate">
+  <Interface Name="ControliD.iDAccess.IUserTemplate">
     <Position X="13" Y="25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Server.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Enum Name="ControlID.iDAccess.EventTypes">
+  <Enum Name="ControliD.iDAccess.EventTypes">
     <Position X="13.75" Y="12.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAABAAQAAQBgAAAAgAAAAAAAACAAAAAEAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects_Base.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="ControlID.iDAccess.RoleTypes">
+  <Enum Name="ControliD.iDAccess.RoleTypes">
     <Position X="11.25" Y="21.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABEAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iDAccess\iDAccess_Objects_Base.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="ControlID.iDAccess.OrderTypes">
+  <Enum Name="ControliD.iDAccess.OrderTypes">
     <Position X="11.25" Y="25.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAABAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>

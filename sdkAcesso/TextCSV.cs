@@ -5,7 +5,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace ControlID
+namespace ControliD
 {
     /// <summary>
     /// Ferramentas de conversão de texto para CSV

@@ -4,7 +4,7 @@ using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 
-namespace ControlID.iDAccess
+namespace ControliD.iDAccess
 {
     public partial class Device
     {

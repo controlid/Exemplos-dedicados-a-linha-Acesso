@@ -1,4 +1,4 @@
-﻿using ControlID.USB;
+﻿using ControliD.USB;
 using Innovatrics.IEngine;
 using System;
 using System.Collections.Generic;

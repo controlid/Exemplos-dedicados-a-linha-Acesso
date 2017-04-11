@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControlID.iDAccess
+namespace ControliD.iDAccess
 {
     public partial class Device
     {

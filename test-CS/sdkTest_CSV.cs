@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ControlID;
+using ControliD;
 using System.Data;
-using ControlID.iDAccess;
+using ControliD.iDAccess;
 
 namespace UnitTestAcesso
 {

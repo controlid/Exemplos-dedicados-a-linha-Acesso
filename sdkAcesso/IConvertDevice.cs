@@ -1,7 +1,7 @@
-﻿using ControlID.iDAccess;
+﻿using ControliD.iDAccess;
 using System.Collections.Generic;
 
-namespace ControlID
+namespace ControliD
 {
     /// <summary>
     /// Interface que define o metodo de conversão de um objeto qualquer para um objeto do acesso

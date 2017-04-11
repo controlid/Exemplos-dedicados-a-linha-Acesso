@@ -2,7 +2,7 @@
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 
-namespace ControlID
+namespace ControliD
 {
     public static class SSLValidator
     {
