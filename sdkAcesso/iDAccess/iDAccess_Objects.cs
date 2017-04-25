@@ -263,6 +263,8 @@ namespace ControliD.iDAccess
         public long portal_id;
         [DataMember(EmitDefaultValue = false)]
         public long identification_rule_id;
+        [DataMember(EmitDefaultValue = false)]
+        public long card_value;
 
         [IgnoreDataMember]
         public EventTypes EventType { get { return (EventTypes)Event; } }
