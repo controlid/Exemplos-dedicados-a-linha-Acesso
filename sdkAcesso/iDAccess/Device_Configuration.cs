@@ -101,6 +101,41 @@ namespace ControliD.iDAccess
             return SetConfiguration(config);
         }
 
+        /// <summary>
+        /// Coloca o equipamento em modo de emergência
+        /// </summary>
+        public StatusResult ActiveEmergencyMode()
+        {
+            return SetExceptionMode("emergency");
+        }
+
+        /// <summary>
+        /// Coloca o equipamento em modo de lock-down
+        /// </summary>
+        public StatusResult ActiveLockDownMode()
+        {
+            return SetExceptionMode("lock_down");
+        }
+
+        /// <summary>
+        /// Retira o equipamento do modo de exceção
+        /// </summary>
+        public StatusResult ActiveNormalMode()
+        {
+            return SetExceptionMode(string.Empty);
+        }
+
+        /// <summary>
+        /// Atribui o modo de exceção do equipamento
+        /// </summary>
+        private StatusResult SetExceptionMode(string mode)
+        {
+            ConfigValues config = new ConfigValues(true);
+            config.general.exception_mode = mode;
+
+            return SetConfiguration(config);
+        }
+
         public ConfigValues GetConfiguration(ConfigKeys config)
         {
             CheckSession();
