@@ -23,10 +23,10 @@ namespace ControliD.iDAccess
             }
         }
 
-        public void SetRole(long idUser, RoleTypes roleTypes)
+        public string SetRole(long idUser, RoleTypes roleTypes)
         {
             // Sempre apaga a permissão
-            DestroyWhere<User_Roles, WhereObjects>(new WhereObjects()
+            int d = DestroyWhere<User_Roles, WhereObjects>(new WhereObjects()
             {
                 user_roles = new User_Roles()
                 {
@@ -35,11 +35,16 @@ namespace ControliD.iDAccess
             });
             // Somente admin devem estar na lista de admin
             if (roleTypes == RoleTypes.Admin)
-                Add<User_Roles>(new User_Roles()
+            {
+                long a = Add<User_Roles>(new User_Roles()
                 {
                     user_id = idUser,
                     RoleType = RoleTypes.Admin
                 });
+                return d > 0 ? "ROLE ADMIN" : "ERRO ADMIN";
+            }
+            else
+                return d > 0 ? "ROLE USER" : "USER";
         }
 
         public Bitmap GetUserImage(long nUserID)
