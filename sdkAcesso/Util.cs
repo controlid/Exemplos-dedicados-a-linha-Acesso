@@ -103,6 +103,25 @@ namespace ControliD
             }
         }
 
+        public static DateTime GetDate(object oValue, DateTime dtDefault)
+        {
+            try
+            {
+                if (oValue == DBNull.Value || oValue == null)
+                    return dtDefault;
+
+                DateTime dt;
+                if (DateTime.TryParse(oValue.ToString(), out dt))
+                    return dt;
+                else
+                    return dtDefault;
+            }
+            catch (Exception)
+            {
+                return dtDefault;
+            }
+        }
+
         public static uint GetUInt(object oInt, uint nDefault = 0)
         {
             try
