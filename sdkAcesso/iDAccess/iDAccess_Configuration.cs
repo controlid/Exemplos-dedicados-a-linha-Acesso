@@ -539,6 +539,9 @@ namespace ControliD.iDAccess
         public string bell_relay;       // Padrão 2
 
         [DataMember(EmitDefaultValue = false)]
+        public string exception_mode;   //"emergency" (para modo emergência), "lock_down" (para modo lock down), <qualquer outro valor> (para modo normal)
+
+        [DataMember(EmitDefaultValue = false)]
         string daylight_savings_time_start;
         public DateTime? Daylight_savings_time_start
         {

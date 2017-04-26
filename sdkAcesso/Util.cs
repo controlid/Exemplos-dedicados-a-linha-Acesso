@@ -402,6 +402,12 @@ namespace ControliD
             }
         }
 
+        public static string GetIdentifierNameById(int identifier_id)
+        {
+            byte[] identifierBytes = BitConverter.GetBytes(identifier_id).Reverse().ToArray();
+            return Encoding.UTF8.GetString(identifierBytes).Trim();
+        }
+
         public static String SerialByDeviceID(long device_id)
         {
             if (device_id > 0x10000000)
@@ -626,7 +632,7 @@ namespace ControliD
             return imgTag;
         }
 
-        // Padrão comencial igual ao REP
+        // Padrão comercial igual ao REP
         const long mask4bytes = 0x10000;     // numero de cartão com 4 bytes onde a área fica nos 2 primeiros bytes e o code nos outros 2 bytes)
         // Forma de gravar no Acesso
         const long mask8bytes = 0x100000000; // numero de cartão com 8 bytes onde a área fica nos 4 primeiros bytes e o code nos outros 4 bytes)
