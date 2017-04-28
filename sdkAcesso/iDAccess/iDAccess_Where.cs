@@ -65,6 +65,8 @@ namespace ControliD.iDAccess
         public Time_Zones time_zones;
         [DataMember(EmitDefaultValue = false)]
         public Time_Spans time_spans;
+        [DataMember(EmitDefaultValue = false)]
+        public Holidays holidays;
     }
 
     [DataContract]
@@ -130,6 +132,8 @@ namespace ControliD.iDAccess
         public Time_Zones[] time_zones;
         [DataMember()]
         public Time_Spans[] time_spans;
+        [DataMember()]
+        public Holidays[] holidays;
     }
 
     [DataContract]

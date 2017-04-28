@@ -302,7 +302,7 @@ namespace ControliD
         public static string DecodeIdentifier(int identifier_id)
         {
             byte[] identifierBytes = BitConverter.GetBytes(identifier_id).Reverse().ToArray();
-            return Encoding.UTF8.GetString(identifierBytes);
+            return Encoding.UTF8.GetString(identifierBytes).Trim('\0').Trim();
         }
 
         public static string CardRFIDtoSimple(uint rfid)
