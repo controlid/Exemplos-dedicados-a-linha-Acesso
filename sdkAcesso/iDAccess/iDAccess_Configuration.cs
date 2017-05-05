@@ -542,6 +542,9 @@ namespace ControliD.iDAccess
         public string exception_mode;   //"emergency" (para modo emergência), "lock_down" (para modo lock down), <qualquer outro valor> (para modo normal)
 
         [DataMember(EmitDefaultValue = false)]
+        public string senior_mode;
+
+        [DataMember(EmitDefaultValue = false)]
         string daylight_savings_time_start;
         public DateTime? Daylight_savings_time_start
         {

@@ -136,6 +136,30 @@ namespace ControliD.iDAccess
             return SetConfiguration(config);
         }
 
+        /// <summary>
+        /// Ativa o modo Senior de funcionamento no equipamento
+        /// </summary>
+        public StatusResult SetSeniorModeOn()
+        {
+            ConfigValues config = new ConfigValues(true, true);
+            config.general.senior_mode = "1";
+            config.online_client.ExtractTemplate = true;
+
+            return SetConfiguration(config);
+        }
+
+        /// <summary>
+        /// Desativa o modo Senior de funcionamento no equipamento
+        /// </summary>
+        public StatusResult SetSeniorModeOff()
+        {
+            ConfigValues config = new ConfigValues(true, true);
+            config.general.senior_mode = "0";
+            config.online_client.ExtractTemplate = false;
+
+            return SetConfiguration(config);
+        }
+
         public ConfigValues GetConfiguration(ConfigKeys config)
         {
             CheckSession();
