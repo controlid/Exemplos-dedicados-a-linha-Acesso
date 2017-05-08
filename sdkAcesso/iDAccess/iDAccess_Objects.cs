@@ -203,17 +203,19 @@ namespace ControliD.iDAccess
     }
 
     [DataContract]
+    public class Contingency_Card_Access_Rules : Item_Access_Rules
+    {
+        public override void SetItem(long value)
+        {
+            access_rule_id = value;
+        }
+    }
+
+    [DataContract]
     public class Contingency_Cards : GenericObjectName
     {
         [DataMember(EmitDefaultValue = false)]
         public long? value;
-    }
-
-    [DataContract]
-    public class Contingency_Card_Access_Rules : GenericObjectName
-    {
-        [DataMember(EmitDefaultValue = false)]
-        public long? access_rule_id;
     }
 
     [DataContract]
@@ -230,31 +232,31 @@ namespace ControliD.iDAccess
     public class Time_Spans : GenericObject
     {
         [DataMember(EmitDefaultValue = false)]
-        public long time_zone_id;
-        [DataMember()]
-        public long start;
-        [DataMember()]
-        public long end;
-        [DataMember()]
-        public long sun;
-        [DataMember()]
-        public long mon;
-        [DataMember()]
-        public long tue;
-        [DataMember()]
-        public long wed;
-        [DataMember()]
-        public long thu;
-        [DataMember()]
-        public long fri;
-        [DataMember()]
-        public long sat;
-        [DataMember()]
-        public int hol1;
-        [DataMember()]
-        public int hol2;
-        [DataMember()]
-        public int hol3;
+        public long? time_zone_id;
+        [DataMember(EmitDefaultValue = false)]
+        public long? start;
+        [DataMember(EmitDefaultValue = false)]
+        public long? end;
+        [DataMember(EmitDefaultValue = false)]
+        public long? sun;
+        [DataMember(EmitDefaultValue = false)]
+        public long? mon;
+        [DataMember(EmitDefaultValue = false)]
+        public long? tue;
+        [DataMember(EmitDefaultValue = false)]
+        public long? wed;
+        [DataMember(EmitDefaultValue = false)]
+        public long? thu;
+        [DataMember(EmitDefaultValue = false)]
+        public long? fri;
+        [DataMember(EmitDefaultValue = false)]
+        public long? sat;
+        [DataMember(EmitDefaultValue = false)]
+        public int? hol1;
+        [DataMember(EmitDefaultValue = false)]
+        public int? hol2;
+        [DataMember(EmitDefaultValue = false)]
+        public int? hol3;
     }
 
     [DataContract]

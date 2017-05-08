@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Threading.Tasks;
-using ControliD;
 
 namespace ControliD.iDAccess
 {
@@ -25,6 +22,8 @@ namespace ControliD.iDAccess
         public Access_Log_Access_Rules access_log_access_rules;
         [DataMember(EmitDefaultValue = false)]
         public Cards cards;
+        [DataMember(EmitDefaultValue = false)]
+        public Contingency_Cards contingency_cards;
         [DataMember(EmitDefaultValue = false)]
         public Templates templates;
         [DataMember(EmitDefaultValue = false)]
@@ -61,6 +60,8 @@ namespace ControliD.iDAccess
         public Area_Access_Rules area_access_rules;
         [DataMember(EmitDefaultValue = false)]
         public Access_Rule_Time_Zones access_rule_time_zones;
+        [DataMember(EmitDefaultValue = false)]
+        public Contingency_Card_Access_Rules contingency_card_access_rules;
         [DataMember(EmitDefaultValue = false)]
         public Time_Zones time_zones;
         [DataMember(EmitDefaultValue = false)]
@@ -99,6 +100,8 @@ namespace ControliD.iDAccess
         [DataMember()]
         public Cards[] cards;
         [DataMember()]
+        public Contingency_Cards[] contingency_cards;
+        [DataMember()]
         public Templates[] templates;
         [DataMember()]
         public Devices[] devices;
@@ -124,6 +127,8 @@ namespace ControliD.iDAccess
         public Portal_Access_Rules[] portal_access_rules;
         [DataMember()]
         public Area_Access_Rules[] area_access_rules;
+        [DataMember()]
+        public Contingency_Card_Access_Rules[] contingency_card_access_rules;
         [DataMember()]
         public Validations[] validations;
         [DataMember()]
