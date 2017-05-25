@@ -299,10 +299,19 @@ namespace ControliD
             }
         }
 
-        public static string DecodeIdentifier(int identifier_id)
+        public static string DecodeIdentifier(int identifier_id, out byte identifier_number)
         {
             byte[] identifierBytes = BitConverter.GetBytes(identifier_id).Reverse().ToArray();
-            return Encoding.UTF8.GetString(identifierBytes).Trim('\0').Trim();
+            if (identifierBytes.Length == 4)
+            {
+                identifier_number = identifierBytes[3];
+                return Encoding.UTF8.GetString(identifierBytes).Trim('\0').Trim();
+            }
+            else
+            {
+                identifier_number = 0;
+                return "erro";
+            }
         }
 
         public static string CardRFIDtoSimple(uint rfid)
