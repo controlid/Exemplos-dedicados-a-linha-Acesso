@@ -305,7 +305,7 @@ namespace ControliD
             if (identifierBytes.Length == 4)
             {
                 identifier_number = identifierBytes[3];
-                return Encoding.UTF8.GetString(identifierBytes).Trim('\0').Trim();
+                return Encoding.UTF8.GetString(identifierBytes, 0, 3);
             }
             else
             {

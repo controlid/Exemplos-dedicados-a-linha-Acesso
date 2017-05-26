@@ -46,7 +46,9 @@ namespace ControliD
                     if (item != null)
                         itens.Add(item);
                 }
-                    
+
+                if(itens.Count==0)
+                    return new long[] { };
 
                 if (lTry)
                     return AddTryRange<T>(itens);
