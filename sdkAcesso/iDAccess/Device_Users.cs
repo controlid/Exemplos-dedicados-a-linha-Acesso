@@ -41,7 +41,7 @@ namespace ControliD.iDAccess
                     user_id = idUser,
                     RoleType = RoleTypes.Admin
                 });
-                return d > 0 ? "ROLE ADMIN" : "ERRO ADMIN";
+                return a > 0 ? "ROLE ADMIN" : "ERRO ADMIN";
             }
             else
                 return d > 0 ? "ROLE USER" : "USER";
