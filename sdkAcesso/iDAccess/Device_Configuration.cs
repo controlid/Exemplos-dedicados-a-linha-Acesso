@@ -264,5 +264,14 @@ namespace ControliD.iDAccess
             {
             }
         }
+
+        public StatusResult ChangeDeviceLanguage(string language)
+        {
+            var cfg = new ConfigValues(true);
+            cfg.general.language = language;
+            CheckSession();
+            return WebJson.JsonCommand<StatusResult>(URL + "set_configuration.fcgi?session=" + Session, cfg, null, TimeOut);
+        }
+
     }
 }
