@@ -217,6 +217,25 @@ namespace ControliD
             }
         }
 
+        public static double GetDouble(object oDouble, ulong nDefault = 0)
+        {
+            try
+            {
+                if (oDouble == DBNull.Value || oDouble == null)
+                    return nDefault;
+
+                string cDouble = oDouble.ToString().Trim();
+                if (cDouble == "")
+                    return nDefault;
+
+                return double.Parse(cDouble);
+            }
+            catch (Exception)
+            {
+                return nDefault;
+            }
+        }
+
         /// <summary>
         /// UserAgent padrão para as chamadas de GetResponseHtml
         /// </summary>
