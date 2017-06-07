@@ -54,6 +54,26 @@ namespace ControliD.iDAccess
         }
 
         /// <summary>
+        /// Largura em pixel da imagem a ser enviada a qualquer device
+        /// </summary>
+        public const int DeviceImageWidth= 216;
+
+        /// <summary>
+        /// Altura em pixel da imagem a ser enviada a qualquer device
+        /// </summary>
+        public const int DeviceImageHeight = 178;
+
+        /// <summary>
+        /// Largura em pixel da imagem a ser enviada exclusivamente para a catraca que tem um display maior
+        /// </summary>
+        public const int DeviceBlockImageWidth = 185;
+
+        /// <summary>
+        /// Altura em pixel da imagem a ser enviada exclusivamente para a catraca que tem um display maior
+        /// </summary>
+        public const int DeviceBlockImageHeight = 185;
+
+        /// <summary>
         /// Define a foto de um usuário, ou a remove se for informado 'null'
         /// </summary>
         public void SetUserImage(long nUserID, Image oFoto, bool lTry=false, bool lRecise=false)
@@ -68,9 +88,9 @@ namespace ControliD.iDAccess
                     Image oSend;
                     if (lRecise)
                     {
-                        Bitmap bmp = new Bitmap(200, 150);
+                        Bitmap bmp = new Bitmap(DeviceImageWidth, DeviceImageHeight);
                         Graphics graph = Graphics.FromImage(bmp);
-                        graph.DrawImage(oFoto, 0, 0, 200, 150);
+                        graph.DrawImage(oFoto, 0, 0, DeviceImageWidth, DeviceImageHeight);
                         oSend = bmp;
                     }
                     else
