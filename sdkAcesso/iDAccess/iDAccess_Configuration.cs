@@ -546,6 +546,10 @@ namespace ControliD.iDAccess
 
         [DataMember(EmitDefaultValue = false)]
         string daylight_savings_time_start;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string language;
+
         public DateTime? Daylight_savings_time_start
         {
             get { return StringToDateTime(daylight_savings_time_start); }
