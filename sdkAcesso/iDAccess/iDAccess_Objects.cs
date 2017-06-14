@@ -219,6 +219,25 @@ namespace ControliD.iDAccess
     }
 
     [DataContract]
+    public class Holidays : GenericObject
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public string name;      //Nome do feriado
+        [DataMember(EmitDefaultValue = false)]
+        public int? start;       //Segundo em que o feriado começa, em unix timestamp
+        [DataMember(EmitDefaultValue = false)]
+        public int? end;         //Segundo em que o feriado termina, em unix timestamp
+        [DataMember(EmitDefaultValue = false)]
+        public int? hol1;        //Se este feriado pertence ao tipo 1 (0 ou 1)
+        [DataMember(EmitDefaultValue = false)]
+        public int? hol2;        //Se este feriado pertence ao tipo 2 (0 ou 1)
+        [DataMember(EmitDefaultValue = false)]
+        public int? hol3;        //Se este feriado pertence ao tipo 3 (0 ou 1)
+        [DataMember(EmitDefaultValue = false)]
+        public int? repeats;     //Se este feriado se repete anualmente (0 ou 1)
+    }
+
+    [DataContract]
     public class Validations : GenericObjectName
     {
     }
@@ -251,31 +270,12 @@ namespace ControliD.iDAccess
         public long fri;
         [DataMember()]
         public long sat;
-        [DataMember()]
-        public int hol1;
-        [DataMember()]
-        public int hol2;
-        [DataMember()]
-        public int hol3;
-    }
-
-    [DataContract]
-    public class Holidays : GenericObject
-    {
         [DataMember(EmitDefaultValue = false)]
-        public string name;      //Nome do feriado
+        public int? hol1;
         [DataMember(EmitDefaultValue = false)]
-        public int? start;       //Segundo em que o feriado começa, em unix timestamp
+        public int? hol2;
         [DataMember(EmitDefaultValue = false)]
-        public int? end;         //Segundo em que o feriado termina, em unix timestamp
-        [DataMember(EmitDefaultValue = false)]
-        public int? hol1;        //Se este feriado pertence ao tipo 1 (0 ou 1)
-        [DataMember(EmitDefaultValue = false)]
-        public int? hol2;        //Se este feriado pertence ao tipo 2 (0 ou 1)
-        [DataMember(EmitDefaultValue = false)]
-        public int? hol3;        //Se este feriado pertence ao tipo 3 (0 ou 1)
-        [DataMember(EmitDefaultValue = false)]
-        public int? repeats;     //Se este feriado se repete anualmente (0 ou 1)
+        public int? hol3;
     }
 
     // {"access_logs":[{
