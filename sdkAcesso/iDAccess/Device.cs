@@ -96,9 +96,15 @@ namespace ControliD.iDAccess
 
         public void Disconnect()
         {
-            string cLastSession = Session;
-            Session = null;
-            WebJson.JsonCommand<string>(URL + "logout.fcgi?session=" + cLastSession, null);
+            try
+            {
+                string cLastSession = Session;
+                Session = null;
+                WebJson.JsonCommand<string>(URL + "logout.fcgi?session=" + cLastSession, null);
+            }
+            catch(Exception)
+            {
+            }
         }
 
         private void CheckSession()

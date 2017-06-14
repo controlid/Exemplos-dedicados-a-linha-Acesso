@@ -92,7 +92,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="CodeSigning2017.pfx" />
     <None Include="iDAccess\_ER.cd" />
     <None Include="_SDK.cd" />
     <None Include="Resources\ic_idaccess.png" />
