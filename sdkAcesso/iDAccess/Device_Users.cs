@@ -88,9 +88,20 @@ namespace ControliD.iDAccess
                     Image oSend;
                     if (lRecise)
                     {
-                        Bitmap bmp = new Bitmap(DeviceImageWidth, DeviceImageHeight);
+                        var width = DeviceImageWidth;
+                        var height = DeviceImageHeight;
+                        if (oFoto.Height > oFoto.Width)
+                        {
+                            height = oFoto.Height * width / oFoto.Width;
+                        }
+                        else
+                        {
+                            width = oFoto.Width * height / oFoto.Height;
+                        }
+                        Bitmap bmp = new Bitmap(width, height);
                         Graphics graph = Graphics.FromImage(bmp);
-                        graph.DrawImage(oFoto, 0, 0, DeviceImageWidth, DeviceImageHeight);
+                        
+                        graph.DrawImage(oFoto, 0, 0, width, height);
                         oSend = bmp;
                     }
                     else
