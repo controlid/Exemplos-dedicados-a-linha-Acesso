@@ -146,6 +146,10 @@ namespace ControliD
         {
             try
             {
+                if (oBool == null || oBool == DBNull.Value)
+                    return false;
+                if (oBool.ToString() == "1")
+                    return true;
                 return Convert.ToBoolean(oBool);
             }
             catch (Exception)

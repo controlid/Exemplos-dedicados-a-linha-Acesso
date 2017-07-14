@@ -93,7 +93,7 @@ namespace ControliD.iDAccess
         /// <param name="item"></param>
         [OperationContract]
         [WebInvoke(UriTemplate = "fingerprint_create.fcgi", Method = "POST", RequestFormat = WebMessageFormat.Json)]
-        void TemplateCreate(NotificationTemplate item);
+        StatusResult TemplateCreate(NotificationTemplate item);
 
         /// <summary>
         /// Recebe os dados de cartão do cadastro Remoto
@@ -106,6 +106,14 @@ namespace ControliD.iDAccess
         [OperationContract]
         [WebInvoke(UriTemplate = "catra_event", Method = "POST", RequestFormat = WebMessageFormat.Json)]
         void NotifyCatra(NotificationCatraEvents item);
+
+        /// <summary>
+        /// Receber eventos da DAO (quando ocorrem novos logs)
+        /// </summary>
+        [OperationContract]
+        [WebInvoke(UriTemplate = "dao", Method = "POST", RequestFormat = WebMessageFormat.Json)]
+        void NotifyDAO(NotificationItem item);
+
     }
 
     /// <summary>
@@ -163,6 +171,14 @@ namespace ControliD.iDAccess
         [OperationContract]
         [WebInvoke(UriTemplate = "catra_event", Method = "POST", RequestFormat = WebMessageFormat.Json)]
         void NotifyCatra(NotificationCatraEvents item);
+
+        /// <summary>
+        /// Receber eventos da DAO (quando ocorrem novos logs)
+        /// </summary>
+        [OperationContract]
+        [WebInvoke(UriTemplate = "dao", Method = "POST", RequestFormat = WebMessageFormat.Json)]
+        void NotifyDAO(NotificationItem item);
+
 
         /// <summary>
         /// cria biometria cadastrada remotamente
