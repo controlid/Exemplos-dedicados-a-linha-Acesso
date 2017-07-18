@@ -15,7 +15,9 @@ namespace ControliD.iDAccess
         iDAccessProx = 3,
         iDBlock = 4,
         iDBox = 5,
-        iDFlex = 6
+        iDFlex = 6,
+        iDX = 7,    // REP
+        iDClass = 8 // REP
     }
 
     public enum DeviceNames
