@@ -69,6 +69,8 @@ namespace ControliD.iDAccess
         public List<string> general = new List<string>();
         [DataMember(EmitDefaultValue = false)]
         public List<string> online_client = new List<string>();
+        [DataMember(EmitDefaultValue = false)]
+        public List<string> monitor = new List<string>();
 
         public void AskDayLightSavingTime()
         {
@@ -82,6 +84,9 @@ namespace ControliD.iDAccess
             general.Add("local_identification");
             online_client.Add("extract_template");
             online_client.Add("server_id");
+            monitor.Add("hostname");
+            monitor.Add("port");
+            monitor.Add("path");
         }
     }
 
