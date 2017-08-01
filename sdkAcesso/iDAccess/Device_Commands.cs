@@ -97,6 +97,19 @@ namespace ControliD.iDAccess
             });
         }
 
+        public bool IsAlive()
+        {
+            try
+            {
+                var result = Command<StatusResult>("device_is_alive", null);
+                return true;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+        }
+
         public InformationResult SystemInformation()
         {
             CheckSession();

@@ -73,9 +73,9 @@ namespace UnitTestAcesso
             foreach (var ar in eqpt.List<Groups>())
                 Console.WriteLine("G " + ar.id + " " + ar.name);
 
-//            Console.WriteLine("\r\nValidations");
-//            foreach (var v in eqpt.List<Validations>())
-//                Console.WriteLine("V " + v.id + " " + v.name);
+            Console.WriteLine("\r\nValidations");
+            foreach (var v in eqpt.List<Validations>())
+                Console.WriteLine("V " + v.id + " " + v.name);
 
             Console.WriteLine("\r\nPortal_Access_Rules");
             foreach (var ar in eqpt.List<Portal_Access_Rules>())
@@ -101,9 +101,9 @@ namespace UnitTestAcesso
             foreach (var ar in eqpt.List<User_Access_Rules>())
                 Console.WriteLine("AR " + ar.access_rule_id + " U " + ar.user_id);
 
-//            Console.WriteLine("\r\nValidation_Access_Rules");
-//            foreach (var ar in eqpt.List<Access_Rule_Validations>())
-//                Console.WriteLine("AR " + ar.access_rule_id + " U " + ar.validation_id);
+            Console.WriteLine("\r\nValidation_Access_Rules");
+            foreach (var ar in eqpt.List<Access_Rule_Validations>())
+                Console.WriteLine("AR " + ar.access_rule_id + " V " + ar.validation_id);
 
             Console.WriteLine("\r\nPortal_Actions");
             foreach (var ar in eqpt.List<Portal_Actions>())
