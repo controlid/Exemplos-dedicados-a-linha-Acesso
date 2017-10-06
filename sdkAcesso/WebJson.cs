@@ -60,7 +60,7 @@ namespace ControliD
         /// Se 'WriteLog' estiver ligado será criado um arquivo com nome "log-cidsdk.txt" contendo informações enviadas a esta função
         /// </summary>
         /// <param name="logMessage">Valores a serem incluidos no Log</param>
-        public static void WriteLog(string logMessage, bool lAddTime = true)
+        public static void WriteLog(string logMessage = null, bool lAddTime = true)
         {
             if (LogPath == null)
                 return;
@@ -70,10 +70,13 @@ namespace ControliD
                 //Console.WriteLine(fi.FullName);
                 using (StreamWriter w = fi.AppendText())
                 {
-                    if (lAddTime)
+                    if (logMessage == null)
+                        w.WriteLine();
+                    else if (lAddTime)
                         w.WriteLine("{0:dd/MM/yyyy HH:mm:ss.fff} {1}", DateTime.Now, logMessage);
                     else
                         w.WriteLine(logMessage);
+
                     w.Close();
                 }
             }

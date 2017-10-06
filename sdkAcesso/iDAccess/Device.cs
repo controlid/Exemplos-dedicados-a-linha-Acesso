@@ -104,6 +104,7 @@ namespace ControliD.iDAccess
 
         private void CheckSession()
         {
+            WebJson.WriteLog(); 
             if (dtConnection.Subtract(DateTime.Now).TotalHours > 23 ||
                 dtLastCommand.Subtract(DateTime.Now).TotalHours > 3)
                 Disconnect();
