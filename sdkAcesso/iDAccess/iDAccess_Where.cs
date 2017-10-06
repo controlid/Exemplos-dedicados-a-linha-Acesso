@@ -68,6 +68,8 @@ namespace ControliD.iDAccess
         public Time_Spans time_spans;
         [DataMember(EmitDefaultValue = false)]
         public Holidays holidays;
+        [DataMember(EmitDefaultValue = false)]
+        public Log_Types log_types;
     }
 
     [DataContract]
@@ -139,6 +141,8 @@ namespace ControliD.iDAccess
         public Time_Spans[] time_spans;
         [DataMember()]
         public Holidays[] holidays;
+        [DataMember()]
+        public Log_Types[] log_types;
     }
 
     [DataContract]

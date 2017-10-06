@@ -306,6 +306,8 @@ namespace ControliD.iDAccess
         public long identification_rule_id;
         [DataMember(EmitDefaultValue = false)]
         public long card_value;
+        [DataMember(EmitDefaultValue = false)]
+        public long? log_type_id;
 
         [IgnoreDataMember]
         public EventTypes EventType { get { return (EventTypes)Event; } }
@@ -371,5 +373,15 @@ namespace ControliD.iDAccess
         {
             return access_log_id + ": " + access_rule_id;
         }
+    }
+
+    /// <summary>
+    /// Objeto nos equipamentos que representam tipos de batidas ou tipos de marcações
+    /// </summary>
+    [DataContract]
+    public class Log_Types : GenericObjectName
+    {
+        //como esta tabela só tem os campos id e name, a própria herança já tem estes 2 campos
+
     }
 }
