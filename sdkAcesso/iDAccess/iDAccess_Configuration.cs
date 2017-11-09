@@ -21,12 +21,35 @@ namespace ControliD.iDAccess
     //    Both = 3
     //}
 
+    /// <summary>
+    /// Configuração de giro
+    /// </summary>
     public enum iDBlockOperationMode
     {
+        /// <summary>
+        /// ambas controladas
+        /// </summary>
         Blocked = 0,
+        /// <summary>
+        /// entrada liberada
+        /// </summary>
         Entrance_Open = 1,
+        /// <summary>
+        /// saída liberada
+        /// </summary>
         Exit_Open = 2,
-        Both_Open = 3
+        /// <summary>
+        /// ambas liberadas
+        /// </summary>
+        Both_Open = 3,
+        /// <summary>
+        /// entrada controlada, saída bloqueada
+        /// </summary>
+        Exit_Locked = 4,
+        /// <summary>
+        /// entrada bloqueada, saída controlada
+        /// </summary>
+        Entrance_Locked = 5
     }
 
 
@@ -408,7 +431,7 @@ namespace ControliD.iDAccess
         [DataMember(EmitDefaultValue = false)]
         public string operation_mode;
         /// <summary>
-        /// Modo de operação da catraca. Controla quais sentidos da catraca serão controlados ou liberados. Deve ser "blocked", "entrance_open", "exit_open", "both_open". 
+        /// Modo de operação da catraca. Controla quais sentidos da catraca serão controlados ou liberados. Deve ser "blocked", "entrance_open", "exit_open", "both_open", "exit_locked", "entrance_locked". 
         /// (Ambas controladas, entrada liberada, saída liberada e ambas liberadas respectivamente).
         /// </summary>
         [IgnoreDataMember]
