@@ -124,11 +124,9 @@ namespace ControliD.iDAccess
     {
         public long user_id;
         public long device_id;
-        public string template; //somente modo lite ou idattendance
-        public Stream stream; //somente modo pro
+        public string template; //somente modo lite ou idattendance ou pro
         public long finger_type;
         public ImageFingerprint[] fingerprints = new ImageFingerprint[3]; //somente modo enterprise
-        public string value;
         public long card_value;
         public bool success;
         public string error;

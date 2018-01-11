@@ -141,7 +141,7 @@ namespace ControliD.iDAccess
             //obj.success = true;
             //return obj;
 
-            var retorno = Command<RemoteEnrollSyncReturn>("remote_enroll_sync", new RemoteEnrollRequest()
+            var retorno = Command<RemoteEnrollSyncReturn>("remote_enroll", new RemoteEnrollRequest()
             {
                 type = eType.ToString().ToLower(),
                 message = cMessage,
