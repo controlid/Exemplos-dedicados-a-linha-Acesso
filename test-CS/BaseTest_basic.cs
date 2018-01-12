@@ -120,7 +120,7 @@ namespace UnitTestAcesso
 
             // Exemplo de serialização de where
             AccessLogsWhere where = new AccessLogsWhere() { time = new WhereFields() { More = dt } };
-            string cJSON = ControlID.WebJson.JsonCommand<string>(null, where);
+            string cJSON = ControliD.WebJson.JsonCommand<string>(null, where);
             Console.WriteLine(cJSON);
 
         }

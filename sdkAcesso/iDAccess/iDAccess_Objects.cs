@@ -219,47 +219,6 @@ namespace ControliD.iDAccess
     }
 
     [DataContract]
-    public class Validations : GenericObjectName
-    {
-    }
-
-    [DataContract]
-    public class Time_Zones : GenericObjectName
-    {
-    }
-
-    [DataContract]
-    public class Time_Spans : GenericObject
-    {
-        [DataMember(EmitDefaultValue = false)]
-        public long? time_zone_id;
-        [DataMember(EmitDefaultValue = false)]
-        public long? start;
-        [DataMember(EmitDefaultValue = false)]
-        public long? end;
-        [DataMember(EmitDefaultValue = false)]
-        public long? sun;
-        [DataMember(EmitDefaultValue = false)]
-        public long? mon;
-        [DataMember(EmitDefaultValue = false)]
-        public long? tue;
-        [DataMember(EmitDefaultValue = false)]
-        public long? wed;
-        [DataMember(EmitDefaultValue = false)]
-        public long? thu;
-        [DataMember(EmitDefaultValue = false)]
-        public long? fri;
-        [DataMember(EmitDefaultValue = false)]
-        public long? sat;
-        [DataMember(EmitDefaultValue = false)]
-        public int? hol1;
-        [DataMember(EmitDefaultValue = false)]
-        public int? hol2;
-        [DataMember(EmitDefaultValue = false)]
-        public int? hol3;
-    }
-
-    [DataContract]
     public class Holidays : GenericObject
     {
         [DataMember(EmitDefaultValue = false)]
@@ -276,6 +235,47 @@ namespace ControliD.iDAccess
         public int? hol3;        //Se este feriado pertence ao tipo 3 (0 ou 1)
         [DataMember(EmitDefaultValue = false)]
         public int? repeats;     //Se este feriado se repete anualmente (0 ou 1)
+    }
+
+    [DataContract]
+    public class Validations : GenericObjectName
+    {
+    }
+
+    [DataContract]
+    public class Time_Zones : GenericObjectName
+    {
+    }
+
+    [DataContract]
+    public class Time_Spans : GenericObject
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public long time_zone_id;
+        [DataMember()]
+        public long start;
+        [DataMember()]
+        public long end;
+        [DataMember()]
+        public long sun;
+        [DataMember()]
+        public long mon;
+        [DataMember()]
+        public long tue;
+        [DataMember()]
+        public long wed;
+        [DataMember()]
+        public long thu;
+        [DataMember()]
+        public long fri;
+        [DataMember()]
+        public long sat;
+        [DataMember(EmitDefaultValue = false)]
+        public int? hol1;
+        [DataMember(EmitDefaultValue = false)]
+        public int? hol2;
+        [DataMember(EmitDefaultValue = false)]
+        public int? hol3;
     }
 
     // {"access_logs":[{
@@ -306,6 +306,8 @@ namespace ControliD.iDAccess
         public long identification_rule_id;
         [DataMember(EmitDefaultValue = false)]
         public long card_value;
+        [DataMember(EmitDefaultValue = false)]
+        public long? log_type_id;
 
         [IgnoreDataMember]
         public EventTypes EventType { get { return (EventTypes)Event; } }
@@ -371,5 +373,15 @@ namespace ControliD.iDAccess
         {
             return access_log_id + ": " + access_rule_id;
         }
+    }
+
+    /// <summary>
+    /// Objeto nos equipamentos que representam tipos de batidas ou tipos de marcações
+    /// </summary>
+    [DataContract]
+    public class Log_Types : GenericObjectName
+    {
+        //como esta tabela só tem os campos id e name, a própria herança já tem estes 2 campos
+
     }
 }

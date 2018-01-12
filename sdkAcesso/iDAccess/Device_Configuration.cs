@@ -107,7 +107,8 @@ namespace ControliD.iDAccess
             ConfigValues config = new ConfigValues(true, true);
             config.general.Online = true;
             config.general.LocalIdentification = mode == OnlineMode.ReturnUserId ? true : false;
-            config.online_client.ExtractTemplate = false; // mode == OnlineMode.ReturnTemplate ? true : false;
+            //config.online_client.ExtractTemplate = false; // mode == OnlineMode.ReturnTemplate ? true : false;
+            config.online_client.ExtractTemplate = mode == OnlineMode.ReturnImage ? false : true;
             config.online_client.ServerId = devSRV.id;
 
             return SetConfiguration(config);
@@ -287,5 +288,14 @@ namespace ControliD.iDAccess
             {
             }
         }
+
+        public StatusResult ChangeDeviceLanguage(string language)
+        {
+            var cfg = new ConfigValues(true);
+            cfg.general.language = language;
+            CheckSession();
+            return WebJson.JsonCommand<StatusResult>(URL + "set_configuration.fcgi?session=" + Session, cfg, null, TimeOut);
+        }
+
     }
 }

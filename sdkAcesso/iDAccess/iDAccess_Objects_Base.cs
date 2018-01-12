@@ -220,6 +220,7 @@ namespace ControliD.iDAccess
         public ActionItem[] actions;
         public bool user_image;
         public string user_image_hash;
+        public string next_event;
 
         [IgnoreDataMember]
         public EventTypes Event { get { return (EventTypes)@event; } set { @event = (int)value; } }

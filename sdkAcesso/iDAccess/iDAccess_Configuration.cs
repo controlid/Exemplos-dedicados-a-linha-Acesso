@@ -21,12 +21,35 @@ namespace ControliD.iDAccess
     //    Both = 3
     //}
 
+    /// <summary>
+    /// Configuração de giro
+    /// </summary>
     public enum iDBlockOperationMode
     {
+        /// <summary>
+        /// ambas controladas
+        /// </summary>
         Blocked = 0,
+        /// <summary>
+        /// entrada liberada
+        /// </summary>
         Entrance_Open = 1,
+        /// <summary>
+        /// saída liberada
+        /// </summary>
         Exit_Open = 2,
-        Both_Open = 3
+        /// <summary>
+        /// ambas liberadas
+        /// </summary>
+        Both_Open = 3,
+        /// <summary>
+        /// entrada controlada, saída bloqueada
+        /// </summary>
+        Exit_Locked = 4,
+        /// <summary>
+        /// entrada bloqueada, saída controlada
+        /// </summary>
+        Entrance_Locked = 5
     }
 
 
@@ -71,6 +94,8 @@ namespace ControliD.iDAccess
         public List<string> online_client = new List<string>();
         [DataMember(EmitDefaultValue = false)]
         public List<string> identifier = new List<string>();
+        [DataMember(EmitDefaultValue = false)]
+        public List<string> monitor = new List<string>();
 
         public void AskDayLightSavingTime()
         {
@@ -84,6 +109,9 @@ namespace ControliD.iDAccess
             general.Add("local_identification");
             online_client.Add("extract_template");
             online_client.Add("server_id");
+            monitor.Add("hostname");
+            monitor.Add("port");
+            monitor.Add("path");
         }
 
         public void AskMultiFactorIdentification()
@@ -97,6 +125,19 @@ namespace ControliD.iDAccess
         public string image;
         public int width;
         public int height;
+    }
+
+    public class RemoteEnrollSyncReturn
+    {
+        public long user_id;
+        public long device_id;
+        public string template; //somente modo lite ou idattendance ou pro
+        public long finger_type;
+        public ImageFingerprint[] fingerprints = new ImageFingerprint[3]; //somente modo enterprise
+        public long card_value;
+        public bool success;
+        public string error;
+
     }
 
     public class NotificationTemplate
@@ -410,7 +451,7 @@ namespace ControliD.iDAccess
         [DataMember(EmitDefaultValue = false)]
         public string operation_mode;
         /// <summary>
-        /// Modo de operação da catraca. Controla quais sentidos da catraca serão controlados ou liberados. Deve ser "blocked", "entrance_open", "exit_open", "both_open". 
+        /// Modo de operação da catraca. Controla quais sentidos da catraca serão controlados ou liberados. Deve ser "blocked", "entrance_open", "exit_open", "both_open", "exit_locked", "entrance_locked". 
         /// (Ambas controladas, entrada liberada, saída liberada e ambas liberadas respectivamente).
         /// </summary>
         [IgnoreDataMember]
@@ -553,6 +594,10 @@ namespace ControliD.iDAccess
 
         [DataMember(EmitDefaultValue = false)]
         string daylight_savings_time_start;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string language;
+
         public DateTime? Daylight_savings_time_start
         {
             get { return StringToDateTime(daylight_savings_time_start); }

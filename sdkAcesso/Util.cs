@@ -146,6 +146,10 @@ namespace ControliD
         {
             try
             {
+                if (oBool == null || oBool == DBNull.Value)
+                    return false;
+                if (oBool.ToString() == "1")
+                    return true;
                 return Convert.ToBoolean(oBool);
             }
             catch (Exception)
@@ -210,6 +214,25 @@ namespace ControliD
 
                 cLong = cLong.Replace(".", "").Replace(",", "").Replace(" ", "");
                 return UInt64.Parse(cLong);
+            }
+            catch (Exception)
+            {
+                return nDefault;
+            }
+        }
+
+        public static double GetDouble(object oDouble, ulong nDefault = 0)
+        {
+            try
+            {
+                if (oDouble == DBNull.Value || oDouble == null)
+                    return nDefault;
+
+                string cDouble = oDouble.ToString().Trim();
+                if (cDouble == "")
+                    return nDefault;
+
+                return double.Parse(cDouble);
             }
             catch (Exception)
             {
@@ -299,10 +322,19 @@ namespace ControliD
             }
         }
 
-        public static string DecodeIdentifier(int identifier_id)
+        public static string DecodeIdentifier(int identifier_id, out byte identifier_number)
         {
             byte[] identifierBytes = BitConverter.GetBytes(identifier_id).Reverse().ToArray();
-            return Encoding.UTF8.GetString(identifierBytes).Trim('\0').Trim();
+            if (identifierBytes.Length == 4)
+            {
+                identifier_number = identifierBytes[3];
+                return Encoding.UTF8.GetString(identifierBytes, 0, 3);
+            }
+            else
+            {
+                identifier_number = 0;
+                return "erro";
+            }
         }
 
         public static string CardRFIDtoSimple(uint rfid)

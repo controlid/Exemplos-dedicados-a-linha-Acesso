@@ -41,7 +41,7 @@ namespace ControliD.iDAccess
                     user_id = idUser,
                     RoleType = RoleTypes.Admin
                 });
-                return d > 0 ? "ROLE ADMIN" : "ERRO ADMIN";
+                return a > 0 ? "ROLE ADMIN" : "ERRO ADMIN";
             }
             else
                 return d > 0 ? "ROLE USER" : "USER";
@@ -52,6 +52,26 @@ namespace ControliD.iDAccess
             CheckSession();
             return WebJson.JsonCommand<Bitmap>(URL + "user_get_image.fcgi?user_id=" + nUserID + "&session=" + Session, null, null, TimeOut);
         }
+
+        /// <summary>
+        /// Largura em pixel da imagem a ser enviada a qualquer device
+        /// </summary>
+        public const int DeviceImageWidth= 216;
+
+        /// <summary>
+        /// Altura em pixel da imagem a ser enviada a qualquer device
+        /// </summary>
+        public const int DeviceImageHeight = 178;
+
+        /// <summary>
+        /// Largura em pixel da imagem a ser enviada exclusivamente para a catraca que tem um display maior
+        /// </summary>
+        public const int DeviceBlockImageWidth = 185;
+
+        /// <summary>
+        /// Altura em pixel da imagem a ser enviada exclusivamente para a catraca que tem um display maior
+        /// </summary>
+        public const int DeviceBlockImageHeight = 185;
 
         /// <summary>
         /// Define a foto de um usuário, ou a remove se for informado 'null'
@@ -68,9 +88,20 @@ namespace ControliD.iDAccess
                     Image oSend;
                     if (lRecise)
                     {
-                        Bitmap bmp = new Bitmap(200, 150);
+                        var width = DeviceImageWidth;
+                        var height = DeviceImageHeight;
+                        if (oFoto.Height > oFoto.Width)
+                        {
+                            height = oFoto.Height * width / oFoto.Width;
+                        }
+                        else
+                        {
+                            width = oFoto.Width * height / oFoto.Height;
+                        }
+                        Bitmap bmp = new Bitmap(width, height);
                         Graphics graph = Graphics.FromImage(bmp);
-                        graph.DrawImage(oFoto, 0, 0, 200, 150);
+                        
+                        graph.DrawImage(oFoto, 0, 0, width, height);
                         oSend = bmp;
                     }
                     else

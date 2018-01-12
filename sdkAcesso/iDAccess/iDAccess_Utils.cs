@@ -87,6 +87,8 @@ namespace ControliD.iDAccess
         public int panic_finger;
         [DataMember(EmitDefaultValue = false)]
         public string registration;
+        [DataMember(EmitDefaultValue = false)]
+        public bool sync;
     }
 
     public enum RemoteEnrollType

@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControliD.iDAccess
 {
@@ -67,7 +62,7 @@ namespace ControliD.iDAccess
             lreq.login = Login;
             lreq.password = Password;
 
-            object result = WebJson.JsonCommand<LoginResult>(URL + "login.fcgi", lreq, null, TimeOut);
+            var result = WebJson.JsonCommand<LoginResult>(URL + "login.fcgi", lreq, null, TimeOut);
             if (result is LoginResult)
             {
                 LoginResult dados = (LoginResult)result;
@@ -78,7 +73,7 @@ namespace ControliD.iDAccess
                 Session = dados.session;
             }
             else
-                throw new cidException(ErroCodes.LoginInvalid, "Invalid Login");
+                throw new cidException(ErroCodes.LoginInvalid, result.error ?? "Erro de conexão");
         }
 
         public string TestConnect(string cURL = null, string cLogin = null, string cPassword = null, bool? useSSL = null, int? nPort = null)
@@ -96,13 +91,20 @@ namespace ControliD.iDAccess
 
         public void Disconnect()
         {
-            string cLastSession = Session;
-            Session = null;
-            WebJson.JsonCommand<string>(URL + "logout.fcgi?session=" + cLastSession, null);
+            try
+            {
+                string cLastSession = Session;
+                Session = null;
+                WebJson.JsonCommand<string>(URL + "logout.fcgi?session=" + cLastSession, null);
+            }
+            catch(Exception)
+            {
+            }
         }
 
         private void CheckSession()
         {
+            WebJson.WriteLog(); 
             if (dtConnection.Subtract(DateTime.Now).TotalHours > 23 ||
                 dtLastCommand.Subtract(DateTime.Now).TotalHours > 3)
                 Disconnect();
