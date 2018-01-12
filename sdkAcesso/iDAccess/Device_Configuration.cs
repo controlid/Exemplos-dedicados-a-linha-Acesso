@@ -14,10 +14,16 @@ namespace ControliD.iDAccess
         {
             ConfigKeys config = new ConfigKeys();
             config.AskDayLightSavingTime();
-
             return GetConfiguration(config);
         }
 
+        public ConfigValues GetMultiFactorIdentification()
+        {
+            ConfigKeys config = new ConfigKeys();
+            config.AskMultiFactorIdentification();
+            return GetConfiguration(config);
+
+        }
         /// <summary>
         /// Configura horário de verão
         /// </summary>
@@ -65,6 +71,23 @@ namespace ControliD.iDAccess
 
             return SetConfiguration(config);
         }
+
+
+        /// <summary>
+        /// Seta o multi-factor-identification
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <returns></returns>
+
+        public StatusResult SetMultiFactorIdentification(string mode = "0")
+        {
+            var config = new ConfigValues(new Identifier
+            {
+                multi_factor_authentication = mode
+            });
+            return SetConfiguration(config);
+        }
+
 
         /// <summary>
         /// Define um servidor, e coloca o equipamento online
