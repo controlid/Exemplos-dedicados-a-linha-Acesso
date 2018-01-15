@@ -239,10 +239,21 @@ namespace ControliD.iDAccess
                 return sr;
         }
 
-        public StatusResult FactoryReset()
+        /// <summary>
+        /// Comando para executar um Factory Reset (reset de fábrica) no equipamento
+        /// </summary>
+        /// <param name="keepNetworkInfo">Parâmetro que permite que o equipamento mantenha as configurações de rede após o reset.</param>
+        /// <returns></returns>
+        public StatusResult FactoryReset(bool keepNetworkInfo = false)
         {
             CheckSession();
-            return WebJson.JsonCommand<StatusResult>(URL + "reset_to_factory_default.fcgi?session=" + Session, null, null, TimeOut);
+            if (keepNetworkInfo)
+            {
+                var obj = new FactoryReset() { keep_network_info = true };
+                return WebJson.JsonCommand<StatusResult>(URL + "reset_to_factory_default.fcgi?session=" + Session, obj, null, TimeOut);
+            }
+            else
+                return WebJson.JsonCommand<StatusResult>(URL + "reset_to_factory_default.fcgi?session=" + Session, null, null, TimeOut);
         }
 
         public StatusResult RebootRecovery()

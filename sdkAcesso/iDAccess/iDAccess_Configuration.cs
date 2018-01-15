@@ -774,4 +774,11 @@ namespace ControliD.iDAccess
         [DataMember]
         public string update_mode;
     }
+
+    [DataContract]
+    public class FactoryReset
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public bool keep_network_info;
+    }
 }
