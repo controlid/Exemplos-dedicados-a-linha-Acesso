@@ -717,5 +717,30 @@ namespace ControliD
             else
                 return false;
         }
+
+        /// <summary>
+        /// Converte UnixTime para DateTime
+        /// </summary>
+        /// <param name="unixTime"></param>
+        /// <returns></returns>
+        public static DateTime ConvertFromUnix(long unixTime)
+        {
+            DateTime dt1 = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            dt1 = dt1.AddSeconds(unixTime).ToLocalTime();
+            return dt1;
+        }
+
+        /// <summary>
+        /// Converte DateTime para UnixTime
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        public static long ConvertToUnixTimestamp(DateTime time)
+        {
+            var date = new DateTime(1970, 1, 1, 0, 0, 0, time.Kind);
+            var unixTimestamp = System.Convert.ToInt64((time - date).TotalSeconds);
+            return unixTimestamp;
+        }
+
     }
 }
