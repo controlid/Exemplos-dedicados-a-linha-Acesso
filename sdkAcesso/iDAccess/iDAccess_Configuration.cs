@@ -93,6 +93,8 @@ namespace ControliD.iDAccess
         [DataMember(EmitDefaultValue = false)]
         public List<string> online_client = new List<string>();
         [DataMember(EmitDefaultValue = false)]
+        public List<string> identifier = new List<string>();
+        [DataMember(EmitDefaultValue = false)]
         public List<string> monitor = new List<string>();
 
         public void AskDayLightSavingTime()
@@ -110,6 +112,10 @@ namespace ControliD.iDAccess
             monitor.Add("hostname");
             monitor.Add("port");
             monitor.Add("path");
+        }
+        public void AskMultiFactorIdentification()
+        {
+            identifier.Add("multi_factor_authentication");
         }
     }
 
@@ -652,6 +658,8 @@ namespace ControliD.iDAccess
         public ConfigCatra catra;
         [DataMember(EmitDefaultValue = false)]
         public LedsColors led_rgb;
+        [DataMember(EmitDefaultValue = false)]
+        public Identifier identifier;
 
         public ConfigValues(bool lGeneral = false, bool lOnline = false)
         {
@@ -659,6 +667,12 @@ namespace ControliD.iDAccess
                 general = new General();
             if (lOnline)
                 online_client = new OnlineClient();
+        }
+
+
+        public ConfigValues(Identifier _identifier)
+        {
+            identifier = _identifier;
         }
 
         public ConfigValues(General oGeneral)
@@ -780,5 +794,12 @@ namespace ControliD.iDAccess
     {
         [DataMember(EmitDefaultValue = false)]
         public bool keep_network_info;
+    }
+    [DataContract]
+    public class Identifier
+    {
+        [DataMember(EmitDefaultValue = true)]
+        public string multi_factor_authentication;
+
     }
 }

@@ -18,6 +18,13 @@ namespace ControliD.iDAccess
             return GetConfiguration(config);
         }
 
+        public ConfigValues GetMultiFactorIdentification()
+        {
+            ConfigKeys config = new ConfigKeys();
+            config.AskMultiFactorIdentification();
+            return GetConfiguration(config);
+        }
+
         /// <summary>
         /// Configura horário de verão
         /// </summary>
@@ -158,6 +165,20 @@ namespace ControliD.iDAccess
             config.general.senior_mode = "0";
             config.online_client.ExtractTemplate = false;
 
+            return SetConfiguration(config);
+        }
+
+        /// <summary>
+        /// Seta o multi-factor-identification
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <returns></returns>
+        public StatusResult SetMultiFactorIdentification(string mode = "0")
+        {
+            var config = new ConfigValues(new Identifier
+            {
+                multi_factor_authentication = mode
+            });
             return SetConfiguration(config);
         }
 

@@ -211,15 +211,26 @@ namespace ControliD.iDAccess
     /// <summary>
     /// Retorno de um processo de identificação
     /// </summary>
+    /// 
+    [DataContract]
     public class BiometricImage
     {
+        [DataMember]
         public int @event;
+        [DataMember]
         public long user_id;
+        [DataMember]
         public string user_name;
+        [DataMember]
         public int portal_id;
+        [DataMember]
         public ActionItem[] actions;
+        [DataMember]
         public bool user_image;
+        [DataMember]
         public string user_image_hash;
+
+        [DataMember(EmitDefaultValue = false)]
         public string next_event;
 
         [IgnoreDataMember]
