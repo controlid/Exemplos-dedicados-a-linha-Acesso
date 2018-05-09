@@ -375,6 +375,13 @@ namespace ControliD.iDAccess
         }
     }
 
+    [DataContract(Name="mifare")]
+    public class ConfigMifare
+    {
+        [DataMember()]
+        public string byte_order;
+    }
+
     [DataContract]
     public class ConfigMonitor
     {
@@ -655,6 +662,8 @@ namespace ControliD.iDAccess
         [DataMember(EmitDefaultValue = false)]
         public ConfigMonitor monitor;
         [DataMember(EmitDefaultValue = false)]
+        public ConfigMifare mifare;
+        [DataMember(EmitDefaultValue = false)]
         public ConfigCatra catra;
         [DataMember(EmitDefaultValue = false)]
         public LedsColors led_rgb;
@@ -688,6 +697,10 @@ namespace ControliD.iDAccess
         public ConfigValues(ConfigMonitor oMonitor)
         {
             monitor = oMonitor;
+        }
+        public ConfigValues(ConfigMifare oMifare)
+        {
+            mifare = oMifare;
         }
 
         public ConfigValues(ConfigCatra oCatra)
