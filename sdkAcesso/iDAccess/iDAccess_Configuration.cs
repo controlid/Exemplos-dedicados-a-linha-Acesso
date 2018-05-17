@@ -380,7 +380,36 @@ namespace ControliD.iDAccess
     {
         [DataMember()]
         public string byte_order;
+
     }
+
+    [DataContract(Name = "card_readerN")]
+    public class ConfigMifareCard_readerN
+    {
+        [DataMember()]
+        public string type;
+    }
+    //[DataContract(Name = "card_reader1")]
+    //public class ConfigMifareCard_reader1
+    //{
+    //    [DataMember()]
+    //    public string type;
+    //}
+
+    //[DataContract(Name = "card_reader2")]
+    //public class ConfigMifareCard_reader2
+    //{
+    //    [DataMember()]
+    //    public string type;
+    //}
+
+    //[DataContract(Name = "card_reader3")]
+    //public class ConfigMifareCard_reader3
+    //{
+    //    [DataMember()]
+    //    public string type;
+    //}
+
 
     [DataContract]
     public class ConfigMonitor
@@ -664,6 +693,14 @@ namespace ControliD.iDAccess
         [DataMember(EmitDefaultValue = false)]
         public ConfigMifare mifare;
         [DataMember(EmitDefaultValue = false)]
+        public ConfigMifareCard_readerN card_reader0;
+        [DataMember(EmitDefaultValue = false)]
+        public ConfigMifareCard_readerN card_reader1;
+        [DataMember(EmitDefaultValue = false)]
+        public ConfigMifareCard_readerN card_reader2;
+        [DataMember(EmitDefaultValue = false)]
+        public ConfigMifareCard_readerN card_reader3;
+        [DataMember(EmitDefaultValue = false)]
         public ConfigCatra catra;
         [DataMember(EmitDefaultValue = false)]
         public LedsColors led_rgb;
@@ -698,10 +735,20 @@ namespace ControliD.iDAccess
         {
             monitor = oMonitor;
         }
+
         public ConfigValues(ConfigMifare oMifare)
         {
             mifare = oMifare;
         }
+
+        public ConfigValues(ConfigMifareCard_readerN oMifareCard_readerN)
+        {
+            card_reader0 = oMifareCard_readerN;
+            card_reader1 = oMifareCard_readerN;
+            card_reader2 = oMifareCard_readerN;
+            card_reader3 = oMifareCard_readerN;
+        }
+       
 
         public ConfigValues(ConfigCatra oCatra)
         {
