@@ -181,6 +181,49 @@ namespace ControliD.iDAccess
         public long device_id;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    public class NotificationOperationMode
+    {
+        /// <summary>
+        /// Modo de operação
+        /// </summary>
+        public OperationMode operation_mode;
+        /// <summary>
+        /// id do equipamento
+        /// </summary>
+        public long device_id;
+    }
+
+    /// <summary>
+    /// Modo de Operação
+    /// </summary>
+    public class OperationMode
+    {
+        /// <summary>
+        /// 0 default
+        /// 1 contingency
+        /// </summary>
+        public int mode;
+        /// <summary>
+        /// descritivo do modo
+        /// </summary>
+        public string mode_name;
+        /// <summary>
+        /// modo de exceção
+        /// </summary>
+        public string exception_mode;
+        /// <summary>
+        /// data da mudança
+        /// </summary>
+        public int time;
+        /// <summary>
+        /// data da última contingência
+        /// </summary>
+        public int last_offline;
+    }
+
     public class IsAliveResult
     {
         public int access_logs;
@@ -549,6 +592,8 @@ namespace ControliD.iDAccess
     [DataContract]
     public class General
     {
+
+
         [DataMember(EmitDefaultValue = false)]
         public string beep_enabled;
 
@@ -674,6 +719,17 @@ namespace ControliD.iDAccess
         {
             return dt.Value.Day.ToString("00") + dt.Value.Month.ToString("00") + dt.Value.Year.ToString("0000");
         }
+
+        /// <summary>
+        /// Esse é um parâmetro geral, ou seja, não específico de algum módulo. O valor é um 
+        /// inteiro que pode ser 0 ou 1 (pode ser interpretado como um valor booleano). 
+        /// Se o valor for 1, o usuário poderá selecionar na tela qual porta deseja abrir ao se identificar 
+        /// no equipamento. 
+        /// Se o valor for 0, essa funcionalidade será desabilitada.
+        /// </summary>
+        [DataMember(EmitDefaultValue = false)]
+        public string door_choice_enabled;
+
     }
 
     /// <summary>

@@ -11,6 +11,8 @@ namespace ControliD.iDAccess
     public class LoginRequest
     {
         [DataMember]
+        public string domain;
+        [DataMember]
         public string login;
         [DataMember]
         public string password;

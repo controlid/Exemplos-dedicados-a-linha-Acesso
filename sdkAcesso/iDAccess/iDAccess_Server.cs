@@ -56,8 +56,8 @@ namespace ControliD.iDAccess
         /// Usuário identificado por biometria
         /// </summary>
         [OperationContract]
-        [WebInvoke(UriTemplate = "new_biometric_image.fcgi?session={session}&device_id={device_id}&identifier_id={identifier_id}&width={width}&height={height}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
-        IdentifyResult UserImage(string session, string device_id, string identifier_id, string width, string height, Stream stream);
+        [WebInvoke(UriTemplate = "new_biometric_image.fcgi?session={session}&device_id={device_id}&identifier_id={identifier_id}&width={width}&height={height}&portal_id={portal_id}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
+        IdentifyResult UserImage(string session, string device_id, string identifier_id, string width, string height, string portal_id, Stream stream);
 
         /// <summary>
         /// Usuário identificado por código e senha
@@ -113,6 +113,16 @@ namespace ControliD.iDAccess
         [OperationContract]
         [WebInvoke(UriTemplate = "dao", Method = "POST", RequestFormat = WebMessageFormat.Json)]
         void NotifyDAO(NotificationItem item);
+
+
+        /// <summary>
+        /// é chamado quando o equipamento liga, e quando se altera o operationMode e exceptionMode
+        /// </summary>
+        /// <param name="item"></param>
+        [OperationContract]
+        [WebInvoke(UriTemplate = "operation_mode", Method = "POST", RequestFormat = WebMessageFormat.Json)]
+        void NotifyOperationMode(NotificationOperationMode item);
+
 
     }
 
@@ -178,6 +188,14 @@ namespace ControliD.iDAccess
         [OperationContract]
         [WebInvoke(UriTemplate = "dao", Method = "POST", RequestFormat = WebMessageFormat.Json)]
         void NotifyDAO(NotificationItem item);
+
+        /// <summary>
+        /// é chamado quando o equipamento liga, e quando se altera o operationMode e exceptionMode
+        /// </summary>
+        /// <param name="item"></param>
+        [OperationContract]
+        [WebInvoke(UriTemplate = "operation_mode", Method = "POST", RequestFormat = WebMessageFormat.Json)]
+        void NotifyOperationMode(NotificationOperationMode item);
 
 
         /// <summary>

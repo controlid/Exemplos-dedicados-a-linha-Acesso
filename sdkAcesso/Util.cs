@@ -731,6 +731,18 @@ namespace ControliD
         }
 
         /// <summary>
+        /// Converte UnixTime para DateTime
+        /// </summary>
+        /// <param name="unixTime"></param>
+        /// <returns></returns>
+        public static DateTime ConvertFromUnixLocal(long unixTime)
+        {
+            DateTime dt1 = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Local);
+            dt1 = dt1.AddSeconds(unixTime).ToLocalTime();
+            return dt1;
+        }
+
+        /// <summary>
         /// Converte DateTime para UnixTime
         /// </summary>
         /// <param name="time"></param>

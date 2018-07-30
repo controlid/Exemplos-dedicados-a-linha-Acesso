@@ -79,6 +79,21 @@ namespace ControliD.iDAccess
     }
 
     [DataContract]
+    public class Scheduls : GenericObjectName
+    {
+    }
+
+    [DataContract]
+    public class AccessRules : GenericObjectName
+    {
+    }
+
+    [DataContract]
+    public class Parkings : GenericObjectName
+    {
+    }
+
+    [DataContract]
     public class Portals : GenericObjectName
     {
         [DataMember(EmitDefaultValue = false)]
