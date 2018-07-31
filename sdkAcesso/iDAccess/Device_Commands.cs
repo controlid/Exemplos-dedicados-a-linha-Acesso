@@ -120,7 +120,7 @@ namespace ControliD.iDAccess
         /// <returns></returns>
         public RemoteEnrollSyncReturn RemoteEnrollSync(RemoteEnrollType eType, string cMessage = null, int user = 0, bool panic = false, string reg = null)
         {
-            //MERDA MERDA MERDA NÃO SUBIR ESTE CODIGO DE TESTE
+            //NÃO SUBIR ESTE CODIGO DE TESTE
             //Thread.Sleep(7000); //para simular um cadastro lerdo
             //var obj = new RemoteEnrollSyncReturn();
             //obj.device_id = 474972; //192.168.102.121 - meu iDAccess do totem
