@@ -15,6 +15,10 @@ namespace ControliD.iDAccess
                 a.Invoke();
                 return null;
             }
+            catch (cidException ex)
+            {
+                return LastError = ex;
+            }
             catch (Exception ex)
             {
                 return LastError = ex;
