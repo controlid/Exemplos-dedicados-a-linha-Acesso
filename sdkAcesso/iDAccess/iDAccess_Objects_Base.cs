@@ -27,7 +27,7 @@ namespace ControliD.iDAccess
                 if (Attribute.IsDefined(fi, typeof(DataMemberAttribute)))
                 {
                     // primeira diferença, já retorna que os objetos são diferentes
-                    if(fi.FieldType==typeof(string))
+                    if (fi.FieldType==typeof(string))
                     {
                         if ((string)fi.GetValue(obj2) != (string)fi.GetValue(this))
                             return false; 
@@ -54,7 +54,7 @@ namespace ControliD.iDAccess
                     }
                     else 
                     {
-                        if (fi.GetValue(obj2) != fi.GetValue(this))
+                        if (!fi.GetValue(obj2).Equals(fi.GetValue(this)))
                             return false;
                     }
                 }
