@@ -236,8 +236,6 @@ namespace ControliD.iDAccess
         public string[] order;
         [DataMember(Name = "object")] // Foi necessário por object é uma palavra reservada
         public string ObjectName { get; private set; }
-        [DataMember(EmitDefaultValue = false)]
-        public string[] group;
 
         public ObjectRequest()
         {
