@@ -162,6 +162,20 @@ namespace ControliD.iDAccess
     }
 
     [DataContract]
+    public class WhereCondicionalTemplate
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public WhereTemplate templates;
+    }
+
+    [DataContract]
+    public class WhereTemplate
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public WhereFields user_id;
+    }
+
+    [DataContract]
     public class WhereCondional
     {
         [DataMember(EmitDefaultValue = false)]
@@ -199,6 +213,10 @@ namespace ControliD.iDAccess
         public string Operator;
         [DataMember(EmitDefaultValue = false)]
         public string connector;
+        [DataMember(EmitDefaultValue = false, Name = "IN")]
+        public long[] In;
+        [DataMember(EmitDefaultValue = false, Name = "NOT IN")]
+        public long[] NotIn;
     }
 
     [DataContract]
@@ -218,6 +236,8 @@ namespace ControliD.iDAccess
         public string[] order;
         [DataMember(Name = "object")] // Foi necessário por object é uma palavra reservada
         public string ObjectName { get; private set; }
+        [DataMember(EmitDefaultValue = false)]
+        public string[] group;
 
         public ObjectRequest()
         {
