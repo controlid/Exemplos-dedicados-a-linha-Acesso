@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
@@ -25,6 +26,13 @@ namespace ControliD.iDAccess
         public string session;
         [DataMember]
         public string error;
+    }
+
+    [DataContract]
+    public class SessionResult
+    {
+        [DataMember]
+        public bool session_is_valid;
     }
 
     // http://www.controlid.com.br/suporte/api_idaccess_V2.2-1.html#50_execute_actions
@@ -72,6 +80,25 @@ namespace ControliD.iDAccess
         public string password;
         [DataMember]
         public string salt;
+    }
+
+    [DataContract]
+    public class UserImagesRequest
+    {
+        [DataMember]
+        public UserImage[] user_images;
+    }
+
+    [DataContract]
+    public class UserImage
+    {
+        [DataMember]
+        public long user_id;
+        
+        public Image photo;
+
+        [DataMember]
+        public string image;
     }
 
     [DataContract]

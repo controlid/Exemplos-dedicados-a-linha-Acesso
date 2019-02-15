@@ -119,6 +119,93 @@ namespace ControliD.iDAccess
             }
         }
 
+        
+
+        /// <summary>
+        /// Define a foto de uma lista de usuário
+        /// </summary>
+        public void SetUserImageList(UserImage[] userImages, bool lTry = false, bool lRecise = false)
+        {
+            CheckSession();
+            try
+            {
+                System.Collections.Generic.List<UserImage> listUserImagePayload = new System.Collections.Generic.List<UserImage>();
+                int byteLength = 0;
+                foreach (UserImage userImage in userImages)
+                {
+                    Image oFoto = userImage.photo;
+                    if (lRecise)
+                    {
+                        var width = DeviceImageWidth;
+                        var height = DeviceImageHeight;
+                        if (oFoto.Height > oFoto.Width)
+                        {
+                            height = oFoto.Height * width / oFoto.Width;
+                        }
+                        else
+                        {
+                            width = oFoto.Width * height / oFoto.Height;
+                        }
+                        Bitmap bmp = new Bitmap(width, height);
+                        Graphics graph = Graphics.FromImage(bmp);
+
+                        graph.DrawImage(oFoto, 0, 0, width, height);
+                        userImage.photo = bmp;
+                    }
+                    else
+                    {
+                        userImage.photo = oFoto;
+                    }
+                    using (System.IO.MemoryStream m = new System.IO.MemoryStream())
+                    {
+                        userImage.photo.Save(m, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        byte[] imageBytes = m.ToArray();                        
+                        userImage.image = Convert.ToBase64String(imageBytes);
+                        byteLength += imageBytes.Length;
+                        listUserImagePayload.Add(userImage);
+                    }
+                    
+                    if(byteLength > 1000000) // Se payload com mais de 1MB, envia para o device
+                    {
+                        UserImagesRequest payload = new UserImagesRequest()
+                        {
+                            user_images = listUserImagePayload.ToArray(),
+                        };
+                        byteLength = 0;
+                        WebJson.JsonCommand<string>(URL + "user_set_image_list.fcgi?&session=" + Session, payload, null, TimeOut, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        listUserImagePayload.Clear();                        
+                    }
+                }
+                if (listUserImagePayload.Count > 0)
+                {
+                    UserImagesRequest payload = new UserImagesRequest()
+                    {
+                        user_images = listUserImagePayload.ToArray(),
+                    };
+                    WebJson.JsonCommand<string>(URL + "user_set_image_list.fcgi?&session=" + Session, payload, null, TimeOut, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    listUserImagePayload.Clear();
+                }                
+            }
+            catch (Exception ex)
+            {
+                if (lTry)
+                    LastError = ex;
+                else
+                    throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Retorna uma lista de id de pessoas com uma foto
+        /// </summary>
+        /// <returns></returns>
+        public long[] UserListImages()
+        {
+            var result = WebJson.JsonCommand<UserListImagesResult>(URL + "user_list_images.fcgi?&session=" + Session);
+            return result.user_ids;
+        }
+
+
         [Obsolete("Experimente usar as chamadas Genericas<Objeto> para padronizar")]
         public Users[] UserList(WhereObjects oWhere = null)
         {

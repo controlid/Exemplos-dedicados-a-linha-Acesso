@@ -104,13 +104,20 @@ namespace ControliD.iDAccess
 
         private void CheckSession()
         {
-            WebJson.WriteLog(); 
-            if (dtConnection.Subtract(DateTime.Now).TotalHours > 23 ||
-                dtLastCommand.Subtract(DateTime.Now).TotalHours > 3)
-                Disconnect();
+            WebJson.WriteLog();
 
-            if (Session == null)
+            if(Session == null)
+            {
                 Connect();
-        }
+            }
+            else
+            {
+                var result = WebJson.JsonCommand<SessionResult>(URL + "session_is_valid.fcgi?session=" + Session);
+                if (!result.session_is_valid)
+                {
+                    Connect();
+                }
+            }
+        }        
     }
 }

@@ -169,6 +169,24 @@ namespace ControliD.iDAccess
     }
 
     [DataContract]
+    public class WhereCondicionalCard
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public WhereTemplate templates;
+        [DataMember(EmitDefaultValue = false)]
+        public WhereCard cards;
+    }
+
+    [DataContract]
+    public class WhereCard
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public WhereFields user_id;
+        [DataMember(EmitDefaultValue = false)]
+        public WhereFields value;
+    }
+
+    [DataContract]
     public class WhereTemplate
     {
         [DataMember(EmitDefaultValue = false)]
@@ -180,6 +198,13 @@ namespace ControliD.iDAccess
     {
         [DataMember(EmitDefaultValue = false)]
         public AccessLogsWhere access_logs;
+    }
+
+    [DataContract]
+    public class UserListImagesResult
+    {
+        [DataMember()]
+        public long[] user_ids;
     }
 
     [DataContract]
