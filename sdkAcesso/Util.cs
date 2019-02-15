@@ -90,6 +90,11 @@ namespace ControliD
                 if (oInt == DBNull.Value || oInt == null)
                     return nDefault;
 
+                if(oInt is bool)
+                {
+                    return ((bool)oInt) ? 1 : 0;
+                }
+
                 string cInt = oInt.ToString().Trim();
                 if (cInt == "")
                     return nDefault;
