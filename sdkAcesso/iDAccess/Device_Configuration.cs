@@ -261,6 +261,18 @@ namespace ControliD.iDAccess
         }
 
         /// <summary>
+        /// Comando para setar uma nova senha master para o dispositivo
+        /// </summary>
+        /// <param name="password">Nova senha a ser definida no dispositivo</param>
+        /// <returns></returns>
+        public StatusResult SetMasterPassword(string password)
+        {
+            CheckSession();
+            var obj = new MasterPassword() { password = password };
+            return WebJson.JsonCommand<StatusResult>(URL + "master_password.fcgi?session=" + Session, obj, null, TimeOut);
+        }
+
+        /// <summary>
         /// Comando para executar um Factory Reset (reset de fábrica) no equipamento
         /// </summary>
         /// <param name="keepNetworkInfo">Parâmetro que permite que o equipamento mantenha as configurações de rede após o reset.</param>

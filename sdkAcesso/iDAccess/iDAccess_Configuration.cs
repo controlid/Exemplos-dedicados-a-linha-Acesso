@@ -767,6 +767,7 @@ namespace ControliD.iDAccess
         {
             if (lGeneral)
                 general = new General();
+                
             if (lOnline)
                 online_client = new OnlineClient();
         }
@@ -911,6 +912,14 @@ namespace ControliD.iDAccess
         [DataMember(EmitDefaultValue = false)]
         public bool keep_network_info;
     }
+
+    [DataContract]
+    public class MasterPassword
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public string password;
+    }
+
     [DataContract]
     public class Identifier
     {

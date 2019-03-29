@@ -191,7 +191,7 @@ namespace ControliD.iDAccess
             return AddRange<T>(itens, maxBlock, lTryRange);
         }
 
-        public long[] AddRange<T>(List<T> objArray, int maxBlock = 500, bool lTryRange = false) where T : GenericItem
+        public long[] AddRange<T>(List<T> objArray, int maxBlock = 250, bool lTryRange = false) where T : GenericItem //Devido ao tamanho maximo do template poder ser 5.4kb e o buffer dos devices possuir 2Mb o maxblock de 250 evita erros.
         {
             if (objArray == null || objArray.Count == 0)
                 return new long[] { };
@@ -208,7 +208,7 @@ namespace ControliD.iDAccess
                 T[] itens = new T[count];
                 objArray.CopyTo(start, itens, 0, count);
                 start += count;
-
+                //Check numero de templates para limitar em 2000
                 try
                 {
                     ids.AddRange(
@@ -224,6 +224,10 @@ namespace ControliD.iDAccess
                         LastError = ex;
                     else
                         throw ex;
+
+                    
+                    
+                       
                 }
             }
             return ids.ToArray();
