@@ -123,7 +123,7 @@ namespace ControliD.iDAccess
         public string LastTryRangeLog { get; private set; }
         public long[] LastErroIndex;
 
-        public long[] AddTryRange<T>(List<T> objList, int maxBlock = 500) where T : GenericItem
+        public long[] AddTryRange<T>(List<T> objList, int maxBlock = 250) where T : GenericItem
         {
             var ids = new List<long>();
             var erroIndex = new List<long>();
@@ -181,7 +181,7 @@ namespace ControliD.iDAccess
             return ids.ToArray();
         }
 
-        public long[] AddRange<T>(T[] objArray, int maxBlock = 500, bool lTryRange = false) where T : GenericItem
+        public long[] AddRange<T>(T[] objArray, int maxBlock = 250, bool lTryRange = false) where T : GenericItem
         {
             if (objArray == null || objArray.Length == 0)
                 return new long[] { };
@@ -233,7 +233,7 @@ namespace ControliD.iDAccess
             return ids.ToArray();
         }
 
-        public long DestroyRange<T>(long[] ids, int maxBlock = 500) where T : GenericItem
+        public long DestroyRange<T>(long[] ids, int maxBlock = 250) where T : GenericItem
         {
             if (ids == null || ids.Length == 0)
                 return 0;

@@ -8,6 +8,9 @@ namespace ControliD
     /// </summary>
     public interface IConvertDevice<T> where T : GenericItem
     {
+        /// <summary>
+        /// Interface que define o metodo de conversão de um objeto qualquer para um objeto do acesso
+        /// </summary>
         T ConvertDevice();
     }
 
