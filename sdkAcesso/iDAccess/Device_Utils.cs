@@ -41,6 +41,7 @@ namespace ControliD.iDAccess
         [Description("iDBox Appliance")]            J,
         [Description("iDBox Controler")]            L,
         [Description("iDBlock")]                    K,
+        [Description("iDBlock Plus")]               S,
         [Description("x86")]                        R,
 // Novos Seriais
         [Description("iDFlex Bio")]                 _0A01,
