@@ -7,17 +7,24 @@ using System.Security.Cryptography;
 
 namespace ControliD.iDAccess
 {
+    //ADICIONAR DEVICE À LISTA
+
     public enum DeviceModels
     {
         iDAccess = 0,
-        iDFit = 1,
+        iDAccess_Pro = 1,
         iDLight = 2,
-        iDAccessProx = 3,
-        iDBlock = 4,
-        iDBox = 5,
-        iDFlex = 6,
-        iDX = 7,    // REP
-        iDClass = 8 // REP
+        iDAccess_Nano = 3,
+        iDFit = 4,
+        iDAccessProx = 5,
+        iDBlock = 6,
+        iDBlock_Braco = 7,
+        iDBlock_Balcao = 8,
+        iDBlock_Pne = 9,
+        iDBox = 10,
+        iDFlex = 11,
+        iDX = 12,
+        iDClass = 13
     }
 
     public enum DeviceNames
@@ -60,20 +67,17 @@ namespace ControliD.iDAccess
 
     public partial class Device
     {
-        public static string[] StringModels
+
+        public static bool IsCatraca (DeviceModels model)
         {
-            get
-            {
-                return new string[] {
-                    "iDAccess",
-                    "iDFit",
-                    "iDLight",
-                    "iDAccessProx",
-                    "iDBlock",
-                    "iDBox",
-                    "iDFlex"};
-            }
+            return (model == DeviceModels.iDBlock || model == DeviceModels.iDBlock_Balcao || model == DeviceModels.iDBlock_Braco || model == DeviceModels.iDBlock_Pne);
         }
+
+        public static bool IsFlex(DeviceModels model)
+        {
+            return (model == DeviceModels.iDFlex || model == DeviceModels.iDAccess_Nano || model == DeviceModels.iDAccess_Pro);
+        }
+
 
         public static DeviceNames GetDeviceName(string cSerial)
         {
@@ -115,7 +119,7 @@ namespace ControliD.iDAccess
         public static bool ModelHasCard(string cSerial)
         {
             string cModel = GetDeviceNameDescription(cSerial);
-            if (cModel == "iDBlock" || cModel.Contains("iDBox"))
+            if (cModel.Contains("iDBlock") || cModel.Contains("iDBox"))
                 return true;
             else
                 return cModel.Contains("ASK") || cModel.Contains("Prox");
@@ -124,7 +128,7 @@ namespace ControliD.iDAccess
         public static bool ModelHasBio(string cSerial)
         {
             string cModel = GetDeviceNameDescription(cSerial);
-            if (cModel == "iDBlock")
+            if (cModel == "iDBlock" || cModel.Contains("iDBlock"))
                 return true;
             else
                 return cModel.Contains("Bio");
@@ -319,46 +323,46 @@ namespace ControliD.iDAccess
             return cOut;
         }
 
-        /// <summary>
-        /// Imagens dos modelos
-        /// </summary>
-        public static Image[] ImageModels
-        {
-            get
-            {
-                return new Image[] {
-                    Resources.ic_idaccess,
-                    Resources.ic_idfit,
-                    Resources.ic_idlight,
-                    Resources.ic_idaccessprox,
-                    Resources.ic_idblock,
-                    Resources.ic_idbox,
-                    Resources.ic_idflex,
-                };
-            }
-        }
+        ///// <summary>
+        ///// Imagens dos modelos
+        ///// </summary>
+        //public static Image[] ImageModels
+        //{
+        //    get
+        //    {
+        //        return new Image[] {
+        //            Resources.ic_idaccess,
+        //            Resources.ic_idfit,
+        //            Resources.ic_idlight,
+        //            Resources.ic_idaccessprox,
+        //            Resources.ic_idblock,
+        //            Resources.ic_idbox,
+        //            Resources.ic_idflex,
+        //        };
+        //    }
+        //}
 
-        public static Image ImageModel(DeviceModels model)
-        {
-            switch (model)
-            {
-                case DeviceModels.iDAccess:
-                    return Resources.ic_idaccess;
-                case DeviceModels.iDFit:
-                    return Resources.ic_idfit;
-                case DeviceModels.iDLight:
-                    return Resources.ic_idlight;
-                case DeviceModels.iDAccessProx:
-                    return Resources.ic_idaccessprox;
-                case DeviceModels.iDBlock:
-                    return Resources.ic_idblock;
-                case DeviceModels.iDBox:
-                    return Resources.ic_idbox;
-                case DeviceModels.iDFlex:
-                    return Resources.ic_idflex;
-            }
-            return null;
-        }
+        //public static Image ImageModel(DeviceModels model)
+        //{
+        //    switch (model)
+        //    {
+        //        case DeviceModels.iDAccess:
+        //            return Resources.ic_idaccess;
+        //        case DeviceModels.iDFit:
+        //            return Resources.ic_idfit;
+        //        case DeviceModels.iDLight:
+        //            return Resources.ic_idlight;
+        //        case DeviceModels.iDAccessProx:
+        //            return Resources.ic_idaccessprox;
+        //        case DeviceModels.iDBlock:
+        //            return Resources.ic_idblock;
+        //        case DeviceModels.iDBox:
+        //            return Resources.ic_idbox;
+        //        case DeviceModels.iDFlex:
+        //            return Resources.ic_idflex;
+        //    }
+        //    return null;
+        //}
 
         /* Código Original em C++
         namespace
