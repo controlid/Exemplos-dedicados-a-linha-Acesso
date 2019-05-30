@@ -124,7 +124,7 @@ namespace ControliD.iDAccess
         /// <summary>
         /// Define a foto de uma lista de usuário
         /// </summary>
-        public void SetUserImageList(UserImage[] userImages, bool lTry = false, bool lRecise = false)
+        public void SetUserImageList(UserImage[] userImages, bool lTry = false, bool resize = false)
         {
             CheckSession();
             try
@@ -134,7 +134,7 @@ namespace ControliD.iDAccess
                 foreach (UserImage userImage in userImages)
                 {
                     Image oFoto = userImage.photo;
-                    if (lRecise)
+                    if (resize)
                     {
                         var width = DeviceImageWidth;
                         var height = DeviceImageHeight;
@@ -147,9 +147,10 @@ namespace ControliD.iDAccess
                             width = oFoto.Width * height / oFoto.Height;
                         }
                         Bitmap bmp = new Bitmap(width, height);
-                        Graphics graph = Graphics.FromImage(bmp);
+                        using (Graphics graph = Graphics.FromImage(bmp))
+                            graph.DrawImage(oFoto, 0, 0, width, height);
 
-                        graph.DrawImage(oFoto, 0, 0, width, height);
+                        userImage.photo.Dispose(); //Remove a foto velha
                         userImage.photo = bmp;
                     }
                     else
