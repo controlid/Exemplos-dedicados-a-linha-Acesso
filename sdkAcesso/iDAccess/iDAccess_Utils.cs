@@ -337,5 +337,11 @@ namespace ControliD.iDAccess
         /// </summary>
         [DataMember()]
         public string cardnumber;
+
+        /// <summary>
+        /// Numero do cartao para exibição
+        /// </summary>
+        [DataMember()]
+        public string cardnumberstr;
     }
 }
