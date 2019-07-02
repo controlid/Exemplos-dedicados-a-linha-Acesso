@@ -40,8 +40,15 @@ namespace ControliD.iDAccess
     {
         // Não pode haver valores default pois a mesma estrutura é usado em buscas
 
+
+        [DataMember(EmitDefaultValue = false)]
+        public int? begin_time;
+        [DataMember(EmitDefaultValue = false)]
+        public int? end_time;
+
         [DataMember(EmitDefaultValue = false)]
         public string registration;
+
         [DataMember(EmitDefaultValue = false)]
         public string password;
         [DataMember(EmitDefaultValue = false)]
