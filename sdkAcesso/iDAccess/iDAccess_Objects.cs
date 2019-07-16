@@ -361,6 +361,9 @@ namespace ControliD.iDAccess
         */
         [IgnoreDataMember]
         public DateTime Date { get { return time.FromUnix(); } }
+
+        [DataMember(EmitDefaultValue = false, Name = "access_log_id")]
+        public long idLog;
     }
 
     /*
