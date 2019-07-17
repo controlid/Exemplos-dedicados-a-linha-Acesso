@@ -174,6 +174,35 @@ namespace ControliD.iDAccess
         [DataMember]
         public int time { get; set; }
     }
+    [DataContract]
+    public class NotificationOperator
+    {
+        [DataMember]
+        public long operatorId { get; set; }
+        [DataMember]
+        public string operatorName { get; set; }
+    }
+    [DataContract]
+    public class NotificationButtonHole
+    {
+        [DataMember]
+        public int device_id;
+        [DataMember]
+        public NotificationRexLog rex_log;       
+
+    }
+    [DataContract]
+    public class NotificationRexLog
+    {
+        [DataMember]
+        public int time;
+        [DataMember(Name = "event")]
+        public int Event;
+        [DataMember]
+        public int user_id;
+        [DataMember]
+        public int portal_id;
+    }
     public class NotificationItem
     {
         public NotificationObject[] object_changes;

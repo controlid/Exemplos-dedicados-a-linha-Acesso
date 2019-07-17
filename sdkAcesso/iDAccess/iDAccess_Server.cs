@@ -56,7 +56,7 @@ namespace ControliD.iDAccess
         /// Usuário identificado por biometria
         /// </summary>
         [OperationContract]
-        [WebInvoke(UriTemplate = "new_biometric_image.fcgi?session={session}&device_id={device_id}&identifier_id={identifier_id}&width={width}&height={height}&portal_id={portal_id}&variance={variance}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(UriTemplate = "ew_biometric_image.fcgi?session={session}&device_id={device_id}&identifier_id={identifier_id}&width={width}&height={height}&portal_id={portal_id}&variance={variance}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
         IdentifyResult UserImage(string session, string device_id, string identifier_id, string width, string height, string portal_id, Stream stream, string variance);
 
         /// <summary>
@@ -123,6 +123,19 @@ namespace ControliD.iDAccess
         [WebInvoke(UriTemplate = "operation_mode", Method = "POST", RequestFormat = WebMessageFormat.Json)]
         void NotifyOperationMode(NotificationOperationMode item);
 
+        /// <summary>
+        /// Gera Log de botoeira
+        /// </summary>
+        [OperationContract]
+        [WebInvoke(UriTemplate = "new_rex_log.fcgi", Method = "POST", RequestFormat = WebMessageFormat.Json)]
+        void NotifyButtonhole(NotificationButtonHole rex_log);
+
+        /// <summary>
+        /// Seta id do operador
+        /// </summary>
+        [OperationContract]
+        [WebInvoke(UriTemplate = "sendoperator.fcgi", Method = "POST", RequestFormat = WebMessageFormat.Json)]
+        void SetOperator(NotificationOperator op);
 
     }
 
