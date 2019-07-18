@@ -56,7 +56,7 @@ namespace ControliD.iDAccess
         /// Usuário identificado por biometria
         /// </summary>
         [OperationContract]
-        [WebInvoke(UriTemplate = "ew_biometric_image.fcgi?session={session}&device_id={device_id}&identifier_id={identifier_id}&width={width}&height={height}&portal_id={portal_id}&variance={variance}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(UriTemplate = "new_biometric_image.fcgi?session={session}&device_id={device_id}&identifier_id={identifier_id}&width={width}&height={height}&portal_id={portal_id}&variance={variance}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
         IdentifyResult UserImage(string session, string device_id, string identifier_id, string width, string height, string portal_id, Stream stream, string variance);
 
         /// <summary>
