@@ -182,6 +182,40 @@ namespace ControliD
         }
 
         /// <summary>
+        /// Retorna o texto com a substituição da primeira ocorrência de um caractere ou string na string recebida. 
+        /// Retorna o texto original quando não encontra o texto a ser substituído.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="search"></param>
+        /// <param name="replace"></param>
+        /// <returns></returns>
+        public static string ReplaceFirstOccurrence (string text, string search, string replace)
+        {
+            int position = text.IndexOf(search);
+            if (position < 0)
+                return text;
+            else
+                return text.Substring(0, position) + replace + text.Substring(position + search.Length);
+        }
+
+        /// <summary>
+        /// Retorna o texto com a substituição da primeira ocorrência de um caractere ou string na string recebida. 
+        /// Retorna o texto original quando não encontra o texto a ser substituído.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="search"></param>
+        /// <param name="replace"></param>
+        /// <returns></returns>
+        public static string ReplaceFirstOccurrence(string text, char search, char replace)
+        {
+            int position = text.IndexOf(search);
+            if (position < 0)
+                return text;
+            else
+                return text.Substring(0, position) + replace + text.Substring(position + 1);
+        }
+
+        /// <summary>
         /// Tenta obter um numero Int34 de um objeto qualquer, se der erro retorna 0
         /// </summary>
         /// <param name="oLong">Valor a ser obtido</param>
