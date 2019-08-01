@@ -223,11 +223,7 @@ namespace ControliD.iDAccess
                     if (lTryRange)
                         LastError = ex;
                     else
-                        throw ex;
-
-                    
-                    
-                       
+                        throw ex;     
                 }
             }
             return ids.ToArray();

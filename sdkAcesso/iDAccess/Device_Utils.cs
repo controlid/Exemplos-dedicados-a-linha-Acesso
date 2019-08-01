@@ -364,37 +364,6 @@ namespace ControliD.iDAccess
         //    return null;
         //}
 
-        /* Código Original em C++
-        namespace
-        {
-        const int pbkdf_salt_length = 32;
-        const int pbkdf_iterations = 1;
-        const int pbkdf_digest_length = 32;
-
-        void user::password(const string& password)
-        {
-               if (password.empty()) {
-                       _password = "";
-                       _salt = "";
-                       return;
-               }
-
-               unsigned char salt[pbkdf_salt_length];
-               if (!RAND_bytes(salt, pbkdf_salt_length))
-                       throw ac_exception("Unable to generate pseudo-random bytes");
-               for (int i = 0; i < pbkdf_salt_length; i++)
-                       salt[i] = salt[i] % ('~' - ' ' + 1) + ' ';
-               _salt = string((char *) salt, pbkdf_salt_length);
-               _password = util::pbkdf2(password, salt, pbkdf_salt_length, pbkdf_iterations, pbkdf_digest_length);
-        }
-        string util::pbkdf2(const string& password, const unsigned char* salt, int salt_size, int iterations, int digest_size)
-        {
-               unsigned char digest[digest_size];
-               PKCS5_PBKDF2_HMAC_SHA1(password.c_str(), (int) password.size(), salt, salt_size, iterations, digest_size, digest);
-               return hex(digest, digest_size);
-        }
-        */
-
         const int pbkdf_salt_length = 32;
         const int pbkdf_iterations = 1;
         const int pbkdf_digest_length = 32;

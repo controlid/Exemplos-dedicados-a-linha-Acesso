@@ -592,8 +592,6 @@ namespace ControliD.iDAccess
     [DataContract]
     public class General
     {
-
-
         [DataMember(EmitDefaultValue = false)]
         public string beep_enabled;
 
@@ -658,6 +656,18 @@ namespace ControliD.iDAccess
         public string relay4_timeout;
 
         [DataMember(EmitDefaultValue = false)]
+        public string door1_interlock;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string door2_interlock;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string door3_interlock;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string door4_interlock;
+
+        [DataMember(EmitDefaultValue = false)]
         public string catra_timeout;
 
         [DataMember(EmitDefaultValue = false)]
@@ -677,6 +687,7 @@ namespace ControliD.iDAccess
 
         [DataMember(EmitDefaultValue = false)]
         public string language;
+
 
         public DateTime? Daylight_savings_time_start
         {
@@ -804,8 +815,7 @@ namespace ControliD.iDAccess
             card_reader1 = oMifareCard_readerN;
             card_reader2 = oMifareCard_readerN;
             card_reader3 = oMifareCard_readerN;
-        }
-       
+        }       
 
         public ConfigValues(ConfigCatra oCatra)
         {
