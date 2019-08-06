@@ -123,6 +123,19 @@ namespace ControliD.iDAccess
         [WebInvoke(UriTemplate = "operation_mode", Method = "POST", RequestFormat = WebMessageFormat.Json)]
         void NotifyOperationMode(NotificationOperationMode item);
 
+        /// <summary>
+        /// Gera Log de botoeira
+        /// </summary>
+        [OperationContract]
+        [WebInvoke(UriTemplate = "new_rex_log.fcgi", Method = "POST", RequestFormat = WebMessageFormat.Json)]
+        void NotifyButtonhole(NotificationButtonHole rex_log);
+
+        /// <summary>
+        /// Seta id do operador
+        /// </summary>
+        [OperationContract]
+        [WebInvoke(UriTemplate = "sendoperator.fcgi", Method = "POST", RequestFormat = WebMessageFormat.Json)]
+        void SetOperator(NotificationOperator op);
 
     }
 
