@@ -73,6 +73,11 @@ namespace ControliD.iDAccess
             return (model == DeviceModels.iDBlock || model == DeviceModels.iDBlock_Balcao || model == DeviceModels.iDBlock_Braco || model == DeviceModels.iDBlock_Pne);
         }
 
+        public static bool IsCatraca(int model)
+        {
+            return (model == (int)DeviceModels.iDBlock || model == (int)DeviceModels.iDBlock_Balcao || model == (int)DeviceModels.iDBlock_Braco || model == (int)DeviceModels.iDBlock_Pne);
+        }
+
         public static bool IsFlex(DeviceModels model)
         {
             return (model == DeviceModels.iDFlex || model == DeviceModels.iDAccess_Nano || model == DeviceModels.iDAccess_Pro);
