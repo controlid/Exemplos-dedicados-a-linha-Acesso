@@ -186,7 +186,7 @@ namespace ControliD.iDAccess
     public class NotificationButtonHole
     {
         [DataMember]
-        public int device_id;
+        public long device_id;
         [DataMember]
         public NotificationRexLog rex_log;       
 
@@ -199,7 +199,7 @@ namespace ControliD.iDAccess
         [DataMember(Name = "event")]
         public int Event;
         [DataMember]
-        public int user_id;
+        public long user_id;
         [DataMember]
         public int portal_id;
     }
