@@ -133,6 +133,12 @@ namespace ControliD.iDAccess
                 int byteLength = 0;
                 foreach (UserImage userImage in userImages)
                 {
+                    if (userImage.photo == null)
+                    {
+                        WebJson.JsonCommand<string>(URL + "user_destroy_image.fcgi?&session=" + Session, "{\"user_id\":" + userImage.user_id + "}", null, TimeOut);
+                        continue;
+                    }
+
                     Image oFoto = userImage.photo;
                     if (resize)
                     {
