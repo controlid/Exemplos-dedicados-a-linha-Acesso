@@ -717,6 +717,17 @@ namespace ControliD.iDAccess
         [DataMember(EmitDefaultValue = false)]
         public string language;
 
+        [DataMember(EmitDefaultValue = false)]
+        public int relay1_open_by_pulse;
+
+        [DataMember(EmitDefaultValue = false)]
+        public int relay2_open_by_pulse;
+
+        [DataMember(EmitDefaultValue = false)]
+        public int relay3_open_by_pulse;
+
+        [DataMember(EmitDefaultValue = false)]
+        public int relay4_open_by_pulse;
 
         public DateTime? Daylight_savings_time_start
         {
