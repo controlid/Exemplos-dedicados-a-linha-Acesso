@@ -236,24 +236,24 @@ namespace ControliD.iDAccess
 
             int changes = 0;
             string cName = typeof(T).Name.ToLower();
-            int start = 0;
+            int offset = 0;
             var idResult = new List<long>();
 
-            while (start < ids.Length)
+            while (offset < ids.Length)
             {
                 string cList = "";
 
-                int count = ids.Length - start;
-                if (count > maxBlock)
-                    count = maxBlock;
+                int blockSize = ids.Length - offset;
+                if (blockSize > maxBlock)
+                    blockSize = maxBlock;
 
-                for (int i = start; i < count; i++)
+                for (int i = offset; i < offset + blockSize; i++)
                     cList += ids[i] + ",";
 
                 if (cList.Length > 0)
                 {
                     cList = cList.Substring(0, cList.Length - 1);
-                    start += count;
+                    offset += blockSize;
 
                     string cmd = "{\"object\":\"" + cName + "\",\"where\":{\"" + cName + "\":{\"id\":[" + cList + "]}}}";
                     var or = WebJson.JsonCommand<ObjectResult>(URL + "destroy_objects.fcgi?session=" + Session, cmd, null, TimeOut);
