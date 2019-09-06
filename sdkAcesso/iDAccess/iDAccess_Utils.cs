@@ -90,7 +90,7 @@ namespace ControliD.iDAccess
     }
 
     [DataContract]
-    public class UserImage
+    public class UserImage : IDisposable
     {
         [DataMember]
         public long user_id;
@@ -99,6 +99,15 @@ namespace ControliD.iDAccess
 
         [DataMember]
         public string image;
+
+        /// <summary>
+        /// Necessário liberar image?
+        /// Classe Image é IDisposable
+        /// </summary>
+        public void Dispose()
+        {
+            photo.Dispose();
+        }
     }
 
     [DataContract]
