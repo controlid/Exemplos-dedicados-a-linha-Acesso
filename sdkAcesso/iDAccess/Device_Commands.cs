@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Runtime.Serialization.Json;
+using System.ServiceModel.Dispatcher;
 using System.Threading;
 
 namespace ControliD.iDAccess
@@ -179,8 +181,17 @@ namespace ControliD.iDAccess
 
         public string SetSystemTime(DateTime dt)
         {
+            var jsonObject = new DateTimeConfig()
+            {
+                day = dt.Day,
+                month = dt.Month,
+                year = dt.Year,
+                hour = dt.Hour,
+                minute = dt.Minute,
+                second = dt.Second,
+            };
             CheckSession();
-            return WebJson.JsonCommand<string>(URL + "set_system_time.fcgi?session=" + Session, new SystemTime(dt),null, TimeOut);
+            return WebJson.JsonCommand<string>(URL + "set_system_time.fcgi?session=" + Session, jsonObject, null, TimeOut);
         }
 
         public string DeleteAdmin()

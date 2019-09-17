@@ -278,6 +278,24 @@ namespace ControliD.iDAccess
     }
 
     [DataContract]
+    public class DateTimeConfig
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public int day;
+        [DataMember(EmitDefaultValue = false)]
+        public int month;
+        [DataMember(EmitDefaultValue = false)]
+        public int year;
+
+        [DataMember(EmitDefaultValue = false)]
+        public int hour;
+        [DataMember(EmitDefaultValue = false)]
+        public int minute;
+        [DataMember(EmitDefaultValue = false)]
+        public int second;
+    }
+
+    [DataContract]
     public class FirmwareUpdateFS
     {
         [DataMember]
