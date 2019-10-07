@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -436,9 +436,11 @@ namespace ControliD
 
         public static byte[] GetBytesPNG(Bitmap digital)
         {
-            MemoryStream ms = new MemoryStream();
-            digital.Save(ms, ImageFormat.Png);
-            return ms.GetBuffer();
+            using (MemoryStream ms = new MemoryStream())
+            {
+                digital.Save(ms, ImageFormat.Png);
+                return ms.GetBuffer();
+            }
         }
 
         public static string GetSHA1(byte[] data)
