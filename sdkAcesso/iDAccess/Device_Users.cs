@@ -108,6 +108,9 @@ namespace ControliD.iDAccess
                         oSend = oFoto;
 
                     WebJson.JsonCommand<string>(URL + "user_set_image.fcgi?user_id=" + nUserID + "&session=" + Session, oSend, null, TimeOut, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+                    oFoto.Dispose();
+                    oSend.Dispose();
                 }
             }
             catch (Exception ex)
@@ -156,12 +159,15 @@ namespace ControliD.iDAccess
                         using (Graphics graph = Graphics.FromImage(bmp))
                             graph.DrawImage(oFoto, 0, 0, width, height);
 
+                        oFoto.Dispose();
                         userImage.photo.Dispose(); //Remove a foto velha
                         userImage.photo = bmp;
+                        bmp.Dispose();
                     }
                     else
                     {
                         userImage.photo = oFoto;
+                        oFoto.Dispose();
                     }
                     using (System.IO.MemoryStream m = new System.IO.MemoryStream())
                     {
@@ -180,6 +186,10 @@ namespace ControliD.iDAccess
                         };
                         byteLength = 0;
                         WebJson.JsonCommand<string>(URL + "user_set_image_list.fcgi?&session=" + Session, payload, null, TimeOut, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        foreach (var disposePayload in listUserImagePayload )
+                        {
+                            disposePayload.photo.Dispose();
+                        }
                         listUserImagePayload.Clear();                        
                     }
                 }
@@ -190,6 +200,10 @@ namespace ControliD.iDAccess
                         user_images = listUserImagePayload.ToArray(),
                     };
                     WebJson.JsonCommand<string>(URL + "user_set_image_list.fcgi?&session=" + Session, payload, null, TimeOut, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    foreach (var disposePayload in listUserImagePayload)
+                    {
+                        disposePayload.photo.Dispose();
+                    }
                     listUserImagePayload.Clear();
                 }                
             }
