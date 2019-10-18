@@ -649,10 +649,25 @@ namespace ControliD.iDAccess
         public string buttonhole2_enabled;
 
         [DataMember(EmitDefaultValue = false)]
+        public string buttonhole3_enabled;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string buttonhole4_enabled;
+
+        [DataMember(EmitDefaultValue = false)]
         public string buttonhole1_idle;
 
         [DataMember(EmitDefaultValue = false)]
         public string buttonhole2_idle;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string buttonhole3_idle;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string buttonhole4_idle;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string door_sensor_enabled;
 
         [DataMember(EmitDefaultValue = false)]
         public string door_sensor1_enabled;
@@ -665,6 +680,9 @@ namespace ControliD.iDAccess
 
         [DataMember(EmitDefaultValue = false)]
         public string door_sensor4_enabled;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string door_sensor_idle;
 
         [DataMember(EmitDefaultValue = false)]
         public string door_sensor1_idle;
@@ -791,7 +809,7 @@ namespace ControliD.iDAccess
     }
 
     /// <summary>
-    /// Valores dos parâmetros de configuração dos a serem setados nos equipamentos
+    /// Valores dos parâmetros de configuração a serem setados nos equipamentos
     /// </summary>
     [DataContract]
     public class ConfigValues
