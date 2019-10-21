@@ -61,8 +61,15 @@ namespace ControliD.iDAccess
         [Description("iDAccess iDFlexV2 Bio MIFARE")]   _0G03,
         [Description("iDAccess iDFlexV2 Prox ASK")]     _0G04,
         [Description("iDAccess iDFlexV2 Prox Mifare")]  _0G05,
-            
- // Modelos iDFit
+
+//Modelos iDFlex V2
+        [Description("iDAccess Legacy Bio")]            _0I01,
+        [Description("iDAccess Legacy Bio Prox ASK")]   _0I02,
+        [Description("iDAccess Legacy Bio Prox MIFARE")]_0I03,
+        [Description("iDAccess Legacy Prox ASK")]       _0I04,
+        [Description("iDAccess Legacy Prox MIFARE")]    _0I05,
+
+        // Modelos iDFit
         [Description("iDFit Bio")]                      N,
         [Description("iDFit Bio ASK")]                  M,
         [Description("iDFit Bio ASK+FSK")]              O,
