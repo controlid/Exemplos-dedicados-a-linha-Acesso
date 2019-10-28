@@ -303,8 +303,10 @@ namespace ControliD.iDAccess
                 if (oFoto == null)
                     WebJson.JsonCommand<string>(URL + "logo_destroy.fcgi?&session=" + Session, null, null, TimeOut);
                 else
+                {
                     WebJson.JsonCommand<string>(URL + "logo_change.fcgi?session=" + Session, oFoto, null, TimeOut, System.Drawing.Imaging.ImageFormat.Png);
-                oFoto.Dispose();
+                    oFoto.Dispose();
+                }
             }
             catch (Exception)
             {
