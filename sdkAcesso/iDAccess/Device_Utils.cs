@@ -24,7 +24,9 @@ namespace ControliD.iDAccess
         iDBox = 10,
         iDFlex = 11,
         iDX = 12,
-        iDClass = 13
+        iDClass = 13,
+        //iDAccess_Legacy = 14,
+        //iDFlex_V2 = 15
     }
 
     public enum DeviceNames
@@ -56,18 +58,26 @@ namespace ControliD.iDAccess
         [Description("iDAccess Nano Prox Mifare")]      _0F05,
 
 //Modelos iDFlex V2
-        [Description("iDAccess iDFlexV2 Bio")]          _0G01,
-        [Description("iDAccess iDFlexV2 Bio ASK")]      _0G02,
-        [Description("iDAccess iDFlexV2 Bio MIFARE")]   _0G03,
-        [Description("iDAccess iDFlexV2 Prox ASK")]     _0G04,
-        [Description("iDAccess iDFlexV2 Prox Mifare")]  _0G05,
-            
- // Modelos iDFit
+        [Description("iDFlex V2 Bio")]                   _0G01,
+        [Description("iDFlex V2 Bio ASK")]               _0G02,
+        [Description("iDFlex V2 Bio MIFARE")]            _0G03,
+        [Description("iDFlex V2 Prox ASK")]              _0G04,
+        [Description("iDFlex V2 Prox Mifare")]           _0G05,
+
+//Modelos iDAccess Legacy 
+        [Description("iDAccess Legacy Bio")]            _0I01,
+        [Description("iDAccess Legacy Bio Prox ASK")]   _0I02,
+        [Description("iDAccess Legacy Bio Prox MIFARE")]_0I03,
+        [Description("iDAccess Legacy Prox ASK")]       _0I04,
+        [Description("iDAccess Legacy Prox MIFARE")]    _0I05,
+
+// Modelos iDFit
         [Description("iDFit Bio")]                      N,
         [Description("iDFit Bio ASK")]                  M,
         [Description("iDFit Bio ASK+FSK")]              O,
         [Description("iDFit Bio ASK+PSK")]              P,
         [Description("iDFit Bio ASK+MIFARE")]           Q,
+
 // Modelos Jalapeno
         [Description("iDBox Appliance")]                J,
         [Description("iDBox Controler")]                L,
