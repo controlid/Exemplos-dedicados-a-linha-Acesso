@@ -77,8 +77,8 @@ namespace ControliD.iDAccess
         /// Equipamento solicitando imagem do usuário
         /// </summary>
         [OperationContract]
-        [WebInvoke(UriTemplate = "user_get_image.fcgi?session={session}&user_id={user_id}", Method = "GET")]
-        Stream GetImage(string session, string user_id);
+        [WebInvoke(UriTemplate = "user_get_image.fcgi?session={session}&user_id={user_id}&device_id={device_id}", Method = "GET")]
+        Stream GetImage(string session, string user_id, string device_id);
 
         /// <summary>
         /// Responde que o servidor está vivo
@@ -157,8 +157,8 @@ namespace ControliD.iDAccess
         /// Equipamento solicitando imagem do usuário
         /// </summary>
         [OperationContract]
-        [WebInvoke(UriTemplate = "user_get_image.fcgi?session={session}&user_id={user_id}", Method = "GET")]
-        Stream GetImage(string session, string user_id);
+        [WebInvoke(UriTemplate = "user_get_image.fcgi?session={session}&user_id={user_id}&device_id={device_id}", Method = "GET")]
+        Stream GetImage(string session, string user_id, string device_id);
 
         /// <summary>
         /// Usuário identificado por código e senha
