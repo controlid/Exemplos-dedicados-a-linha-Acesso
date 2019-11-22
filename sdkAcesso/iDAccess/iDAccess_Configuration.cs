@@ -634,6 +634,10 @@ namespace ControliD.iDAccess
 
         [DataMember(EmitDefaultValue = false)]
         public string siren_relay;       // Padrão 2
+
+        [DataMember(EmitDefaultValue = false)]
+        public string panic_card_enabled;
+
     }
 
     [DataContract]
