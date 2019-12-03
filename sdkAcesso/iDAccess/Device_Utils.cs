@@ -49,8 +49,10 @@ namespace ControliD.iDAccess
         [Description("iDAccess Pro Bio MIFARE")]        _0E03,
         [Description("iDAccess Pro Prox ASK")]          _0E04,
         [Description("iDAccess Pro Prox Mifare")]       _0E05,
+        [Description("iDAccess Pro Bio HID")]           _0E06,
+        [Description("iDAccess Pro Prox HID")]          _0E07,
 
-//Modelos iDAccess Nano
+        //Modelos iDAccess Nano
         [Description("iDAccess Nano Bio")]              _0F01,
         [Description("iDAccess Nano Bio ASK")]          _0F02,
         [Description("iDAccess Nano Bio MIFARE")]       _0F03,
