@@ -71,6 +71,13 @@ namespace ControliD.iDAccess
         [Description("iDAccess Legacy Prox ASK")]       _0I04,
         [Description("iDAccess Legacy Prox MIFARE")]    _0I05,
 
+//Modelos iDFit Legacy
+        [Description("iDFit Legacy Bio")]               _0J01,
+        [Description("iDFit Legacy Bio Prox ASK")]      _0J02,
+        [Description("iDFit Legacy Bio Prox MIFARE")]   _0J03,
+        [Description("iDFit Legacy Prox ASK")]          _0J04,
+        [Description("iDFit Legacy Prox MIFARE")]       _0J05,
+
 // Modelos iDFit
         [Description("iDFit Bio")]                      N,
         [Description("iDFit Bio ASK")]                  M,
