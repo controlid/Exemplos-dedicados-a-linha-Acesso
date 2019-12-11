@@ -33,70 +33,74 @@ namespace ControliD.iDAccess
     {
 
 //Modelos iDAccess
-        [Description("iDAccess Bio")]                   B,
-        [Description("iDAccess Bio ASK")]               A,
-        [Description("iDAccess Bio ASK+FSK")]           C,
-        [Description("iDAccess Bio ASK+PSK")]           D,
-        [Description("iDAccess Bio ASK+MIFARE")]        E,
-        [Description("iDAccess Prox ASK")]              F,
-        [Description("iDAccess Prox ASK+FSK")]          G,
-        [Description("iDAccess Prox ASK+PSK")]          H,
-        [Description("iDAccess Prox ASK+MIFARE")]       I,
+        [Description("iDAccess Bio")]                       B,
+        [Description("iDAccess Bio ASK")]                   A,
+        [Description("iDAccess Bio ASK+FSK")]               C,
+        [Description("iDAccess Bio ASK+PSK")]               D,
+        [Description("iDAccess Bio ASK+MIFARE")]            E,
+        [Description("iDAccess Prox ASK")]                  F,
+        [Description("iDAccess Prox ASK+FSK")]              G,
+        [Description("iDAccess Prox ASK+PSK")]              H,
+        [Description("iDAccess Prox ASK+MIFARE")]           I,
 
 //Modelos iDAccess Pro
-        [Description("iDAccess Pro Bio")]               _0E01,
-        [Description("iDAccess Pro Bio ASK")]           _0E02,
-        [Description("iDAccess Pro Bio MIFARE")]        _0E03,
-        [Description("iDAccess Pro Prox ASK")]          _0E04,
-        [Description("iDAccess Pro Prox Mifare")]       _0E05,
+        [Description("iDAccess Pro Bio")]                   _0E01,
+        [Description("iDAccess Pro Bio ASK")]               _0E02,
+        [Description("iDAccess Pro Bio MIFARE")]            _0E03,
+        [Description("iDAccess Pro Prox ASK")]              _0E04,
+        [Description("iDAccess Pro Prox MIFARE")]           _0E05,
+        [Description("iDAccess Pro Bio Prox HID")]          _0E06,
+        [Description("iDAccess Pro Prox HID")]              _0E07,
 
-//Modelos iDAccess Nano
-        [Description("iDAccess Nano Bio")]              _0F01,
-        [Description("iDAccess Nano Bio ASK")]          _0F02,
-        [Description("iDAccess Nano Bio MIFARE")]       _0F03,
-        [Description("iDAccess Nano Prox ASK")]         _0F04,
-        [Description("iDAccess Nano Prox Mifare")]      _0F05,
+        //Modelos iDAccess Nano
+        [Description("iDAccess Nano Bio")]                  _0F01,
+        [Description("iDAccess Nano Bio ASK")]              _0F02,
+        [Description("iDAccess Nano Bio MIFARE")]           _0F03,
+        [Description("iDAccess Nano Prox ASK")]             _0F04,
+        [Description("iDAccess Nano Prox MIFARE")]          _0F05,
 
 //Modelos iDFlex V2
-        [Description("iDFlex V2 Bio")]                   _0G01,
-        [Description("iDFlex V2 Bio ASK")]               _0G02,
-        [Description("iDFlex V2 Bio MIFARE")]            _0G03,
-        [Description("iDFlex V2 Prox ASK")]              _0G04,
-        [Description("iDFlex V2 Prox Mifare")]           _0G05,
+        [Description("iDFlex V2 Bio")]                      _0G01,
+        [Description("iDFlex V2 Bio Prox ASK")]             _0G02,
+        [Description("iDFlex V2 Bio Prox MIFARE")]          _0G03,
+        [Description("iDFlex V2 Prox ASK")]                 _0G04,
+        [Description("iDFlex V2 Prox MIFARE")]              _0G05,
 
 //Modelos iDAccess Legacy 
-        [Description("iDAccess Legacy Bio")]            _0I01,
-        [Description("iDAccess Legacy Bio Prox ASK")]   _0I02,
-        [Description("iDAccess Legacy Bio Prox MIFARE")]_0I03,
-        [Description("iDAccess Legacy Prox ASK")]       _0I04,
-        [Description("iDAccess Legacy Prox MIFARE")]    _0I05,
+        [Description("iDAccess Legacy Bio")]                _0I01,
+        [Description("iDAccess Legacy Bio Prox ASK")]       _0I02,
+        [Description("iDAccess Legacy Bio Prox MIFARE")]    _0I03,
+        [Description("iDAccess Legacy Prox ASK")]           _0I04,
+        [Description("iDAccess Legacy Prox MIFARE")]        _0I05,
 
 // Modelos iDFit
-        [Description("iDFit Bio")]                      N,
-        [Description("iDFit Bio ASK")]                  M,
-        [Description("iDFit Bio ASK+FSK")]              O,
-        [Description("iDFit Bio ASK+PSK")]              P,
-        [Description("iDFit Bio ASK+MIFARE")]           Q,
+        [Description("iDFit Bio")]                          N,
+        [Description("iDFit Bio ASK")]                      M,
+        [Description("iDFit Bio ASK+FSK")]                  O,
+        [Description("iDFit Bio ASK+PSK")]                  P,
+        [Description("iDFit Bio ASK+MIFARE")]               Q,
 
 // Modelos Jalapeno
-        [Description("iDBox Appliance")]                J,
-        [Description("iDBox Controler")]                L,
-        [Description("iDBlock")]                        K,
-        [Description("iDBlock Plus")]                   S,
-        [Description("x86")]                            R,
+        [Description("iDBox Appliance")]                    J,
+        [Description("iDBox Controler")]                    L,
+        [Description("iDBlock")]                            K,
+        [Description("iDBlock Plus")]                       S,
+        [Description("x86")]                                R,
 // Novos Seriais
-        [Description("iDFlex Bio")]                     _0A01,
-        [Description("iDFlex Bio Prox ASK")]            _0A02,
-        [Description("iDFlex Bio Prox Mifare")]         _0A03,
-        [Description("iDFlex Prox ASK")]                _0A04,
-        [Description("iDFlex Prox Mifare")]             _0A05,
-        // Modelos Light (descontinuado)
-        //[Description("iDAccess Light Bio")]         Z,
-        //[Description("iDAccess Light Bio ASK")]     Y,
-        //[Description("iDAccess Light Bio ASK+FSK")] X,
-        //[Description("iDAccess Light Bio ASK+PSK")] W,
-        //[Description("iDAccess Light Bio ASK+MIFARE")] V,
-        [Description("(não identificado)")]             none
+        [Description("iDFlex Bio")]                         _0A01,
+        [Description("iDFlex Bio Prox ASK")]                _0A02,
+        [Description("iDFlex Bio Prox MIFARE")]             _0A03,
+        [Description("iDFlex Prox ASK")]                    _0A04,
+        [Description("iDFlex Prox MIFARE")]                 _0A05,
+
+// Modelos Light (descontinuado)
+        //[Description("iDAccess Light Bio")]               Z,
+        //[Description("iDAccess Light Bio ASK")]           Y,
+        //[Description("iDAccess Light Bio ASK+FSK")]       X,
+        //[Description("iDAccess Light Bio ASK+PSK")]       W,
+        //[Description("iDAccess Light Bio ASK+MIFARE")]    V,
+
+        [Description("(não identificado)")]                 none
     }
 
     public partial class Device
@@ -161,7 +165,7 @@ namespace ControliD.iDAccess
             if (cModel.Contains("iDBlock") || cModel.Contains("iDBox"))
                 return true;
             else
-                return cModel.Contains("ASK") || cModel.Contains("Prox");
+                return cModel.Contains("ASK") || cModel.Contains("MIFARE") || cModel.Contains("Prox");
         }
 
         public static bool ModelHasBio(string cSerial)
@@ -187,8 +191,12 @@ namespace ControliD.iDAccess
                 return DeviceModels.iDLight;
             else if (cName.Contains("iDAccessProx") || cName.Contains("iDAccess Prox"))
                 return DeviceModels.iDAccessProx;
-            else if (cName.Contains("iDFlex") || cName.Contains("iDAccess Pro ") || cName.Contains("iDAccess Nano"))
+            else if (cName.Contains("iDFlex"))
                 return DeviceModels.iDFlex;
+            else if (cName.Contains("iDAccess Pro"))
+                return DeviceModels.iDAccess_Pro;
+            else if (cName.Contains("iDAccess Nano"))
+                return DeviceModels.iDAccess_Nano;
             else
                 return DeviceModels.iDAccess;
         }
