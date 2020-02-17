@@ -74,11 +74,11 @@ namespace ControliD.iDAccess
         [Description("iDAccess Legacy Prox MIFARE")]        _0I05,
 
 //Modelos iDFit Legacy
-        [Description("iDFit Legacy Bio")]               _0J01,
-        [Description("iDFit Legacy Bio Prox ASK")]      _0J02,
-        [Description("iDFit Legacy Bio Prox MIFARE")]   _0J03,
-        [Description("iDFit Legacy Prox ASK")]          _0J04,
-        [Description("iDFit Legacy Prox MIFARE")]       _0J05,
+        [Description("iDFit Legacy Bio")]                   _0J01,
+        [Description("iDFit Legacy Bio Prox ASK")]          _0J02,
+        [Description("iDFit Legacy Bio Prox MIFARE")]       _0J03,
+        [Description("iDFit Legacy Prox ASK")]              _0J04,
+        [Description("iDFit Legacy Prox MIFARE")]           _0J05,
 
 // Modelos iDFit
         [Description("iDFit Bio")]                          N,
@@ -91,8 +91,10 @@ namespace ControliD.iDAccess
         [Description("iDBox Appliance")]                    J,
         [Description("iDBox Controler")]                    L,
         [Description("iDBlock")]                            K,
+        [Description("iDBlock Legacy")]                     _0K,
         [Description("iDBlock Plus")]                       S,
         [Description("x86")]                                R,
+
 // Novos Seriais
         [Description("iDFlex Bio")]                         _0A01,
         [Description("iDFlex Bio Prox ASK")]                _0A02,
@@ -144,6 +146,11 @@ namespace ControliD.iDAccess
             else if (cSerial.Length > 5) // 0A0210/000001
             {
                 if (Enum.TryParse("_" + cSerial.Substring(0, 4), true, out dvm))
+                    // TODO: identificar sub tipos: ask, fsk, ...
+                    return dvm;
+
+                /** For models like iDBlock, which may have more than 60 variants. Example: "_0K". */
+                if (Enum.TryParse("_" + cSerial.Substring(0, 2), true, out dvm))
                     // TODO: identificar sub tipos: ask, fsk, ...
                     return dvm;
             }
