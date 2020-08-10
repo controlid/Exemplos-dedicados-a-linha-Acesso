@@ -140,7 +140,10 @@ namespace ControliD
                             ms.Read(bt, 0, bt.Length);
                             objRequest_string = UTF8Encoding.UTF8.GetString(bt);
                         }
-                        WriteLog(hash + " Vai enviar objRequest:" + objRequest.GetType().ToString() + " " + objRequest_string);
+                        if (objRequest_string.Length<2000)
+                            WriteLog(hash + " Vai enviar objRequest:" + objRequest.GetType().ToString() + " " + objRequest_string);
+                        else
+                            WriteLog(hash + " Vai enviar objRequest:" + objRequest.GetType().ToString() + " " + objRequest_string.Length + " bytes");
                     }
                 }
                 var request = (HttpWebRequest)WebRequest.Create(cURL) ;
