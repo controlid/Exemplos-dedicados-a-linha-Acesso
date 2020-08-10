@@ -95,6 +95,8 @@ namespace ControliD
         /// <exception cref="cidException">Erro com os dados recebidos e enviados quando possível</exception>
         public static T JsonCommand<T>(string cURL, object objRequest = null, string cMethod = null, int reqTimeout = 0, ImageFormat format = null)
         {
+            Random r = new Random();
+            string hash = r.Next(999999).ToString("000000");
             string cSend = null;
             string cReceive = null;
             Type tpResult = typeof(T);
@@ -121,7 +123,29 @@ namespace ControliD
                     }
                 }
 
-                WriteLog("URL: " + cURL);
+                WriteLog(hash + " URL: " + cURL);
+                if (objRequest != null)
+                {
+                    if (objRequest.GetType() == typeof(string))
+                        WriteLog(hash + " Vai enviar objRequest:" + objRequest.GetType().ToString() + " " + objRequest);
+                    else
+                    {
+                        string objRequest_string = "";
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            DataContractJsonSerializer serializer = new DataContractJsonSerializer(objRequest.GetType());
+                            serializer.WriteObject(ms, objRequest);
+                            Byte[] bt = new byte[ms.Position];
+                            ms.Position = 0;
+                            ms.Read(bt, 0, bt.Length);
+                            objRequest_string = UTF8Encoding.UTF8.GetString(bt);
+                        }
+                        if (objRequest_string.Length<2000)
+                            WriteLog(hash + " Vai enviar objRequest:" + objRequest.GetType().ToString() + " " + objRequest_string);
+                        else
+                            WriteLog(hash + " Vai enviar objRequest:" + objRequest.GetType().ToString() + " " + objRequest_string.Length + " bytes");
+                    }
+                }
                 var request = (HttpWebRequest)WebRequest.Create(cURL) ;
                 request.Timeout = reqTimeout;
                 request.KeepAlive = false;
@@ -247,7 +271,25 @@ namespace ControliD
                             }
                         }
                         else
-                            return (T)deserializer.ReadObject(response.GetResponseStream());
+                        {
+                            T obj_retorno = (T)deserializer.ReadObject(response.GetResponseStream());
+                            string obj_retorno_string = "";
+                            using (MemoryStream ms = new MemoryStream())
+                            {
+                                DataContractJsonSerializer serializer = new DataContractJsonSerializer(obj_retorno.GetType());
+                                serializer.WriteObject(ms, obj_retorno);
+                                Byte[] bt = new byte[ms.Position];
+                                ms.Position = 0;
+                                ms.Read(bt, 0, bt.Length);
+                                obj_retorno_string = UTF8Encoding.UTF8.GetString(bt);
+                            }
+                            WriteLog(hash + " retorno: " + obj_retorno.GetType().ToString() + " " + obj_retorno_string + "\r\n");
+
+                            if (tpResult == typeof(StatusResult) && ((StatusResult)(object)obj_retorno).Codigo == 0 && ((StatusResult)(object)obj_retorno).Status == null)
+                                ((StatusResult)(object)obj_retorno).Codigo = 200;
+
+                            return obj_retorno;
+                        }
                         //result = (T)deserializer.ReadObject(response.Result.GetResponseStream());
                     }
                     else
@@ -267,7 +309,7 @@ namespace ControliD
                 }
                 else
                 {
-                    WriteLog(result.ToString());
+                    WriteLog(hash + " retorno: " + result.ToString() + "\r\n");
                     if (tpResult == typeof(StatusResult) && ((StatusResult)(object)result).Codigo == 0 && ((StatusResult)(object)result).Status == null)
                         ((StatusResult)(object)result).Codigo = 200;
 
@@ -287,9 +329,13 @@ namespace ControliD
                 else if (ex.InnerException != null && ex.InnerException is WebException)
                     wex = (WebException)ex.InnerException;
 
+                WriteLog(hash + " ERRO HTTP cURL:" + cURL + " " + ex.Message);
+                if (objRequest != null)
+                    WriteLog(hash + " ERRO HTTP objRequest:" + objRequest.GetType().ToString() + " " + Stringify(objRequest));
+
                 if (wex != null)
                 {
-                    WriteLog("ERRO HTTP: " + wex.Message + "\r\n" + wex.StackTrace);
+                    WriteLog(hash + " ERRO HTTP: " + wex.Message + " " + cURL + " " + "\r\n" + wex.StackTrace);
                     if (wex.Response != null)
                     {
                         HttpWebResponse response = (HttpWebResponse)wex.Response;

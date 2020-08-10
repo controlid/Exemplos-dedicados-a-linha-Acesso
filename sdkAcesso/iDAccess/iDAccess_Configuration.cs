@@ -287,11 +287,11 @@ namespace ControliD.iDAccess
         [DataMember(EmitDefaultValue = false)]
         public int year;
 
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember(EmitDefaultValue = true)]
         public int hour;
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember(EmitDefaultValue = true)]
         public int minute;
-        [DataMember(EmitDefaultValue = false)]
+        [DataMember(EmitDefaultValue = true)]
         public int second;
     }
 
