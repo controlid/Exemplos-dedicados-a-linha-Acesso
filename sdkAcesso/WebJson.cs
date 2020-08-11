@@ -9,6 +9,8 @@ using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
+using System.Runtime.Serialization;
 
 namespace ControliD
 {
@@ -39,13 +41,25 @@ namespace ControliD
 
         public static string Stringify<T>(T data)
         {
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
-            MemoryStream stream = new MemoryStream();
-            serializer.WriteObject(stream, data);
-            byte[] bt = new byte[stream.Position];
-            stream.Position = 0;
-            stream.Read(bt, 0, bt.Length);
-            return Encoding.UTF8.GetString(bt);
+            bool hasDataContract = Attribute.IsDefined(typeof(T), typeof(DataContractAttribute));
+            
+            if (hasDataContract)
+            {
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
+                MemoryStream stream = new MemoryStream();
+                serializer.WriteObject(stream, data);
+                byte[] bt = new byte[stream.Position];
+                stream.Position = 0;
+                stream.Read(bt, 0, bt.Length);
+                return Encoding.UTF8.GetString(bt);
+            }
+            else
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string data_str = js.Serialize(data);
+                return data_str;
+            }
+            
         }
 
         public static T Parse<T>(string json)
@@ -331,7 +345,9 @@ namespace ControliD
 
                 WriteLog(hash + " ERRO HTTP cURL:" + cURL + " " + ex.Message);
                 if (objRequest != null)
+                {
                     WriteLog(hash + " ERRO HTTP objRequest:" + objRequest.GetType().ToString() + " " + Stringify(objRequest));
+                }
 
                 if (wex != null)
                 {
