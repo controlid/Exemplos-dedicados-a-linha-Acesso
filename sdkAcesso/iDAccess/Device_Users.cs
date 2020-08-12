@@ -176,7 +176,7 @@ namespace ControliD.iDAccess
                         listUserImagePayload.Add(userImage);
                     }
                     
-                    if(byteLength > 1000000) // Se payload com mais de 1MB, envia para o device
+                    if(byteLength > 300000) // Se payload com mais de 1MB, envia para o device
                     {
                         UserImagesRequest payload = new UserImagesRequest()
                         {
