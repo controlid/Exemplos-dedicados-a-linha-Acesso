@@ -787,6 +787,8 @@ namespace ControliD.iDAccess
 
         DateTime? StringToDateTime(string s)
         {
+            if (s == null)
+                return null;
             if (s.Length == 8)
                 return new DateTime(
                     int.Parse(s.Substring(4, 4)),
