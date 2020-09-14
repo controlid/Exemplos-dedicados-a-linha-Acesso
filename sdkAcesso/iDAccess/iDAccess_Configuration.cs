@@ -444,7 +444,7 @@ namespace ControliD.iDAccess
 
             string cURL2 = cURL;
 
-            if (cSerial.StartsWith("J") || cSerial.StartsWith("K") || cSerial.StartsWith("L"))
+            if (cSerial.StartsWith("J") || cSerial.StartsWith("K") || cSerial.StartsWith("S") || cSerial.StartsWith("L") || cSerial.StartsWith("0K"))
                 cURL2 += "jalapeno/";
 
             configuration = new FirmwareUpdateFS(cURL + "config.tar", cURL + "configuration_no_override_list");
@@ -476,6 +476,8 @@ namespace ControliD.iDAccess
     [DataContract(Name = "card_readerN")]
     public class ConfigMifareCard_readerN
     {
+        [DataMember()]
+        public string mode;
         [DataMember()]
         public string type;
     }
