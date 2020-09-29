@@ -134,6 +134,11 @@ namespace ControliD.iDAccess
             return (model == DeviceModels.iDFlex || model == DeviceModels.iDAccess_Nano || model == DeviceModels.iDAccess_Pro);
         }
 
+        public static bool IsiDUHF(DeviceModels model)
+        {
+            return (model == DeviceModels.iDUHF);
+        }
+
 
         public static DeviceNames GetDeviceName(string cSerial)
         {
