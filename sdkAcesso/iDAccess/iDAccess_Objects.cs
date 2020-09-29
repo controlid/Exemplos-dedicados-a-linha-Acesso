@@ -58,7 +58,7 @@ namespace ControliD.iDAccess
         /// Gera a senha de um usuário 
         /// </summary>
         [IgnoreDataMember]
-        public long Senha
+        public string Senha
         {
             set { password = Device.GeneratePassword(value, out salt); }
         }

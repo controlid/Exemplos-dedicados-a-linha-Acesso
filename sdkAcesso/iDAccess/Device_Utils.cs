@@ -441,8 +441,16 @@ namespace ControliD.iDAccess
         const int pbkdf_digest_length = 32;
 
         // http://stackoverflow.com/questions/18137003/is-rfc2898derivebytes-equivalent-to-pkcs5-pbkdf2-hmac-sha1
-        public static string GeneratePassword(long nValue, out string cSalt)
+        public static string GeneratePassword(string sValue, out string cSalt)
         {
+            long nValue = 0;
+            try
+            {
+                nValue = Convert.ToInt64(sValue);
+            }
+            catch (Exception)
+            {
+            }
             if (nValue == 0)
             {
                 cSalt = "";
@@ -456,7 +464,7 @@ namespace ControliD.iDAccess
                 salt[i] = (byte)rnd.Next((int)' ', (int)'~');
 
             cSalt = System.Text.ASCIIEncoding.ASCII.GetString(salt);
-            using (Rfc2898DeriveBytes password = new Rfc2898DeriveBytes(nValue.ToString(), salt, pbkdf_iterations))
+            using (Rfc2898DeriveBytes password = new Rfc2898DeriveBytes(sValue, salt, pbkdf_iterations))
             {
                 byte[] keyBytes = password.GetBytes(pbkdf_digest_length);
                 return BitConverter.ToString(keyBytes, 0).Replace("-", "").ToLower();
@@ -469,13 +477,21 @@ namespace ControliD.iDAccess
         /// <param name="nValue">senha textual</param>
         /// <param name="cSalt">salt</param>
         /// <returns>Hash da senha digitada</returns>
-        public static string VerifyPassword(long nValue, string cSalt)
+        public static string VerifyPassword(string sValue, string cSalt)
         {
+            int nValue = 0;
+            try
+            {
+                nValue = Convert.ToInt32(sValue);
+            }
+            catch (Exception ex)
+            {
+            }
             if (nValue == 0 || cSalt==null)
                 return "";
 
             byte[] salt = System.Text.ASCIIEncoding.ASCII.GetBytes(cSalt);
-            using (Rfc2898DeriveBytes password = new Rfc2898DeriveBytes(nValue.ToString(), salt, pbkdf_iterations))
+            using (Rfc2898DeriveBytes password = new Rfc2898DeriveBytes(sValue, salt, pbkdf_iterations))
             {
                 byte[] keyBytes = password.GetBytes(pbkdf_digest_length);
                 return BitConverter.ToString(keyBytes, 0).Replace("-", "").ToLower();

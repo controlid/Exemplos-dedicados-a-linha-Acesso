@@ -11,13 +11,13 @@ namespace ControliD.iDAccess
         /// </summary>
         public static bool GenerateLocalPassword = true;
 
-        public void SetPassword(ref Users usr, long nSenha)
+        public void SetPassword(ref Users usr, string sSenha)
         {
             if (GenerateLocalPassword)
-                usr.password = Device.GeneratePassword(nSenha, out usr.salt);
+                usr.password = Device.GeneratePassword(sSenha, out usr.salt);
             else
             {
-                PasswordResult pw = Command<PasswordResult>("user_hash_password", "{\"password\":\"" + nSenha.ToString() + "\"}");
+                PasswordResult pw = Command<PasswordResult>("user_hash_password", "{\"password\":\"" + sSenha + "\"}");
                 usr.password = pw.password;
                 usr.salt = pw.salt;
             }
@@ -245,7 +245,7 @@ namespace ControliD.iDAccess
         }
 
         [Obsolete("Experimente usar as chamadas Genericas<Objeto> para padronizar")]
-        public long UserAdd(string cName, string cRegistrarion, long nSenha = 0, long nID = 0)
+        public long UserAdd(string cName, string cRegistrarion, string sSenha = "", long nID = 0)
         {
             Users usr = new Users()
             {
@@ -253,8 +253,16 @@ namespace ControliD.iDAccess
                 name = cName,
                 registration = cRegistrarion
             };
+            long nSenha = 0;
+            try
+            {
+                nSenha = Convert.ToInt64(sSenha);
+            }
+            catch (Exception ex)
+            {
+            }
             if (nSenha > 0)
-                SetPassword(ref usr, nSenha);
+                SetPassword(ref usr, sSenha);
 
             return Command<ObjectResult>("create_objects", new ObjectRequest<Users[], WhereObjects>()
             {
@@ -263,11 +271,19 @@ namespace ControliD.iDAccess
         }
 
         [Obsolete("Experimente usar as chamadas Genericas<Objeto> para padronizar")]
-        public bool UserModify(long nID, string cName = null, string cRegistrarion = null, long nSenha = 0, long nNewID = 0)
+        public bool UserModify(long nID, string cName = null, string cRegistrarion = null, string sSenha = "", long nNewID = 0)
         {
             Users usr = new Users() { id = nNewID, name = cName, registration = cRegistrarion };
+            long nSenha = 0;
+            try
+            {
+                nSenha = Convert.ToInt64(sSenha);
+            }
+            catch (Exception ex)
+            {
+            }
             if (nSenha > 0)
-                SetPassword(ref usr, nSenha);
+                SetPassword(ref usr, sSenha);
 
             ObjectResult or = Command<ObjectResult>("modify_objects", new ObjectRequest<Users, WhereObjects>()
             {
