@@ -153,7 +153,18 @@ namespace ControliD.iDAccess
         [DataMember()]
         public T[] access_logs;
     }
-
+    [DataContract]
+    public class EnrollmentStateResult
+    {
+        [DataMember()]
+        public string enroller_state;
+        [DataMember()]
+        public string biometry_sate;
+        [DataMember()]
+        public string last_enroll;
+        [DataMember()]
+        public string last_enroll_error;
+    }
     public enum OrderTypes
     {
         None,
