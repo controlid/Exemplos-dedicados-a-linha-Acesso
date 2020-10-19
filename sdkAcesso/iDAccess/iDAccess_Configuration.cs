@@ -846,6 +846,8 @@ namespace ControliD.iDAccess
         public LedsColors led_rgb;
         [DataMember(EmitDefaultValue = false)]
         public Identifier identifier;
+        [DataMember(EmitDefaultValue = false)]
+        public SecBox sec_box;
 
         public ConfigValues(bool lGeneral = false, bool lOnline = false)
         {
@@ -857,6 +859,10 @@ namespace ControliD.iDAccess
         }
 
 
+        public ConfigValues(SecBox _sec_box)
+        {
+            sec_box = _sec_box;
+        }
         public ConfigValues(Identifier _identifier)
         {
             identifier = _identifier;
@@ -888,6 +894,20 @@ namespace ControliD.iDAccess
             card_reader1 = oMifareCard_readerN;
             card_reader2 = oMifareCard_readerN;
             card_reader3 = oMifareCard_readerN;
+        }
+        public ConfigValues(ConfigMifareCard_readerN oMifareCard_readerN, bool onlyReader0)
+        {
+            if (onlyReader0)
+            {
+                card_reader0 = oMifareCard_readerN;
+            }
+            else
+            {
+                card_reader0 = oMifareCard_readerN;
+                card_reader1 = oMifareCard_readerN;
+                card_reader2 = oMifareCard_readerN;
+                card_reader3 = oMifareCard_readerN;
+            }
         }       
 
         public ConfigValues(ConfigCatra oCatra)
@@ -945,7 +965,17 @@ namespace ControliD.iDAccess
         }
     }
 
+    [DataContract]
+    public class SecBox
+    {
+        [DataMember]
+        public string mode;
+    }
+
+
     // {"led_rgb": {"state":"3","solid_red":"0","solid_green":"0","solid_blue":"0","transition_start_red":"0","transition_start_green":"0","transition_start_blue":"0","transition_end_red":"65535","transition_end_green":"0","transition_end_blue":"0"}}
+
+
 
     [DataContract]
     public class LedsColors
