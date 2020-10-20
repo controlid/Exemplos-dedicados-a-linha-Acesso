@@ -22,11 +22,12 @@ namespace ControliD.iDAccess
         iDBlock_Balcao = 8,
         iDBlock_Pne = 9,
         iDBox = 10,
-        iDFlex = 11,
+        iDFlex = 11,        
         iDX = 12,
         iDClass = 13,
+        iDUHF = 14,
         //iDAccess_Legacy = 14,
-        //iDFlex_V2 = 15
+        //iDFlex_V2 = 15,
     }
 
     public enum DeviceNames
@@ -109,6 +110,9 @@ namespace ControliD.iDAccess
         //[Description("iDAccess Light Bio ASK+PSK")]       W,
         //[Description("iDAccess Light Bio ASK+MIFARE")]    V,
 
+// iDUHF
+        [Description("iDUHF")]                             _0N01,
+
         [Description("(não identificado)")]                 none
     }
 
@@ -128,6 +132,11 @@ namespace ControliD.iDAccess
         public static bool IsFlex(DeviceModels model)
         {
             return (model == DeviceModels.iDFlex || model == DeviceModels.iDAccess_Nano || model == DeviceModels.iDAccess_Pro);
+        }
+
+        public static bool IsiDUHF(DeviceModels model)
+        {
+            return (model == DeviceModels.iDUHF);
         }
 
 
@@ -176,7 +185,7 @@ namespace ControliD.iDAccess
         public static bool ModelHasCard(string cSerial)
         {
             string cModel = GetDeviceNameDescription(cSerial);
-            if (cModel.Contains("iDBlock") || cModel.Contains("iDBox"))
+            if (cModel.Contains("iDBlock") || cModel.Contains("iDBox") || cModel.Contains("iDUHF"))
                 return true;
             else
                 return cModel.Contains("ASK") || cModel.Contains("MIFARE") || cModel.Contains("Prox");
@@ -211,6 +220,8 @@ namespace ControliD.iDAccess
                 return DeviceModels.iDAccess_Pro;
             else if (cName.Contains("iDAccess Nano"))
                 return DeviceModels.iDAccess_Nano;
+            else if (cName.Contains("iDUHF"))
+                return DeviceModels.iDUHF;
             else
                 return DeviceModels.iDAccess;
         }
