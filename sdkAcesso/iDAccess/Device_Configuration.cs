@@ -193,6 +193,11 @@ namespace ControliD.iDAccess
             CheckSession();
             return WebJson.JsonCommand<StatusResult>(URL + "set_configuration.fcgi?session=" + Session, config, null, TimeOut);
         }
+        public StatusResult SendConfiguration(string config)
+        {
+            CheckSession();
+            return WebJson.JsonCommand<StatusResult>(URL + "set_configuration.fcgi?session=" + Session, config, null, TimeOut);
+        }
 
         /// <summary>
         /// Configura o Beep
