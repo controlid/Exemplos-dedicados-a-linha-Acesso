@@ -209,6 +209,35 @@ namespace ControliD.iDAccess
         public NotificationConfig[] config_changes;
         public long device_id;
     }
+    [DataContract]
+    public class RetornoPush
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public string verb;
+        [DataMember(EmitDefaultValue = false)]
+        public string endpoint;
+        [DataMember(EmitDefaultValue = false)]
+        //public RetornoPushBodyObject body;
+        public string body;
+        [DataMember(EmitDefaultValue = false)]
+        public string contentType;
+        [DataMember(EmitDefaultValue = false)]
+        public string queryString;
+    }
+    [DataContract]
+    public class RetornoPushBodyObject
+    {
+        [DataMember(EmitDefaultValue = false, Name = "object")]
+        public string objeto;
+        [DataMember(EmitDefaultValue = false)]
+        public object where;
+    }
+    public class EnvioPushResult
+    {
+        public long deviceId;
+        public string response;
+        public string error;
+    }
 
     /// <summary>
     /// 
