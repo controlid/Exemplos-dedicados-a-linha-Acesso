@@ -115,6 +115,14 @@ namespace ControliD.iDAccess
         }
 
         /// <summary>
+        /// Cancela cadastramento no equipamento
+        /// </summary>
+        public void CancelRemoteEnroll()
+        {
+            Command<string>("cancel_remote_enroll", null);
+        }
+
+        /// <summary>
         /// Método que fala para o equipamento capturar as digitais (de forma síncrona)
         /// ou seja, este método aguarda a resposta do equipamento
         /// </summary>
