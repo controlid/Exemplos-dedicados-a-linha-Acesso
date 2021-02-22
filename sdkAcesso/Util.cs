@@ -712,7 +712,7 @@ namespace ControliD
 
         public static long Card4to8Bytes(long number)
         {
-            int area = (int)(number / mask4bytes);
+            int area = (int)((number / mask4bytes) & 0xFF);
             int code = (int)(number % mask4bytes);
             return area * mask8bytes + code;
         }
