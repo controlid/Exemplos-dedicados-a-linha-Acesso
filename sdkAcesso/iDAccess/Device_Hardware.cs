@@ -51,5 +51,27 @@ namespace ControliD.iDAccess
             CheckSession();
             return WebJson.JsonCommand<GpioState>(URL + "gpio_state.fcgi?session=" + Session, o, null, TimeOut);
         }
+
+        [DataContract]
+        public class DoorStateDetail
+        {
+            [DataMember]
+            public int id;
+            [DataMember]
+            public bool open;
+        }
+        [DataContract]
+        public class DoorState
+        {
+            [DataMember]
+            public DoorStateDetail[] doors;
+            [DataMember]
+            public DoorStateDetail[] sec_boxes;
+        }
+        public DoorState GetDoorState()
+        {
+            CheckSession();
+            return WebJson.JsonCommand<DoorState>(URL + "doors_state.fcgi?session=" + Session, null, null, TimeOut);
+        }
     }
 }
