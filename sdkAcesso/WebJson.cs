@@ -160,7 +160,8 @@ namespace ControliD
                             WriteLog(hash + " Vai enviar objRequest:" + objRequest.GetType().ToString() + " " + objRequest_string.Length + " bytes");
                     }
                 }
-                var request = (HttpWebRequest)WebRequest.Create(cURL) ;
+                ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+                var request = (HttpWebRequest)WebRequest.Create(cURL);
                 request.Timeout = reqTimeout;
                 request.KeepAlive = false;
                 request.ProtocolVersion = HttpVersion.Version10;
