@@ -28,6 +28,7 @@ namespace ControliD.iDAccess
         iDUHF = 14,
         //iDAccess_Legacy = 14,
         //iDFlex_V2 = 15,
+        iDFace = 15
     }
 
     public enum DeviceNames
@@ -113,6 +114,10 @@ namespace ControliD.iDAccess
 // iDUHF
         [Description("iDUHF")]                             _0N01,
 
+// iDFace
+        [Description("iDFace Legacy")]                     _0M01,
+        [Description("iDFace")]                            _0M02,
+
         [Description("(não identificado)")]                 none
     }
 
@@ -185,7 +190,7 @@ namespace ControliD.iDAccess
         public static bool ModelHasCard(string cSerial)
         {
             string cModel = GetDeviceNameDescription(cSerial);
-            if (cModel.Contains("iDBlock") || cModel.Contains("iDBox") || cModel.Contains("iDUHF"))
+            if (cModel.Contains("iDBlock") || cModel.Contains("iDBox") || cModel.Contains("iDUHF") || cModel.Contains("iDFace"))
                 return true;
             else
                 return cModel.Contains("ASK") || cModel.Contains("MIFARE") || cModel.Contains("Prox");
@@ -222,6 +227,8 @@ namespace ControliD.iDAccess
                 return DeviceModels.iDAccess_Nano;
             else if (cName.Contains("iDUHF"))
                 return DeviceModels.iDUHF;
+            else if (cName.Contains("iDFace"))
+                return DeviceModels.iDFace;
             else
                 return DeviceModels.iDAccess;
         }
