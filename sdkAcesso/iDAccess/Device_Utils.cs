@@ -144,6 +144,10 @@ namespace ControliD.iDAccess
             return (model == DeviceModels.iDUHF);
         }
 
+        public static bool IsiDFace(DeviceModels model)
+        {
+            return (model == DeviceModels.iDFace);
+        }
 
         public static DeviceNames GetDeviceName(string cSerial)
         {
