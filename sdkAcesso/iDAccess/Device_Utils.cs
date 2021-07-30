@@ -139,6 +139,10 @@ namespace ControliD.iDAccess
             return (model == DeviceModels.iDUHF);
         }
 
+        public static bool HasTwoRelays(DeviceModels model)
+        {
+            return (model == DeviceModels.iDAccess || model == DeviceModels.iDFit || model == DeviceModels.iDAccessProx);
+        }
 
         public static DeviceNames GetDeviceName(string cSerial)
         {
