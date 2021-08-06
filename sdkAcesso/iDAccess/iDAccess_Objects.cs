@@ -44,10 +44,13 @@ namespace ControliD.iDAccess
     }
 
     [DataContract]
-    public class ImagesResponse : GenericObject
+    public class User_Image : GenericObject
     {
         [DataMember(EmitDefaultValue = false)]
-        public long[] user_ids;
+        public long user_id;
+
+        [DataMember(EmitDefaultValue = false)]
+        public long timestamp;
     }
 
     //{"users",

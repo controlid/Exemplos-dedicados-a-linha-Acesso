@@ -144,7 +144,7 @@ namespace ControliD.iDAccess
         [DataMember()]
         public Log_Types[] log_types;
         [DataMember()]
-        public long[] user_ids;
+        public User_Image[] image_info;
         [DataMember()]
         public User_Images[] user_images;
     }
