@@ -90,6 +90,20 @@ namespace ControliD.iDAccess
     }
 
     [DataContract]
+    public class UserImagesFacialRequest
+    {
+        [DataMember]
+        public Images[] user_images;
+    }
+
+    [DataContract]
+    public class UserImagesListRequest
+    {
+        [DataMember]
+        public long[] user_ids;
+    }
+
+    [DataContract]
     public class UserImage : IDisposable
     {
         [DataMember]

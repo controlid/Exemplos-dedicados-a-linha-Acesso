@@ -214,6 +214,37 @@ namespace ControliD.iDAccess
             }
         }
 
+        public void SetUserImageListFacial(iDAccess.Images[] listPhotos)
+        {
+            CheckSession();
+            var listUserImagePayload = new System.Collections.Generic.List<iDAccess.Images>();
+            int byteLength = 0;
+            foreach (iDAccess.Images userImage in listPhotos)
+            {
+                byteLength += userImage.image.Length;
+                listUserImagePayload.Add(userImage);
+
+                if (byteLength > 1000000) // Se payload com mais de 1MB, envia para o device
+                {
+                    var payload = new UserImagesFacialRequest()
+                    {
+                        user_images = listUserImagePayload.ToArray(),
+                    };
+                    byteLength = 0;
+                    WebJson.JsonCommand<string>(URL + "user_set_image_list.fcgi?&session=" + Session, payload, null, TimeOut);
+                    listUserImagePayload.Clear();
+                }
+            }
+            if (listUserImagePayload.Count > 0)
+            {
+                var payload = new UserImagesFacialRequest()
+                {
+                    user_images = listUserImagePayload.ToArray(),
+                };
+                WebJson.JsonCommand<string>(URL + "user_set_image_list.fcgi?&session=" + Session, payload, null, TimeOut);
+            }
+        }
+
         /// <summary>
         /// Retorna uma lista de id de pessoas com uma foto
         /// </summary>

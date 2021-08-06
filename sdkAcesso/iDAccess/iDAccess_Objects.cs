@@ -30,6 +30,26 @@ namespace ControliD.iDAccess
         public long user_id;
     }
 
+    [DataContract]
+    public class Images : GenericObject
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public string image;
+        [DataMember(EmitDefaultValue = false)]
+        public long user_id;
+        [DataMember(EmitDefaultValue = false)]
+        public int match;
+        [DataMember(EmitDefaultValue = false)]
+        public long timestamp;
+    }
+
+    [DataContract]
+    public class ImagesResponse : GenericObject
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public long[] user_ids;
+    }
+
     //{"users",
     // "fields":["id","name","registration","password","salt","expires"],
     // "values":[{"id":456,"name":"Novo Visitante","registration":"mmm","password":"eb2bcaa3ad322ab680be8bd805bbde04ee898528fb8d94516afe1c33bc4fb062","salt":"A`\"a/?sk$*HA~BF(hpl|Z;RR?w4LGx35","expires":1435795200}]}
@@ -393,5 +413,14 @@ namespace ControliD.iDAccess
     {
         //como esta tabela só tem os campos id e name, a própria herança já tem estes 2 campos
 
+    }
+
+    [DataContract]
+    public class User_Images : GenericObject
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public int timestamp;
+        [DataMember(EmitDefaultValue = false)]
+        public string image;
     }
 }
