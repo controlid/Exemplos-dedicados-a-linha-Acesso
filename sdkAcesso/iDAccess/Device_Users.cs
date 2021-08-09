@@ -231,7 +231,7 @@ namespace ControliD.iDAccess
                         user_images = listUserImagePayload.ToArray(),
                     };
                     byteLength = 0;
-                    WebJson.JsonCommand<string>(URL + "user_set_image_list.fcgi?&session=" + Session, payload, null, TimeOut);
+                    WebJson.JsonCommand<string>(URL + "user_set_image_list.fcgi?&session=" + Session + "&match=0", payload, null, TimeOut);
                     listUserImagePayload.Clear();
                 }
             }
