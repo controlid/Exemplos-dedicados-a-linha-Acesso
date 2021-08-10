@@ -44,6 +44,24 @@ namespace ControliD.iDAccess
     }
 
     [DataContract]
+    public class UserImageFacialResult
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public bool success;
+        [DataMember(EmitDefaultValue = false)]
+        public Error[] errors;
+    }
+
+    [DataContract]
+    public class Error
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public int code;
+        [DataMember(EmitDefaultValue = false)]
+        public string message;
+    }
+
+    [DataContract]
     public class User_Image : GenericObject
     {
         [DataMember(EmitDefaultValue = false)]

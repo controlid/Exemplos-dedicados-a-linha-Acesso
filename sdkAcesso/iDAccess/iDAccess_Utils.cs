@@ -97,6 +97,13 @@ namespace ControliD.iDAccess
     }
 
     [DataContract]
+    public class UserImagesFacialResponse
+    {
+        [DataMember]
+        public UserImageFacialResult[] results;
+    }
+
+    [DataContract]
     public class UserImagesListRequest
     {
         [DataMember]

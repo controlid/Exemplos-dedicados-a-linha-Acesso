@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace ControliD.iDAccess
@@ -214,35 +215,70 @@ namespace ControliD.iDAccess
             }
         }
 
-        public void SetUserImageListFacial(iDAccess.Images[] listPhotos)
+        private List<Tuple<long, string>> SendUserImageListFacial(List<long> usersIds, List<iDAccess.Images> listUserImagePayload)
         {
+            var response = new List<Tuple<long, string>>();
+            var payload = new UserImagesFacialRequest()
+            {
+                user_images = listUserImagePayload.ToArray(),
+            };
+
+            var resultList = WebJson.JsonCommand<UserImagesFacialResponse>(URL + "user_set_image_list.fcgi?&session=" + Session + "&match=0", payload, null, TimeOut).results;
+
+            for (int i = 0; i < resultList.Length; i++)
+            {
+                var result = resultList[i];
+                var id = usersIds[i];
+                response.Add(new Tuple<long, string>(
+                    id,
+                    result.success ? "Success" : (result.errors.Length > 0 ? result.errors[0].message : "Unknown error")
+                    )
+                );
+            }
+
+            return response;
+        }
+
+        public List<Tuple<long, string>> SetUserImageListFacial(iDAccess.Images[] listPhotos)
+        {
+            var resultList = new List<Tuple<long, string>>();
             CheckSession();
-            var listUserImagePayload = new System.Collections.Generic.List<iDAccess.Images>();
+            var listUserImagePayload = new List<iDAccess.Images>();
+            var listUserId = new List<long>();
             int byteLength = 0;
             foreach (iDAccess.Images userImage in listPhotos)
             {
                 byteLength += userImage.image.Length;
                 listUserImagePayload.Add(userImage);
+                listUserId.Add(userImage.user_id);
 
                 if (byteLength > 1000000) // Se payload com mais de 1MB, envia para o device
                 {
-                    var payload = new UserImagesFacialRequest()
-                    {
-                        user_images = listUserImagePayload.ToArray(),
-                    };
+                    var responseList = SendUserImageListFacial(listUserId, listUserImagePayload);
+                    resultList.AddRange(responseList);
                     byteLength = 0;
-                    WebJson.JsonCommand<string>(URL + "user_set_image_list.fcgi?&session=" + Session + "&match=0", payload, null, TimeOut);
+
                     listUserImagePayload.Clear();
+                    listUserId.Clear();
                 }
             }
             if (listUserImagePayload.Count > 0)
             {
-                var payload = new UserImagesFacialRequest()
-                {
-                    user_images = listUserImagePayload.ToArray(),
-                };
-                WebJson.JsonCommand<string>(URL + "user_set_image_list.fcgi?&session=" + Session, payload, null, TimeOut);
+                var responseList = SendUserImageListFacial(listUserId, listUserImagePayload);
+                resultList.AddRange(responseList);
             }
+
+            return resultList;
+        }
+
+        public void DeleteUserImageListFacial(long[] listPhotos)
+        {
+            CheckSession();
+            var payload = new UserImagesListRequest()
+            {
+                user_ids = listPhotos,
+            };
+            WebJson.JsonCommand<string>(URL + "user_destroy_image.fcgi?&session=" + Session, payload, null, TimeOut);
         }
 
         /// <summary>
