@@ -225,15 +225,18 @@ namespace ControliD.iDAccess
 
             var resultList = WebJson.JsonCommand<UserImagesFacialResponse>(URL + "user_set_image_list.fcgi?&session=" + Session + "&match=0", payload, null, TimeOut).results;
 
-            for (int i = 0; i < resultList.Length; i++)
+            if (resultList != null)
             {
-                var result = resultList[i];
-                var id = usersIds[i];
-                response.Add(new Tuple<long, string>(
-                    id,
-                    result.success ? "Success" : (result.errors.Length > 0 ? result.errors[0].message : "Unknown error")
-                    )
-                );
+                for (int i = 0; i < resultList.Length; i++)
+                {
+                    var result = resultList[i];
+                    var id = usersIds[i];
+                    response.Add(new Tuple<long, string>(
+                        id,
+                        result.success ? "Success" : (result.errors.Length > 0 ? result.errors[0].message : "Unknown error")
+                        )
+                    );
+                }
             }
 
             return response;
