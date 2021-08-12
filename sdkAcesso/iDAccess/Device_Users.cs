@@ -221,9 +221,10 @@ namespace ControliD.iDAccess
             var payload = new UserImagesFacialRequest()
             {
                 user_images = listUserImagePayload.ToArray(),
+                match = false
             };
 
-            var resultList = WebJson.JsonCommand<UserImagesFacialResponse>(URL + "user_set_image_list.fcgi?&session=" + Session + "&match=0", payload, null, TimeOut).results;
+            var resultList = WebJson.JsonCommand<UserImagesFacialResponse>(URL + "user_set_image_list.fcgi?&session=" + Session, payload, null, TimeOut).results;
 
             if (resultList != null)
             {

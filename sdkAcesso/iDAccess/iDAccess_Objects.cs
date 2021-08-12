@@ -38,8 +38,6 @@ namespace ControliD.iDAccess
         [DataMember(EmitDefaultValue = false)]
         public long user_id;
         [DataMember(EmitDefaultValue = false)]
-        public int match;
-        [DataMember(EmitDefaultValue = false)]
         public long timestamp;
     }
 

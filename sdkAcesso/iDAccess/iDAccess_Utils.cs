@@ -94,6 +94,8 @@ namespace ControliD.iDAccess
     {
         [DataMember]
         public Images[] user_images;
+        [DataMember]
+        public bool match;
     }
 
     [DataContract]
