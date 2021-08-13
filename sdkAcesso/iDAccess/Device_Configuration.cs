@@ -152,6 +152,7 @@ namespace ControliD.iDAccess
             ConfigValues config = new ConfigValues(true, true);
             config.general.senior_mode = "1";
             config.online_client.ExtractTemplate = true;
+            config.online_client.MaxRequest = 1;
 
             return SetConfiguration(config);
         }
