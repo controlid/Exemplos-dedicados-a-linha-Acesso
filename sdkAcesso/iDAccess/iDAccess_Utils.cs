@@ -93,7 +93,7 @@ namespace ControliD.iDAccess
     public class UserImagesFacialRequest
     {
         [DataMember]
-        public Images[] user_images;
+        public FaceImages[] user_images;
         [DataMember]
         public bool match;
     }

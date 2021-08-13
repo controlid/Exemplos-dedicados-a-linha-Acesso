@@ -42,6 +42,17 @@ namespace ControliD.iDAccess
     }
 
     [DataContract]
+    public class FaceImages
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public string image;
+        [DataMember(EmitDefaultValue = false)]
+        public long user_id;
+        [DataMember(EmitDefaultValue = false)]
+        public long timestamp;
+    }
+
+    [DataContract]
     public class UserImageFacialResult
     {
         [DataMember(EmitDefaultValue = false)]

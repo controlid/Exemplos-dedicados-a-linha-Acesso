@@ -215,9 +215,9 @@ namespace ControliD.iDAccess
             }
         }
 
-        private List<Tuple<long, string>> SendUserImageListFacial(List<long> usersIds, List<iDAccess.Images> listUserImagePayload)
+        private List<Tuple<long, int>> SendUserImageListFacial(List<long> usersIds, List<iDAccess.FaceImages> listUserImagePayload)
         {
-            var response = new List<Tuple<long, string>>();
+            var response = new List<Tuple<long, int>>();
             var payload = new UserImagesFacialRequest()
             {
                 user_images = listUserImagePayload.ToArray(),
@@ -232,9 +232,13 @@ namespace ControliD.iDAccess
                 {
                     var result = resultList[i];
                     var id = usersIds[i];
-                    response.Add(new Tuple<long, string>(
+
+                    var resultMsg = result.success ? "Success" : (result.errors.Length > 0 ? result.errors[0].message : "Unknown error");
+                    var msgCode = imageFeedbackList.IndexOf(resultMsg);
+                    if (msgCode == -1) msgCode = 0;
+                    response.Add(new Tuple<long, int>(
                         id,
-                        result.success ? "Success" : (result.errors.Length > 0 ? result.errors[0].message : "Unknown error")
+                        msgCode
                         )
                     );
                 }
@@ -243,14 +247,14 @@ namespace ControliD.iDAccess
             return response;
         }
 
-        public List<Tuple<long, string>> SetUserImageListFacial(iDAccess.Images[] listPhotos)
+        public List<Tuple<long, int>> SetUserImageListFacial(iDAccess.FaceImages[] listPhotos)
         {
-            var resultList = new List<Tuple<long, string>>();
+            var resultList = new List<Tuple<long, int>>();
             CheckSession();
-            var listUserImagePayload = new List<iDAccess.Images>();
+            var listUserImagePayload = new List<iDAccess.FaceImages>();
             var listUserId = new List<long>();
             int byteLength = 0;
-            foreach (iDAccess.Images userImage in listPhotos)
+            foreach (iDAccess.FaceImages userImage in listPhotos)
             {
                 byteLength += userImage.image.Length;
                 listUserImagePayload.Add(userImage);
@@ -376,5 +380,23 @@ namespace ControliD.iDAccess
                 }
             }).changes == 1;
         }
+
+        public static List<string> imageFeedbackList = new List<string>()
+        {
+            "Unknown error",
+            "Success",
+            "Face too distant",
+            "Face too close",
+            "Face not centered",
+            "Face pose not centered",
+            "Low sharpness",
+            "Face not detected",
+            "Face exists",
+            "Image file not recognized. Image should be either JPG or PNG.",
+            "Image too short. Minimum size expected is 160x160.",
+            "Image too long. Maximum size expected is 1920x1080.",
+            "User does not exist",
+            "Too many face templates for insertion"
+        };
     }
 }
