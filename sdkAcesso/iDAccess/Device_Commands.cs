@@ -27,10 +27,13 @@ namespace ControliD.iDAccess
             }
         }
 
-        public T Command<T>(string cmd, object req)
+        public T Command<T>(string cmd, object req, string query = null)
         {
             CheckSession();
-            return WebJson.JsonCommand<T>(URL + cmd + ".fcgi?session=" + Session, req, null, TimeOut);
+            var urlRequest = URL + cmd + ".fcgi?session=" + Session;
+            if (!String.IsNullOrEmpty(query))
+                urlRequest += $"&{query}";
+            return WebJson.JsonCommand<T>(urlRequest, req, null, TimeOut);
         }
 
         public string Send(string cmd, string data)

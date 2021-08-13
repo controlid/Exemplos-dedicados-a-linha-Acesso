@@ -28,6 +28,7 @@ namespace ControliD.iDAccess
         iDUHF = 14,
         //iDAccess_Legacy = 14,
         //iDFlex_V2 = 15,
+        iDFace = 15
     }
 
     public enum DeviceNames
@@ -113,6 +114,11 @@ namespace ControliD.iDAccess
 // iDUHF
         [Description("iDUHF")]                             _0N01,
 
+// iDFace
+        [Description("iDFace Legacy1")]                     _0M01,
+        [Description("iDFace Legacy2")]                     _0M02,
+        [Description("iDFace")]                             _0M03,
+
         [Description("(não identificado)")]                 none
     }
 
@@ -137,6 +143,11 @@ namespace ControliD.iDAccess
         public static bool IsiDUHF(DeviceModels model)
         {
             return (model == DeviceModels.iDUHF);
+        }
+
+        public static bool IsiDFace(DeviceModels model)
+        {
+            return (model == DeviceModels.iDFace);
         }
 
         public static bool HasTwoRelays(DeviceModels model)
@@ -189,7 +200,7 @@ namespace ControliD.iDAccess
         public static bool ModelHasCard(string cSerial)
         {
             string cModel = GetDeviceNameDescription(cSerial);
-            if (cModel.Contains("iDBlock") || cModel.Contains("iDBox") || cModel.Contains("iDUHF"))
+            if (cModel.Contains("iDBlock") || cModel.Contains("iDBox") || cModel.Contains("iDUHF") || cModel.Contains("iDFace"))
                 return true;
             else
                 return cModel.Contains("ASK") || cModel.Contains("MIFARE") || cModel.Contains("Prox");
@@ -226,6 +237,8 @@ namespace ControliD.iDAccess
                 return DeviceModels.iDAccess_Nano;
             else if (cName.Contains("iDUHF"))
                 return DeviceModels.iDUHF;
+            else if (cName.Contains("iDFace"))
+                return DeviceModels.iDFace;
             else
                 return DeviceModels.iDAccess;
         }

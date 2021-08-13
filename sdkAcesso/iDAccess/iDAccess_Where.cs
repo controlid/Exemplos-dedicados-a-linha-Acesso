@@ -143,6 +143,10 @@ namespace ControliD.iDAccess
         public Holidays[] holidays;
         [DataMember()]
         public Log_Types[] log_types;
+        [DataMember()]
+        public User_Image[] image_info;
+        [DataMember()]
+        public User_Images[] user_images;
     }
 
     [DataContract]
