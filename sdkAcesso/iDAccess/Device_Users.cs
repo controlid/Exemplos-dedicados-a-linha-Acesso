@@ -233,7 +233,7 @@ namespace ControliD.iDAccess
                     var result = resultList[i];
                     var id = usersIds[i];
 
-                    var resultMsg = result.success ? "Success" : (result.errors.Length > 0 ? result.errors[0].message : "Unknown error");
+                    var resultMsg = result.success ? "Success" : (result.errors != null && result.errors.Length > 0 ? result.errors[0].message : "Unknown error");
                     var msgCode = imageFeedbackList.IndexOf(resultMsg);
                     if (msgCode == -1) msgCode = 0;
                     response.Add(new Tuple<long, int>(
