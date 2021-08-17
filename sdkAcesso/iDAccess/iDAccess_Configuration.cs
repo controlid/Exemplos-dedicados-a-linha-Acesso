@@ -655,6 +655,13 @@ namespace ControliD.iDAccess
             get { return ConfigValues.GetIntString(max_request_attempts); }
             set { max_request_attempts = ConfigValues.SetIntString(value); }
         }
+        [DataMember(EmitDefaultValue = false)]
+        string request_timeout;
+        public int? RequestTimeout
+        {
+            get { return ConfigValues.GetIntString(request_timeout); }
+            set { request_timeout = ConfigValues.SetIntString(value); }
+        }
     }
 
     [DataContract]
