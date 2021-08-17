@@ -90,6 +90,29 @@ namespace ControliD.iDAccess
     }
 
     [DataContract]
+    public class UserImagesFacialRequest
+    {
+        [DataMember]
+        public FaceImages[] user_images;
+        [DataMember]
+        public bool match;
+    }
+
+    [DataContract]
+    public class UserImagesFacialResponse
+    {
+        [DataMember]
+        public UserImageFacialResult[] results;
+    }
+
+    [DataContract]
+    public class UserImagesListRequest
+    {
+        [DataMember]
+        public long[] user_ids;
+    }
+
+    [DataContract]
     public class UserImage : IDisposable
     {
         [DataMember]

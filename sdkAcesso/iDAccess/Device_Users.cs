@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace ControliD.iDAccess
@@ -214,6 +215,80 @@ namespace ControliD.iDAccess
             }
         }
 
+        private List<Tuple<long, int>> SendUserImageListFacial(List<long> usersIds, List<iDAccess.FaceImages> listUserImagePayload)
+        {
+            var response = new List<Tuple<long, int>>();
+            var payload = new UserImagesFacialRequest()
+            {
+                user_images = listUserImagePayload.ToArray(),
+                match = false
+            };
+
+            var resultList = WebJson.JsonCommand<UserImagesFacialResponse>(URL + "user_set_image_list.fcgi?&session=" + Session, payload, null, TimeOut).results;
+
+            if (resultList != null)
+            {
+                for (int i = 0; i < resultList.Length; i++)
+                {
+                    var result = resultList[i];
+                    var id = usersIds[i];
+
+                    var resultMsg = result.success ? "Success" : (result.errors != null && result.errors.Length > 0 ? result.errors[0].message : "Unknown error");
+                    var msgCode = imageFeedbackList.IndexOf(resultMsg);
+                    if (msgCode == -1) msgCode = 0;
+                    response.Add(new Tuple<long, int>(
+                        id,
+                        msgCode
+                        )
+                    );
+                }
+            }
+
+            return response;
+        }
+
+        public List<Tuple<long, int>> SetUserImageListFacial(iDAccess.FaceImages[] listPhotos)
+        {
+            var resultList = new List<Tuple<long, int>>();
+            CheckSession();
+            var listUserImagePayload = new List<iDAccess.FaceImages>();
+            var listUserId = new List<long>();
+            int byteLength = 0;
+            foreach (iDAccess.FaceImages userImage in listPhotos)
+            {
+                byteLength += userImage.image.Length;
+                listUserImagePayload.Add(userImage);
+                listUserId.Add(userImage.user_id);
+
+                if (byteLength > 1000000) // Se payload com mais de 1MB, envia para o device
+                {
+                    var responseList = SendUserImageListFacial(listUserId, listUserImagePayload);
+                    resultList.AddRange(responseList);
+                    byteLength = 0;
+
+                    listUserImagePayload.Clear();
+                    listUserId.Clear();
+                }
+            }
+            if (listUserImagePayload.Count > 0)
+            {
+                var responseList = SendUserImageListFacial(listUserId, listUserImagePayload);
+                resultList.AddRange(responseList);
+            }
+
+            return resultList;
+        }
+
+        public void DeleteUserImageListFacial(long[] listPhotos)
+        {
+            CheckSession();
+            var payload = new UserImagesListRequest()
+            {
+                user_ids = listPhotos,
+            };
+            WebJson.JsonCommand<string>(URL + "user_destroy_image.fcgi?&session=" + Session, payload, null, TimeOut);
+        }
+
         /// <summary>
         /// Retorna uma lista de id de pessoas com uma foto
         /// </summary>
@@ -305,5 +380,23 @@ namespace ControliD.iDAccess
                 }
             }).changes == 1;
         }
+
+        public static List<string> imageFeedbackList = new List<string>()
+        {
+            "Unknown error",
+            "Success",
+            "Face too distant",
+            "Face too close",
+            "Face not centered",
+            "Face pose not centered",
+            "Low sharpness",
+            "Face not detected",
+            "Face exists",
+            "Image file not recognized. Image should be either JPG or PNG.",
+            "Image too short. Minimum size expected is 160x160.",
+            "Image too long. Maximum size expected is 1920x1080.",
+            "User does not exist",
+            "Too many face templates for insertion"
+        };
     }
 }
