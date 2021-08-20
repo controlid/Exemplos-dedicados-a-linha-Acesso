@@ -244,6 +244,7 @@ namespace ControliD.iDAccess
                 }
             }
 
+            System.Threading.Thread.Sleep(150);
             return response;
         }
 
