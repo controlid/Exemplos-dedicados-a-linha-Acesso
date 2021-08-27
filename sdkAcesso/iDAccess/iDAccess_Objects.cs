@@ -62,6 +62,15 @@ namespace ControliD.iDAccess
     }
 
     [DataContract]
+    public class UserGetImageFacialResult
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public string image;
+        [DataMember(EmitDefaultValue = false)]
+        public long timestamp;
+    }
+
+    [DataContract]
     public class Error
     {
         [DataMember(EmitDefaultValue = false)]

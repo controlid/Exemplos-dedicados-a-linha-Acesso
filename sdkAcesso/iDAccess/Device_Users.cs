@@ -54,6 +54,12 @@ namespace ControliD.iDAccess
             return WebJson.JsonCommand<Bitmap>(URL + "user_get_image.fcgi?user_id=" + nUserID + "&session=" + Session, null, null, TimeOut);
         }
 
+        public UserGetImageFacialResult GetUserImageFace(long nUserID)
+        {
+            CheckSession();
+            return WebJson.JsonCommand<UserGetImageFacialResult>(URL + "user_get_image.fcgi?user_id=" + nUserID + "&get_timestamp=1&session=" + Session, null, null, TimeOut);
+        }
+
         /// <summary>
         /// Largura em pixel da imagem a ser enviada a qualquer device
         /// </summary>
