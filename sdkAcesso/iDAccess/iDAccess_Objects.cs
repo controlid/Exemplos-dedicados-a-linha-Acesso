@@ -63,6 +63,8 @@ namespace ControliD.iDAccess
     public class UserImageFacialResult
     {
         [DataMember(EmitDefaultValue = false)]
+        public long user_id;
+        [DataMember(EmitDefaultValue = false)]
         public bool success;
         [DataMember(EmitDefaultValue = false)]
         public Error[] errors;

@@ -231,7 +231,8 @@ namespace ControliD.iDAccess
             }
         }
 
-        private List<Tuple<long, int>> SendUserImageListFacial(List<long> usersIds, List<iDAccess.FaceImages> listUserImagePayload)
+
+        public List<Tuple<long, int>> SendUserImageListFacial(List<iDAccess.FaceImages> listUserImagePayload)
         {
             CheckSession();
 
@@ -242,14 +243,14 @@ namespace ControliD.iDAccess
                 match = false
             };
 
-            var resultList = WebJson.JsonCommand<UserImagesFacialResponse>(URL + "user_set_image_list.fcgi?&session=" + Session, payload, null, TimeOut).results;
+            var resultList = WebJson.JsonCommand<UserImagesFacialResponse>(URL + "user_set_image_list.fcgi?session=" + Session, payload, null, TimeOut).results;
 
             if (resultList != null)
             {
                 for (int i = 0; i < resultList.Length; i++)
                 {
                     var result = resultList[i];
-                    var id = usersIds[i];
+                    var id = result.user_id;
 
                     var resultMsg = result.success ? "Success" : (result.errors != null && result.errors.Length > 0 ? result.errors[0].message : "Unknown error");
                     var msgCode = imageFeedbackList.IndexOf(resultMsg);
@@ -264,38 +265,6 @@ namespace ControliD.iDAccess
 
             System.Threading.Thread.Sleep(150);
             return response;
-        }
-
-        public List<Tuple<long, int>> SetUserImageListFacial(iDAccess.FaceImages[] listPhotos)
-        {
-            var resultList = new List<Tuple<long, int>>();
-            CheckSession();
-            var listUserImagePayload = new List<iDAccess.FaceImages>();
-            var listUserId = new List<long>();
-            int byteLength = 0;
-            foreach (iDAccess.FaceImages userImage in listPhotos)
-            {
-                byteLength += userImage.image.Length;
-                listUserImagePayload.Add(userImage);
-                listUserId.Add(userImage.user_id);
-
-                if (byteLength > 1000000) // Se payload com mais de 1MB, envia para o device
-                {
-                    var responseList = SendUserImageListFacial(listUserId, listUserImagePayload);
-                    resultList.AddRange(responseList);
-                    byteLength = 0;
-
-                    listUserImagePayload.Clear();
-                    listUserId.Clear();
-                }
-            }
-            if (listUserImagePayload.Count > 0)
-            {
-                var responseList = SendUserImageListFacial(listUserId, listUserImagePayload);
-                resultList.AddRange(responseList);
-            }
-
-            return resultList;
         }
 
         public void DeleteUserImageListFacial(long[] listPhotos)
