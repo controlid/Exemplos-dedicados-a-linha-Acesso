@@ -60,6 +60,16 @@ namespace ControliD.iDAccess
             return WebJson.JsonCommand<UserGetImageFacialResult>(URL + "user_get_image.fcgi?user_id=" + nUserID + "&get_timestamp=1&session=" + Session, null, null, TimeOut);
         }
 
+        public FaceImagesList GetUserImageFaceList(long[] userIds)
+        {
+            CheckSession();
+            var payload = new UserImagesListRequest()
+            {
+                user_ids = userIds
+            };
+            return WebJson.JsonCommand<FaceImagesList>(URL + "user_get_image_list.fcgi?&session=" + Session, payload, null, TimeOut);
+        }
+
         /// <summary>
         /// Largura em pixel da imagem a ser enviada a qualquer device
         /// </summary>
@@ -223,6 +233,8 @@ namespace ControliD.iDAccess
 
         private List<Tuple<long, int>> SendUserImageListFacial(List<long> usersIds, List<iDAccess.FaceImages> listUserImagePayload)
         {
+            CheckSession();
+
             var response = new List<Tuple<long, int>>();
             var payload = new UserImagesFacialRequest()
             {
