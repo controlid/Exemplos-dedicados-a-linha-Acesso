@@ -136,6 +136,7 @@ namespace ControliD.iDAccess
         public long card_value;
         public bool success;
         public string error;
+        public string face_template;
 
     }
 
@@ -153,6 +154,13 @@ namespace ControliD.iDAccess
         public long user_id;
         public long device_id;
         public long card_value;
+    }
+
+    public class NotificationFace
+    {
+        public string face_template;
+        public long user_id;
+        public long device_id;
     }
 
     // {"event":{"type":9,"name":"GIVE UP","time":1487756794},"device_id":935109}HTTP/1.1 200 OK

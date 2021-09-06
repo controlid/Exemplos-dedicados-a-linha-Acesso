@@ -215,6 +215,12 @@ namespace ControliD.iDAccess
                 return cModel.Contains("Bio");
         }
 
+        public static bool ModelHasFace(string cSerial)
+        {
+            string cModel = GetDeviceNameDescription(cSerial);
+            return cModel.Contains("iDFace");
+        }
+
         public static DeviceModels GetDeviceModel(string cSerial)
         {
             DeviceNames ds = GetDeviceName(cSerial);

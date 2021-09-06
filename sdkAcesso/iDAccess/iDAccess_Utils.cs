@@ -155,7 +155,8 @@ namespace ControliD.iDAccess
     public enum RemoteEnrollType
     {
         Biometry,
-        Card
+        Card,
+        Face
     }
 
     //{"uptime":{"days":0,"hours":9,"minutes":14,"seconds":5},
@@ -375,5 +376,18 @@ namespace ControliD.iDAccess
         /// </summary>
         [DataMember()]
         public string cardnumberstr;
+    }
+
+    /// <summary>
+    /// Resultado de requisicao de cartao RFID do leitor
+    /// </summary>
+    [DataContract]
+    public class FaceResult : StatusResult
+    {
+        /// <summary>
+        /// Imagem de face
+        /// </summary>
+        [DataMember()]
+        public string image;
     }
 }
