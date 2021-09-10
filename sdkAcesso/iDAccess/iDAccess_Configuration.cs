@@ -136,7 +136,7 @@ namespace ControliD.iDAccess
         public long card_value;
         public bool success;
         public string error;
-        public string face_template;
+        public string user_image;
 
     }
 
@@ -158,7 +158,7 @@ namespace ControliD.iDAccess
 
     public class NotificationFace
     {
-        public string face_template;
+        public string user_image;
         public long user_id;
         public long device_id;
     }
