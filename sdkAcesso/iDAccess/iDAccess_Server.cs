@@ -220,6 +220,24 @@ namespace ControliD.iDAccess
     }
 
     /// <summary>
+    /// Em equipamentos iDFace:
+    /// Serviços a serem implementados para criar servidor de acesso com identificação em iDFace do usuário (caso cliente tenha iDFace)
+    /// Será enviado o ID do usuário, e o seu servidor deverá validar a regra de acesso
+    /// Nos demais equipamentos:
+    /// Serviços a serem implementados para criar servidor de acesso com identificação no servidor.
+    /// Será enviado a imagem do dedo, e você terá que implementar ou usar um algoritimo biometrico para identificar o usuário, e depois validar sua regra de acesso.
+    /// </summary>
+    [ServiceContract]
+    public interface IServerUserAndUserLocal : IServerUser {
+        /// <summary>
+        /// Usuário identificado pelo template local
+        /// </summary>
+        [OperationContract]
+        [WebInvoke(UriTemplate = "new_user_identified.fcgi?session={session}", Method = "POST", ResponseFormat = WebMessageFormat.Json)]
+        IdentifyResult UserIdentified(string session, Stream stream);
+    }
+
+    /// <summary>
     /// A extração biometrica é feita no rerminal e é enviado o tempalte, não o ID do usuário.
     /// O Find e Regras deverão ser feitos pelo seu servidor
     /// </summary>
