@@ -129,6 +129,11 @@ namespace ControliD.iDAccess
         /// </summary>
         [DataMember(Name = "user_roles.role", EmitDefaultValue = false)]
         public int role;
+        [IgnoreDataMember]
+        public User_Image image_info { set; get; }
+        [IgnoreDataMember]
+        public string user_photo_base64 { set; get; }
+
     }
 
     [DataContract]
