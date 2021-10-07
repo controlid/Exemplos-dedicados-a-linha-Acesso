@@ -68,6 +68,24 @@ namespace ControliD.iDAccess
         public bool success;
         [DataMember(EmitDefaultValue = false)]
         public Error[] errors;
+        [DataMember(EmitDefaultValue = false)]
+        public Scores scores;
+    }
+
+    [DataContract]
+    public class Scores
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public int bounds_width;
+        [DataMember(EmitDefaultValue = false)]
+        public int horizontal_center_offset;
+        [DataMember(EmitDefaultValue = false)]
+        public int vertical_center_offset;
+        [DataMember(EmitDefaultValue = false)]
+        public int center_pose_quality;
+        [DataMember(EmitDefaultValue = false)]
+        public int sharpness_quality;
+
     }
 
     [DataContract]
@@ -147,6 +165,11 @@ namespace ControliD.iDAccess
         /// </summary>
         [DataMember(Name = "user_roles.role", EmitDefaultValue = false)]
         public int role;
+        [IgnoreDataMember]
+        public User_Image image_info { set; get; }
+        [IgnoreDataMember]
+        public string user_photo_base64 { set; get; }
+
     }
 
     [DataContract]
