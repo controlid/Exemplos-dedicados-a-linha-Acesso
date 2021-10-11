@@ -673,6 +673,32 @@ namespace ControliD.iDAccess
     }
 
     [DataContract]
+    public class PushServer
+    {
+        [DataMember(EmitDefaultValue = false)]
+        string push_request_timeout;
+        public int? PushRequestTimeout
+        {
+            get { return ConfigValues.GetIntString(push_request_timeout); }
+            set { push_request_timeout = ConfigValues.SetIntString(value); }
+        }
+        [DataMember(EmitDefaultValue = false)]
+        string push_request_period;
+        public int? PushRequestPeriod
+        {
+            get { return ConfigValues.GetIntString(push_request_period); }
+            set { push_request_period = ConfigValues.SetIntString(value); }
+        }
+        [DataMember(EmitDefaultValue = false)]
+        string push_remote_address;
+        public string PushRemoteAddress
+        {
+            get { return push_remote_address; }
+            set { push_remote_address = value; }
+        }
+    }
+
+    [DataContract]
     public class Alarm
     {
         [DataMember(EmitDefaultValue = false)]
@@ -872,6 +898,8 @@ namespace ControliD.iDAccess
         public Alarm alarm;
         [DataMember(EmitDefaultValue = false)]
         public OnlineClient online_client;
+        [DataMember(EmitDefaultValue = false)]
+        public PushServer push_server;
         [DataMember(EmitDefaultValue = false)]
         public ConfigMonitor monitor;
         [DataMember(EmitDefaultValue = false)]

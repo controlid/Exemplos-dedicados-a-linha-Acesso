@@ -493,5 +493,16 @@ namespace ControliD.iDAccess
         public int timestamp;
         [DataMember(EmitDefaultValue = false)]
         public string image;
+        [DataMember(EmitDefaultValue = false)]
+        public User_Images_Error error;
+    }
+
+    [DataContract]
+    public class User_Images_Error
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public int code;
+        [DataMember(EmitDefaultValue = false)]
+        public string message;
     }
 }
