@@ -328,5 +328,16 @@ namespace ControliD.iDAccess
             return WebJson.JsonCommand<StatusResult>(URL + "set_configuration.fcgi?session=" + Session, cfg, null, TimeOut);
         }
 
+        public StatusResult SetFacialConfiguration(int maskDetectionEnabled)
+        {
+            var cfg = new ConfigValues(new Face_id
+            {
+                mask_detection_enabled = maskDetectionEnabled.ToString()
+            });
+
+            CheckSession();
+            return WebJson.JsonCommand<StatusResult>(URL + "set_configuration.fcgi?session=" + Session, cfg, null, TimeOut);
+        }
+
     }
 }

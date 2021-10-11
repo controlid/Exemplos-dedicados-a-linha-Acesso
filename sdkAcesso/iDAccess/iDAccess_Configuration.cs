@@ -713,6 +713,13 @@ namespace ControliD.iDAccess
     }
 
     [DataContract]
+    public class Face_id
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public string mask_detection_enabled;
+    }
+
+    [DataContract]
     public class General
     {
         [DataMember(EmitDefaultValue = false)]
@@ -920,6 +927,8 @@ namespace ControliD.iDAccess
         public Identifier identifier;
         [DataMember(EmitDefaultValue = false)]
         public SecBox sec_box;
+        [DataMember(EmitDefaultValue = false)]
+        public Face_id face_id;
 
         public ConfigValues(bool lGeneral = false, bool lOnline = false)
         {
@@ -990,6 +999,11 @@ namespace ControliD.iDAccess
         public ConfigValues(LedsColors oled_rgb)
         {
             led_rgb = oled_rgb;
+        }
+
+        public ConfigValues(Face_id oface_id)
+        {
+            face_id = oface_id;
         }
 
         // TODO: Migrar para util
