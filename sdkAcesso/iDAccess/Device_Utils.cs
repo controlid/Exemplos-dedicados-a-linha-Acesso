@@ -28,7 +28,8 @@ namespace ControliD.iDAccess
         iDUHF = 14,
         //iDAccess_Legacy = 14,
         //iDFlex_V2 = 15,
-        iDFace = 15
+        iDFace = 15,
+        iDBlock_Balcao_Facial = 16
     }
 
     public enum DeviceNames
@@ -245,6 +246,8 @@ namespace ControliD.iDAccess
                 return DeviceModels.iDUHF;
             else if (cName.Contains("iDFace"))
                 return DeviceModels.iDFace;
+            else if (cName.Contains("iDBlock_Balcao_Facial"))
+                return DeviceModels.iDBlock_Balcao_Facial;
             else
                 return DeviceModels.iDAccess;
         }
