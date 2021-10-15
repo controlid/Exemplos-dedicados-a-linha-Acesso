@@ -128,12 +128,12 @@ namespace ControliD.iDAccess
 
         public static bool IsCatraca (DeviceModels model)
         {
-            return (model == DeviceModels.iDBlock || model == DeviceModels.iDBlock_Balcao || model == DeviceModels.iDBlock_Braco || model == DeviceModels.iDBlock_Pne);
+            return (model == DeviceModels.iDBlock || model == DeviceModels.iDBlock_Balcao || model == DeviceModels.iDBlock_Braco || model == DeviceModels.iDBlock_Pne || model == DeviceModels.iDBlock_Balcao_Facial);
         }
 
         public static bool IsCatraca(int model)
         {
-            return (model == (int)DeviceModels.iDBlock || model == (int)DeviceModels.iDBlock_Balcao || model == (int)DeviceModels.iDBlock_Braco || model == (int)DeviceModels.iDBlock_Pne);
+            return (model == (int)DeviceModels.iDBlock || model == (int)DeviceModels.iDBlock_Balcao || model == (int)DeviceModels.iDBlock_Braco || model == (int)DeviceModels.iDBlock_Pne || model == (int)DeviceModels.iDBlock_Balcao_Facial);
         }
 
         public static bool IsFlex(DeviceModels model)
