@@ -29,7 +29,7 @@ namespace ControliD.iDAccess
         //iDAccess_Legacy = 14,
         //iDFlex_V2 = 15,
         iDFace = 15,
-        iDBlock_Balcao_Facial = 16
+        iDBlock_Facial = 16
     }
 
     public enum DeviceNames
@@ -128,12 +128,12 @@ namespace ControliD.iDAccess
 
         public static bool IsCatraca (DeviceModels model)
         {
-            return (model == DeviceModels.iDBlock || model == DeviceModels.iDBlock_Balcao || model == DeviceModels.iDBlock_Braco || model == DeviceModels.iDBlock_Pne || model == DeviceModels.iDBlock_Balcao_Facial);
+            return (model == DeviceModels.iDBlock || model == DeviceModels.iDBlock_Balcao || model == DeviceModels.iDBlock_Braco || model == DeviceModels.iDBlock_Pne || model == DeviceModels.iDBlock_Facial);
         }
 
         public static bool IsCatraca(int model)
         {
-            return (model == (int)DeviceModels.iDBlock || model == (int)DeviceModels.iDBlock_Balcao || model == (int)DeviceModels.iDBlock_Braco || model == (int)DeviceModels.iDBlock_Pne || model == (int)DeviceModels.iDBlock_Balcao_Facial);
+            return (model == (int)DeviceModels.iDBlock || model == (int)DeviceModels.iDBlock_Balcao || model == (int)DeviceModels.iDBlock_Braco || model == (int)DeviceModels.iDBlock_Pne || model == (int)DeviceModels.iDBlock_Facial);
         }
 
         public static bool IsFlex(DeviceModels model)
@@ -246,8 +246,8 @@ namespace ControliD.iDAccess
                 return DeviceModels.iDUHF;
             else if (cName.Contains("iDFace"))
                 return DeviceModels.iDFace;
-            else if (cName.Contains("iDBlock_Balcao_Facial"))
-                return DeviceModels.iDBlock_Balcao_Facial;
+            else if (cName.Contains("iDBlock_Facial"))
+                return DeviceModels.iDBlock_Facial;
             else
                 return DeviceModels.iDAccess;
         }
