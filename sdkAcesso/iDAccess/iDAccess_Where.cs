@@ -98,6 +98,8 @@ namespace ControliD.iDAccess
         [DataMember()]
         public Alarm_Logs[] alarm_logs;
         [DataMember()]
+        public Change_Logs[] change_logs;
+        [DataMember()]
         public Access_Log_Access_Rules[] access_log_access_rules;
         [DataMember()]
         public Cards[] cards;

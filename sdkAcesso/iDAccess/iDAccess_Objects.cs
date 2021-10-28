@@ -456,7 +456,22 @@ namespace ControliD.iDAccess
         [DataMember(EmitDefaultValue = false, Name = "access_log_id")]
         public long idLog;
     }
-
+    [DataContract]
+    public class Change_Logs : GenericObject
+    {
+        /*
+        insert, delete, update
+        */
+        [DataMember(EmitDefaultValue = false)]
+        public string operation_type;
+        [DataMember(EmitDefaultValue = false)]
+        public string table_name;
+        [DataMember(EmitDefaultValue = false)]
+        public long table_id;
+        [DataMember(EmitDefaultValue = false)]
+        public long timestamp;
+    }
+    
     /*
      "access_log_access_rules": [
     {
