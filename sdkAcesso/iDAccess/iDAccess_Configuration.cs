@@ -717,6 +717,9 @@ namespace ControliD.iDAccess
     {
         [DataMember(EmitDefaultValue = false)]
         public string mask_detection_enabled;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string min_detect_bounds_width;
     }
 
     [DataContract]
