@@ -56,7 +56,7 @@ namespace ControliD.iDAccess
     public class FaceImagesList
     {
         [DataMember(EmitDefaultValue = false)]
-        public User_Images[] user_images;
+        public User_Images_For_List[] user_images;
     }
 
     [DataContract]
@@ -504,6 +504,21 @@ namespace ControliD.iDAccess
     [DataContract]
     public class User_Images : GenericObject
     {
+        [DataMember(EmitDefaultValue = false)]
+        public int timestamp;
+        [DataMember(EmitDefaultValue = false)]
+        public string image;
+        [DataMember(EmitDefaultValue = false)]
+        public User_Images_Error error;
+    }
+
+    // Essa classe existe para evitar o conflito de serialização 
+    // entre o User_Images_Error error e o error do StatusResult
+    [DataContract]
+    public class User_Images_For_List
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public long id;
         [DataMember(EmitDefaultValue = false)]
         public int timestamp;
         [DataMember(EmitDefaultValue = false)]
