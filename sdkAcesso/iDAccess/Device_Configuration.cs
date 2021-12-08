@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Globalization;
 
 namespace ControliD.iDAccess
 {
@@ -328,12 +329,19 @@ namespace ControliD.iDAccess
             return WebJson.JsonCommand<StatusResult>(URL + "set_configuration.fcgi?session=" + Session, cfg, null, TimeOut);
         }
 
-        public StatusResult SetFacialConfiguration(int maskDetectionEnabled)
+        public StatusResult SetFacialConfiguration(int maskDetectionEnabled, long? identificationDistance)
         {
-            var cfg = new ConfigValues(new Face_id
+            var face_id = new Face_id();
+            face_id.mask_detection_enabled = maskDetectionEnabled.ToString();
+
+            if (identificationDistance.HasValue)
             {
-                mask_detection_enabled = maskDetectionEnabled.ToString()
-            });
+                double val = 11.6 / (long)identificationDistance;
+                var nfi = new NumberFormatInfo() { NumberDecimalSeparator = "." };
+                face_id.min_detect_bounds_width = val.ToString(nfi);
+            }
+
+            var cfg = new ConfigValues(face_id);
 
             CheckSession();
             return WebJson.JsonCommand<StatusResult>(URL + "set_configuration.fcgi?session=" + Session, cfg, null, TimeOut);
