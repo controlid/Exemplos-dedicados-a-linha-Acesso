@@ -201,6 +201,11 @@ namespace ControliD.iDAccess
             CheckSession();
             return WebJson.JsonCommand<StatusResult>(URL + "set_configuration.fcgi?session=" + Session, config, null, TimeOut);
         }
+        public UserImagesFacialResponse UserSetImageList(UserImagesFacialRequest info)
+        {
+            CheckSession();
+            return WebJson.JsonCommand<UserImagesFacialResponse>(URL + "user_set_image_list.fcgi?session=" + Session, info, null, TimeOut);
+        }
 
         /// <summary>
         /// Configura o Beep
