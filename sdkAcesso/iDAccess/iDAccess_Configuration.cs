@@ -713,13 +713,39 @@ namespace ControliD.iDAccess
     }
 
     [DataContract]
-    public class Face_id
+    public class FaceId
     {
         [DataMember(EmitDefaultValue = false)]
         public string mask_detection_enabled;
 
         [DataMember(EmitDefaultValue = false)]
         public string min_detect_bounds_width;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string liveness_mode;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string vehicle_mode;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string limit_identification_to_display_region;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string max_identified_duration;
+    }
+
+    [DataContract]
+    public class FaceModule
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public string light_threshold_led_activation;
+    }
+
+    [DataContract]
+    public class LedWhite
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public string brightness;
     }
 
     [DataContract]
@@ -931,7 +957,11 @@ namespace ControliD.iDAccess
         [DataMember(EmitDefaultValue = false)]
         public SecBox sec_box;
         [DataMember(EmitDefaultValue = false)]
-        public Face_id face_id;
+        public FaceId face_id;
+        [DataMember(EmitDefaultValue = false)]
+        public FaceModule face_module;
+        [DataMember(EmitDefaultValue = false)]
+        public LedWhite led_white;
 
         public ConfigValues(bool lGeneral = false, bool lOnline = false)
         {
@@ -1004,9 +1034,19 @@ namespace ControliD.iDAccess
             led_rgb = oled_rgb;
         }
 
-        public ConfigValues(Face_id oface_id)
+        public ConfigValues(FaceId oface_id)
         {
             face_id = oface_id;
+        }
+
+        public ConfigValues(FaceModule oface_module)
+        {
+            face_module = oface_module;
+        }
+
+        public ConfigValues(LedWhite oled_white)
+        {
+            led_white = oled_white;
         }
 
         // TODO: Migrar para util
@@ -1061,10 +1101,7 @@ namespace ControliD.iDAccess
         public string mode;
     }
 
-
     // {"led_rgb": {"state":"3","solid_red":"0","solid_green":"0","solid_blue":"0","transition_start_red":"0","transition_start_green":"0","transition_start_blue":"0","transition_end_red":"65535","transition_end_green":"0","transition_end_blue":"0"}}
-
-
 
     [DataContract]
     public class LedsColors

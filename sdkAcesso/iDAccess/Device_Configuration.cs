@@ -334,10 +334,21 @@ namespace ControliD.iDAccess
             return WebJson.JsonCommand<StatusResult>(URL + "set_configuration.fcgi?session=" + Session, cfg, null, TimeOut);
         }
 
-        public StatusResult SetFacialConfiguration(int maskDetectionEnabled, long? identificationDistance)
+        public StatusResult SetFacialConfiguration(int? maskDetectionEnabled, long? identificationDistance, 
+                                                   long? ledIntensity, int? ledActivationThreshold, long? sameFaceDetectionInterval,
+                                                   bool? limitIdentificationArea, bool? strictLiveness, bool? vehicleDetection)
         {
-            var face_id = new Face_id();
-            face_id.mask_detection_enabled = maskDetectionEnabled.ToString();
+            var face_id = new FaceId();
+            face_id.mask_detection_enabled = maskDetectionEnabled.HasValue ? maskDetectionEnabled.ToString() : "0";
+            face_id.liveness_mode = strictLiveness == true ? "1" : "0";
+            face_id.vehicle_mode = vehicleDetection == true ? "1" : "0";
+            face_id.limit_identification_to_display_region = limitIdentificationArea == true ? "1" : "0";
+
+            if (sameFaceDetectionInterval.HasValue)
+            {
+                var val = sameFaceDetectionInterval * 1000;
+                face_id.max_identified_duration = val.ToString();
+            }
 
             if (identificationDistance.HasValue)
             {
@@ -346,7 +357,18 @@ namespace ControliD.iDAccess
                 face_id.min_detect_bounds_width = val.ToString(nfi);
             }
 
-            var cfg = new ConfigValues(face_id);
+            var face_module = new FaceModule();
+            if (ledActivationThreshold.HasValue)
+                face_module.light_threshold_led_activation = ledActivationThreshold.ToString();
+
+            var led_white = new LedWhite();
+            if (ledIntensity.HasValue)
+                led_white.brightness = ledIntensity.ToString();
+
+            var cfg = new ConfigValues();
+            cfg.face_id = face_id;
+            cfg.face_module = face_module;
+            cfg.led_white = led_white;
 
             CheckSession();
             return WebJson.JsonCommand<StatusResult>(URL + "set_configuration.fcgi?session=" + Session, cfg, null, TimeOut);
