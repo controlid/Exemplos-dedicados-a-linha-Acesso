@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.Serialization;
 
 namespace ControliD.iDAccess
@@ -92,7 +92,7 @@ namespace ControliD.iDAccess
         [DataMember()]
         public User_Groups[] user_groups;
         [DataMember()]
-        public User_Roles user_roles;
+        public User_Roles[] user_roles;
         [DataMember()]
         public Access_Logs[] access_logs;
         [DataMember()]

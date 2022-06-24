@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.Serialization;
 
 namespace ControliD.iDAccess
@@ -163,7 +163,7 @@ namespace ControliD.iDAccess
         /// <summary>
         /// Variável de leitura da role por left join
         /// </summary>
-        [DataMember(Name = "user_roles.role", EmitDefaultValue = false)]
+        [IgnoreDataMember]
         public int role;
         [IgnoreDataMember]
         public User_Image image_info { set; get; }
