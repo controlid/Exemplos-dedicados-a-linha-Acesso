@@ -169,6 +169,8 @@ namespace ControliD.iDAccess
         public User_Image image_info { set; get; }
         [IgnoreDataMember]
         public string user_photo_base64 { set; get; }
+        [IgnoreDataMember]
+        public long lastChangeTimestamp { get; set; }
 
     }
 
