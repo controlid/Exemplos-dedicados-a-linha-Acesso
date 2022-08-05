@@ -374,5 +374,43 @@ namespace ControliD.iDAccess
             return WebJson.JsonCommand<StatusResult>(URL + "set_configuration.fcgi?session=" + Session, cfg, null, TimeOut);
         }
 
+        public StatusResult SetRTSPConfiguration(int? rtspCamera, int? rtspPort, int inputMode, string rtspUsername, string rtspPassword, string rtspCodec, int? rtspVideoWidth, int? rtspVideoHeight, int? onvifPort)
+        {
+            var onvif = new Onvif();
+            
+            if (inputMode == 1)
+            {
+                onvif.rtsp_enabled = "1";
+                onvif.onvif_enabled = "0";
+            }
+
+            else if (inputMode == 2)
+            {
+                onvif.rtsp_enabled = "0";
+                onvif.onvif_enabled = "1";
+            }
+
+            else
+            {
+                onvif.rtsp_enabled = "0";
+                onvif.onvif_enabled = "0";
+            }
+
+            onvif.rtsp_rgb = rtspCamera.HasValue ? rtspCamera.ToString() : "1";
+            onvif.rtsp_port = rtspPort.HasValue ? rtspPort.ToString() : "554";
+            onvif.rtsp_username = rtspUsername;
+            onvif.rtsp_password = rtspPassword;
+            onvif.rtsp_codec = rtspCodec;
+            onvif.onvif_port = onvifPort.HasValue ? onvifPort.ToString() : "8000";
+            onvif.rtsp_video_height = rtspVideoHeight.HasValue ? rtspVideoHeight.ToString() : "640";
+            onvif.rtsp_video_width = rtspVideoWidth.HasValue ? rtspVideoWidth.ToString() : "320";
+
+            var cfg = new ConfigValues();
+            cfg.onvif = onvif;
+
+
+            CheckSession();
+            return WebJson.JsonCommand<StatusResult>(URL + "set_configuration.fcgi?session=" + Session, cfg, null, TimeOut);
+        }
     }
 }

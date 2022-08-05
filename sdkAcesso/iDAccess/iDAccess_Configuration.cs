@@ -735,6 +735,42 @@ namespace ControliD.iDAccess
     }
 
     [DataContract]
+    public class Onvif
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public string rtsp_enabled;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string rtsp_username;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string rtsp_password;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string rtsp_port;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string onvif_port;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string rtsp_rgb;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string rtsp_codec;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string onvif_enabled;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string rtsp_video_width;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string rtsp_video_height;
+
+    }
+
+
+    [DataContract]
     public class FaceModule
     {
         [DataMember(EmitDefaultValue = false)]
@@ -962,6 +998,8 @@ namespace ControliD.iDAccess
         public FaceModule face_module;
         [DataMember(EmitDefaultValue = false)]
         public LedWhite led_white;
+        [DataMember(EmitDefaultValue = false)]
+        public Onvif onvif;
 
         public ConfigValues(bool lGeneral = false, bool lOnline = false)
         {
@@ -1047,6 +1085,11 @@ namespace ControliD.iDAccess
         public ConfigValues(LedWhite oled_white)
         {
             led_white = oled_white;
+        }
+
+        public ConfigValues(Onvif oonvif)
+        {
+            onvif = oonvif;
         }
 
         // TODO: Migrar para util
