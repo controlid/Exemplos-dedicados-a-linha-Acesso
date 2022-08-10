@@ -384,7 +384,8 @@ namespace ControliD.iDAccess
             "Image too short. Minimum size expected is 160x160.",
             "Image too long. Maximum size expected is 1920x1080.",
             "User does not exist",
-            "Too many face templates for insertion"
+            "Too many face templates for insertion",
+            "Face too close to image borders"
         };
     }
 }
