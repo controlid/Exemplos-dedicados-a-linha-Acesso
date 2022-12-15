@@ -216,6 +216,18 @@ namespace ControliD.iDAccess
             CheckSession();
             return WebJson.JsonCommand<string>(URL + "reboot.fcgi?session=" + Session, null, null, TimeOut);
         }
+        
+        public void SyncInit()
+        {
+            CheckSession();
+            WebJson.JsonCommand<string>(URL + "template_sync_init.fcgi?session=" + Session, null, null, TimeOut);
+        }
+
+        public void SyncEnd()
+        {
+            CheckSession();
+            WebJson.JsonCommand<string>(URL + "template_sync_end.fcgi?session=" + Session, null, null, TimeOut);
+        }
 
         public TemplateResult TemplateExtract(Bitmap digital)
         {
