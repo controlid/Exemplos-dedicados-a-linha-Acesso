@@ -150,6 +150,8 @@ namespace ControliD.iDAccess
         public string registration;
         [DataMember(EmitDefaultValue = false)]
         public bool sync;
+        [DataMember(EmitDefaultValue = false)]
+        public bool auto;
     }
 
     public enum RemoteEnrollType

@@ -135,7 +135,7 @@ namespace ControliD.iDAccess
         /// <param name="panic"></param>
         /// <param name="reg"></param>
         /// <returns></returns>
-        public RemoteEnrollSyncReturn RemoteEnrollSync(RemoteEnrollType eType, string cMessage = null, int user = 0, bool panic = false, string reg = null)
+        public RemoteEnrollSyncReturn RemoteEnrollSync(RemoteEnrollType eType, string cMessage = null, int user = 0, bool panic = false, string reg = null, bool auto = false)
         {
             //NÃO SUBIR ESTE CODIGO DE TESTE
             //Thread.Sleep(7000); //para simular um cadastro lerdo
@@ -166,7 +166,8 @@ namespace ControliD.iDAccess
                 save = user > 1,
                 panic_finger = panic ? 1 : 0,
                 registration = reg,
-                sync = true
+                sync = true,
+                auto = auto
             });
             return retorno;
         }
