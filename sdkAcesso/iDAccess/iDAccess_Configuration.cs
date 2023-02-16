@@ -896,6 +896,12 @@ namespace ControliD.iDAccess
         public string senior_mode;
 
         [DataMember(EmitDefaultValue = false)]
+        public string usb_port_enabled;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string keep_user_image;
+
+        [DataMember(EmitDefaultValue = false)]
         string daylight_savings_time_start;
 
         [DataMember(EmitDefaultValue = false)]
