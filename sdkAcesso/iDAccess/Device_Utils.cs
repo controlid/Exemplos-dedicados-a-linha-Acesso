@@ -119,6 +119,7 @@ namespace ControliD.iDAccess
         [Description("iDFace Legacy1")]                     _0M01,
         [Description("iDFace Legacy2")]                     _0M02,
         [Description("iDFace")]                             _0M03,
+        [Description("iDFace HID")]                         _0M04,
 
         [Description("(não identificado)")]                 none
     }
