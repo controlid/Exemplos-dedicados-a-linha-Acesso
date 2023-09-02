@@ -29,7 +29,8 @@ namespace ControliD.iDAccess
         //iDAccess_Legacy = 14,
         //iDFlex_V2 = 15,
         iDFace = 15,
-        iDBlock_Facial = 16
+        iDBlock_Facial = 16,
+        iDBlock_Next = 17
     }
 
     public enum DeviceNames
