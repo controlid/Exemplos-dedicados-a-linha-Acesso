@@ -127,15 +127,14 @@ namespace ControliD.iDAccess
 
     public partial class Device
     {
-
-        public static bool IsCatraca (DeviceModels model)
+        public static bool IsiDBlock(DeviceModels model)
         {
             return (model == DeviceModels.iDBlock || model == DeviceModels.iDBlock_Balcao || model == DeviceModels.iDBlock_Braco || model == DeviceModels.iDBlock_Pne || model == DeviceModels.iDBlock_Facial);
-        }
+        } 
 
-        public static bool IsCatraca(int model)
+        public static bool IsCatraca(DeviceModels model)
         {
-            return (model == (int)DeviceModels.iDBlock || model == (int)DeviceModels.iDBlock_Balcao || model == (int)DeviceModels.iDBlock_Braco || model == (int)DeviceModels.iDBlock_Pne || model == (int)DeviceModels.iDBlock_Facial);
+            return IsiDBlock(model) || model == DeviceModels.iDBlock_Next;
         }
 
         public static bool IsFlex(DeviceModels model)
