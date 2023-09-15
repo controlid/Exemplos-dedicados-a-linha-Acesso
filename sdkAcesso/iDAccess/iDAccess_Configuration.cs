@@ -209,7 +209,7 @@ namespace ControliD.iDAccess
         [DataMember]
         public long user_id;
         [DataMember]
-        public int portal_id;
+        public long portal_id;
     }
     public class NotificationItem
     {
