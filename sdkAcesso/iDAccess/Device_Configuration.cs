@@ -403,7 +403,7 @@ namespace ControliD.iDAccess
             onvif.rtsp_codec = rtspCodec;
             onvif.onvif_port = onvifPort.HasValue ? onvifPort.ToString() : "8000";
             onvif.rtsp_video_height = rtspVideoHeight.HasValue ? rtspVideoHeight.ToString() : "640";
-            onvif.rtsp_video_width = rtspVideoWidth.HasValue ? rtspVideoWidth.ToString() : "320";
+            onvif.rtsp_video_width = rtspVideoWidth.HasValue ? rtspVideoWidth.ToString() : "360";
 
             var cfg = new ConfigValues();
             cfg.onvif = onvif;
