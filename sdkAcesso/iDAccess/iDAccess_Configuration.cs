@@ -299,6 +299,20 @@ namespace ControliD.iDAccess
     {
         public string @object;
         public string type;
+        public NotificationValuesObject values;
+    }
+    public class NotificationValuesObject
+    {
+        public string id;
+        public string time;
+        public string @event;
+        public string device_id;
+        public string identifier_id;
+        public string user_id;
+        public string portal_id;
+        public string identification_rule_id;
+        public string card_value;
+        public string log_type_id;
     }
 
     //{"module": "modulo", "param":"parametro","value":"valor"}
