@@ -1164,6 +1164,8 @@ namespace ControliD.iDAccess
         public string mode;
         [DataMember(EmitDefaultValue = false)]
         public string catra_side_to_enter;
+        [DataMember(EmitDefaultValue = false)]
+        public string catra_default_fsm;
     }
 
     // {"led_rgb": {"state":"3","solid_red":"0","solid_green":"0","solid_blue":"0","transition_start_red":"0","transition_start_green":"0","transition_start_blue":"0","transition_end_red":"65535","transition_end_green":"0","transition_end_blue":"0"}}
