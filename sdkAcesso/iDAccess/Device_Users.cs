@@ -283,8 +283,19 @@ namespace ControliD.iDAccess
         /// <returns></returns>
         public long[] UserListImages()
         {
+            CheckSession();
             var result = WebJson.JsonCommand<UserListImagesResult>(URL + "user_list_images.fcgi?&session=" + Session);
             return result.user_ids;
+        }
+
+        /// <summary>
+        /// Retorna uma lista de id de pessoas com uma foto
+        /// </summary>
+        /// <returns></returns>
+        public User_Image[] UserListImagesInfo()
+        {
+            CheckSession();
+            return WebJson.JsonCommand<ObjectResult>(URL + "user_list_images.fcgi?&session=" + Session + "&get_timestamp=1").image_info;
         }
 
 
