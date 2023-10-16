@@ -211,11 +211,35 @@ namespace ControliD.iDAccess
         [DataMember]
         public long portal_id;
     }
+    [DataContract]
     public class NotificationItem
     {
+        [DataMember(EmitDefaultValue = false)]
         public NotificationObject[] object_changes;
+        [DataMember(EmitDefaultValue = false)]
         public NotificationConfig[] config_changes;
+        [DataMember(EmitDefaultValue = false)]
         public long device_id;
+    }
+    [DataContract]
+    public class NotificationDoor
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public NotificationDoorObject door;
+        [DataMember(EmitDefaultValue = false)]
+        public NotificationDoorObject secbox;
+        [DataMember(EmitDefaultValue = false)]
+        public long device_id;
+        [DataMember(EmitDefaultValue = false)]
+        public long time;
+    }
+    [DataContract]
+    public class NotificationDoorObject
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public long id;
+        [DataMember(EmitDefaultValue = false)]
+        public bool open;
     }
     [DataContract]
     public class RetornoPush
