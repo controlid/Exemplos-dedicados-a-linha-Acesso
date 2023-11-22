@@ -493,7 +493,7 @@ namespace ControliD
                 device_id = string.format("0x%X%08X",tonumber(first, 36), tonumber(second, 16))
                 */
                 long nHW = device_id >> 32;
-                long nSerie = device_id & 0xFFFF;
+                long nSerie = device_id & 0xFFFFFF;
                 return string.Format("0{0}0/{1:X06}", Util.ToBase36(nHW), nSerie).ToUpper(); // Adiciona Zero a frente e no fim da parte siginificativa
             }
             else
