@@ -114,14 +114,17 @@ namespace ControliD.iDAccess
         //[Description("iDAccess Light Bio ASK+MIFARE")]    V,
 
 // iDUHF
-        [Description("iDUHF")]                             _0N01,
-        [Description("iDUHF Lite")]                        _0N02,
+        [Description("iDUHF")]                              _0N01,
+        [Description("iDUHF Lite")]                         _0N02,
 
 // iDFace
         [Description("iDFace Legacy1")]                     _0M01,
         [Description("iDFace Legacy2")]                     _0M02,
         [Description("iDFace")]                             _0M03,
         [Description("iDFace HID")]                         _0M04,
+
+// iDBox V2
+        [Description("iDBox V2")]                           _0L01,
 
         [Description("(não identificado)")]                 none
     }
