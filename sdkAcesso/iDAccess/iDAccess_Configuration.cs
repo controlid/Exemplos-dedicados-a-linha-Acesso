@@ -807,6 +807,25 @@ namespace ControliD.iDAccess
 
     }
 
+    [DataContract]
+    public class NTP
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public string enabled;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string timezone;
+    }
+
+    [DataContract]
+    public class NTPServer
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public string server1;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string server2;
+    }
 
     [DataContract]
     public class FaceModule
@@ -1044,6 +1063,8 @@ namespace ControliD.iDAccess
         public LedWhite led_white;
         [DataMember(EmitDefaultValue = false)]
         public Onvif onvif;
+        [DataMember(EmitDefaultValue = false)]
+        public NTP ntp;
 
         public ConfigValues(bool lGeneral = false, bool lOnline = false)
         {

@@ -412,5 +412,32 @@ namespace ControliD.iDAccess
             CheckSession();
             return WebJson.JsonCommand<StatusResult>(URL + "set_configuration.fcgi?session=" + Session, cfg, null, TimeOut);
         }
+
+        public StatusResult SetNTPConfiguration(bool enabled, int offset)
+        {
+            var cfg = new ConfigValues
+            {
+                ntp = new NTP
+                {
+                    enabled = enabled ? "1" : "0",
+                    timezone = $"UTC{offset.ToString("+0;-#")}"
+                }
+            };
+
+            CheckSession();
+            return WebJson.JsonCommand<StatusResult>(URL + "set_configuration.fcgi?session=" + Session, cfg, null, TimeOut);
+        }
+
+        public StatusResult SetNTPServerConfiguration(string server1, string server2)
+        {
+            var ntpServer = new NTPServer
+            {
+                server1 = server1,
+                server2 = server2
+            };
+
+            CheckSession();
+            return WebJson.JsonCommand<StatusResult>(URL + "set_ntp_server.fcgi?session=" + Session, ntpServer, null, TimeOut);
+        }
     }
 }
