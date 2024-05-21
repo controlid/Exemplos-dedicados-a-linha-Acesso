@@ -126,6 +126,9 @@ namespace ControliD.iDAccess
 // iDBox V2
         [Description("iDBox V2")]                           _0L01,
 
+// iDBlock Next IHM
+        [Description("iDBlock Next IHM")]                   _0T01,
+
         [Description("(não identificado)")]                 none
     }
 
@@ -231,7 +234,9 @@ namespace ControliD.iDAccess
         {
             DeviceNames ds = GetDeviceName(cSerial);
             string cName = GetDeviceNameDescription(ds);
-            if (cName.Contains("iDBlock"))
+            if (cName.Contains("iDBlock Next"))
+                return DeviceModels.iDBlock_Next;
+            else if (cName.Contains("iDBlock"))
                 return DeviceModels.iDBlock;
             else if (cName.Contains("iDBox"))
                 return DeviceModels.iDBox;
