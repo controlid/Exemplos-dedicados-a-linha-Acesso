@@ -122,8 +122,14 @@ namespace ControliD.iDAccess
         [Description("iDFace Legacy2")]                     _0M02,
         [Description("iDFace")]                             _0M03,
         [Description("iDFace HID")]                         _0M04,
+        
+// iDFace Max
+        [Description("iDFace Max")]                         _0X01,
+        [Description("iDFace Max Prox ASK")]                _0X02,
+        [Description("iDFace Max Prox MIFARE")]             _0X03,
+        [Description("iDFace Max Prox HID")]                _0X04,
 
-// iDBox V2
+        // iDBox V2
         [Description("iDBox V2")]                           _0L01,
 
 // iDBlock Next IHM
