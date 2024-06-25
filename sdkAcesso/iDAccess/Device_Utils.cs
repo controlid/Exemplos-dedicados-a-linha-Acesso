@@ -170,6 +170,11 @@ namespace ControliD.iDAccess
             return (model == DeviceModels.iDAccess || model == DeviceModels.iDFit || model == DeviceModels.iDAccessProx);
         }
 
+        public static bool HasUserDisplay(DeviceModels model)
+        {
+            return !(model == DeviceModels.iDUHF || model == DeviceModels.iDBox);
+        }
+
         public static DeviceNames GetDeviceName(string cSerial)
         {
             if(cSerial==null)
