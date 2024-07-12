@@ -150,15 +150,15 @@ namespace ControliD.iDAccess
         /// </summary>
         AccessPending = 8,
         /// <summary>
-        /// 13 - Desistencia
+        /// 13 - desistencia
         /// </summary>
         GiveUp = 13,
         /// <summary>
-        /// 11 - acesso pendente
+        /// 11 - acesso via botoeira
         /// </summary>
         Buttonhole = 11,
          /// <summary>
-         /// 12 - acesso pendente
+         /// 12 - acesso via interface web
          /// </summary>
         InterfaceWeb = 12
 
