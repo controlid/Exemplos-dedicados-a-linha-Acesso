@@ -239,6 +239,15 @@ namespace ControliD.iDAccess
         {
             user_id = value;
         }
+
+        public override bool IsEquals(GenericItem obj2)
+        {
+            User_Access_Rules obj3 = obj2 as User_Access_Rules;
+            if (obj3 == null)
+                return false;
+            
+            return user_id == obj3.user_id && access_rule_id == obj3.access_rule_id;
+        }
     }
 
     [DataContract]
