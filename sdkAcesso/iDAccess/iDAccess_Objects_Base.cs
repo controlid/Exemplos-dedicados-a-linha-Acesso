@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Net;
 using System.Reflection;
 using System.Runtime.Serialization;
@@ -13,6 +14,26 @@ namespace ControliD.iDAccess
     [DataContract]
     public abstract class GenericItem : StatusResult
     {
+        static ConcurrentDictionary<Type, FieldInfo[]> concurrentDictionary = new ConcurrentDictionary<Type, FieldInfo[]>();
+        private static FieldInfo[] GetFieldInfoList(Type tp)
+        {
+            FieldInfo[] retorno = null;
+            if (concurrentDictionary.TryGetValue(tp, out retorno))
+                return retorno;
+
+            List<FieldInfo> list = new List<FieldInfo>();
+            foreach (FieldInfo fi in tp.GetFields())
+            {
+                if (Attribute.IsDefined(fi, typeof(DataMemberAttribute)))
+                {
+                    list.Add(fi);
+                }
+            }
+            retorno = list.ToArray();
+            concurrentDictionary.TryAdd(tp, retorno);
+            return retorno;
+        }
+
         /// <summary>
         /// Compara cada membro do objeto
         /// </summary>
@@ -22,41 +43,39 @@ namespace ControliD.iDAccess
             if (obj2.GetType() != tp)
                 return false; // Se for outro tipo já é diferente
 
-            foreach (FieldInfo fi in tp.GetFields())
-            {
-                if (Attribute.IsDefined(fi, typeof(DataMemberAttribute)))
+            FieldInfo[] fi_list = GetFieldInfoList(tp);
+            foreach (FieldInfo fi in fi_list)
+            {                    
+                // primeira diferença, já retorna que os objetos são diferentes
+                if (fi.FieldType == typeof(string))
                 {
-                    // primeira diferença, já retorna que os objetos são diferentes
-                    if (fi.FieldType==typeof(string))
-                    {
-                        if ((string)fi.GetValue(obj2) != (string)fi.GetValue(this))
-                            return false; 
-                    }
-                    else if (fi.FieldType == typeof(long))
-                    {
-                        if ((long)fi.GetValue(obj2) != (long)fi.GetValue(this))
-                            return false;
-                    }
-                    else if (fi.FieldType == typeof(int))
-                    {
-                        if ((int)fi.GetValue(obj2) != (int)fi.GetValue(this))
-                            return false;
-                    }
-                    else if (fi.FieldType == typeof(bool))
-                    {
-                        if ((bool)fi.GetValue(obj2) != (bool)fi.GetValue(this))
-                            return false;
-                    }
-                    else if (fi.FieldType == typeof(DateTime))
-                    {
-                        if ((DateTime)fi.GetValue(obj2) != (DateTime)fi.GetValue(this))
-                            return false;
-                    }
-                    else 
-                    {
-                        if (!fi.GetValue(obj2).Equals(fi.GetValue(this)))
-                            return false;
-                    }
+                    if ((string)fi.GetValue(obj2) != (string)fi.GetValue(this))
+                        return false;
+                }
+                else if (fi.FieldType == typeof(long))
+                {
+                    if ((long)fi.GetValue(obj2) != (long)fi.GetValue(this))
+                        return false;
+                }
+                else if (fi.FieldType == typeof(int))
+                {
+                    if ((int)fi.GetValue(obj2) != (int)fi.GetValue(this))
+                        return false;
+                }
+                else if (fi.FieldType == typeof(bool))
+                {
+                    if ((bool)fi.GetValue(obj2) != (bool)fi.GetValue(this))
+                        return false;
+                }
+                else if (fi.FieldType == typeof(DateTime))
+                {
+                    if ((DateTime)fi.GetValue(obj2) != (DateTime)fi.GetValue(this))
+                        return false;
+                }
+                else
+                {
+                    if (!fi.GetValue(obj2).Equals(fi.GetValue(this)))
+                        return false;
                 }
             }
             return true; // por eliminatória, é tudo igual!
