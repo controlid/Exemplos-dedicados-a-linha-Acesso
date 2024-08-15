@@ -945,6 +945,8 @@ namespace ControliD.iDAccess
         [DataMember(EmitDefaultValue = false)]
         public string language;
 
+        [DataMember(EmitDefaultValue = false)]
+        public string attendance_mode;
 
         public DateTime? Daylight_savings_time_start
         {
@@ -1253,8 +1255,10 @@ namespace ControliD.iDAccess
     [DataContract]
     public class Identifier
     {
-        [DataMember(EmitDefaultValue = true)]
+        [DataMember(EmitDefaultValue = false)]
         public string multi_factor_authentication;
 
+        [DataMember(EmitDefaultValue = false)]
+        public string log_type;
     }
 }
