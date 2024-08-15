@@ -140,6 +140,9 @@ namespace ControliD.iDAccess
         [DataMember(EmitDefaultValue = false)]
         public string salt;
 
+        [DataMember(EmitDefaultValue = false)]
+        public long? image_timestamp;
+
         /// <summary>
         /// Gera a senha de um usuário 
         /// </summary>
