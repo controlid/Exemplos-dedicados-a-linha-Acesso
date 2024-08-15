@@ -135,6 +135,12 @@ namespace ControliD.iDAccess
 // iDBlock Next IHM
         [Description("iDBlock Next IHM")]                   _0T01,
 
+// iDFace Max
+        [Description("iDFace Max")]                         _0X01,
+        [Description("iDFace Max ASK")]                     _0X02,
+        [Description("iDFace Max MIFARE")]                  _0X03,
+        [Description("iDFace Max HID")]                     _0X04,
+
         [Description("(não identificado)")]                 none
     }
 
