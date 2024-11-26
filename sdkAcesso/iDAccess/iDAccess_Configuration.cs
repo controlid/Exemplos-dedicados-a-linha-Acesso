@@ -967,6 +967,15 @@ namespace ControliD.iDAccess
         [DataMember(EmitDefaultValue = false)]
         public string attendance_mode;
 
+        [DataMember(EmitDefaultValue = false)]
+        public string denied_transaction_code;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string send_code_when_not_authorized;
+
+        [DataMember(EmitDefaultValue = false)]
+        public string send_code_when_not_identified;
+
         public DateTime? Daylight_savings_time_start
         {
             get { return StringToDateTime(daylight_savings_time_start); }
@@ -1209,6 +1218,8 @@ namespace ControliD.iDAccess
     {
         [DataMember(EmitDefaultValue = false)]
         public string mode;
+        [DataMember(EmitDefaultValue = false)]
+        public string out_mode;
         [DataMember(EmitDefaultValue = false)]
         public string catra_side_to_enter;
         [DataMember(EmitDefaultValue = false)]
