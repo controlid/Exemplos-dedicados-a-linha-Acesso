@@ -165,7 +165,7 @@ namespace ControliD.iDAccess
         [DataMember()]
         public string enroller_state;
         [DataMember()]
-        public string biometry_sate;
+        public string biometry_state;
         [DataMember()]
         public string last_enroll;
         [DataMember()]
