@@ -17,7 +17,7 @@ namespace ControliD.iDAccess
         private DateTime dtConnection;
         public int TimeOut;
 
-        public Device(string cIP_DNS_URL = "http://192.168.0.129", string cLogin = "admin", string cPassword = "admin", bool useSSL = false, int nPort = 80, object oTag = null)
+        public Device(string cIP_DNS_URL = "http://192.168.0.129", string cLogin = "admin", string cPassword = "admin", bool useSSL = false, int nPort = 80, object oTag = null, int ForceTimeout = 0)
         {
             URL = cIP_DNS_URL;
             Login = cLogin;
@@ -27,7 +27,10 @@ namespace ControliD.iDAccess
                 nPort = 443;
             Port = nPort;
             Tag = oTag;
-            TimeOut = WebJson.TimeOut;
+            if (ForceTimeout > 0)
+                TimeOut = ForceTimeout;
+            else
+                TimeOut = WebJson.TimeOut;
         }
 
         public void Connect(string cIP_DNS_URL = null, string cLogin = null, string cPassword = null, bool? useSSL = null, int? nPort = null)
