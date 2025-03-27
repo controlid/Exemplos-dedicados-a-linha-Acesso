@@ -54,7 +54,7 @@ namespace ControliD.iDAccess
                     }
                     else 
                     {
-                        if (!fi.GetValue(obj2).Equals(fi.GetValue(this)))
+                        if (!Equals(fi.GetValue(obj2), fi.GetValue(this)))
                             return false;
                     }
                 }
