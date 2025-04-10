@@ -17,12 +17,15 @@ namespace ControliD.iDAccess
         private DateTime dtConnection;
         public int TimeOut;
 
-        public Device(string cIP_DNS_URL = "http://192.168.0.129", string cLogin = "admin", string cPassword = "admin", bool useSSL = false, int nPort = 80, object oTag = null, int ForceTimeout = 0)
+        public Device(string cIP_DNS_URL = "http://192.168.0.129", string cLogin = "admin", string cPassword = "admin", bool? useSSL = null, int nPort = 80, object oTag = null, int ForceTimeout = 0)
         {
             URL = cIP_DNS_URL;
             Login = cLogin;
             Password = cPassword;
-            SSL = useSSL;
+            if (useSSL == null)
+                useSSL = nPort == 443;
+
+            SSL = useSSL.Value;
             if (SSL && nPort == 80)
                 nPort = 443;
             Port = nPort;
