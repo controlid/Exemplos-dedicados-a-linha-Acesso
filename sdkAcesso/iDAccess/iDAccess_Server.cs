@@ -32,16 +32,20 @@ namespace ControliD.iDAccess
         /// <param name="Overwrite">Apaga server antigo</param>
         public StatusResult ConfigureServer(string server_url, OnlineMode mode, bool Overwrite = false)
         {
-            const long serverId = -1;
-            Devices server = new Devices() { id = serverId, IP = server_url, name = "Server", PublicKey = "anA=" };
+            try
+            {
+                Devices server = new Devices() { id = -1, IP = server_url, name = "Server", PublicKey = "anA=" };
 
-            if (Overwrite)
-                Destroy<Devices>(serverId);
+                if (Overwrite)
+                    DestroyWhere<Devices, WhereObjects>(new WhereObjects() { });
 
-            if (Add(server) == serverId)
+                long serverId = Add(server);
                 return GoOnline(mode, serverId);
-            else
+            }
+            catch (Exception)
+            {
                 return new StatusResult(500, "Não foi possível incluir o servidor no equipamento");
+            }
         }
     }
 
