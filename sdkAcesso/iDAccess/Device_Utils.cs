@@ -7,8 +7,6 @@ using System.Security.Cryptography;
 
 namespace ControliD.iDAccess
 {
-    //ADICIONAR DEVICE À LISTA
-
     public enum DeviceModels
     {
         iDAccess = 0,
@@ -26,17 +24,17 @@ namespace ControliD.iDAccess
         iDX = 12,
         iDClass = 13,
         iDUHF = 14,
-        //iDAccess_Legacy = 14,
-        //iDFlex_V2 = 15,
         iDFace = 15,
         iDBlock_Facial = 16,
-        iDBlock_Next = 17
+        iDBlock_Next = 17,
+        iDFace_Max = 18,
+        Amico = 19,
+        Amico_7 = 20
     }
 
     public enum DeviceNames
     {
-
-//Modelos iDAccess
+        // Modelos iDAccess
         [Description("iDAccess Bio")]                       B,
         [Description("iDAccess Bio ASK")]                   A,
         [Description("iDAccess Bio ASK+FSK")]               C,
@@ -47,7 +45,7 @@ namespace ControliD.iDAccess
         [Description("iDAccess Prox ASK+PSK")]              H,
         [Description("iDAccess Prox ASK+MIFARE")]           I,
 
-//Modelos iDAccess Pro
+        // Modelos iDAccess Pro
         [Description("iDAccess Pro Bio")]                   _0E01,
         [Description("iDAccess Pro Bio ASK")]               _0E02,
         [Description("iDAccess Pro Bio MIFARE")]            _0E03,
@@ -56,42 +54,42 @@ namespace ControliD.iDAccess
         [Description("iDAccess Pro Bio Prox HID")]          _0E06,
         [Description("iDAccess Pro Prox HID")]              _0E07,
 
-        //Modelos iDAccess Nano
+        // Modelos iDAccess Nano
         [Description("iDAccess Nano Bio")]                  _0F01,
         [Description("iDAccess Nano Bio ASK")]              _0F02,
         [Description("iDAccess Nano Bio MIFARE")]           _0F03,
         [Description("iDAccess Nano Prox ASK")]             _0F04,
         [Description("iDAccess Nano Prox MIFARE")]          _0F05,
 
-//Modelos iDFlex V2
+        // Modelos iDFlex V2
         [Description("iDFlex V2 Bio")]                      _0G01,
         [Description("iDFlex V2 Bio Prox ASK")]             _0G02,
         [Description("iDFlex V2 Bio Prox MIFARE")]          _0G03,
         [Description("iDFlex V2 Prox ASK")]                 _0G04,
         [Description("iDFlex V2 Prox MIFARE")]              _0G05,
 
-//Modelos iDAccess Legacy 
+        // Modelos iDAccess Legacy
         [Description("iDAccess Legacy Bio")]                _0I01,
         [Description("iDAccess Legacy Bio Prox ASK")]       _0I02,
         [Description("iDAccess Legacy Bio Prox MIFARE")]    _0I03,
         [Description("iDAccess Legacy Prox ASK")]           _0I04,
         [Description("iDAccess Legacy Prox MIFARE")]        _0I05,
 
-//Modelos iDFit Legacy
+        // Modelos iDFit Legacy
         [Description("iDFit Legacy Bio")]                   _0J01,
         [Description("iDFit Legacy Bio Prox ASK")]          _0J02,
         [Description("iDFit Legacy Bio Prox MIFARE")]       _0J03,
         [Description("iDFit Legacy Prox ASK")]              _0J04,
         [Description("iDFit Legacy Prox MIFARE")]           _0J05,
 
-// Modelos iDFit
+        // Modelos iDFit
         [Description("iDFit Bio")]                          N,
         [Description("iDFit Bio ASK")]                      M,
         [Description("iDFit Bio ASK+FSK")]                  O,
         [Description("iDFit Bio ASK+PSK")]                  P,
         [Description("iDFit Bio ASK+MIFARE")]               Q,
 
-// Modelos Jalapeno
+        // Modelos Jalapeno
         [Description("iDBox Appliance")]                    J,
         [Description("iDBox Controler")]                    L,
         [Description("iDBlock")]                            K,
@@ -99,31 +97,31 @@ namespace ControliD.iDAccess
         [Description("iDBlock Plus")]                       S,
         [Description("x86")]                                R,
 
-// Novos Seriais
+        // Novos Seriais
         [Description("iDFlex Bio")]                         _0A01,
         [Description("iDFlex Bio Prox ASK")]                _0A02,
         [Description("iDFlex Bio Prox MIFARE")]             _0A03,
         [Description("iDFlex Prox ASK")]                    _0A04,
         [Description("iDFlex Prox MIFARE")]                 _0A05,
 
-// Modelos Light (descontinuado)
+        // Modelos Light (descontinuado)
         //[Description("iDAccess Light Bio")]               Z,
         //[Description("iDAccess Light Bio ASK")]           Y,
         //[Description("iDAccess Light Bio ASK+FSK")]       X,
         //[Description("iDAccess Light Bio ASK+PSK")]       W,
         //[Description("iDAccess Light Bio ASK+MIFARE")]    V,
 
-// iDUHF
+        // iDUHF
         [Description("iDUHF")]                              _0N01,
         [Description("iDUHF Lite")]                         _0N02,
 
-// iDFace
+        // iDFace
         [Description("iDFace Legacy1")]                     _0M01,
         [Description("iDFace Legacy2")]                     _0M02,
         [Description("iDFace")]                             _0M03,
         [Description("iDFace HID")]                         _0M04,
         
-// iDFace Max
+        // iDFace Max
         [Description("iDFace Max")]                         _0X01,
         [Description("iDFace Max Prox ASK")]                _0X02,
         [Description("iDFace Max Prox MIFARE")]             _0X03,
@@ -132,8 +130,14 @@ namespace ControliD.iDAccess
         // iDBox V2
         [Description("iDBox V2")]                           _0L01,
 
-// iDBlock Next IHM
+        // iDBlock Next IHM
         [Description("iDBlock Next IHM")]                   _0T01,
+
+        // Amico
+        [Description("Amico")]                              _0Z01,
+
+        // Amico 7
+        [Description("Amico 7")]                            _1Z01,
 
         [Description("(não identificado)")]                 none
     }
@@ -162,12 +166,12 @@ namespace ControliD.iDAccess
 
         public static bool IsiDFace(DeviceModels model)
         {
-            return (model == DeviceModels.iDFace);
+            return (model == DeviceModels.iDFace || model == DeviceModels.iDFace_Max);
         }
 
         public static bool HasTwoRelays(DeviceModels model)
         {
-            return (model == DeviceModels.iDAccess || model == DeviceModels.iDFit || model == DeviceModels.iDAccessProx);
+            return (model == DeviceModels.iDAccess || model == DeviceModels.iDFit || model == DeviceModels.iDAccessProx || model == DeviceModels.iDFace_Max);
         }
 
         public static bool HasUserDisplay(DeviceModels model)
@@ -265,10 +269,16 @@ namespace ControliD.iDAccess
                 return DeviceModels.iDAccess_Nano;
             else if (cName.Contains("iDUHF"))
                 return DeviceModels.iDUHF;
+            else if (cName.Contains("iDFace Max"))
+                return DeviceModels.iDFace_Max;
             else if (cName.Contains("iDFace"))
                 return DeviceModels.iDFace;
             else if (cName.Contains("iDBlock_Facial"))
                 return DeviceModels.iDBlock_Facial;
+            else if (cName.Contains("Amico 7"))
+                return DeviceModels.Amico_7;
+            else if (cName.Contains("Amico"))
+                return DeviceModels.Amico;
             else
                 return DeviceModels.iDAccess;
         }
