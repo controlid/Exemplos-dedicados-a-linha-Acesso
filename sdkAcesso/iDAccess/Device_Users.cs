@@ -93,13 +93,13 @@ namespace ControliD.iDAccess
         /// <summary>
         /// Define a foto de um usuário, ou a remove se for informado 'null'
         /// </summary>
-        public void SetUserImage(long nUserID, Image oFoto, bool lTry=false, bool lRecise=false)
+        public string SetUserImage(long nUserID, Image oFoto, bool lTry = false, bool lRecise = false)
         {
             CheckSession();
             try
             {
                 if (oFoto == null)
-                    WebJson.JsonCommand<string>(URL + "user_destroy_image.fcgi?&session=" + Session, "{\"user_id\":" + nUserID + "}", null, TimeOut);
+                    return WebJson.JsonCommand<string>(URL + "user_destroy_image.fcgi?&session=" + Session, "{\"user_id\":" + nUserID + "}", null, TimeOut);
                 else
                 {
                     Image oSend;
@@ -108,13 +108,10 @@ namespace ControliD.iDAccess
                         var width = DeviceImageWidth;
                         var height = DeviceImageHeight;
                         if (oFoto.Height > oFoto.Width)
-                        {
                             height = oFoto.Height * width / oFoto.Width;
-                        }
                         else
-                        {
                             width = oFoto.Width * height / oFoto.Height;
-                        }
+                        
                         Bitmap bmp = new Bitmap(width, height);
                         Graphics graph = Graphics.FromImage(bmp);
                         
@@ -124,10 +121,8 @@ namespace ControliD.iDAccess
                     else
                         oSend = oFoto;
 
-                    WebJson.JsonCommand<string>(URL + "user_set_image.fcgi?user_id=" + nUserID + "&session=" + Session, oSend, null, TimeOut, System.Drawing.Imaging.ImageFormat.Jpeg);
-
-                    // oFoto.Dispose();
-                    // oSend.Dispose();
+                    long timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+                    return WebJson.JsonCommand<string>(URL + "user_set_image.fcgi?user_id=" + nUserID + "&timestamp=" + timestamp.ToString() + "&session=" + Session, oSend, null, TimeOut, System.Drawing.Imaging.ImageFormat.Jpeg);
                 }
             }
             catch (Exception ex)
@@ -137,9 +132,9 @@ namespace ControliD.iDAccess
                 else
                     throw ex;
             }
-        }
 
-        
+            return null;
+        }
 
         /// <summary>
         /// Define a foto de uma lista de usuário
