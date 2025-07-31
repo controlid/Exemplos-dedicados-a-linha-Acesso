@@ -68,7 +68,12 @@ namespace ControliD.iDAccess
             lreq.login = Login;
             lreq.password = Password;
 
+#if HID
+            var result = WebJson.JsonCommand<LoginResult>(URL + "hidlogin.fcgi", lreq, null, TimeOut);
+#else
             var result = WebJson.JsonCommand<LoginResult>(URL + "login.fcgi", lreq, null, TimeOut);
+#endif
+
             if (result is LoginResult)
             {
                 LoginResult dados = (LoginResult)result;
@@ -112,18 +117,14 @@ namespace ControliD.iDAccess
         {
             WebJson.WriteLog();
 
-            if(Session == null)
-            {
+            if (Session == null)
                 Connect();
-            }
             else
             {
                 var result = WebJson.JsonCommand<SessionResult>(URL + "session_is_valid.fcgi?session=" + Session);
                 if (!result.session_is_valid)
-                {
                     Connect();
-                }
             }
-        }        
+        }
     }
 }
