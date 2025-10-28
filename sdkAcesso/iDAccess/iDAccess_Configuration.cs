@@ -968,9 +968,6 @@ namespace ControliD.iDAccess
         public string attendance_mode;
 
         [DataMember(EmitDefaultValue = false)]
-        public string denied_transaction_code;
-
-        [DataMember(EmitDefaultValue = false)]
         public string send_code_when_not_authorized;
 
         [DataMember(EmitDefaultValue = false)]
