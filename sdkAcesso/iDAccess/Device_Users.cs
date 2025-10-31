@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace ControliD.iDAccess
 {
@@ -90,6 +91,42 @@ namespace ControliD.iDAccess
         /// </summary>
         public const int DeviceBlockImageHeight = 185;
 
+        /// <summary>
+        /// Define a foto de um usuário, ou a remove se for informado 'null'
+        /// </summary>
+        public UserImagesFacialResponse SetUserImageBase64(long nUserID, string oFoto, long image_timestamp, bool lTry = false)
+        {
+            CheckSession();
+            try
+            {
+                if (oFoto == null)
+                    WebJson.JsonCommand<string>(URL + "user_destroy_image.fcgi?&session=" + Session, "{\"user_id\":" + nUserID + "}", null, TimeOut);
+                else
+                {
+                    List<FaceImages> listToSend = new List<FaceImages>();
+                    listToSend.Add(new FaceImages()
+                    {
+                        image = oFoto,
+                        timestamp = image_timestamp,
+                        user_id = nUserID
+                    });
+                    UserImagesFacialRequest request = new UserImagesFacialRequest()
+                    {
+                        match = true,
+                        user_images = listToSend.ToArray()
+                    };
+                    return WebJson.JsonCommand<UserImagesFacialResponse>(URL + "user_set_image_list.fcgi?session=" + Session, request, "POST", TimeOut);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (lTry)
+                    LastError = ex;
+                else
+                    throw ex;
+            }
+            return null;
+        }
         /// <summary>
         /// Define a foto de um usuário, ou a remove se for informado 'null'
         /// </summary>
