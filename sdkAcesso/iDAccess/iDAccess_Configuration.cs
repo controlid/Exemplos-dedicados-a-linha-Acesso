@@ -708,6 +708,13 @@ namespace ControliD.iDAccess
             get { return ConfigValues.GetIntString(request_timeout); }
             set { request_timeout = ConfigValues.SetIntString(value); }
         }
+        [DataMember(EmitDefaultValue = false)]
+        string watchdog_timeout;
+        public int? WatchdogTimeout
+        {
+            get { return ConfigValues.GetIntString(watchdog_timeout); }
+            set { watchdog_timeout = ConfigValues.SetIntString(value); }
+        }
     }
 
     [DataContract]
