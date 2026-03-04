@@ -15,6 +15,10 @@ namespace ControliD.iDAccess
         public long value;
         [DataMember(EmitDefaultValue = false)]
         public long user_id;
+        [IgnoreDataMember]
+        public long facility_code;
+        [IgnoreDataMember]
+        public long card_number;
     }
 
     [DataContract]
