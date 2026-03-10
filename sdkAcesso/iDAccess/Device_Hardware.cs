@@ -56,7 +56,7 @@ namespace ControliD.iDAccess
         public class DoorStateDetail
         {
             [DataMember]
-            public int id;
+            public long id;
             [DataMember]
             public bool open;
         }
