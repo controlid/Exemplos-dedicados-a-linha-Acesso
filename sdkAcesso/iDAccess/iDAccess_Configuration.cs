@@ -96,6 +96,8 @@ namespace ControliD.iDAccess
         public List<string> identifier = new List<string>();
         [DataMember(EmitDefaultValue = false)]
         public List<string> monitor = new List<string>();
+        [DataMember(EmitDefaultValue = false)]
+        public List<string> ntp = new List<string>();
 
         public void AskDayLightSavingTime()
         {
@@ -116,6 +118,11 @@ namespace ControliD.iDAccess
         public void AskMultiFactorIdentification()
         {
             identifier.Add("multi_factor_authentication");
+        }
+        public void AskNTP()
+        {
+            ntp.Add("enabled");
+            ntp.Add("timezone");
         }
     }
 
