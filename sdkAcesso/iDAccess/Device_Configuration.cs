@@ -23,6 +23,15 @@ namespace ControliD.iDAccess
         {
             ConfigKeys config = new ConfigKeys();
             config.AskMultiFactorIdentification();
+
+            return GetConfiguration(config);
+        }
+
+        public ConfigValues GetNTPConfiguration()
+        {
+            ConfigKeys config = new ConfigKeys();
+            config.AskNTP();
+
             return GetConfiguration(config);
         }
 
