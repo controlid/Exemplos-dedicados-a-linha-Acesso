@@ -26,7 +26,10 @@ namespace ControliD.iDAccess
 
             return GetConfiguration(config);
         }
-
+        /// <summary>
+        /// Recupera as configurações de NTP do equipamento, como fuso horário e se está habilitado ou não
+        /// </summary>
+        /// <returns></returns>
         public ConfigValues GetNTPConfiguration()
         {
             ConfigKeys config = new ConfigKeys();
@@ -46,6 +49,18 @@ namespace ControliD.iDAccess
             ConfigValues config = new ConfigValues(true);
             config.general.Daylight_savings_time_start = start;
             config.general.Daylight_savings_time_end = end;
+
+            return SetConfiguration(config);
+        }
+        /// <summary>
+        /// Seta o NTP do equipamento, habilitando ou desabilitando e setando o fuso horário conforme a necessidade
+        /// </summary>
+        /// <param name="enable"></param>
+        /// <param name="timezone"></param>
+        /// <returns></returns>
+        public StatusResult SetNTPConfiguration(String enable, String timezone)
+        {
+            ConfigValues config = new ConfigValues(new NTP() { enabled = enable, timezone = timezone});
 
             return SetConfiguration(config);
         }

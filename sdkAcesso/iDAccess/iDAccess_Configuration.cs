@@ -1172,6 +1172,11 @@ namespace ControliD.iDAccess
             onvif = oonvif;
         }
 
+        public ConfigValues(NTP ntp)
+        {
+            this.ntp = ntp;
+        }
+
         // TODO: Migrar para util
         /*** helper functions ***/
         internal static bool? GetBoolString(string s)
