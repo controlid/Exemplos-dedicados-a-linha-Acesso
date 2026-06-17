@@ -216,7 +216,7 @@ namespace ControliD.iDAccess
     }
 
     [DataContract]
-    public abstract class Item_Access_Rules : GenericItem
+    public abstract class Item_Access_Rules : GenericCount
     {
         [DataMember(EmitDefaultValue = false)]
         public long access_rule_id;
