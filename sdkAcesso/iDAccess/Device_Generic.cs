@@ -365,11 +365,27 @@ namespace ControliD.iDAccess
 
         public int DestroyWhere<T, W>(W Where) where T : GenericItem
         {
-            return Command<ObjectResult>("destroy_objects", new ObjectRequest<T, W>()
+            return DestroyWherePaged<T, W>(Where);
+        }
+
+        public int DestroyWherePaged<T, W>(W Where, int pageSize = 200) where T : GenericItem
+        {
+            int totalDestroyed = 0;
+            int changes;
+
+            do
             {
-                limit = 0, // para não enviar limit!
-                where = Where
-            }).changes;
+                changes = Command<ObjectResult>("destroy_objects", new ObjectRequest<T, W>()
+                {
+                    limit = pageSize,
+                    where = Where
+                }).changes;
+
+                totalDestroyed += changes;
+            }
+            while (changes > 0);
+
+            return totalDestroyed;
         }
     }
 }
