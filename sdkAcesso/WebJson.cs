@@ -6,11 +6,15 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
+using System.Net.Security;
+using System.Net.Sockets;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
+using System.Security.Authentication;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
-using System.Runtime.Serialization;
+using System.Web.UI.WebControls.WebParts;
 
 namespace ControliD
 {
@@ -160,7 +164,11 @@ namespace ControliD
                             WriteLog(hash + " Vai enviar objRequest:" + objRequest.GetType().ToString() + " " + objRequest_string.Length + " bytes");
                     }
                 }
-                ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+
+
+                ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
+                //ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls13;
+              
                 var request = (HttpWebRequest)WebRequest.Create(cURL);
                 request.Timeout = reqTimeout;
                 request.KeepAlive = false;
