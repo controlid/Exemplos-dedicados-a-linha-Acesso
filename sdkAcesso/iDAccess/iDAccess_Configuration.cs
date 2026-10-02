@@ -188,7 +188,11 @@ namespace ControliD.iDAccess
         public string name { get; set; }
         [DataMember]
         public int time { get; set; }
+
+        [DataMember]
+        public string uuid { get; set; }
     }
+
     [DataContract]
     public class NotificationOperator
     {
