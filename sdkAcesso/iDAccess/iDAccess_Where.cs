@@ -151,6 +151,46 @@ namespace ControliD.iDAccess
         public User_Images[] user_images;
     }
 
+    public class AccessEvent
+    {
+        public long id { get; set; }
+        public string @event { get; set; }      // "catra"
+        public string type { get; set; }        // "TURN RIGHT", "TURN LEFT", "GIVE UP"...
+        public string identification { get; set; }
+        public long device_id { get; set; }
+        public long timestamp { get; set; }
+    }
+
+    [DataContract]
+    public class AccessEventsResult
+    {
+        [DataMember()]
+        public AccessEvent[] access_events { get; set; }
+    }
+
+    [DataContract]
+    public class AccessEventsRequest
+    {
+        [DataMember(Name = "object")] // Foi necessário por object é uma palavra reservada
+        public string ObjectName = "access_events";
+        [DataMember(EmitDefaultValue = false)]
+        public AccessEventsWhere where;
+    }
+
+    [DataContract]
+    public class AccessEventsWhere
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public AccessEventsFilter access_events;
+    }
+
+    [DataContract]
+    public class AccessEventsFilter
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public string[] identification;
+    }
+
     [DataContract]
     public class ObjectResult2<T>
     {
