@@ -81,6 +81,20 @@ namespace ControliD.iDAccess
             return GetResults<T>(result, cName);
         }
 
+        public AccessEvent[] GetAccessEvents(string uuid)
+        {
+            var request = new AccessEventsRequest()
+            {
+                where = new AccessEventsWhere()
+                {
+                    access_events = new AccessEventsFilter() { identification = new[] { uuid } }
+                }
+            };
+            var result = Command<AccessEventsResult>("load_objects", request);
+            return result.access_events;
+
+        }
+
         private T[] GetResults<T>(object result, string cName = null)
         {
             if (cName == null)
