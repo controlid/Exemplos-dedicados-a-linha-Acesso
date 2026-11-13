@@ -18,11 +18,14 @@ using System.Web.UI.WebControls.WebParts;
 
 namespace ControliD
 {
-    public class WebJson
+    public partial class WebJson
     {
         public static bool Debug = true;
         public static int TimeOut = 10000;
         public static string LogPath;
+
+        // Serializa a escrita no arquivo de log (chamadas concorrentes de vários equipamentos)
+        private static readonly object _logLock = new object();
 
         // Para configurar o 'ServicePointManager' no primeiro uso
         static WebJson()
@@ -82,24 +85,27 @@ namespace ControliD
         {
             if (LogPath == null)
                 return;
-            try
+            lock (_logLock)
             {
-                FileInfo fi = new FileInfo(LogPath);
-                //Console.WriteLine(fi.FullName);
-                using (StreamWriter w = fi.AppendText())
+                try
                 {
-                    if (logMessage == null)
-                        w.WriteLine();
-                    else if (lAddTime)
-                        w.WriteLine("{0:dd/MM/yyyy HH:mm:ss.fff} {1}", DateTime.Now, logMessage);
-                    else
-                        w.WriteLine(logMessage);
+                    FileInfo fi = new FileInfo(LogPath);
+                    //Console.WriteLine(fi.FullName);
+                    using (StreamWriter w = fi.AppendText())
+                    {
+                        if (logMessage == null)
+                            w.WriteLine();
+                        else if (lAddTime)
+                            w.WriteLine("{0:dd/MM/yyyy HH:mm:ss.fff} {1}", DateTime.Now, logMessage);
+                        else
+                            w.WriteLine(logMessage);
 
-                    w.Close();
+                        w.Close();
+                    }
                 }
-            }
-            catch (Exception)
-            {
+                catch (Exception)
+                {
+                }
             }
         }
 
