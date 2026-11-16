@@ -24,6 +24,7 @@
     <DocumentationFile>bin\Debug\sdk-ControliD.xml</DocumentationFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <UseVSHostingProcess>true</UseVSHostingProcess>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -35,6 +36,7 @@
     <WarningLevel>4</WarningLevel>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <DocumentationFile>bin\Release\sdk-ControliD.xml</DocumentationFile>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -105,6 +107,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
@@ -126,6 +129,8 @@
     <Compile Include="iDAccess\Device_Utils.cs" />
     <Compile Include="iDAccess\Device_Generic.cs" />
     <Compile Include="iDAccess\Device_Commands.cs" />
+    <Compile Include="iDAccess\Device_Async.cs" />
+    <Compile Include="iDAccess\Device_AsyncCommands.cs" />
     <Compile Include="iDAccess\Device_Groups.cs" />
     <Compile Include="iDAccess\Device_Users.cs" />
     <Compile Include="iDAccess\Device.cs" />
@@ -147,7 +152,9 @@
     <Compile Include="TextCSV.cs" />
     <Compile Include="USB\Futronic.cs" />
     <Compile Include="Util.cs" />
+    <Compile Include="SdkHttp.cs" />
     <Compile Include="WebJson.cs" />
+    <Compile Include="WebJson_Async.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
