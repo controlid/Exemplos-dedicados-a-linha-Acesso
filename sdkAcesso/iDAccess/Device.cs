@@ -113,17 +113,77 @@ namespace ControliD.iDAccess
             }
         }
 
+        // ---------------------------------------------------------------- verificação de sessão
+        //
+        // Antes de cada comando a sessão é verificada com session_is_valid.fcgi. O equipamento atende as requisições em
+        // fila: ocupado (base grande, carga de cartões/fotos), até essa verificação espera a fila. Por isso ela:
+        //  - usa o TimeOut desta instância (antes usava o WebJson.TimeOut global, 10 s, ignorando o timeout configurado
+        //    pelo chamador, e qualquer fila acima de 10 s abortava a operação);
+        //  - se o equipamento não responder (timeout ou falha de rede, sem resposta HTTP), tenta de novo com espera
+        //    crescente; esgotadas as tentativas, restabelece a sessão com um novo login (que lança o erro se o
+        //    equipamento continuar sem responder);
+        //  - sessão inválida (expirada, encerrada, equipamento reiniciado) é restabelecida com um novo login.
+
+        /// <summary>Tentativas do session_is_valid sem resposta antes de restabelecer a sessão com um novo login (mínimo 1).</summary>
+        public int SessionCheckAttempts = 3;
+
+        /// <summary>Espera antes da 2ª tentativa do session_is_valid; dobra a cada tentativa (2 s, 4 s...).</summary>
+        public int SessionCheckRetryDelayMs = 2000;
+
+        /// <summary>
+        /// true se a falha da verificação de sessão foi falta de resposta do equipamento (timeout, conexão recusada/
+        /// resetada): vale tentar de novo. Com resposta HTTP é um erro do equipamento e é propagado.
+        /// </summary>
+        private static bool IsSessionCheckTransient(Exception ex)
+        {
+            var cex = ex as cidException;
+            if (cex != null)
+                return (int)cex.StatusCode == 0;
+            var wex = ex as System.Net.WebException;
+            return wex != null && wex.Response == null;
+        }
+
+        private int SessionCheckDelay(int attempt)
+        {
+            return Math.Max(0, SessionCheckRetryDelayMs) * (1 << Math.Min(attempt - 1, 4));
+        }
+
+        private string SessionCheckLog(int attempt, Exception ex, bool reconnect)
+        {
+            return "session_is_valid sem resposta (tentativa " + attempt + "/" + Math.Max(1, SessionCheckAttempts) + ", timeout " + TimeOut + " ms): " +
+                   ex.Message + (reconnect ? " - restabelecendo a sessão (login)" : " - nova tentativa em " + SessionCheckDelay(attempt) + " ms");
+        }
+
         private void CheckSession()
         {
             WebJson.WriteLog();
 
             if (Session == null)
-                Connect();
-            else
             {
-                var result = WebJson.JsonCommand<SessionResult>(URL + "session_is_valid.fcgi?session=" + Session);
-                if (!result.session_is_valid)
-                    Connect();
+                Connect();
+                return;
+            }
+
+            for (int attempt = 1; ; attempt++)
+            {
+                try
+                {
+                    var result = WebJson.JsonCommand<SessionResult>(URL + "session_is_valid.fcgi?session=" + Session, null, null, TimeOut);
+                    if (!result.session_is_valid)
+                        Connect();
+                    return;
+                }
+                catch (Exception ex) when (IsSessionCheckTransient(ex))
+                {
+                    if (attempt >= SessionCheckAttempts)
+                    {
+                        WebJson.WriteLog(SessionCheckLog(attempt, ex, true));
+                        Connect();
+                        return;
+                    }
+                    WebJson.WriteLog(SessionCheckLog(attempt, ex, false));
+                    System.Threading.Thread.Sleep(SessionCheckDelay(attempt));
+                }
             }
         }
     }
