@@ -94,17 +94,40 @@ namespace ControliD.iDAccess
             }
         }
 
+        /// <summary>
+        /// Versão assíncrona de <see cref="CheckSession"/> (mesma política: TimeOut da instância, novas tentativas e
+        /// restabelecimento da sessão). O cancelamento pelo chamador interrompe a verificação e as esperas.
+        /// </summary>
         private async Task CheckSessionAsync(CancellationToken ct)
         {
             WebJson.WriteLog();
 
             if (Session == null)
-                await ConnectAsync(ct: ct).ConfigureAwait(false);
-            else
             {
-                var result = await WebJson.JsonCommandAsync<SessionResult>(URL + "session_is_valid.fcgi?session=" + Session, null, null, 0, null, HttpClientProvider, ct).ConfigureAwait(false);
-                if (!result.session_is_valid)
-                    await ConnectAsync(ct: ct).ConfigureAwait(false);
+                await ConnectAsync(ct: ct).ConfigureAwait(false);
+                return;
+            }
+
+            for (int attempt = 1; ; attempt++)
+            {
+                try
+                {
+                    var result = await WebJson.JsonCommandAsync<SessionResult>(URL + "session_is_valid.fcgi?session=" + Session, null, null, TimeOut, null, HttpClientProvider, ct).ConfigureAwait(false);
+                    if (!result.session_is_valid)
+                        await ConnectAsync(ct: ct).ConfigureAwait(false);
+                    return;
+                }
+                catch (Exception ex) when (IsSessionCheckTransient(ex) && !ct.IsCancellationRequested)
+                {
+                    if (attempt >= SessionCheckAttempts)
+                    {
+                        WebJson.WriteLog(SessionCheckLog(attempt, ex, true));
+                        await ConnectAsync(ct: ct).ConfigureAwait(false);
+                        return;
+                    }
+                    WebJson.WriteLog(SessionCheckLog(attempt, ex, false));
+                    await Task.Delay(SessionCheckDelay(attempt), ct).ConfigureAwait(false);
+                }
             }
         }
 
